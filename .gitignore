@@ -5,6 +5,12 @@ __pycache__/
 # vscode
 .vscode/
 
+# c++
+*.o
+activity_3/KTSP/KTSP
+activity_3/tests
+activity_3/build
+
 
 # latex
 # thanks to everyone who wrote:
