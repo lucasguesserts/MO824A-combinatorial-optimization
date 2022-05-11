@@ -14,6 +14,9 @@ activity_3/build
 # java
 build/
 .gradle/
+bin/
+.classpath
+.project
 
 
 # latex
