@@ -1,4 +1,4 @@
-package metaheuristics.grasp;
+package grasp;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -3,7 +3,7 @@ package problems.kqbf.solvers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import metaheuristics.grasp.AbstractGRASP;
+import grasp.AbstractGRASP;
 import problems.kqbf.KQBF_Inverse;
 import solutions.Solution;
 
