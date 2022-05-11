@@ -268,9 +268,9 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         return null;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void staticSolve(String filename) throws IOException {
         long startTime = System.currentTimeMillis();
-        GRASP_KQBF grasp = new GRASP_KQBF(0.5, 1000, false, "instances/kqbf/kqbf100");
+        GRASP_KQBF grasp = new GRASP_KQBF(0.5, 1000, false, filename);
         Solution<Integer> bestSol = grasp.solve();
         KQBF_Inverse ObjFunction = (KQBF_Inverse) grasp.ObjFunction;
         Double knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);

@@ -3,7 +3,7 @@ plugins {
 }
 
 application {
-    mainClass = 'problems.kqbf.KQBF'
+    mainClass = 'main.Main'
 }
 
 sourceCompatibility = 11

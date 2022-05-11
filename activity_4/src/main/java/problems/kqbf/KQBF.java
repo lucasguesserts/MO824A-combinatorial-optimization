@@ -315,14 +315,8 @@ public class KQBF implements Evaluator<Integer> {
         }
     }
 
-    /**
-     * A main method for testing the QBF class.
-     *
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        KQBF qbf = new KQBF("instances/qbf/qbf040");
+    public static void solve(String instance) throws IOException {
+        KQBF qbf = new KQBF(instance);
         qbf.printMatrix();
         Double maxVal = Double.NEGATIVE_INFINITY;
         // evaluates randomly generated values for the domain, saving the best
