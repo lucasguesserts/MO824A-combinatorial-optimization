@@ -11,6 +11,10 @@ activity_3/KTSP/KTSP
 activity_3/tests
 activity_3/build
 
+# java
+build/
+.gradle/
+
 
 # latex
 # thanks to everyone who wrote:
