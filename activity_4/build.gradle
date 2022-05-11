@@ -2,5 +2,9 @@ plugins {
 	id 'application'
 }
 
+application {
+    mainClass = 'problems.kqbf.KQBF'
+}
+
 sourceCompatibility = 11
 targetCompatibility = 11

@@ -2,7 +2,6 @@ package solutions;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("serial")
 public class Solution<E> extends ArrayList<E> {
 
     public Double cost = Double.POSITIVE_INFINITY;
