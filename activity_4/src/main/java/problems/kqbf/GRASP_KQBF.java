@@ -61,7 +61,12 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
      * @throws IOException
      *                     necessary for I/O operations.
      */
-    public GRASP_KQBF(Double alpha, Integer iterations, boolean firstImproving, String filename) throws IOException {
+    public GRASP_KQBF(
+        final Double alpha,
+        final Integer iterations,
+        final boolean firstImproving,
+        final String filename
+    ) throws IOException {
         super(new KQBF_Inverse(filename), alpha, iterations, firstImproving);
     }
 
@@ -267,9 +272,23 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         return null;
     }
 
-    public static void staticSolve(String filename) throws IOException {
+    public static void staticSolve(final String filename) throws IOException {
+        staticSolve(
+            0.5,
+            1000,
+            false,
+            filename
+        );
+    }
+
+    public static void staticSolve(
+        final Double alpha,
+        final Integer iterations,
+        final boolean firstImproving,
+        final String filename
+    ) throws IOException {
         long startTime = System.currentTimeMillis();
-        GRASP_KQBF grasp = new GRASP_KQBF(0.5, 1000, false, filename);
+        GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, filename);
         Solution<Integer> bestSol = grasp.solve();
         KQBF_Inverse ObjFunction = (KQBF_Inverse) grasp.ObjFunction;
         Double knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
