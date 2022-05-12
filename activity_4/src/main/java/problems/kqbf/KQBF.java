@@ -315,9 +315,9 @@ public class KQBF implements Evaluator<Integer> {
         }
     }
 
-    public static void solve(String instance) throws IOException {
+    public static void staticSolve(String instance) throws IOException {
         KQBF qbf = new KQBF(instance);
-        qbf.printMatrix();
+        // qbf.printMatrix();
         Double maxVal = Double.NEGATIVE_INFINITY;
         // evaluates randomly generated values for the domain, saving the best
         // one.
