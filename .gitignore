@@ -1,3 +1,6 @@
+# log
+*.log
+
 # python
 __pycache__/
 .ipynb_checkpoints/
