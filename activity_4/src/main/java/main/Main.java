@@ -2,8 +2,8 @@ package main;
 
 import java.io.IOException;
 
+import problems.kqbf.GRASP_KQBF;
 import problems.kqbf.KQBF;
-import problems.kqbf.solvers.GRASP_KQBF;
 
 public class Main {
 

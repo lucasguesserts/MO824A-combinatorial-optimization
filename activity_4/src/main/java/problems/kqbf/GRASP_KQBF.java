@@ -1,10 +1,9 @@
-package problems.kqbf.solvers;
+package problems.kqbf;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import grasp.AbstractGRASP;
-import problems.kqbf.KQBF_Inverse;
 import solutions.Solution;
 
 /**
@@ -278,7 +277,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         System.out.println("knapsackWeight = " + knapsackWeight);
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
-        System.out.println("Time = " + (double) totalTime / (double) 1000 + " seg");
+        System.out.println("Time = " + (double) totalTime / (double) 1000 + " seconds");
     }
 
 }
