@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-import problems.kqbf.KQBF;
+import problems.KQBF;
 
 public class Main {
 

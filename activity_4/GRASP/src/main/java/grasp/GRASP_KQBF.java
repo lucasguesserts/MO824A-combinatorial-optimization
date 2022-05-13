@@ -1,9 +1,9 @@
-package problems.kqbf;
+package grasp;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import grasp.AbstractGRASP;
+import problems.KQBF_Inverse;
 import solutions.Solution;
 
 /**

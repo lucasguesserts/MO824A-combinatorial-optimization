@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-import problems.kqbf.GRASP_KQBF;
+import grasp.GRASP_KQBF;
 
 public class Main {
 

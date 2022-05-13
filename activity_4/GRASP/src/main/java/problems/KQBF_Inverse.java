@@ -1,4 +1,4 @@
-package problems.kqbf;
+package problems;
 
 import java.io.IOException;
 
