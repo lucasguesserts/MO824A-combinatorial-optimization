@@ -25,31 +25,17 @@ import solutions.Solution;
  */
 public class KQBF implements Evaluator<Integer> {
 
-    // Dimension of the domain
     public final Integer size;
 
-    // Knapsack size
     public Double W;
 
     // The array of numbers representing the domain
     public final Double[] variables;
 
-    // The weights of the variables
     public Double[] weights;
 
-    // The matrix A of coefficients for the QBF f(x) = x'.A.x
     public Double[][] A;
 
-    /**
-     * The constructor for QuadracticBinaryFunction class. The filename of the
-     * input for setting matrix of coefficients A of the QBF. The dimension of
-     * the array of variables x is returned from the {@link #readInput} method.
-     *
-     * @param filename
-     *                 Name of the file containing the input for setting the QBF.
-     * @throws IOException
-     *                     Necessary for I/O operations.
-     */
     public KQBF(String filename) throws IOException {
         size = readInput(filename);
         variables = allocateVariables();
@@ -61,15 +47,6 @@ public class KQBF implements Evaluator<Integer> {
         return size;
     }
 
-    /**
-     * {@inheritDoc} In the case of a QBF, the evaluation correspond to
-     * computing a matrix multiplication x'.A.x. A better way to evaluate this
-     * function when at most two variables are modified is given by methods
-     * {@link #evaluateInsertionQBF(int)}, {@link #evaluateRemovalQBF(int)} and
-     * {@link #evaluateExchangeQBF(int,int)}.
-     *
-     * @return The evaluation of the QBF.
-     */
     @Override
     public Double evaluate(Solution<Integer> sol) {
         setVariables(sol);
@@ -94,12 +71,6 @@ public class KQBF implements Evaluator<Integer> {
         return evaluateExchangeQBF(elemIn, elemOut);
     }
 
-    /**
-     * Evaluates a QBF by calculating the matrix multiplication that defines the
-     * QBF: f(x) = x'.A.x .
-     *
-     * @return The value of the QBF.
-     */
     protected Double evaluateQBF() {
         Double aux = (double) 0, sum = (double) 0;
         Double vecAux[] = new Double[size];
@@ -115,15 +86,6 @@ public class KQBF implements Evaluator<Integer> {
 
     }
 
-    /**
-     * Determines the contribution to the QBF objective function from the
-     * insertion of an element.
-     *
-     * @param i
-     *          Index of the element being inserted into the solution.
-     * @return Ihe variation of the objective function resulting from the
-     *         insertion.
-     */
     protected Double evaluateInsertionQBF(int i) {
 
         if (variables[i] == 1)
@@ -132,51 +94,16 @@ public class KQBF implements Evaluator<Integer> {
         return evaluateContributionQBF(i);
     }
 
-    /**
-     * Determines the contribution to the QBF objective function from the
-     * removal of an element.
-     *
-     * @param i
-     *          Index of the element being removed from the solution.
-     * @return The variation of the objective function resulting from the
-     *         removal.
-     */
     protected Double evaluateRemovalQBF(int i) {
         if (variables[i] == 0) return 0.0;
         else return -evaluateContributionQBF(i);
     }
 
-    /**
-     * Evaluates the fiting of exchanging candidates, one being
-     * considered to enter the solution (elemIn) and the other being considered
-     * for removal (elemOut).
-     *
-     * @param w
-     *                knapsack weight.
-     * @param elemIn
-     *                the element under consideration for insertion.
-     * @param elemOut
-     *                the element under consideration for removal.
-     * @return if the exchange fits in the knapsack.
-     */
     public boolean exchangeFitsKnapsack(Double w, Integer elemIn, Integer elemOut) {
         Double deltaWeight = weights[elemIn] - weights[elemOut];
         return w + deltaWeight > W ? false : true;
     }
 
-    /**
-     * Determines the contribution to the QBF objective function from the
-     * exchange of two elements one belonging to the solution and the other not.
-     *
-     * @param in
-     *            The index of the element that is considered entering the
-     *            solution.
-     * @param out
-     *            The index of the element that is considered exiting the
-     *            solution.
-     * @return The variation of the objective function resulting from the
-     *         exchange.
-     */
     protected Double evaluateExchangeQBF(int in, int out) {
         Double sum = 0.0;
         if (in == out)
@@ -191,13 +118,6 @@ public class KQBF implements Evaluator<Integer> {
         return sum;
     }
 
-    /**
-     * Determines the current knapsack weight.
-     *
-     * @param sol
-     *            the solution which will be evaluated.
-     * @return The current knapsack weight.
-     */
     public Double evaluateKnapsackWeight(Solution<Integer> sol) {
         setVariables(sol);
         Double sum = 0.0;
@@ -207,35 +127,12 @@ public class KQBF implements Evaluator<Integer> {
         return sum;
     }
 
-    /**
-     * Determines if an element fits in the knapsack.
-     * * @param w
-     * knapsack weight.
-     *
-     * @param i
-     *          index of the element being evaluated.
-     * @return If element fits in the knapsack or not.
-     */
     public boolean fitsKnapsack(Double w, int i) {
         return w + weights[i] > W
             ? false
             : true;
     }
 
-    /**
-     * Determines the contribution to the QBF objective function from the
-     * insertion of an element. This method is faster than evaluating the whole
-     * solution, since it uses the fact that only one line and one column from
-     * matrix A needs to be evaluated when inserting a new element into the
-     * solution. This method is different from {@link #evaluateInsertionQBF(int)},
-     * since it disregards the fact that the element might already be in the
-     * solution.
-     *
-     * @param i
-     *          index of the element being inserted into the solution.
-     * @return the variation of the objective function resulting from the
-     *         insertion.
-     */
     private Double evaluateContributionQBF(int i) {
         Double sum = 0.0;
         for (int j = 0; j < size; j++) {
@@ -246,18 +143,6 @@ public class KQBF implements Evaluator<Integer> {
         return sum;
     }
 
-    /**
-     * Responsible for setting the QBF function parameters by reading the
-     * necessary input from an external file. this method reads the domain's
-     * dimension and matrix {@link #A}.
-     *
-     * @param filename
-     *                 Name of the file containing the input for setting the black
-     *                 box function.
-     * @return The dimension of the domain.
-     * @throws IOException
-     *                     Necessary for I/O operations.
-     */
     private Integer readInput(String filename) throws IOException {
         Reader fileInst = new BufferedReader(new FileReader(filename));
         StreamTokenizer stok = new StreamTokenizer(fileInst);
@@ -300,13 +185,6 @@ public class KQBF implements Evaluator<Integer> {
         }
     }
 
-    /**
-     * Evaluates the value of a solution by transforming it into a vector. This
-     * is required to perform the matrix multiplication which defines a QBF.
-     *
-     * @param sol
-     *            the solution which will be evaluated.
-     */
     private void setVariables(Solution<Integer> sol) {
         resetVariables();
         if (!sol.isEmpty()) {

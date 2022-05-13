@@ -6,81 +6,33 @@ import java.util.ArrayList;
 import problems.KQBF_Inverse;
 import solutions.Solution;
 
-/**
- * Metaheuristic GRASP (Greedy Randomized Adaptive Search Procedure) for
- * obtaining an optimal solution to a QBF (Quadractive Binary Function --
- * {@link #QuadracticBinaryFunction}). Since by default this GRASP considers
- * minimization problems, an inverse QBF function is adopted.
- *
- * @author ccavellucci, fusberti
- */
 public class GRASP_KQBF extends AbstractGRASP<Integer> {
-    /**
-     * the objective function being optimized
-     */
-    // protected QBF_Inverse ObjFunction;
 
-    /**
-     * Constructor for the GRASP_KQBF class. An inverse QBF objective function is
-     * passed as argument for the superclass constructor. First-improving false.
-     *
-     * @param alpha
-     *                   The GRASP greediness-randomness parameter (within the range
-     *                   [0,1])
-     * @param iterations
-     *                   The number of iterations which the GRASP will be executed.
-     * @param filename
-     *                   Name of the file for which the objective function
-     *                   parameters
-     *                   should be read.
-     * @throws IOException
-     *                     necessary for I/O operations.
-     */
-    public GRASP_KQBF(Double alpha, Integer iterations, String filename) throws IOException {
-        super(new KQBF_Inverse(filename), alpha, iterations);
+    public GRASP_KQBF(
+        final Double alpha,
+        final Integer iterations,
+        final String fileName
+    ) throws IOException {
+        super(new KQBF_Inverse(fileName), alpha, iterations);
     }
 
-    /**
-     * Constructor for the GRASP_KQBF class. An inverse QBF objective function is
-     * passed as argument for the superclass constructor. First-improving difined as
-     * parameter.
-     *
-     * @param alpha
-     *                       The GRASP greediness-randomness parameter (within the
-     *                       range
-     *                       [0,1])
-     * @param iterations
-     *                       The number of iterations which the GRASP will be
-     *                       executed.
-     * @param firstImproving
-     *                       The GRASP first-improving parameter.
-     * @param filename
-     *                       Name of the file for which the objective function
-     *                       parameters
-     *                       should be read.
-     * @throws IOException
-     *                     necessary for I/O operations.
-     */
     public GRASP_KQBF(
         final Double alpha,
         final Integer iterations,
         final boolean firstImproving,
-        final String filename
+        final String fileName
     ) throws IOException {
-        super(new KQBF_Inverse(filename), alpha, iterations, firstImproving);
+        super(new KQBF_Inverse(fileName), alpha, iterations, firstImproving);
     }
 
     @Override
     public ArrayList<Integer> makeCL() {
-
         ArrayList<Integer> _CL = new ArrayList<Integer>();
         for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
             Integer cand = i;
             _CL.add(cand);
         }
-
         return _CL;
-
     }
 
     @Override
@@ -94,9 +46,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
     @Override
     public void updateCL() {
-
         Double knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
-
         ArrayList<Integer> _CL = new ArrayList<Integer>();
         for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
             if (!sol.contains(i) && ((KQBF_Inverse) ObjFunction).fitsKnapsack(knapsackWeight, i)) {
@@ -105,9 +55,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             }
 
         }
-
         CL = _CL;
-
     }
 
     @Override
@@ -117,22 +65,14 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         return sol;
     }
 
-    /**
-     * The GRASP local search with best-improving.
-     *
-     * @return An local optimum solution.
-     */
     public Solution<Integer> bestImproving() {
-
         Double minDeltaCost;
         Double knapsackWeight;
         Integer bestCandIn = null, bestCandOut = null;
-
         do {
             minDeltaCost = Double.POSITIVE_INFINITY;
             knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
             updateCL();
-
             // Evaluate insertions
             for (Integer candIn : CL) {
                 double deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
@@ -177,26 +117,18 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                 ObjFunction.evaluate(sol);
             }
         } while (minDeltaCost < -Double.MIN_VALUE);
-
         return null;
     }
 
-    /**
-     * The GRASP local search with first-improving.
-     *
-     * @return An local optimum solution.
-     */
     public Solution<Integer> firstImproving() {
 
         Double knapsackWeight;
         Integer firstCandIn = null, firstCandOut = null;
-
         do {
             knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
             firstCandIn = null;
             firstCandOut = null;
             updateCL();
-
             // Evaluate insertions
             for (Integer candIn : CL) {
                 double deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
@@ -213,7 +145,6 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                 ObjFunction.evaluate(sol);
                 continue;
             }
-
             // Evaluate removals
             for (Integer candOut : sol) {
                 double deltaCost = ObjFunction.evaluateRemovalCost(candOut, sol);
@@ -229,7 +160,6 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                 ObjFunction.evaluate(sol);
                 continue;
             }
-
             // Evaluate exchanges
             for (Integer candIn : CL) {
                 for (Integer candOut : sol) {
@@ -255,28 +185,25 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                 ObjFunction.evaluate(sol);
             }
         } while (firstCandIn != null && firstCandOut != null);
-
         return null;
     }
 
     @Override
     public Solution<Integer> localSearch() {
-
         if (firstImproving) {
             firstImproving();
         } else {
             bestImproving();
         }
-
         return null;
     }
 
-    public static void staticSolve(final String filename) throws IOException {
+    public static void staticSolve(final String fileName) throws IOException {
         staticSolve(
             0.5,
             1000,
             false,
-            filename
+            fileName
         );
     }
 
@@ -284,10 +211,10 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         final Double alpha,
         final Integer iterations,
         final boolean firstImproving,
-        final String filename
+        final String fileName
     ) throws IOException {
         long startTime = System.currentTimeMillis();
-        GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, filename);
+        GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, fileName);
         Solution<Integer> bestSol = grasp.solve();
         KQBF_Inverse ObjFunction = (KQBF_Inverse) grasp.ObjFunction;
         Double knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
