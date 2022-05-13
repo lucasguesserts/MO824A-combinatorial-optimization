@@ -29,8 +29,7 @@ public class KQBF implements Evaluator<Integer> {
 
     public Double W;
 
-    // The array of numbers representing the domain
-    public final Double[] variables;
+    public final Integer[] variables;
 
     public Double[] weights;
 
@@ -87,10 +86,7 @@ public class KQBF implements Evaluator<Integer> {
     }
 
     protected Double evaluateInsertionQBF(int i) {
-
-        if (variables[i] == 1)
-            return 0.0;
-
+        if (variables[i] == 1) return 0.0;
         return evaluateContributionQBF(i);
     }
 
@@ -167,8 +163,8 @@ public class KQBF implements Evaluator<Integer> {
         return _size;
     }
 
-    private Double[] allocateVariables() {
-        Double[] _variables = new Double[size];
+    private Integer[] allocateVariables() {
+        Integer[] _variables = new Integer[size];
         return _variables;
     }
 
@@ -189,43 +185,42 @@ public class KQBF implements Evaluator<Integer> {
         resetVariables();
         if (!sol.isEmpty()) {
             for (Integer elem : sol) {
-                variables[elem] = 1.0;
+                variables[elem] = 1;
             }
         }
     }
 
     public static void staticSolve(String instance) throws IOException {
-        KQBF qbf = new KQBF(instance);
-        // qbf.printMatrix();
+        // naive approach: try solutions randomly
+        KQBF kqbf = new KQBF(instance);
         Double maxVal = Double.NEGATIVE_INFINITY;
-        // evaluates randomly generated values for the domain, saving the best
-        // one.
         for (int i = 0; i < 10000000; i++) {
-            for (int j = 0; j < qbf.size; j++) {
-                if (Math.random() < 0.5)
-                    qbf.variables[j] = 0.0;
-                else
-                    qbf.variables[j] = 1.0;
+            for (int j = 0; j < kqbf.size; j++) {
+                kqbf.variables[j] = getBinaryRandomValue();
             }
-            // System.out.println("x = " + Arrays.toString(qbf.variables));
-            Double eval = qbf.evaluateQBF();
-            // System.out.println("f(x) = " + eval);
+            Double eval = kqbf.evaluateQBF();
             if (maxVal < eval)
                 maxVal = eval;
         }
         System.out.println("maxVal = " + maxVal);
         // evaluates the zero array.
-        for (int j = 0; j < qbf.size; j++) {
-            qbf.variables[j] = 0.0;
+        for (int j = 0; j < kqbf.size; j++) {
+            kqbf.variables[j] = 0;
         }
-        System.out.println("x = " + Arrays.toString(qbf.variables));
-        System.out.println("f(x) = " + qbf.evaluateQBF());
+        System.out.println("x = " + Arrays.toString(kqbf.variables));
+        System.out.println("f(x) = " + kqbf.evaluateQBF());
         // evaluates the all-ones array.
-        for (int j = 0; j < qbf.size; j++) {
-            qbf.variables[j] = 1.0;
+        for (int j = 0; j < kqbf.size; j++) {
+            kqbf.variables[j] = 1;
         }
-        System.out.println("x = " + Arrays.toString(qbf.variables));
-        System.out.println("f(x) = " + qbf.evaluateQBF());
+        System.out.println("x = " + Arrays.toString(kqbf.variables));
+        System.out.println("f(x) = " + kqbf.evaluateQBF());
+    }
+
+    private static Integer getBinaryRandomValue() {
+        return Math.random() < 0.5
+            ? 0
+            : 1;
     }
 
 }
