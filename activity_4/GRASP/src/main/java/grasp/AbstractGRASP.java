@@ -107,15 +107,13 @@ public abstract class AbstractGRASP<E> {
         ObjFunction.evaluate(sol);
     }
 
-    /**
-     * A standard stopping criteria for the constructive heuristic is to repeat
-     * until the current solution improves by inserting a new candidate
-     * element.
-     *
-     * @return true if the criteria is met.
-     */
     public Boolean constructiveStopCriteria() {
-        return (cost > sol.cost) && !CL.isEmpty() ? false : true;
+        // if the stop criteria has been met (true case),
+        // then stop,
+        // else continue running
+        final Boolean solutionHasImproved = currentCost > sol.cost;
+        final Boolean thereAreNoMoreCandidates = CL.isEmpty();
+        return (!solutionHasImproved) || thereAreNoMoreCandidates;
     }
 
     public Solution<E> solve() {
