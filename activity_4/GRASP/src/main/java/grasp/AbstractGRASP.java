@@ -10,7 +10,7 @@ public abstract class AbstractGRASP<E> {
 
     public static boolean verbose = true;
 
-    static Random rng = new Random(0);
+    static Random randomGenerator = new Random(0);
 
     protected Evaluator<E> ObjFunction;
 
@@ -19,6 +19,10 @@ public abstract class AbstractGRASP<E> {
     protected Integer bestCost;
 
     protected Integer cost;
+
+    protected Integer maxCostOfCandidates;
+
+    protected Integer minCostOfCandidates;
 
     protected Solution<E> bestSol;
 
@@ -61,39 +65,46 @@ public abstract class AbstractGRASP<E> {
         sol = createEmptySol();
         cost = Integer.MAX_VALUE;
         while (!constructiveStopCriteria()) {
-            Integer maxCost = Integer.MIN_VALUE;
-            Integer minCost = Integer.MAX_VALUE;
-            cost = ObjFunction.evaluate(sol);
+            setMaxMinCandidateCosts();
+            updateRCL();
+            addCandidateToSolution();
             updateCL();
-            if (CL.isEmpty()) {
-                break;
-            }
-            // Explore all candidate elements to enter the solution, saving the
-            // highest and lowest cost variation achieved by the candidates.
-            for (E c : CL) {
-                Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
-                if (deltaCost < minCost)
-                    minCost = deltaCost;
-                if (deltaCost > maxCost)
-                    maxCost = deltaCost;
-            }
-            // Among all candidates, insert into the RCL those with the highest
-            // performance using parameter alpha as threshold.
-            for (E c : CL) {
-                Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
-                if (deltaCost <= minCost + alpha * (maxCost - minCost)) {
-                    RCL.add(c);
-                }
-            }
-            // Choose a candidate randomly from the RCL
-            int rndIndex = rng.nextInt(RCL.size());
-            E inCand = RCL.get(rndIndex);
-            CL.remove(inCand);
-            sol.add(inCand);
-            ObjFunction.evaluate(sol);
-            RCL.clear();
         }
         return sol;
+    }
+
+    private void setMaxMinCandidateCosts() {
+        maxCostOfCandidates = Integer.MIN_VALUE;
+        minCostOfCandidates = Integer.MAX_VALUE;
+        // Explore all candidate elements to enter the solution, saving the
+        // highest and lowest cost variation achieved by the candidates.
+        for (E c : CL) {
+            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
+            if (deltaCost < minCostOfCandidates)
+                minCostOfCandidates = deltaCost;
+            if (deltaCost > maxCostOfCandidates)
+                maxCostOfCandidates = deltaCost;
+        }
+    }
+
+    private void updateRCL() {
+        // Among all candidates, insert into the RCL those with the highest
+        // performance using parameter alpha as threshold.
+        RCL.clear();
+        for (E c : CL) {
+            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
+            if (deltaCost <= minCostOfCandidates + alpha * (maxCostOfCandidates - minCostOfCandidates)) {
+                RCL.add(c);
+            }
+        }
+    }
+
+    private void addCandidateToSolution() {
+        // Choose a candidate randomly from the RCL
+        int randomIndex = randomGenerator.nextInt(RCL.size());
+        E inCand = RCL.get(randomIndex);
+        sol.add(inCand);
+        ObjFunction.evaluate(sol);
     }
 
     /**

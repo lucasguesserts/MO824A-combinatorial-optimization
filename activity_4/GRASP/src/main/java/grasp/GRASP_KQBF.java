@@ -27,35 +27,29 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
     @Override
     public ArrayList<Integer> makeCL() {
-        ArrayList<Integer> _CL = new ArrayList<Integer>();
-        for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
-            Integer cand = i;
-            _CL.add(cand);
+        final ArrayList<Integer> candidateList = new ArrayList<Integer>();
+        for (int candidate = 0; candidate < ObjFunction.getDomainSize(); ++candidate) {
+            if (ObjFunction.isValidCandidate(candidate))
+                candidateList.add(candidate);
         }
-        return _CL;
+        return candidateList;
     }
 
     @Override
     public ArrayList<Integer> makeRCL() {
-
-        ArrayList<Integer> _RCL = new ArrayList<Integer>();
-
-        return _RCL;
-
+        ArrayList<Integer> restrictedCandidateList = new ArrayList<Integer>();
+        return restrictedCandidateList;
     }
 
     @Override
     public void updateCL() {
-        Integer knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
-        ArrayList<Integer> _CL = new ArrayList<Integer>();
-        for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
-            if (!sol.contains(i) && ((KQBF_Inverse) ObjFunction).fitsKnapsack(knapsackWeight, i)) {
-                Integer cand = i;
-                _CL.add(cand);
+        ArrayList<Integer> candidateList = new ArrayList<Integer>();
+        for (int candidate = 0; candidate < ObjFunction.getDomainSize(); candidate++) {
+            if (!sol.contains(candidate) && ObjFunction.isValidCandidate(candidate)) {
+                candidateList.add(candidate);
             }
-
         }
-        CL = _CL;
+        this.CL = candidateList;
     }
 
     @Override
