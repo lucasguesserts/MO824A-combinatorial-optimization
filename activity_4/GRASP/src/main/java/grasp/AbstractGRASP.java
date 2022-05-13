@@ -24,11 +24,11 @@ public abstract class AbstractGRASP<E> {
 
     protected Integer minCostOfCandidates;
 
-    protected Solution<E> bestSol;
+    protected Solution<E> bestSolution;
 
-    protected Solution<E> sol;
+    protected Solution<E> currentSolution;
 
-    protected Integer iterations;
+    protected Integer maximumNumberOfIterations;
 
     protected ArrayList<E> CL;
 
@@ -49,29 +49,29 @@ public abstract class AbstractGRASP<E> {
     public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer iterations) {
         this.ObjFunction = objFunction;
         this.alpha = alpha;
-        this.iterations = iterations;
+        this.maximumNumberOfIterations = iterations;
         this.firstImproving = false;
     }
     public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer iterations, boolean firstImproving) {
         this.ObjFunction = objFunction;
         this.alpha = alpha;
-        this.iterations = iterations;
+        this.maximumNumberOfIterations = iterations;
         this.firstImproving = firstImproving;
     }
 
     public Solution<E> constructiveHeuristic() {
         CL = makeCL();
         RCL = makeRCL();
-        sol = createEmptySol();
+        currentSolution = createEmptySol();
         costOfLastSolution = Integer.MAX_VALUE;
         while (!constructiveStopCriteria()) {
-            costOfLastSolution = sol.cost;
+            costOfLastSolution = currentSolution.cost;
             setMaxMinCandidateCosts();
             updateRCL();
             addCandidateToSolution();
             updateCL();
         }
-        return sol;
+        return currentSolution;
     }
 
     private void setMaxMinCandidateCosts() {
@@ -80,7 +80,7 @@ public abstract class AbstractGRASP<E> {
         // Explore all candidate elements to enter the solution, saving the
         // highest and lowest cost variation achieved by the candidates.
         for (E c : CL) {
-            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
+            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, currentSolution);
             if (deltaCost < minCostOfCandidates)
                 minCostOfCandidates = deltaCost;
             if (deltaCost > maxCostOfCandidates)
@@ -93,7 +93,7 @@ public abstract class AbstractGRASP<E> {
         // performance using parameter alpha as threshold.
         RCL.clear();
         for (E c : CL) {
-            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
+            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, currentSolution);
             if (deltaCost <= minCostOfCandidates + alpha * (maxCostOfCandidates - minCostOfCandidates)) {
                 RCL.add(c);
             }
@@ -104,31 +104,37 @@ public abstract class AbstractGRASP<E> {
         // Choose a candidate randomly from the RCL
         int randomIndex = randomGenerator.nextInt(RCL.size());
         E inCand = RCL.get(randomIndex);
-        sol.add(inCand);
-        sol.cost = ObjFunction.evaluate(sol);
+        currentSolution.add(inCand);
+        currentSolution.cost = ObjFunction.evaluate(currentSolution);
     }
 
     public Boolean constructiveStopCriteria() {
         // if the stop criteria has been met (true case),
         // then stop,
         // else continue running
-        final Boolean solutionHasImproved = costOfLastSolution > sol.cost;
+        final Boolean solutionHasImproved = costOfLastSolution > currentSolution.cost;
         final Boolean thereAreNoMoreCandidates = CL.isEmpty();
         return (!solutionHasImproved) || thereAreNoMoreCandidates;
     }
 
     public Solution<E> solve() {
-        bestSol = createEmptySol();
-        for (int i = 0; i < iterations; i++) {
+        bestSolution = createEmptySol();
+        for (int iterationCount = 0; iterationCount < maximumNumberOfIterations; ++iterationCount) {
             constructiveHeuristic();
             localSearch();
-            if (bestSol.cost > sol.cost) {
-                bestSol = new Solution<E>(sol);
-                if (verbose)
-                    System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+            if (bestSolution.cost > currentSolution.cost) {
+                bestSolution = new Solution<E>(currentSolution);
+                if (verbose) displayIterationStatus(iterationCount);
             }
         }
-        return bestSol;
+        return bestSolution;
+    }
+
+    private void displayIterationStatus(final Integer iterationCount) {
+        System.out.println(
+            "> Iteration " + iterationCount
+            + "\n\t" + "BestSolution: " + bestSolution
+        );
     }
 
 }

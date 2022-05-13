@@ -17,7 +17,7 @@ public class Solution<E> extends ArrayList<E> {
 
     @Override
     public String toString() {
-        return "Solution: cost=[" + cost + "], size=[" + this.size() + "], elements=" + super.toString();
+        return "{cost: " + cost + ", size: " + this.size() + ", elements:" + super.toString() + "}";
     }
 
 }
