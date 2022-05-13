@@ -18,7 +18,7 @@ public abstract class AbstractGRASP<E> {
 
     protected Integer bestCost;
 
-    protected Integer cost;
+    protected Integer costOfLastSolution;
 
     protected Integer maxCostOfCandidates;
 
@@ -63,8 +63,9 @@ public abstract class AbstractGRASP<E> {
         CL = makeCL();
         RCL = makeRCL();
         sol = createEmptySol();
-        cost = Integer.MAX_VALUE;
+        costOfLastSolution = Integer.MAX_VALUE;
         while (!constructiveStopCriteria()) {
+            costOfLastSolution = sol.cost;
             setMaxMinCandidateCosts();
             updateRCL();
             addCandidateToSolution();
@@ -104,14 +105,14 @@ public abstract class AbstractGRASP<E> {
         int randomIndex = randomGenerator.nextInt(RCL.size());
         E inCand = RCL.get(randomIndex);
         sol.add(inCand);
-        ObjFunction.evaluate(sol);
+        sol.cost = ObjFunction.evaluate(sol);
     }
 
     public Boolean constructiveStopCriteria() {
         // if the stop criteria has been met (true case),
         // then stop,
         // else continue running
-        final Boolean solutionHasImproved = currentCost > sol.cost;
+        final Boolean solutionHasImproved = costOfLastSolution > sol.cost;
         final Boolean thereAreNoMoreCandidates = CL.isEmpty();
         return (!solutionHasImproved) || thereAreNoMoreCandidates;
     }
