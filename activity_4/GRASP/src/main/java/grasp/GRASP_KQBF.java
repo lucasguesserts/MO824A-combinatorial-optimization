@@ -51,7 +51,30 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         return sol;
     }
 
-    public Solution<Integer> bestImproving() {
+    @Override
+    public Solution<Integer> localSearch() {
+        if (firstImproving) {
+            firstImproving();
+        } else {
+            bestImproving();
+        }
+        return null;
+    }
+
+    public Integer getKnapsackWeightOfSolution() {
+        final KQBF_Inverse ObjFunction = (KQBF_Inverse) this.ObjFunction;
+        final Integer knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSolution);
+        return knapsackWeight;
+    }
+
+    @Override
+    public Solution<Integer> solve() {
+        bestSolution = super.solve();
+        bestSolution.cost = - bestSolution.cost;
+        return bestSolution;
+    }
+
+    private Solution<Integer> bestImproving() {
         Double minDeltaCost;
         Integer knapsackWeight;
         Integer bestCandIn = null, bestCandOut = null;
@@ -106,7 +129,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         return null;
     }
 
-    public Solution<Integer> firstImproving() {
+    private Solution<Integer> firstImproving() {
 
         Integer knapsackWeight;
         Integer firstCandIn = null, firstCandOut = null;
@@ -172,44 +195,6 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             }
         } while (firstCandIn != null && firstCandOut != null);
         return null;
-    }
-
-    @Override
-    public Solution<Integer> localSearch() {
-        if (firstImproving) {
-            firstImproving();
-        } else {
-            bestImproving();
-        }
-        return null;
-    }
-
-    public static void staticSolve(final String fileName) throws IOException {
-        staticSolve(
-            0.5,
-            1000,
-            false,
-            fileName
-        );
-    }
-
-    public static void staticSolve(
-        final Double alpha,
-        final Integer iterations,
-        final boolean firstImproving,
-        final String fileName
-    ) throws IOException {
-        long startTime = System.currentTimeMillis();
-        GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, fileName);
-        Solution<Integer> bestSol = grasp.solve();
-        KQBF_Inverse ObjFunction = (KQBF_Inverse) grasp.ObjFunction;
-        Integer knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
-        System.out.println("");
-        System.out.println("Best Found Solution: " + bestSol);
-        System.out.println("KnapsackWeight: " + knapsackWeight);
-        long endTime = System.currentTimeMillis();
-        long totalTime = endTime - startTime;
-        System.out.println("RunningTime = " + (double) totalTime / (double) 1000 + " seconds");
     }
 
 }
