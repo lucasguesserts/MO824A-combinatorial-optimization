@@ -55,21 +55,6 @@ public class KQBF implements Evaluator<Integer> {
         variables = allocateVariables();
     }
 
-    /**
-     * Evaluates the value of a solution by transforming it into a vector. This
-     * is required to perform the matrix multiplication which defines a QBF.
-     *
-     * @param sol
-     *            the solution which will be evaluated.
-     */
-    public void setVariables(Solution<Integer> sol) {
-        resetVariables();
-        if (!sol.isEmpty()) {
-            for (Integer elem : sol) {
-                variables[elem] = 1.0;
-            }
-        }
-    }
 
     @Override
     public Integer getDomainSize() {
@@ -91,13 +76,31 @@ public class KQBF implements Evaluator<Integer> {
         return sol.cost = evaluateQBF();
     }
 
+    @Override
+    public Double evaluateInsertionCost(Integer elem, Solution<Integer> sol) {
+        setVariables(sol);
+        return evaluateInsertionQBF(elem);
+    }
+
+    @Override
+    public Double evaluateRemovalCost(Integer elem, Solution<Integer> sol) {
+        setVariables(sol);
+        return evaluateRemovalQBF(elem);
+    }
+
+    @Override
+    public Double evaluateExchangeCost(Integer elemIn, Integer elemOut, Solution<Integer> sol) {
+        setVariables(sol);
+        return evaluateExchangeQBF(elemIn, elemOut);
+    }
+
     /**
      * Evaluates a QBF by calculating the matrix multiplication that defines the
      * QBF: f(x) = x'.A.x .
      *
      * @return The value of the QBF.
      */
-    public Double evaluateQBF() {
+    protected Double evaluateQBF() {
         Double aux = (double) 0, sum = (double) 0;
         Double vecAux[] = new Double[size];
         for (int i = 0; i < size; i++) {
@@ -112,12 +115,6 @@ public class KQBF implements Evaluator<Integer> {
 
     }
 
-    @Override
-    public Double evaluateInsertionCost(Integer elem, Solution<Integer> sol) {
-        setVariables(sol);
-        return evaluateInsertionQBF(elem);
-    }
-
     /**
      * Determines the contribution to the QBF objective function from the
      * insertion of an element.
@@ -127,18 +124,12 @@ public class KQBF implements Evaluator<Integer> {
      * @return Ihe variation of the objective function resulting from the
      *         insertion.
      */
-    public Double evaluateInsertionQBF(int i) {
+    protected Double evaluateInsertionQBF(int i) {
 
         if (variables[i] == 1)
             return 0.0;
 
         return evaluateContributionQBF(i);
-    }
-
-    @Override
-    public Double evaluateRemovalCost(Integer elem, Solution<Integer> sol) {
-        setVariables(sol);
-        return evaluateRemovalQBF(elem);
     }
 
     /**
@@ -150,15 +141,9 @@ public class KQBF implements Evaluator<Integer> {
      * @return The variation of the objective function resulting from the
      *         removal.
      */
-    public Double evaluateRemovalQBF(int i) {
+    protected Double evaluateRemovalQBF(int i) {
         if (variables[i] == 0) return 0.0;
         else return -evaluateContributionQBF(i);
-    }
-
-    @Override
-    public Double evaluateExchangeCost(Integer elemIn, Integer elemOut, Solution<Integer> sol) {
-        setVariables(sol);
-        return evaluateExchangeQBF(elemIn, elemOut);
     }
 
     /**
@@ -192,7 +177,7 @@ public class KQBF implements Evaluator<Integer> {
      * @return The variation of the objective function resulting from the
      *         exchange.
      */
-    public Double evaluateExchangeQBF(int in, int out) {
+    protected Double evaluateExchangeQBF(int in, int out) {
         Double sum = 0.0;
         if (in == out)
             return 0.0;
@@ -273,7 +258,7 @@ public class KQBF implements Evaluator<Integer> {
      * @throws IOException
      *                     Necessary for I/O operations.
      */
-    protected Integer readInput(String filename) throws IOException {
+    private Integer readInput(String filename) throws IOException {
         Reader fileInst = new BufferedReader(new FileReader(filename));
         StreamTokenizer stok = new StreamTokenizer(fileInst);
         stok.nextToken();
@@ -297,12 +282,12 @@ public class KQBF implements Evaluator<Integer> {
         return _size;
     }
 
-    protected Double[] allocateVariables() {
+    private Double[] allocateVariables() {
         Double[] _variables = new Double[size];
         return _variables;
     }
 
-    public void resetVariables() {
+    private void resetVariables() {
         Arrays.fill(variables, 0.0);
     }
 
@@ -312,6 +297,22 @@ public class KQBF implements Evaluator<Integer> {
                 System.out.print(A[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+
+    /**
+     * Evaluates the value of a solution by transforming it into a vector. This
+     * is required to perform the matrix multiplication which defines a QBF.
+     *
+     * @param sol
+     *            the solution which will be evaluated.
+     */
+    private void setVariables(Solution<Integer> sol) {
+        resetVariables();
+        if (!sol.isEmpty()) {
+            for (Integer elem : sol) {
+                variables[elem] = 1.0;
+            }
         }
     }
 

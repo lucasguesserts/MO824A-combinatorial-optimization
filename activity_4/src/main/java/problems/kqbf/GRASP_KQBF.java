@@ -156,8 +156,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             for (Integer candIn : CL) {
                 for (Integer candOut : sol) {
                     double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, sol);
-                    boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight, candIn,
-                            candOut);
+                    boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight, candIn, candOut);
                     if (deltaCost < minDeltaCost && exchangeFitsKnapsack) {
                         minDeltaCost = deltaCost;
                         bestCandIn = candIn;
