@@ -27,7 +27,7 @@ public class KQBF implements Evaluator<Integer> {
 
     public final Integer size;
 
-    public Double W;
+    public Integer W;
 
     public final Integer[] variables;
 
@@ -145,7 +145,7 @@ public class KQBF implements Evaluator<Integer> {
         stok.nextToken();
         Integer _size = (int) stok.nval;
         stok.nextToken();
-        W = stok.nval;
+        W = (int) stok.nval;
         weights = new Double[_size];
         for (int i = 0; i < _size; i++) {
             stok.nextToken();
@@ -169,7 +169,7 @@ public class KQBF implements Evaluator<Integer> {
     }
 
     private void resetVariables() {
-        Arrays.fill(variables, 0.0);
+        Arrays.fill(variables, 0);
     }
 
     public void printMatrix() {
