@@ -31,7 +31,7 @@ public class KQBF implements Evaluator<Integer> {
 
     public final Integer[] variables;
 
-    public Double[] weights;
+    public Integer[] weights;
 
     public Double[][] A;
 
@@ -95,9 +95,9 @@ public class KQBF implements Evaluator<Integer> {
         else return -evaluateContributionQBF(i);
     }
 
-    public boolean exchangeFitsKnapsack(Double w, Integer elemIn, Integer elemOut) {
-        Double deltaWeight = weights[elemIn] - weights[elemOut];
-        return w + deltaWeight > W ? false : true;
+    public boolean exchangeFitsKnapsack(Integer w, Integer elemIn, Integer elemOut) {
+        Integer deltaWeight = weights[elemIn] - weights[elemOut];
+        return (w + deltaWeight) < W;
     }
 
     protected Double evaluateExchangeQBF(int in, int out) {
@@ -114,19 +114,17 @@ public class KQBF implements Evaluator<Integer> {
         return sum;
     }
 
-    public Double evaluateKnapsackWeight(Solution<Integer> sol) {
+    public Integer evaluateKnapsackWeight(Solution<Integer> sol) {
         setVariables(sol);
-        Double sum = 0.0;
+        Integer sum = 0;
         for (int i = 0; i < size; i++) {
             sum += variables[i] * weights[i];
         }
         return sum;
     }
 
-    public boolean fitsKnapsack(Double w, int i) {
-        return w + weights[i] > W
-            ? false
-            : true;
+    public boolean fitsKnapsack(Integer w, int i) {
+        return (w + weights[i]) < W;
     }
 
     private Double evaluateContributionQBF(int i) {
@@ -146,10 +144,10 @@ public class KQBF implements Evaluator<Integer> {
         Integer _size = (int) stok.nval;
         stok.nextToken();
         W = (int) stok.nval;
-        weights = new Double[_size];
+        weights = new Integer[_size];
         for (int i = 0; i < _size; i++) {
             stok.nextToken();
-            weights[i] = stok.nval;
+            weights[i] = (int) stok.nval;
         }
         A = new Double[_size][_size];
         for (int i = 0; i < _size; i++) {

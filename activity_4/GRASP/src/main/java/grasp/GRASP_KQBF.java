@@ -46,7 +46,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
     @Override
     public void updateCL() {
-        Double knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
+        Integer knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
         ArrayList<Integer> _CL = new ArrayList<Integer>();
         for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
             if (!sol.contains(i) && ((KQBF_Inverse) ObjFunction).fitsKnapsack(knapsackWeight, i)) {
@@ -67,7 +67,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
     public Solution<Integer> bestImproving() {
         Double minDeltaCost;
-        Double knapsackWeight;
+        Integer knapsackWeight;
         Integer bestCandIn = null, bestCandOut = null;
         do {
             minDeltaCost = Double.POSITIVE_INFINITY;
@@ -122,7 +122,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
     public Solution<Integer> firstImproving() {
 
-        Double knapsackWeight;
+        Integer knapsackWeight;
         Integer firstCandIn = null, firstCandOut = null;
         do {
             knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
@@ -217,7 +217,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, fileName);
         Solution<Integer> bestSol = grasp.solve();
         KQBF_Inverse ObjFunction = (KQBF_Inverse) grasp.ObjFunction;
-        Double knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
+        Integer knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
         System.out.println("maxVal = " + bestSol);
         System.out.println("knapsackWeight = " + knapsackWeight);
         long endTime = System.currentTimeMillis();
