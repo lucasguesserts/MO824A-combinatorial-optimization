@@ -9,12 +9,12 @@ import solutions.Solution;
 public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
     public GRASP_KQBF(
-        final Double alpha,
-        final Integer iterations,
-        final boolean firstImproving,
-        final String fileName
-    ) throws IOException {
-        super(new KQBF_Inverse(fileName), alpha, iterations, firstImproving);
+            final Double alpha,
+            final Integer iterations,
+            final boolean firstImproving,
+            final ConstructionMechanism constructionMechanism,
+            final String fileName) throws IOException {
+        super(new KQBF_Inverse(fileName), alpha, constructionMechanism, iterations, firstImproving);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
     @Override
     public Solution<Integer> solve() {
         bestSolution = super.solve();
-        bestSolution.cost = - bestSolution.cost;
+        bestSolution.cost = -bestSolution.cost;
         return bestSolution;
     }
 
@@ -105,7 +105,8 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             for (Integer candIn : CL) {
                 for (Integer candOut : currentSolution) {
                     double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, currentSolution);
-                    boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight, candIn, candOut);
+                    boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight,
+                            candIn, candOut);
                     if (deltaCost < minDeltaCost && exchangeFitsKnapsack) {
                         minDeltaCost = deltaCost;
                         bestCandIn = candIn;
@@ -173,7 +174,8 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             for (Integer candIn : CL) {
                 for (Integer candOut : currentSolution) {
                     double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, currentSolution);
-                    boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight, candIn,
+                    boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight,
+                            candIn,
                             candOut);
                     if (deltaCost < -Double.MIN_VALUE && exchangeFitsKnapsack) {
                         firstCandIn = candIn;

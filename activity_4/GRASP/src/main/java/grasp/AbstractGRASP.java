@@ -8,6 +8,13 @@ import solutions.Solution;
 
 public abstract class AbstractGRASP<E> {
 
+    public enum ConstructionMechanism {
+        DEFAULT,
+        RANDOM_PLUS_GREEDY
+    };
+
+    protected ConstructionMechanism constructionMechanism;
+
     public static boolean verbose = true;
 
     static Random randomGenerator = new Random(0);
@@ -46,9 +53,11 @@ public abstract class AbstractGRASP<E> {
 
     public abstract Solution<E> localSearch();
 
-    public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer iterations, boolean firstImproving) {
+    public AbstractGRASP(Evaluator<E> objFunction, Double alpha, ConstructionMechanism constructionMechanism,
+            Integer iterations, boolean firstImproving) {
         this.ObjFunction = objFunction;
         this.alpha = alpha;
+        this.constructionMechanism = constructionMechanism;
         this.maximumNumberOfIterations = iterations;
         this.firstImproving = firstImproving;
     }
@@ -64,6 +73,27 @@ public abstract class AbstractGRASP<E> {
             updateRCL();
             addCandidateToSolution();
             updateCL();
+        }
+        return currentSolution;
+    }
+
+    public Solution<E> randomPlusGreedy() {
+        CL = makeCL();
+        RCL = makeRCL();
+        currentSolution = createEmptySol();
+        costOfLastSolution = Integer.MAX_VALUE;
+        int p = (int) (ObjFunction.getDomainSize() * 0.80); // Use randomness in 80% of the construction
+        while (!constructiveStopCriteria()) {
+            costOfLastSolution = currentSolution.cost;
+            setMaxMinCandidateCosts();
+            if (p > 0) {
+                updateRCL(1.0);
+            } else {
+                updateRCL(0.0);
+            }
+            addCandidateToSolution();
+            updateCL();
+            p -= 1;
         }
         return currentSolution;
     }
@@ -94,6 +124,19 @@ public abstract class AbstractGRASP<E> {
         }
     }
 
+    private void updateRCL(Double currentAlpha) {
+        // Among all candidates, insert into the RCL those with the highest
+        // performance using parameter currentAlpha as threshold.
+        // currentAlpha will be 1 or 0.
+        RCL.clear();
+        for (E c : CL) {
+            Integer deltaCost = ObjFunction.evaluateInsertionCost(c, currentSolution);
+            if (deltaCost <= minCostOfCandidates + currentAlpha * (maxCostOfCandidates - minCostOfCandidates)) {
+                RCL.add(c);
+            }
+        }
+    }
+
     private void addCandidateToSolution() {
         // Choose a candidate randomly from the RCL
         int randomIndex = randomGenerator.nextInt(RCL.size());
@@ -114,11 +157,16 @@ public abstract class AbstractGRASP<E> {
     public Solution<E> solve() {
         bestSolution = createEmptySol();
         for (int iterationCount = 0; iterationCount < maximumNumberOfIterations; ++iterationCount) {
-            constructiveHeuristic();
+            if (constructionMechanism == ConstructionMechanism.DEFAULT) {
+                constructiveHeuristic();
+            } else if (constructionMechanism == ConstructionMechanism.RANDOM_PLUS_GREEDY) {
+                randomPlusGreedy();
+            }
             localSearch();
             if (bestSolution.cost > currentSolution.cost) {
                 bestSolution = new Solution<E>(currentSolution);
-                if (verbose) displayIterationStatus(iterationCount);
+                if (verbose)
+                    displayIterationStatus(iterationCount);
             }
         }
         return bestSolution;
@@ -126,9 +174,8 @@ public abstract class AbstractGRASP<E> {
 
     private void displayIterationStatus(final Integer iterationCount) {
         System.out.println(
-            "> Iteration " + iterationCount
-            + "\n\t" + "BestSolution: " + bestSolution
-        );
+                "> Iteration " + iterationCount
+                        + "\n\t" + "BestSolution: " + bestSolution);
     }
 
 }
