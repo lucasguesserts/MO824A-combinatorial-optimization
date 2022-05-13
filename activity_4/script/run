@@ -5,5 +5,6 @@ PROJECT_PATH=$(realpath $RELATIVE_PATH/..)
 SCRIPT_DIR="$PROJECT_PATH/script"
 
 cd $PROJECT_PATH
+PROBLEM_INSTANCE=`realpath $2`
 
-gradle run --args="$1 $2" | tee run.log
+gradle $1:run --args="$PROBLEM_INSTANCE" | tee run.log
