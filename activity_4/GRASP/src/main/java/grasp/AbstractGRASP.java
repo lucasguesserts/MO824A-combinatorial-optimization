@@ -46,12 +46,6 @@ public abstract class AbstractGRASP<E> {
 
     public abstract Solution<E> localSearch();
 
-    public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer iterations) {
-        this.ObjFunction = objFunction;
-        this.alpha = alpha;
-        this.maximumNumberOfIterations = iterations;
-        this.firstImproving = false;
-    }
     public AbstractGRASP(Evaluator<E> objFunction, Double alpha, Integer iterations, boolean firstImproving) {
         this.ObjFunction = objFunction;
         this.alpha = alpha;

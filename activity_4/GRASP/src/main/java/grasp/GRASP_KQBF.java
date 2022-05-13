@@ -11,14 +11,6 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
     public GRASP_KQBF(
         final Double alpha,
         final Integer iterations,
-        final String fileName
-    ) throws IOException {
-        super(new KQBF_Inverse(fileName), alpha, iterations);
-    }
-
-    public GRASP_KQBF(
-        final Double alpha,
-        final Integer iterations,
         final boolean firstImproving,
         final String fileName
     ) throws IOException {
