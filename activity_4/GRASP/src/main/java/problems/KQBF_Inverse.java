@@ -2,45 +2,30 @@ package problems;
 
 import java.io.IOException;
 
-/**
- * Class representing the inverse of the Quadractic Binary Function
- * ({@link KQBF}), which is used since the GRASP is set by
- * default as a minimization procedure.
- *
- * @author ccavellucci, fusberti
- */
+
 public class KQBF_Inverse extends KQBF {
 
-    /**
-     * Constructor for the QBF_Inverse class.
-     *
-     * @param filename
-     *                 Name of the file for which the objective function parameters
-     *                 should be read.
-     * @throws IOException
-     *                     Necessary for I/O operations.
-     */
     public KQBF_Inverse(String filename) throws IOException {
         super(filename);
     }
 
     @Override
-    public Double evaluateQBF() {
+    public Integer evaluateQBF() {
         return -super.evaluateQBF();
     }
 
     @Override
-    public Double evaluateInsertionQBF(int i) {
+    public Integer evaluateInsertionQBF(int i) {
         return -super.evaluateInsertionQBF(i);
     }
 
     @Override
-    public Double evaluateRemovalQBF(int i) {
+    public Integer evaluateRemovalQBF(int i) {
         return -super.evaluateRemovalQBF(i);
     }
 
     @Override
-    public Double evaluateExchangeQBF(int in, int out) {
+    public Integer evaluateExchangeQBF(int in, int out) {
         return -super.evaluateExchangeQBF(in, out);
     }
 

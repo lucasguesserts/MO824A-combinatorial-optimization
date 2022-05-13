@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Solution<E> extends ArrayList<E> {
 
-    public Double cost = Double.POSITIVE_INFINITY;
+    public Integer cost = Integer.MAX_VALUE;
 
     public Solution() {
         super();

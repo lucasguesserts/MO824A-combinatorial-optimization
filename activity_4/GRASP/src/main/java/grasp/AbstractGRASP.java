@@ -16,9 +16,9 @@ public abstract class AbstractGRASP<E> {
 
     protected Double alpha;
 
-    protected Double bestCost;
+    protected Integer bestCost;
 
-    protected Double cost;
+    protected Integer cost;
 
     protected Solution<E> bestSol;
 
@@ -59,9 +59,10 @@ public abstract class AbstractGRASP<E> {
         CL = makeCL();
         RCL = makeRCL();
         sol = createEmptySol();
-        cost = Double.POSITIVE_INFINITY;
+        cost = Integer.MAX_VALUE;
         while (!constructiveStopCriteria()) {
-            double maxCost = Double.NEGATIVE_INFINITY, minCost = Double.POSITIVE_INFINITY;
+            Integer maxCost = Integer.MIN_VALUE;
+            Integer minCost = Integer.MAX_VALUE;
             cost = ObjFunction.evaluate(sol);
             updateCL();
             if (CL.isEmpty()) {
@@ -70,7 +71,7 @@ public abstract class AbstractGRASP<E> {
             // Explore all candidate elements to enter the solution, saving the
             // highest and lowest cost variation achieved by the candidates.
             for (E c : CL) {
-                Double deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
+                Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
                 if (deltaCost < minCost)
                     minCost = deltaCost;
                 if (deltaCost > maxCost)
@@ -79,7 +80,7 @@ public abstract class AbstractGRASP<E> {
             // Among all candidates, insert into the RCL those with the highest
             // performance using parameter alpha as threshold.
             for (E c : CL) {
-                Double deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
+                Integer deltaCost = ObjFunction.evaluateInsertionCost(c, sol);
                 if (deltaCost <= minCost + alpha * (maxCost - minCost)) {
                     RCL.add(c);
                 }

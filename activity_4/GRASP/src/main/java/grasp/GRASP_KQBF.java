@@ -61,7 +61,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
     @Override
     public Solution<Integer> createEmptySol() {
         Solution<Integer> sol = new Solution<Integer>();
-        sol.cost = 0.0;
+        sol.cost = 0;
         return sol;
     }
 
