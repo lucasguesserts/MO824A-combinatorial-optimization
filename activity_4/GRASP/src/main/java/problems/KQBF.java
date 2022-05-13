@@ -13,17 +13,19 @@ public class KQBF implements Evaluator<Integer> {
 
     public final Integer size;
 
-    public Integer W;
-
-    public final Integer[] variables;
+    public Integer maximumWeight;
 
     public Integer[] weights;
+
+    public Integer[] variables;
+
+    public Integer currentWeight; // synchonized with variables
 
     public Integer[][] A;
 
     public KQBF(String filename) throws IOException {
         size = readInput(filename);
-        variables = allocateVariables();
+        allocateVariables();
     }
 
     @Override
@@ -55,6 +57,11 @@ public class KQBF implements Evaluator<Integer> {
         return evaluateExchangeQBF(elemIn, elemOut);
     }
 
+    @Override
+    public Boolean isValidCandidate(Integer i) {
+        return (currentWeight + weights[i]) < maximumWeight;
+    }
+
     protected Integer evaluateQBF() {
         Integer aux = 0;
         Integer sum = 0;
@@ -82,7 +89,7 @@ public class KQBF implements Evaluator<Integer> {
 
     public boolean exchangeFitsKnapsack(Integer w, Integer elemIn, Integer elemOut) {
         Integer deltaWeight = weights[elemIn] - weights[elemOut];
-        return (w + deltaWeight) < W;
+        return (w + deltaWeight) < maximumWeight;
     }
 
     protected Integer evaluateExchangeQBF(int in, int out) {
@@ -109,7 +116,7 @@ public class KQBF implements Evaluator<Integer> {
     }
 
     public boolean fitsKnapsack(Integer w, int i) {
-        return (w + weights[i]) < W;
+        return (w + weights[i]) < maximumWeight;
     }
 
     private Integer evaluateContributionQBF(int i) {
@@ -128,7 +135,7 @@ public class KQBF implements Evaluator<Integer> {
         stok.nextToken();
         Integer _size = (int) stok.nval;
         stok.nextToken();
-        W = (int) stok.nval;
+        maximumWeight = (int) stok.nval;
         weights = new Integer[_size];
         for (int i = 0; i < _size; i++) {
             stok.nextToken();
@@ -146,13 +153,14 @@ public class KQBF implements Evaluator<Integer> {
         return _size;
     }
 
-    private Integer[] allocateVariables() {
-        Integer[] _variables = new Integer[size];
-        return _variables;
+    private void allocateVariables() {
+        variables = new Integer[size];
+        resetVariables();
     }
 
     private void resetVariables() {
         Arrays.fill(variables, 0);
+        currentWeight = 0;
     }
 
     public void printMatrix() {
@@ -169,6 +177,7 @@ public class KQBF implements Evaluator<Integer> {
         if (!sol.isEmpty()) {
             for (Integer elem : sol) {
                 variables[elem] = 1;
+                currentWeight += weights[elem];
             }
         }
     }
