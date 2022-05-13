@@ -62,7 +62,7 @@ public class KQBF implements Evaluator<Integer> {
         return (currentWeight + weights[i]) < maximumWeight;
     }
 
-    protected Integer evaluateQBF() {
+    public Integer evaluateQBF() {
         Integer aux = 0;
         Integer sum = 0;
         Integer vecAux[] = new Integer[size];
@@ -180,39 +180,6 @@ public class KQBF implements Evaluator<Integer> {
                 currentWeight += weights[elem];
             }
         }
-    }
-
-    public static void staticSolve(String instance) throws IOException {
-        // naive approach: try solutions randomly
-        KQBF kqbf = new KQBF(instance);
-        Integer maxVal = Integer.MIN_VALUE;
-        for (int i = 0; i < 10000000; i++) {
-            for (int j = 0; j < kqbf.size; j++) {
-                kqbf.variables[j] = getBinaryRandomValue();
-            }
-            Integer eval = kqbf.evaluateQBF();
-            if (maxVal < eval)
-                maxVal = eval;
-        }
-        System.out.println("maxVal = " + maxVal);
-        // evaluates the zero array.
-        for (int j = 0; j < kqbf.size; j++) {
-            kqbf.variables[j] = 0;
-        }
-        System.out.println("x = " + Arrays.toString(kqbf.variables));
-        System.out.println("f(x) = " + kqbf.evaluateQBF());
-        // evaluates the all-ones array.
-        for (int j = 0; j < kqbf.size; j++) {
-            kqbf.variables[j] = 1;
-        }
-        System.out.println("x = " + Arrays.toString(kqbf.variables));
-        System.out.println("f(x) = " + kqbf.evaluateQBF());
-    }
-
-    private static Integer getBinaryRandomValue() {
-        return Math.random() < 0.5
-            ? 0
-            : 1;
     }
 
 }
