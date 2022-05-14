@@ -5,21 +5,17 @@ import solutions.Solution;
 
 public class Main {
 
+    private static String INSTANCES_DIR = "../instances/kqbf/";
+
     private static KQBF kqbf;
     private final static Integer numberOfIterations = 10000000;
     private static Solution<Integer> bestSolution = new Solution<Integer>();
     private static Solution<Integer> currentSolution = new Solution<Integer>();
 
     public static void main(String[] args) throws IOException {
-        // check args
-        if (args.length != 1) {
-            System.out.println("usage: gradle run --args=\"INSTANCE\"");
-            System.out.println("INSTANCE: instances/qbf/*, instances/kqbf/*");
-            return;
-        }
-
+        final String instance = INSTANCES_DIR + "kqbf020";
         long startTime = System.currentTimeMillis();
-        initKQBF(args[0]);
+        initKQBF(instance);
         randomizedBruteForce();
         Integer knapsackWeight = kqbf.evaluateKnapsackWeight(bestSolution);
         long endTime = System.currentTimeMillis();

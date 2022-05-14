@@ -6,22 +6,17 @@ import solutions.Solution;
 
 public class Main {
 
+    private static String INSTANCES_DIR = "../instances/kqbf/";
+
     private static Double alpha = 0.5;
     private static Integer iterations = 1000;
     private static Boolean firstImproving = false;
     private static ConstructionMechanism constructionMechanism = ConstructionMechanism.DEFAULT;
-    private static String fileName = "";
 
     public static void main(String[] args) throws IOException {
-        if (args.length != 1) {
-            System.out.println("usage: gradle run --args=\"INSTANCE\"");
-            System.out.println("INSTANCE: instances/qbf/*, instances/kqbf/*");
-            return;
-        }
-
+        final String instance = INSTANCES_DIR + "kqbf020";
         final long startTime = System.currentTimeMillis();
-        fileName = args[0];
-        final GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, constructionMechanism, fileName);
+        final GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, constructionMechanism, instance);
         final Solution<Integer> bestSolution = grasp.solve();
         final Integer knapsackWeight = grasp.getKnapsackWeightOfSolution();
         final long endTime = System.currentTimeMillis();
