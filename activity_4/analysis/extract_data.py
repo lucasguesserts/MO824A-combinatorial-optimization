@@ -13,7 +13,7 @@ class Extractor ():
             df = pd.DataFrame({
                 "instances": Extractor.__find_all(lines, '^instance: ../instances/kqbf/kqbf(\d+)$'),
                 "construction": Extractor.__transform_construction(Extractor.__find_all(lines, '^construction mechanist: (\w+)$')),
-                "alpha": Extractor.__find_all(lines, '^alpha: (\d+.?\d*)$'),
+                "alpha": Extractor.__find_all(lines, '^alpha: (\d+.?\d*|-)$'),
                 "local search": Extractor.__transform_local_search(Extractor.__find_all(lines, '^firstImproving: (true|false)$')),
                 "iterations": Extractor.__find_all(lines, '^iterations: (\d+)$'),
                 "best cost": Extractor.__find_all(lines, '^Best Solution Found: \{cost: (\d+)'),
@@ -81,9 +81,9 @@ class Extractor ():
 
 
 if __name__ == "__main__":
-    filePath = "../experiments/2022-05-14T15:53.experiment_result.txt"
+    filePath = "../experiments/2022-05-14.experiment_result"
     df = Extractor.getDataFrame(filePath)
-    parts_argument = 12
+    parts_argument = 8
     print(r"\begin{landscape}", "\n")
     enumerated_parts = list(enumerate(Extractor.get_parts(len(df), parts_argument)))
     for i, [begin, end] in enumerated_parts:
