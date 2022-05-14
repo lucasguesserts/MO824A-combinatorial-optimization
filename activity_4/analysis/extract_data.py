@@ -1,3 +1,4 @@
+import math
 import re
 import pandas as pd
 
@@ -8,12 +9,12 @@ class Extractor ():
             lines = list(map(lambda x: str(x), file.readlines()))
             df = pd.DataFrame({
                 "instances": Extractor.__find_all(lines, '^instance: ../instances/kqbf/kqbf(\d+)$'),
-                "construction_mechanism": Extractor.__find_all(lines, '^construction mechanist: (\w+)$'),
+                "construction": Extractor.__find_all(lines, '^construction mechanist: (\w+)$'),
                 "alpha": Extractor.__find_all(lines, '^alpha: (\d+.?\d*)$'),
-                "first_improving": Extractor.__find_all(lines, '^firstImproving: (true|false)$'),
+                "local search": Extractor.__find_all(lines, '^firstImproving: (true|false)$'),
                 "iterations": Extractor.__find_all(lines, '^iterations: (\d+)$'),
-                "best_solution_cost": Extractor.__find_all(lines, '^Best Solution Found: \{cost: (\d+)'),
-                "knapsack_weight": Extractor.__find_all(lines, '^Knapsack Weight of Best Solution: (\d+)'),
+                "best cost": Extractor.__find_all(lines, '^Best Solution Found: \{cost: (\d+)'),
+                "weight": Extractor.__find_all(lines, '^Knapsack Weight of Best Solution: (\d+)'),
                 "processing_times": Extractor.__find_all(lines, '^RunningTime: (\d+.?\d*) seconds$'),
             })
         return df
@@ -27,8 +28,34 @@ class Extractor ():
                 out.append(found)
         return list(map(lambda s: s.group(1), out))
 
+    @staticmethod
+    def print_table(df, label_number):
+        print(r"\begin{table}")
+        print(r"\centering")
+        print(df.to_latex(), end="")
+        print(r"\caption{Número de possíveis soluções para cada tamanho de problema - parte " + str(label_number) + ".}")
+        print(r"\label{table:all-data-" + str(label_number) + "}")
+        print(r"\end{table}")
+        print("")
+
+    @staticmethod
+    def get_parts(length, number_of_parts):
+        previous_part = 0
+        for part in range(number_of_parts-1):
+            next_part = math.floor(length * ((part+1) / number_of_parts)) - 1
+            yield [previous_part, next_part]
+            previous_part = next_part + 1
+        next_part = length-1
+        yield [previous_part, next_part]
+
+
+
 if __name__ == "__main__":
     filePath = "../experiments/2022-05-14.experiment_result"
     df = Extractor.getDataFrame(filePath)
-    print(df.to_latex())
+    number_of_parts = 3
+    print(r"\begin{landscape}", "\n")
+    for i, [begin, end] in enumerate(Extractor.get_parts(len(df), number_of_parts)):
+        Extractor.print_table(df.loc[begin:end], i)
+    print(r"\end{landscape}")
 
