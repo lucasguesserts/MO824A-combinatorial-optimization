@@ -45,6 +45,12 @@ public abstract class AbstractGRASP<E> {
 
     protected boolean firstImproving;
 
+    protected long startTime;
+
+    protected long timeElapsed;
+
+    protected final long MAXIMUM_RUNNING_TIME_MILLISECONDS = 30*60*1000; // 30 minutes
+
     public abstract ArrayList<E> makeCL();
 
     public abstract ArrayList<E> makeRCL();
@@ -54,6 +60,7 @@ public abstract class AbstractGRASP<E> {
     public abstract Solution<E> createEmptySol();
 
     public abstract Solution<E> localSearch();
+
 
     public AbstractGRASP(Evaluator<E> objFunction, Double alpha, ConstructionMechanism constructionMechanism,
             Integer iterations, boolean firstImproving) {
@@ -201,7 +208,11 @@ public abstract class AbstractGRASP<E> {
 
     public Solution<E> solve() {
         bestSolution = createEmptySol();
+        timeElapsed = 0;
+        startTime = System.currentTimeMillis();
         for (int iterationCount = 0; iterationCount < maximumNumberOfIterations; ++iterationCount) {
+            final Boolean tooMuchTimeRunning = timeElapsed > MAXIMUM_RUNNING_TIME_MILLISECONDS;
+            if (tooMuchTimeRunning) break;
             if (constructionMechanism == ConstructionMechanism.DEFAULT) {
                 constructiveHeuristic();
             } else if (constructionMechanism == ConstructionMechanism.RANDOM_PLUS_GREEDY) {
@@ -215,8 +226,14 @@ public abstract class AbstractGRASP<E> {
                 if (verbose)
                     displayIterationStatus(iterationCount);
             }
+            updateCurrentTime();
         }
         return bestSolution;
+    }
+
+    private void updateCurrentTime() {
+        final var currentTime = System.currentTimeMillis();
+        timeElapsed = currentTime - startTime;
     }
 
     private void displayIterationStatus(final Integer iterationCount) {
