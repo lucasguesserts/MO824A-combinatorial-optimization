@@ -2,6 +2,7 @@ package grasp;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Collections;
 
 import problems.Evaluator;
 import solutions.Solution;
@@ -10,7 +11,8 @@ public abstract class AbstractGRASP<E> {
 
     public enum ConstructionMechanism {
         DEFAULT,
-        RANDOM_PLUS_GREEDY
+        RANDOM_PLUS_GREEDY,
+        SAMPLED_GREEDY
     };
 
     protected ConstructionMechanism constructionMechanism;
@@ -98,6 +100,23 @@ public abstract class AbstractGRASP<E> {
         return currentSolution;
     }
 
+    public Solution<E> sampledGreedy() {
+        CL = makeCL();
+        RCL = makeRCL();
+        currentSolution = createEmptySol();
+        costOfLastSolution = Integer.MAX_VALUE;
+        int p = (int) (ObjFunction.getDomainSize() * 0.70);
+        while (!constructiveStopCriteria()) {
+            costOfLastSolution = currentSolution.cost;
+            setMaxMinCandidateCosts();
+            updateRCL(p);
+            addBestCandidateToSolution();
+            updateCL();
+            p -= 1;
+        }
+        return currentSolution;
+    }
+
     private void setMaxMinCandidateCosts() {
         maxCostOfCandidates = Integer.MIN_VALUE;
         minCostOfCandidates = Integer.MAX_VALUE;
@@ -137,11 +156,37 @@ public abstract class AbstractGRASP<E> {
         }
     }
 
+    private void updateRCL(int p) {
+        // Among all candidates, insert into the RCL those with the highest
+        // performance using parameter currentAlpha as threshold.
+        int RCL_size = Math.min(p, CL.size());
+        RCL.clear();
+        Collections.shuffle(CL);
+        for (int i = 0; i < RCL_size; ++i) {
+            RCL.add(CL.get(i));
+        }
+    }
+
     private void addCandidateToSolution() {
         // Choose a candidate randomly from the RCL
         int randomIndex = randomGenerator.nextInt(RCL.size());
         E inCand = RCL.get(randomIndex);
         currentSolution.add(inCand);
+        currentSolution.cost = ObjFunction.evaluate(currentSolution);
+    }
+
+    private void addBestCandidateToSolution() {
+        // Choose the best candidate from the RCL
+        Integer bestCost = Integer.MIN_VALUE;
+        E bestCandidate = CL.get(0);
+        for (E c : CL) {
+            Integer cost = ObjFunction.evaluateInsertionCost(c, currentSolution);
+            if (cost > bestCost) {
+                bestCost = cost;
+                bestCandidate = c;
+            }
+        }
+        currentSolution.add(bestCandidate);
         currentSolution.cost = ObjFunction.evaluate(currentSolution);
     }
 
@@ -161,6 +206,8 @@ public abstract class AbstractGRASP<E> {
                 constructiveHeuristic();
             } else if (constructionMechanism == ConstructionMechanism.RANDOM_PLUS_GREEDY) {
                 randomPlusGreedy();
+            } else if (constructionMechanism == ConstructionMechanism.RANDOM_PLUS_GREEDY) {
+                sampledGreedy();
             }
             localSearch();
             if (bestSolution.cost > currentSolution.cost) {
