@@ -1,6 +1,9 @@
 import math
 import re
+import distutils.util
+
 import pandas as pd
+
 
 class Extractor ():
     @staticmethod
@@ -9,13 +12,13 @@ class Extractor ():
             lines = list(map(lambda x: str(x), file.readlines()))
             df = pd.DataFrame({
                 "instances": Extractor.__find_all(lines, '^instance: ../instances/kqbf/kqbf(\d+)$'),
-                "construction": Extractor.__find_all(lines, '^construction mechanist: (\w+)$'),
+                "construction": Extractor.__transform_construction(Extractor.__find_all(lines, '^construction mechanist: (\w+)$')),
                 "alpha": Extractor.__find_all(lines, '^alpha: (\d+.?\d*)$'),
-                "local search": Extractor.__find_all(lines, '^firstImproving: (true|false)$'),
+                "local search": Extractor.__transform_local_search(Extractor.__find_all(lines, '^firstImproving: (true|false)$')),
                 "iterations": Extractor.__find_all(lines, '^iterations: (\d+)$'),
                 "best cost": Extractor.__find_all(lines, '^Best Solution Found: \{cost: (\d+)'),
                 "weight": Extractor.__find_all(lines, '^Knapsack Weight of Best Solution: (\d+)'),
-                "processing_times": Extractor.__find_all(lines, '^RunningTime: (\d+.?\d*) seconds$'),
+                "duration": Extractor.__find_all(lines, '^RunningTime: (\d+.?\d*) seconds$'),
             })
         return df
 
@@ -27,6 +30,26 @@ class Extractor ():
             if (found):
                 out.append(found)
         return list(map(lambda s: s.group(1), out))
+
+    @staticmethod
+    def __transform_construction(found_cases):
+        transformation = list(map(
+            lambda c: c.lower().replace("_", " "),
+            found_cases
+        ))
+        return transformation
+
+    @staticmethod
+    def __transform_local_search(found_cases):
+        cases = list(map(
+            distutils.util.strtobool,
+            found_cases
+        ))
+        transformation = list(map(
+            lambda b: "first improving" if b else "best improving",
+            cases
+        ))
+        return transformation
 
     @staticmethod
     def print_table(df, label_number):
