@@ -61,24 +61,32 @@ class Extractor ():
         print(r"\end{table}")
         print("")
 
+    # @staticmethod
+    # def get_parts(length, number_of_parts):
+    #     previous_part = 0
+    #     for part in range(number_of_parts-1):
+    #         next_part = math.floor(length * ((part+1) / number_of_parts)) - 1
+    #         yield [previous_part, next_part]
+    #         previous_part = next_part + 1
+    #     next_part = length-1
+    #     yield [previous_part, next_part]
+
     @staticmethod
-    def get_parts(length, number_of_parts):
-        previous_part = 0
-        for part in range(number_of_parts-1):
-            next_part = math.floor(length * ((part+1) / number_of_parts)) - 1
-            yield [previous_part, next_part]
-            previous_part = next_part + 1
-        next_part = length-1
-        yield [previous_part, next_part]
+    def get_parts(length, parts_size):
+        return list(zip(
+            range(0, length, parts_size),
+            range(parts_size-1, length+1, parts_size),
+        ))
 
 
 
 if __name__ == "__main__":
-    filePath = "../experiments/2022-05-14.experiment_result"
+    filePath = "../experiments/2022-05-14T15:53.experiment_result.txt"
     df = Extractor.getDataFrame(filePath)
-    number_of_parts = 3
+    parts_argument = 12
     print(r"\begin{landscape}", "\n")
-    for i, [begin, end] in enumerate(Extractor.get_parts(len(df), number_of_parts)):
+    enumerated_parts = list(enumerate(Extractor.get_parts(len(df), parts_argument)))
+    for i, [begin, end] in enumerated_parts:
         Extractor.print_table(df.loc[begin:end], i)
     print(r"\end{landscape}")
 
