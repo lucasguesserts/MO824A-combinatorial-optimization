@@ -4,15 +4,6 @@ RELATIVE_PATH="`dirname \"$0\"`"
 PROJECT_PATH=$(realpath $RELATIVE_PATH/..)
 SCRIPT_DIR="$PROJECT_PATH/script"
 
-KQBF="KQBF"
-KQBF_GRASP="KQBF_GRASP"
+cd $PROJECT_PATH
 
-
-if [[ $# -ne 1 ]] || [[ $1 != $KQBF ]] && [[ $1 != $KQBF_GRASP ]]
-then
-    echo "usage: $0 ALGORITHM"
-    echo "currently available algorithms: $KQBF, $KQBF_GRASP"
-    exit
-fi
-
-gradle $1:run | tee ${PROJECT_PATH}/run.log
+gradle KQBF_GRASP:run | tee ${PROJECT_PATH}/run.log
