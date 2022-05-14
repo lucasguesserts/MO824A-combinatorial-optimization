@@ -7,14 +7,14 @@
       "name": "KQBF",
       "request": "launch",
       "mainClass": "${workspaceFolder}/KQBF/src/main/java/Main.java",
-      "args": "${workspaceFolder}/instances/kqbf/kqbf020"
+      "cwd": "${workspaceFolder}/KQBF"
     },
     {
       "type": "java",
       "name": "KQBF_GRASP",
       "request": "launch",
       "mainClass": "${workspaceFolder}/KQBF_GRASP/src/main/java/Main.java",
-      "args": "${workspaceFolder}/instances/kqbf/kqbf020"
+      "cwd": "${workspaceFolder}/KQBF_GRASP"
     }
   ]
 }
