@@ -24,29 +24,30 @@ public class Main {
     );
 
     private static Integer iterations = 1000;
-    private static Boolean firstImproving = false;
 
     public static void main(String[] args) throws IOException {
-        for (final var instance: instaceList) {
+        for (final var instance: instaceList)
+        for (final var alpha: ALPHA_LIST)
+        for (final var constructionMechanism: ConstructionMechanism.values())
+        for (final Boolean firstImproving: new Boolean[] {true, false}) {
             final var fileName = INSTANCES_DIR + instance;
-            for (final var alpha: ALPHA_LIST) {
-                for (final var constructionMechanism: ConstructionMechanism.values()) {
-                    run_algorithm(alpha, constructionMechanism, fileName);
-                }
-            }
+            run_algorithm(alpha, firstImproving, constructionMechanism, fileName);
         }
     }
 
     private static void run_algorithm(
         final Double alpha,
+        final Boolean firstImproving,
         final ConstructionMechanism constructionMechanism,
         final String fileName
     ) throws IOException {
         final long startTime = System.currentTimeMillis();
         System.out.println("\n\n=============================");
+        System.out.println("instance: " + fileName);
         System.out.println("alpha: " + alpha);
         System.out.println("construction mechanist: " + constructionMechanism);
-        System.out.println("instance: " + fileName);
+        System.out.println("firstImproving: " + firstImproving);
+        System.out.println("iterations: " + iterations);
         System.out.println("-----------------");
         final GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, constructionMechanism, fileName);
         final Solution<Integer> bestSolution = grasp.solve();
@@ -57,6 +58,8 @@ public class Main {
         System.out.println("instance: " + fileName);
         System.out.println("construction mechanist: " + constructionMechanism);
         System.out.println("alpha: " + alpha);
+        System.out.println("firstImproving: " + firstImproving);
+        System.out.println("iterations: " + iterations);
         System.out.println("Best Solution Found: " + bestSolution);
         System.out.println("Knapsack Weight of Best Solution: " + knapsackWeight);
         System.out.println("RunningTime: " + (double) totalTime / (double) 1000 + " seconds");
