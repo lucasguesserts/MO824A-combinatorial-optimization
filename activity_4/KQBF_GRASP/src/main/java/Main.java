@@ -27,9 +27,9 @@ public class Main {
     private static Boolean firstImproving = false;
 
     public static void main(String[] args) throws IOException {
-        for (final var alpha: ALPHA_LIST) {
-            for (final var instance: instaceList) {
-                final var fileName = INSTANCES_DIR + instance;
+        for (final var instance: instaceList) {
+            final var fileName = INSTANCES_DIR + instance;
+            for (final var alpha: ALPHA_LIST) {
                 for (final var constructionMechanism: ConstructionMechanism.values()) {
                     run_algorithm(alpha, constructionMechanism, fileName);
                 }
