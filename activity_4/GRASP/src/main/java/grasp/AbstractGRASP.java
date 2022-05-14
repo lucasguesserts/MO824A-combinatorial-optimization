@@ -188,7 +188,7 @@ public abstract class AbstractGRASP<E> {
         E bestCandidate = CL.get(0);
         for (E c : CL) {
             Integer cost = ObjFunction.evaluateInsertionCost(c, currentSolution);
-            if (cost > bestCost) {
+            if (cost < bestCost) {
                 bestCost = cost;
                 bestCandidate = c;
             }
