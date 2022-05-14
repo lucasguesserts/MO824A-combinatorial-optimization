@@ -1,0 +1,1373 @@
+> Task :GRASP:compileJava
+> Task :GRASP:processResources NO-SOURCE
+> Task :GRASP:classes
+> Task :GRASP:jar
+> Task :KQBF_GRASP:compileJava
+> Task :KQBF_GRASP:processResources NO-SOURCE
+> Task :KQBF_GRASP:classes
+
+> Task :KQBF_GRASP:run
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -102, size: 8, elements:[2, 4, 14, 16, 12, 11, 3, 9]}
+> Iteration 9
+	BestSolution: {cost: -120, size: 8, elements:[2, 4, 14, 16, 11, 15, 3, 6]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 120, size: 8, elements:[2, 4, 14, 16, 11, 15, 3, 6]}
+Knapsack Weight of Best Solution: 56
+RunningTime: 0.145 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -83, size: 8, elements:[12, 5, 14, 4, 2, 11, 6, 3]}
+> Iteration 1
+	BestSolution: {cost: -92, size: 7, elements:[17, 4, 14, 5, 9, 8, 1]}
+> Iteration 4
+	BestSolution: {cost: -120, size: 8, elements:[2, 4, 14, 11, 15, 16, 3, 6]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 120, size: 8, elements:[2, 4, 14, 11, 15, 16, 3, 6]}
+Knapsack Weight of Best Solution: 56
+RunningTime: 0.074 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -2, size: 3, elements:[17, 19, 2]}
+> Iteration 1
+	BestSolution: {cost: -13, size: 3, elements:[0, 5, 1]}
+> Iteration 2
+	BestSolution: {cost: -32, size: 5, elements:[17, 4, 2, 15, 5]}
+> Iteration 6
+	BestSolution: {cost: -34, size: 3, elements:[4, 16, 2]}
+> Iteration 9
+	BestSolution: {cost: -41, size: 7, elements:[15, 4, 17, 16, 7, 8, 2]}
+> Iteration 65
+	BestSolution: {cost: -47, size: 6, elements:[14, 4, 9, 7, 8, 0]}
+> Iteration 110
+	BestSolution: {cost: -65, size: 8, elements:[0, 2, 4, 9, 12, 14, 17, 8]}
+> Iteration 766
+	BestSolution: {cost: -93, size: 7, elements:[4, 1, 0, 8, 14, 9, 17]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 93, size: 7, elements:[4, 1, 0, 8, 14, 9, 17]}
+Knapsack Weight of Best Solution: 58
+RunningTime: 0.021 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -104, size: 8, elements:[4, 2, 14, 12, 16, 3, 11, 6]}
+> Iteration 4
+	BestSolution: {cost: -120, size: 7, elements:[3, 14, 4, 2, 16, 11, 15]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 120, size: 7, elements:[3, 14, 4, 2, 16, 11, 15]}
+Knapsack Weight of Best Solution: 54
+RunningTime: 0.137 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -7, size: 2, elements:[3, 2]}
+> Iteration 3
+	BestSolution: {cost: -13, size: 2, elements:[1, 0]}
+> Iteration 19
+	BestSolution: {cost: -86, size: 8, elements:[2, 15, 14, 3, 11, 16, 13, 9]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 86, size: 8, elements:[2, 15, 14, 3, 11, 16, 13, 9]}
+Knapsack Weight of Best Solution: 61
+RunningTime: 0.025 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -104, size: 8, elements:[12, 14, 2, 4, 16, 3, 11, 6]}
+> Iteration 2
+	BestSolution: {cost: -120, size: 7, elements:[11, 4, 2, 14, 16, 15, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 120, size: 7, elements:[11, 4, 2, 14, 16, 15, 3]}
+Knapsack Weight of Best Solution: 54
+RunningTime: 0.129 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -77, size: 7, elements:[4, 9, 1, 14, 2, 12, 11]}
+> Iteration 17
+	BestSolution: {cost: -93, size: 7, elements:[0, 1, 9, 14, 8, 4, 17]}
+> Iteration 52
+	BestSolution: {cost: -120, size: 8, elements:[2, 4, 15, 14, 16, 11, 3, 6]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 120, size: 8, elements:[2, 4, 15, 14, 16, 11, 3, 6]}
+Knapsack Weight of Best Solution: 56
+RunningTime: 0.042 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -83, size: 8, elements:[14, 2, 4, 12, 5, 11, 6, 3]}
+> Iteration 3
+	BestSolution: {cost: -93, size: 7, elements:[17, 4, 8, 9, 1, 14, 0]}
+> Iteration 11
+	BestSolution: {cost: -120, size: 7, elements:[4, 14, 2, 16, 3, 11, 15]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 120, size: 7, elements:[4, 14, 2, 16, 3, 11, 15]}
+Knapsack Weight of Best Solution: 54
+RunningTime: 0.1 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -21, size: 4, elements:[4, 9, 19, 0]}
+> Iteration 2
+	BestSolution: {cost: -51, size: 6, elements:[5, 14, 4, 2, 8, 1]}
+> Iteration 275
+	BestSolution: {cost: -53, size: 6, elements:[14, 4, 17, 9, 6, 1]}
+> Iteration 381
+	BestSolution: {cost: -54, size: 7, elements:[14, 17, 3, 2, 11, 12, 4]}
+> Iteration 602
+	BestSolution: {cost: -63, size: 6, elements:[4, 12, 13, 14, 8, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 63, size: 6, elements:[4, 12, 13, 14, 8, 2]}
+Knapsack Weight of Best Solution: 62
+RunningTime: 0.018 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -102, size: 8, elements:[13, 12, 2, 14, 4, 11, 6, 3]}
+> Iteration 2
+	BestSolution: {cost: -120, size: 7, elements:[11, 4, 2, 14, 16, 15, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 120, size: 7, elements:[11, 4, 2, 14, 16, 15, 3]}
+Knapsack Weight of Best Solution: 54
+RunningTime: 0.128 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -11, size: 3, elements:[4, 13, 0]}
+> Iteration 5
+	BestSolution: {cost: -18, size: 4, elements:[17, 5, 16, 4]}
+> Iteration 23
+	BestSolution: {cost: -29, size: 3, elements:[4, 15, 2]}
+> Iteration 47
+	BestSolution: {cost: -36, size: 4, elements:[2, 17, 11, 4]}
+> Iteration 110
+	BestSolution: {cost: -39, size: 5, elements:[0, 12, 1, 18, 17]}
+> Iteration 113
+	BestSolution: {cost: -40, size: 6, elements:[9, 0, 17, 7, 19, 1]}
+> Iteration 182
+	BestSolution: {cost: -54, size: 7, elements:[4, 14, 3, 9, 11, 10, 2]}
+> Iteration 544
+	BestSolution: {cost: -78, size: 7, elements:[9, 0, 1, 14, 8, 2, 4]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 78, size: 7, elements:[9, 0, 1, 14, 8, 2, 4]}
+Knapsack Weight of Best Solution: 62
+RunningTime: 0.02 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -93, size: 7, elements:[9, 4, 14, 1, 17, 8, 0]}
+> Iteration 3
+	BestSolution: {cost: -120, size: 7, elements:[11, 4, 2, 14, 16, 15, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf020
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 120, size: 7, elements:[11, 4, 2, 14, 16, 15, 3]}
+Knapsack Weight of Best Solution: 54
+RunningTime: 0.125 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -199, size: 13, elements:[24, 1, 37, 19, 34, 28, 16, 25, 7, 2, 21, 18, 11]}
+> Iteration 2
+	BestSolution: {cost: -253, size: 18, elements:[8, 14, 17, 1, 25, 19, 21, 0, 3, 2, 32, 11, 18, 4, 36, 9, 26, 24]}
+> Iteration 3
+	BestSolution: {cost: -300, size: 16, elements:[32, 22, 24, 34, 33, 15, 7, 9, 36, 31, 0, 11, 4, 23, 3, 17]}
+> Iteration 637
+	BestSolution: {cost: -306, size: 15, elements:[24, 34, 19, 21, 32, 15, 7, 9, 4, 33, 31, 11, 12, 36, 0]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 306, size: 15, elements:[24, 34, 19, 21, 32, 15, 7, 9, 4, 33, 31, 11, 12, 36, 0]}
+Knapsack Weight of Best Solution: 136
+RunningTime: 0.353 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -266, size: 18, elements:[14, 8, 20, 32, 21, 4, 29, 11, 6, 18, 24, 36, 27, 12, 3, 9, 17, 15]}
+> Iteration 1
+	BestSolution: {cost: -295, size: 16, elements:[32, 34, 9, 15, 22, 21, 4, 33, 11, 36, 29, 24, 31, 7, 3, 6]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 295, size: 16, elements:[32, 34, 9, 15, 22, 21, 4, 33, 11, 36, 29, 24, 31, 7, 3, 6]}
+Knapsack Weight of Best Solution: 137
+RunningTime: 1.765 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -5, size: 3, elements:[20, 6, 1]}
+> Iteration 3
+	BestSolution: {cost: -12, size: 2, elements:[16, 0]}
+> Iteration 6
+	BestSolution: {cost: -27, size: 4, elements:[4, 22, 21, 0]}
+> Iteration 8
+	BestSolution: {cost: -31, size: 4, elements:[25, 2, 22, 0]}
+> Iteration 36
+	BestSolution: {cost: -32, size: 5, elements:[13, 4, 22, 20, 0]}
+> Iteration 52
+	BestSolution: {cost: -37, size: 5, elements:[20, 37, 27, 33, 4]}
+> Iteration 69
+	BestSolution: {cost: -40, size: 8, elements:[8, 25, 20, 3, 13, 37, 12, 1]}
+> Iteration 133
+	BestSolution: {cost: -49, size: 6, elements:[10, 34, 24, 19, 0, 1]}
+> Iteration 144
+	BestSolution: {cost: -50, size: 8, elements:[22, 34, 35, 24, 19, 17, 11, 0]}
+> Iteration 381
+	BestSolution: {cost: -57, size: 5, elements:[24, 8, 7, 23, 1]}
+> Iteration 705
+	BestSolution: {cost: -58, size: 6, elements:[24, 8, 7, 15, 28, 1]}
+> Iteration 770
+	BestSolution: {cost: -101, size: 10, elements:[29, 4, 36, 34, 37, 10, 24, 7, 8, 1]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 101, size: 10, elements:[29, 4, 36, 34, 37, 10, 24, 7, 8, 1]}
+Knapsack Weight of Best Solution: 106
+RunningTime: 0.064 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -220, size: 13, elements:[28, 37, 1, 19, 24, 25, 7, 34, 21, 2, 29, 4, 11]}
+> Iteration 1
+	BestSolution: {cost: -224, size: 16, elements:[8, 14, 1, 25, 24, 18, 6, 22, 36, 31, 3, 2, 7, 32, 11, 9]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 224, size: 16, elements:[8, 14, 1, 25, 24, 18, 6, 22, 36, 31, 3, 2, 7, 32, 11, 9]}
+Knapsack Weight of Best Solution: 137
+RunningTime: 1.651 seconds
+
+
+=============================
+> Iteration 1
+	BestSolution: {cost: -5, size: 2, elements:[31, 0]}
+> Iteration 2
+	BestSolution: {cost: -12, size: 3, elements:[4, 18, 1]}
+> Iteration 10
+	BestSolution: {cost: -14, size: 3, elements:[8, 16, 0]}
+> Iteration 12
+	BestSolution: {cost: -18, size: 6, elements:[1, 2, 19, 34, 38, 0]}
+> Iteration 19
+	BestSolution: {cost: -26, size: 3, elements:[8, 10, 1]}
+> Iteration 26
+	BestSolution: {cost: -27, size: 4, elements:[25, 1, 17, 0]}
+> Iteration 30
+	BestSolution: {cost: -70, size: 8, elements:[0, 31, 36, 22, 32, 3, 21, 1]}
+> Iteration 410
+	BestSolution: {cost: -81, size: 7, elements:[20, 10, 1, 9, 21, 22, 0]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 81, size: 7, elements:[20, 10, 1, 9, 21, 22, 0]}
+Knapsack Weight of Best Solution: 59
+RunningTime: 0.067 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -249, size: 14, elements:[22, 24, 1, 8, 3, 36, 18, 14, 23, 2, 31, 7, 9, 34]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 249, size: 14, elements:[22, 24, 1, 8, 3, 36, 18, 14, 23, 2, 31, 7, 9, 34]}
+Knapsack Weight of Best Solution: 137
+RunningTime: 1.635 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -2, size: 3, elements:[35, 4, 2]}
+> Iteration 1
+	BestSolution: {cost: -107, size: 11, elements:[24, 20, 22, 8, 6, 31, 7, 36, 32, 19, 0]}
+> Iteration 10
+	BestSolution: {cost: -201, size: 14, elements:[4, 24, 36, 0, 9, 11, 2, 29, 14, 31, 1, 21, 37, 3]}
+> Iteration 28
+	BestSolution: {cost: -234, size: 18, elements:[0, 24, 22, 8, 34, 7, 19, 36, 32, 23, 18, 11, 14, 9, 21, 17, 2, 3]}
+> Iteration 64
+	BestSolution: {cost: -245, size: 16, elements:[32, 33, 24, 31, 9, 1, 29, 36, 34, 4, 21, 14, 11, 2, 3, 7]}
+> Iteration 340
+	BestSolution: {cost: -257, size: 18, elements:[32, 20, 21, 4, 28, 15, 17, 9, 33, 3, 22, 36, 24, 14, 8, 29, 11, 6]}
+> Iteration 366
+	BestSolution: {cost: -258, size: 17, elements:[14, 19, 31, 4, 26, 25, 23, 18, 9, 21, 24, 34, 11, 2, 36, 3, 32]}
+> Iteration 627
+	BestSolution: {cost: -269, size: 17, elements:[29, 9, 14, 23, 20, 32, 11, 36, 34, 0, 38, 4, 15, 17, 22, 3, 21]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 269, size: 17, elements:[29, 9, 14, 23, 20, 32, 11, 36, 34, 0, 38, 4, 15, 17, 22, 3, 21]}
+Knapsack Weight of Best Solution: 132
+RunningTime: 0.196 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -194, size: 13, elements:[8, 24, 31, 35, 1, 18, 25, 2, 30, 6, 36, 22, 3]}
+> Iteration 1
+	BestSolution: {cost: -286, size: 15, elements:[20, 24, 34, 27, 15, 9, 33, 36, 29, 21, 4, 32, 11, 0, 31]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 286, size: 15, elements:[20, 24, 34, 27, 15, 9, 33, 36, 29, 21, 4, 32, 11, 0, 31]}
+Knapsack Weight of Best Solution: 133
+RunningTime: 1.627 seconds
+
+
+=============================
+> Iteration 2
+	BestSolution: {cost: -10, size: 3, elements:[20, 13, 0]}
+> Iteration 3
+	BestSolution: {cost: -12, size: 3, elements:[25, 17, 0]}
+> Iteration 4
+	BestSolution: {cost: -40, size: 6, elements:[4, 11, 36, 31, 13, 0]}
+> Iteration 73
+	BestSolution: {cost: -44, size: 6, elements:[1, 16, 37, 21, 27, 0]}
+> Iteration 222
+	BestSolution: {cost: -54, size: 8, elements:[34, 8, 7, 9, 22, 0, 28, 1]}
+> Iteration 301
+	BestSolution: {cost: -55, size: 7, elements:[8, 25, 0, 2, 26, 29, 1]}
+> Iteration 360
+	BestSolution: {cost: -56, size: 7, elements:[8, 22, 35, 24, 25, 26, 0]}
+> Iteration 489
+	BestSolution: {cost: -68, size: 8, elements:[2, 14, 8, 22, 1, 18, 13, 0]}
+> Iteration 547
+	BestSolution: {cost: -134, size: 12, elements:[22, 31, 12, 32, 36, 34, 15, 6, 24, 3, 4, 0]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 134, size: 12, elements:[22, 31, 12, 32, 36, 34, 15, 6, 24, 3, 4, 0]}
+Knapsack Weight of Best Solution: 107
+RunningTime: 0.058 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -249, size: 14, elements:[8, 24, 1, 22, 3, 36, 18, 14, 23, 2, 31, 7, 9, 34]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 249, size: 14, elements:[8, 24, 1, 22, 3, 36, 18, 14, 23, 2, 31, 7, 9, 34]}
+Knapsack Weight of Best Solution: 137
+RunningTime: 1.642 seconds
+
+
+=============================
+> Iteration 1
+	BestSolution: {cost: -1, size: 4, elements:[14, 36, 26, 0]}
+> Iteration 3
+	BestSolution: {cost: -10, size: 4, elements:[25, 8, 38, 0]}
+> Iteration 9
+	BestSolution: {cost: -13, size: 3, elements:[2, 4, 0]}
+> Iteration 10
+	BestSolution: {cost: -29, size: 5, elements:[1, 21, 14, 17, 0]}
+> Iteration 20
+	BestSolution: {cost: -31, size: 5, elements:[25, 8, 20, 26, 0]}
+> Iteration 48
+	BestSolution: {cost: -43, size: 6, elements:[32, 34, 25, 24, 39, 1]}
+> Iteration 256
+	BestSolution: {cost: -56, size: 8, elements:[20, 14, 25, 4, 1, 24, 34, 5]}
+> Iteration 533
+	BestSolution: {cost: -66, size: 8, elements:[35, 1, 25, 19, 14, 31, 32, 0]}
+> Iteration 786
+	BestSolution: {cost: -81, size: 10, elements:[4, 33, 11, 32, 36, 7, 3, 14, 28, 1]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 81, size: 10, elements:[4, 33, 11, 32, 36, 7, 3, 14, 28, 1]}
+Knapsack Weight of Best Solution: 85
+RunningTime: 0.061 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -247, size: 14, elements:[31, 24, 22, 1, 36, 0, 9, 34, 23, 7, 26, 18, 32, 11]}
+-----------------
+instance: ../instances/kqbf/kqbf040
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 247, size: 14, elements:[31, 24, 22, 1, 36, 0, 9, 34, 23, 7, 26, 18, 32, 11]}
+Knapsack Weight of Best Solution: 136
+RunningTime: 1.686 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -394, size: 23, elements:[4, 28, 55, 45, 44, 7, 51, 46, 26, 21, 11, 3, 27, 57, 39, 30, 22, 8, 17, 9, 32, 6, 49]}
+> Iteration 2
+	BestSolution: {cost: -414, size: 23, elements:[17, 52, 28, 3, 44, 26, 49, 40, 38, 11, 34, 24, 9, 45, 41, 4, 31, 23, 21, 22, 56, 15, 57]}
+> Iteration 11
+	BestSolution: {cost: -415, size: 21, elements:[3, 44, 57, 8, 17, 26, 18, 21, 45, 2, 11, 30, 6, 38, 27, 28, 22, 4, 23, 33, 5]}
+> Iteration 13
+	BestSolution: {cost: -445, size: 23, elements:[17, 28, 40, 16, 3, 19, 26, 42, 11, 38, 49, 34, 44, 56, 51, 55, 4, 24, 53, 59, 2, 35, 23]}
+> Iteration 16
+	BestSolution: {cost: -454, size: 22, elements:[3, 44, 28, 17, 38, 21, 27, 42, 51, 56, 4, 26, 35, 29, 54, 16, 55, 53, 30, 11, 49, 14]}
+> Iteration 68
+	BestSolution: {cost: -455, size: 23, elements:[3, 57, 19, 8, 45, 28, 27, 32, 39, 5, 21, 11, 30, 44, 26, 51, 4, 56, 55, 22, 17, 38, 23]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 455, size: 23, elements:[3, 57, 19, 8, 45, 28, 27, 32, 39, 5, 21, 11, 30, 44, 26, 51, 4, 56, 55, 22, 17, 38, 23]}
+Knapsack Weight of Best Solution: 220
+RunningTime: 1.261 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -481, size: 24, elements:[11, 55, 39, 44, 57, 45, 3, 6, 26, 8, 30, 21, 28, 27, 51, 17, 4, 23, 22, 38, 2, 59, 19, 32]}
+> Iteration 67
+	BestSolution: {cost: -482, size: 24, elements:[21, 44, 11, 39, 5, 57, 45, 3, 27, 8, 51, 28, 55, 6, 26, 32, 4, 30, 22, 38, 17, 19, 2, 56]}
+> Iteration 489
+	BestSolution: {cost: -491, size: 24, elements:[21, 57, 3, 44, 45, 6, 39, 8, 51, 27, 28, 4, 30, 55, 56, 11, 22, 26, 23, 19, 2, 32, 17, 38]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 491, size: 24, elements:[21, 57, 3, 44, 45, 6, 39, 8, 51, 27, 28, 4, 30, 55, 56, 11, 22, 26, 23, 19, 2, 32, 17, 38]}
+Knapsack Weight of Best Solution: 212
+RunningTime: 1.981 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -9, size: 2, elements:[39, 0]}
+> Iteration 2
+	BestSolution: {cost: -10, size: 2, elements:[41, 0]}
+> Iteration 3
+	BestSolution: {cost: -13, size: 4, elements:[33, 4, 57, 0]}
+> Iteration 4
+	BestSolution: {cost: -22, size: 4, elements:[28, 55, 18, 0]}
+> Iteration 6
+	BestSolution: {cost: -58, size: 9, elements:[40, 58, 49, 3, 4, 16, 56, 12, 9]}
+> Iteration 198
+	BestSolution: {cost: -95, size: 8, elements:[24, 50, 11, 45, 37, 16, 27, 0]}
+> Iteration 523
+	BestSolution: {cost: -121, size: 13, elements:[24, 42, 43, 13, 16, 54, 41, 52, 34, 37, 14, 55, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 121, size: 13, elements:[24, 42, 43, 13, 16, 54, 41, 52, 34, 37, 14, 55, 3]}
+Knapsack Weight of Best Solution: 164
+RunningTime: 0.14 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -446, size: 21, elements:[57, 21, 39, 44, 45, 11, 27, 5, 3, 8, 28, 23, 17, 30, 9, 52, 4, 15, 22, 41, 6]}
+> Iteration 1
+	BestSolution: {cost: -482, size: 21, elements:[17, 14, 54, 44, 42, 27, 52, 53, 29, 51, 35, 56, 4, 49, 24, 26, 32, 31, 38, 2, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 482, size: 21, elements:[17, 14, 54, 44, 42, 27, 52, 53, 29, 51, 35, 56, 4, 49, 24, 26, 32, 31, 38, 2, 3]}
+Knapsack Weight of Best Solution: 217
+RunningTime: 7.242 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -9, size: 3, elements:[57, 51, 0]}
+> Iteration 1
+	BestSolution: {cost: -46, size: 4, elements:[16, 18, 27, 0]}
+> Iteration 75
+	BestSolution: {cost: -75, size: 11, elements:[20, 2, 22, 18, 29, 41, 21, 54, 49, 7, 1]}
+> Iteration 88
+	BestSolution: {cost: -77, size: 8, elements:[44, 3, 49, 41, 40, 48, 12, 0]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 77, size: 8, elements:[44, 3, 49, 41, 40, 48, 12, 0]}
+Knapsack Weight of Best Solution: 87
+RunningTime: 0.148 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -397, size: 23, elements:[49, 3, 11, 57, 24, 34, 12, 18, 16, 41, 30, 33, 9, 19, 45, 4, 44, 23, 28, 17, 22, 21, 26]}
+> Iteration 1
+	BestSolution: {cost: -426, size: 22, elements:[49, 44, 4, 3, 17, 26, 38, 28, 40, 11, 16, 34, 41, 24, 30, 21, 45, 46, 22, 27, 51, 15]}
+> Iteration 3
+	BestSolution: {cost: -482, size: 24, elements:[32, 4, 30, 8, 57, 27, 45, 21, 39, 5, 44, 11, 28, 3, 17, 26, 51, 19, 55, 6, 38, 22, 2, 56]}
+> Iteration 654
+	BestSolution: {cost: -491, size: 22, elements:[24, 17, 4, 14, 49, 53, 44, 3, 51, 27, 59, 35, 26, 42, 56, 29, 54, 55, 30, 2, 38, 32]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 491, size: 22, elements:[24, 17, 4, 14, 49, 53, 44, 3, 51, 27, 59, 35, 26, 42, 56, 29, 54, 55, 30, 2, 38, 32]}
+Knapsack Weight of Best Solution: 220
+RunningTime: 7.581 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -20, size: 5, elements:[21, 54, 28, 46, 1]}
+> Iteration 1
+	BestSolution: {cost: -138, size: 15, elements:[9, 17, 21, 4, 42, 30, 56, 55, 51, 8, 14, 13, 33, 20, 1]}
+> Iteration 6
+	BestSolution: {cost: -261, size: 19, elements:[44, 35, 5, 45, 27, 32, 21, 41, 39, 57, 28, 26, 51, 17, 15, 4, 54, 1, 3]}
+> Iteration 71
+	BestSolution: {cost: -312, size: 21, elements:[20, 2, 29, 54, 14, 42, 44, 56, 55, 7, 47, 4, 33, 22, 30, 38, 35, 32, 17, 51, 49]}
+> Iteration 236
+	BestSolution: {cost: -379, size: 22, elements:[8, 17, 53, 32, 14, 42, 26, 59, 35, 55, 29, 4, 24, 27, 56, 44, 30, 23, 2, 6, 49, 3]}
+> Iteration 871
+	BestSolution: {cost: -380, size: 21, elements:[3, 19, 26, 17, 40, 44, 35, 27, 16, 24, 4, 42, 56, 55, 59, 41, 54, 28, 49, 51, 21]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 380, size: 21, elements:[3, 19, 26, 17, 40, 44, 35, 27, 16, 24, 4, 42, 56, 55, 59, 41, 54, 28, 49, 51, 21]}
+Knapsack Weight of Best Solution: 216
+RunningTime: 0.493 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -364, size: 19, elements:[54, 43, 46, 51, 52, 5, 29, 8, 27, 21, 44, 39, 3, 45, 17, 53, 4, 14, 32]}
+> Iteration 1
+	BestSolution: {cost: -452, size: 23, elements:[17, 49, 42, 44, 26, 3, 28, 40, 11, 16, 38, 34, 21, 51, 56, 4, 55, 19, 30, 27, 29, 35, 24]}
+> Iteration 14
+	BestSolution: {cost: -453, size: 21, elements:[17, 34, 24, 42, 14, 49, 53, 13, 29, 56, 44, 38, 51, 26, 43, 3, 27, 31, 54, 4, 2]}
+> Iteration 26
+	BestSolution: {cost: -465, size: 24, elements:[3, 44, 17, 28, 26, 42, 11, 38, 16, 21, 27, 51, 45, 34, 55, 22, 4, 56, 23, 2, 33, 19, 49, 24]}
+> Iteration 92
+	BestSolution: {cost: -482, size: 21, elements:[17, 44, 53, 49, 52, 38, 29, 26, 54, 31, 35, 51, 27, 56, 32, 3, 24, 4, 2, 14, 42]}
+> Iteration 125
+	BestSolution: {cost: -491, size: 24, elements:[11, 38, 56, 39, 22, 28, 3, 55, 26, 45, 44, 30, 21, 57, 19, 4, 27, 32, 8, 51, 6, 23, 2, 17]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 491, size: 24, elements:[11, 38, 56, 39, 22, 28, 3, 55, 26, 45, 44, 30, 21, 57, 19, 4, 27, 32, 8, 51, 6, 23, 2, 17]}
+Knapsack Weight of Best Solution: 212
+RunningTime: 6.399 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -22, size: 3, elements:[18, 29, 0]}
+> Iteration 14
+	BestSolution: {cost: -28, size: 5, elements:[57, 44, 51, 15, 0]}
+> Iteration 20
+	BestSolution: {cost: -40, size: 7, elements:[5, 57, 54, 58, 52, 48, 1]}
+> Iteration 23
+	BestSolution: {cost: -47, size: 6, elements:[24, 0, 20, 45, 30, 1]}
+> Iteration 49
+	BestSolution: {cost: -48, size: 5, elements:[44, 0, 45, 49, 3]}
+> Iteration 225
+	BestSolution: {cost: -54, size: 6, elements:[16, 33, 20, 18, 56, 0]}
+> Iteration 259
+	BestSolution: {cost: -65, size: 5, elements:[11, 16, 33, 50, 0]}
+> Iteration 297
+	BestSolution: {cost: -66, size: 8, elements:[40, 4, 45, 17, 11, 34, 20, 1]}
+> Iteration 909
+	BestSolution: {cost: -68, size: 6, elements:[52, 44, 9, 18, 24, 0]}
+> Iteration 984
+	BestSolution: {cost: -112, size: 8, elements:[52, 42, 28, 17, 58, 40, 37, 1]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 112, size: 8, elements:[52, 42, 28, 17, 58, 40, 37, 1]}
+Knapsack Weight of Best Solution: 99
+RunningTime: 0.138 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -465, size: 24, elements:[42, 44, 17, 28, 3, 26, 11, 38, 16, 21, 27, 51, 45, 34, 55, 22, 4, 56, 23, 2, 33, 19, 49, 24]}
+> Iteration 12
+	BestSolution: {cost: -482, size: 21, elements:[2, 54, 52, 38, 44, 17, 42, 26, 4, 56, 29, 35, 27, 51, 53, 31, 32, 14, 24, 49, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 482, size: 21, elements:[2, 54, 52, 38, 44, 17, 42, 26, 4, 56, 29, 35, 27, 51, 53, 31, 32, 14, 24, 49, 3]}
+Knapsack Weight of Best Solution: 217
+RunningTime: 7.315 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -9, size: 3, elements:[4, 36, 1]}
+> Iteration 1
+	BestSolution: {cost: -46, size: 5, elements:[18, 11, 16, 4, 0]}
+> Iteration 122
+	BestSolution: {cost: -47, size: 7, elements:[11, 30, 40, 45, 13, 8, 0]}
+> Iteration 283
+	BestSolution: {cost: -73, size: 8, elements:[44, 4, 23, 53, 28, 21, 7, 1]}
+> Iteration 290
+	BestSolution: {cost: -77, size: 8, elements:[22, 18, 4, 16, 19, 3, 59, 2]}
+> Iteration 955
+	BestSolution: {cost: -84, size: 8, elements:[17, 40, 44, 42, 16, 52, 8, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 84, size: 8, elements:[17, 40, 44, 42, 16, 52, 8, 2]}
+Knapsack Weight of Best Solution: 84
+RunningTime: 0.147 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -452, size: 23, elements:[3, 28, 17, 16, 11, 34, 38, 26, 40, 49, 44, 42, 21, 51, 56, 4, 55, 19, 30, 27, 29, 35, 24]}
+> Iteration 8
+	BestSolution: {cost: -465, size: 24, elements:[42, 44, 21, 11, 28, 17, 38, 23, 4, 2, 22, 56, 45, 34, 51, 26, 55, 3, 27, 33, 16, 19, 49, 24]}
+> Iteration 28
+	BestSolution: {cost: -482, size: 21, elements:[49, 14, 44, 4, 17, 53, 3, 51, 27, 54, 29, 56, 42, 35, 24, 26, 52, 31, 32, 38, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf060
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 482, size: 21, elements:[49, 14, 44, 4, 17, 53, 3, 51, 27, 54, 29, 56, 42, 35, 24, 26, 52, 31, 32, 38, 2]}
+Knapsack Weight of Best Solution: 217
+RunningTime: 7.564 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -595, size: 29, elements:[17, 53, 29, 3, 31, 1, 45, 54, 32, 9, 65, 44, 2, 13, 75, 42, 71, 23, 27, 56, 66, 40, 70, 36, 24, 11, 4, 10, 20]}
+> Iteration 1
+	BestSolution: {cost: -645, size: 27, elements:[3, 72, 54, 6, 18, 48, 42, 29, 7, 2, 37, 31, 43, 58, 62, 36, 14, 9, 73, 13, 53, 24, 75, 76, 71, 74, 49]}
+> Iteration 4
+	BestSolution: {cost: -707, size: 29, elements:[24, 48, 11, 75, 50, 2, 6, 37, 54, 7, 3, 42, 36, 18, 23, 4, 31, 29, 32, 61, 69, 8, 49, 13, 74, 1, 73, 47, 15]}
+> Iteration 21
+	BestSolution: {cost: -734, size: 29, elements:[36, 23, 74, 75, 7, 2, 6, 31, 18, 11, 48, 3, 42, 13, 54, 4, 37, 58, 70, 69, 24, 61, 14, 50, 60, 8, 49, 44, 66]}
+> Iteration 38
+	BestSolution: {cost: -739, size: 29, elements:[74, 3, 2, 54, 6, 7, 11, 24, 48, 50, 75, 23, 36, 31, 32, 13, 18, 4, 42, 69, 61, 60, 49, 37, 73, 1, 47, 44, 15]}
+> Iteration 219
+	BestSolution: {cost: -766, size: 30, elements:[74, 6, 36, 61, 7, 11, 3, 50, 49, 42, 24, 2, 4, 18, 14, 75, 54, 37, 55, 1, 47, 53, 23, 15, 69, 13, 31, 8, 44, 32]}
+> Iteration 229
+	BestSolution: {cost: -771, size: 31, elements:[36, 53, 14, 74, 7, 69, 13, 18, 44, 49, 61, 31, 8, 3, 4, 42, 54, 1, 2, 32, 47, 15, 51, 68, 60, 37, 50, 11, 20, 6, 21]}
+> Iteration 626
+	BestSolution: {cost: -773, size: 30, elements:[2, 64, 74, 7, 15, 6, 61, 11, 4, 12, 23, 20, 50, 3, 14, 69, 54, 53, 36, 31, 68, 32, 13, 34, 18, 44, 1, 47, 58, 49]}
+> Iteration 862
+	BestSolution: {cost: -774, size: 30, elements:[20, 7, 15, 53, 14, 3, 74, 2, 13, 36, 49, 50, 47, 34, 18, 4, 8, 31, 23, 75, 61, 1, 44, 68, 32, 11, 69, 6, 54, 12]}
+> Iteration 966
+	BestSolution: {cost: -783, size: 31, elements:[74, 3, 6, 24, 50, 11, 7, 54, 49, 2, 18, 75, 42, 4, 1, 55, 61, 8, 76, 47, 71, 52, 73, 13, 44, 23, 34, 69, 51, 32, 36]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 783, size: 31, elements:[74, 3, 6, 24, 50, 11, 7, 54, 49, 2, 18, 75, 42, 4, 1, 55, 61, 8, 76, 47, 71, 52, 73, 13, 44, 23, 34, 69, 51, 32, 36]}
+Knapsack Weight of Best Solution: 286
+RunningTime: 3.016 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -641, size: 28, elements:[17, 54, 23, 11, 48, 19, 2, 39, 42, 18, 3, 29, 4, 12, 71, 75, 59, 7, 27, 24, 52, 9, 73, 10, 69, 36, 32, 77]}
+> Iteration 1
+	BestSolution: {cost: -670, size: 28, elements:[20, 65, 15, 53, 4, 3, 1, 2, 64, 31, 12, 13, 23, 25, 18, 7, 29, 54, 32, 11, 75, 44, 71, 74, 50, 61, 69, 49]}
+> Iteration 2
+	BestSolution: {cost: -700, size: 27, elements:[64, 2, 37, 19, 58, 62, 48, 14, 60, 9, 36, 46, 31, 18, 71, 43, 22, 76, 3, 54, 42, 70, 75, 17, 8, 24, 69]}
+> Iteration 11
+	BestSolution: {cost: -751, size: 30, elements:[20, 7, 36, 48, 23, 31, 53, 65, 47, 15, 2, 4, 50, 18, 75, 11, 3, 13, 42, 8, 54, 49, 37, 25, 10, 24, 44, 6, 74, 61]}
+> Iteration 25
+	BestSolution: {cost: -761, size: 29, elements:[20, 3, 53, 15, 60, 23, 31, 36, 14, 50, 37, 8, 61, 2, 69, 7, 49, 4, 18, 44, 47, 42, 54, 13, 34, 6, 48, 11, 74]}
+> Iteration 28
+	BestSolution: {cost: -775, size: 30, elements:[20, 15, 7, 31, 53, 36, 3, 14, 2, 13, 74, 18, 60, 4, 50, 69, 8, 49, 54, 61, 44, 47, 21, 37, 6, 68, 23, 48, 11, 34]}
+> Iteration 168
+	BestSolution: {cost: -795, size: 31, elements:[20, 15, 3, 14, 50, 53, 4, 36, 2, 32, 7, 31, 49, 74, 54, 11, 6, 75, 61, 18, 13, 44, 42, 65, 1, 23, 8, 69, 47, 68, 34]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 795, size: 31, elements:[20, 15, 3, 14, 50, 53, 4, 36, 2, 32, 7, 31, 49, 74, 54, 11, 6, 75, 61, 18, 13, 44, 42, 65, 1, 23, 8, 69, 47, 68, 34]}
+Knapsack Weight of Best Solution: 284
+RunningTime: 4.242 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -8, size: 2, elements:[73, 0]}
+> Iteration 1
+	BestSolution: {cost: -12, size: 3, elements:[64, 21, 1]}
+> Iteration 3
+	BestSolution: {cost: -32, size: 5, elements:[20, 1, 4, 16, 2]}
+> Iteration 22
+	BestSolution: {cost: -37, size: 4, elements:[37, 22, 51, 0]}
+> Iteration 96
+	BestSolution: {cost: -41, size: 5, elements:[37, 33, 60, 4, 1]}
+> Iteration 146
+	BestSolution: {cost: -49, size: 9, elements:[14, 50, 76, 7, 24, 61, 8, 71, 2]}
+> Iteration 173
+	BestSolution: {cost: -54, size: 7, elements:[50, 31, 32, 48, 7, 12, 1]}
+> Iteration 245
+	BestSolution: {cost: -59, size: 8, elements:[72, 11, 74, 64, 68, 1, 77, 0]}
+> Iteration 250
+	BestSolution: {cost: -155, size: 13, elements:[65, 11, 48, 75, 31, 2, 58, 41, 47, 8, 64, 45, 1]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 155, size: 13, elements:[65, 11, 48, 75, 31, 2, 58, 41, 47, 8, 64, 45, 1]}
+Knapsack Weight of Best Solution: 132
+RunningTime: 0.278 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -711, size: 29, elements:[24, 76, 22, 53, 39, 75, 52, 50, 49, 7, 74, 3, 14, 55, 1, 13, 21, 71, 62, 73, 2, 47, 18, 44, 42, 8, 4, 69, 36]}
+> Iteration 2
+	BestSolution: {cost: -734, size: 29, elements:[32, 54, 1, 11, 2, 3, 4, 29, 15, 50, 31, 12, 10, 18, 61, 75, 7, 42, 69, 49, 36, 53, 74, 24, 13, 23, 44, 71, 65]}
+> Iteration 7
+	BestSolution: {cost: -761, size: 29, elements:[16, 48, 23, 31, 7, 11, 54, 3, 75, 18, 2, 42, 6, 4, 36, 13, 44, 61, 8, 60, 69, 49, 37, 50, 73, 24, 66, 10, 74]}
+> Iteration 166
+	BestSolution: {cost: -767, size: 30, elements:[74, 13, 7, 23, 25, 53, 15, 3, 1, 31, 2, 75, 4, 65, 11, 54, 32, 18, 36, 48, 42, 35, 47, 8, 49, 50, 24, 37, 69, 71]}
+> Iteration 182
+	BestSolution: {cost: -772, size: 30, elements:[20, 61, 55, 44, 64, 12, 14, 68, 6, 11, 50, 15, 4, 23, 2, 3, 74, 18, 7, 47, 49, 1, 69, 34, 53, 13, 54, 31, 36, 32]}
+> Iteration 417
+	BestSolution: {cost: -773, size: 30, elements:[6, 15, 64, 20, 14, 50, 12, 53, 3, 74, 7, 36, 31, 2, 13, 18, 23, 4, 47, 44, 49, 34, 69, 61, 54, 32, 1, 11, 68, 58]}
+> Iteration 876
+	BestSolution: {cost: -777, size: 30, elements:[69, 24, 74, 7, 61, 42, 6, 14, 50, 49, 55, 3, 76, 39, 75, 11, 2, 4, 18, 44, 54, 23, 36, 52, 53, 13, 1, 71, 47, 32]}
+> Iteration 940
+	BestSolution: {cost: -787, size: 31, elements:[69, 34, 73, 76, 54, 44, 49, 4, 3, 7, 42, 13, 18, 2, 1, 75, 71, 24, 70, 51, 74, 9, 58, 31, 32, 53, 36, 14, 20, 47, 50]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 787, size: 31, elements:[69, 34, 73, 76, 54, 44, 49, 4, 3, 7, 42, 13, 18, 2, 1, 75, 71, 24, 70, 51, 74, 9, 58, 31, 32, 53, 36, 14, 20, 47, 50]}
+Knapsack Weight of Best Solution: 285
+RunningTime: 26.583 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -18, size: 2, elements:[59, 0]}
+> Iteration 2
+	BestSolution: {cost: -42, size: 5, elements:[60, 0, 22, 62, 1]}
+> Iteration 17
+	BestSolution: {cost: -81, size: 11, elements:[12, 27, 60, 39, 50, 18, 44, 69, 29, 78, 1]}
+> Iteration 211
+	BestSolution: {cost: -151, size: 12, elements:[28, 50, 6, 42, 44, 13, 23, 73, 74, 34, 52, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 151, size: 12, elements:[28, 50, 6, 42, 44, 13, 23, 73, 74, 34, 52, 2]}
+Knapsack Weight of Best Solution: 129
+RunningTime: 0.285 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -597, size: 25, elements:[35, 17, 29, 48, 23, 37, 2, 18, 42, 54, 3, 8, 31, 25, 13, 53, 65, 72, 43, 9, 78, 60, 1, 24, 11]}
+> Iteration 1
+	BestSolution: {cost: -698, size: 27, elements:[49, 7, 74, 3, 53, 1, 13, 25, 72, 0, 51, 47, 73, 24, 52, 71, 76, 75, 55, 44, 70, 2, 42, 18, 4, 67, 69]}
+> Iteration 3
+	BestSolution: {cost: -741, size: 29, elements:[54, 3, 42, 6, 48, 11, 7, 2, 18, 31, 75, 23, 36, 4, 13, 8, 19, 37, 60, 69, 61, 44, 49, 50, 14, 58, 39, 24, 21]}
+> Iteration 15
+	BestSolution: {cost: -754, size: 29, elements:[44, 54, 6, 23, 11, 48, 31, 7, 3, 18, 2, 75, 42, 4, 13, 65, 36, 8, 61, 49, 50, 37, 47, 15, 20, 53, 25, 14, 74]}
+> Iteration 22
+	BestSolution: {cost: -761, size: 29, elements:[16, 48, 23, 31, 7, 11, 54, 3, 75, 18, 2, 42, 6, 4, 36, 13, 44, 61, 8, 60, 69, 49, 37, 50, 73, 24, 66, 10, 74]}
+> Iteration 34
+	BestSolution: {cost: -769, size: 29, elements:[42, 73, 24, 2, 3, 75, 7, 74, 13, 49, 18, 54, 4, 1, 71, 44, 76, 69, 23, 53, 34, 47, 36, 31, 32, 50, 37, 62, 8]}
+> Iteration 68
+	BestSolution: {cost: -777, size: 30, elements:[69, 24, 74, 7, 61, 42, 6, 14, 50, 49, 55, 3, 76, 39, 75, 11, 2, 4, 18, 44, 54, 23, 36, 52, 53, 13, 1, 71, 47, 32]}
+> Iteration 409
+	BestSolution: {cost: -782, size: 31, elements:[69, 23, 4, 34, 2, 44, 54, 18, 13, 31, 3, 7, 49, 73, 75, 42, 76, 71, 1, 32, 11, 74, 24, 53, 70, 9, 36, 58, 12, 51, 20]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 782, size: 31, elements:[69, 23, 4, 34, 2, 44, 54, 18, 13, 31, 3, 7, 49, 73, 75, 42, 76, 71, 1, 32, 11, 74, 24, 53, 70, 9, 36, 58, 12, 51, 20]}
+Knapsack Weight of Best Solution: 287
+RunningTime: 25.505 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -249, size: 16, elements:[2, 12, 4, 10, 18, 34, 20, 6, 74, 42, 19, 36, 62, 48, 40, 3]}
+> Iteration 11
+	BestSolution: {cost: -341, size: 21, elements:[3, 1, 55, 61, 69, 74, 53, 23, 56, 44, 29, 49, 75, 73, 32, 51, 31, 68, 11, 64, 2]}
+> Iteration 12
+	BestSolution: {cost: -541, size: 28, elements:[74, 1, 10, 13, 44, 34, 76, 12, 32, 73, 70, 14, 55, 5, 64, 63, 3, 49, 9, 47, 45, 27, 11, 2, 62, 54, 71, 20]}
+> Iteration 252
+	BestSolution: {cost: -598, size: 30, elements:[7, 42, 50, 31, 49, 38, 4, 18, 15, 66, 75, 10, 73, 32, 13, 74, 11, 2, 54, 65, 23, 47, 48, 24, 52, 6, 3, 36, 8, 17]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 598, size: 30, elements:[7, 42, 50, 31, 49, 38, 4, 18, 15, 66, 75, 10, 73, 32, 13, 74, 11, 2, 54, 65, 23, 47, 48, 24, 52, 6, 3, 36, 8, 17]}
+Knapsack Weight of Best Solution: 271
+RunningTime: 1.184 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -550, size: 26, elements:[56, 0, 41, 1, 29, 59, 25, 64, 3, 31, 43, 48, 8, 2, 47, 42, 19, 58, 37, 18, 62, 24, 71, 9, 36, 20]}
+> Iteration 1
+	BestSolution: {cost: -689, size: 26, elements:[19, 62, 36, 29, 23, 2, 64, 18, 12, 20, 48, 37, 43, 47, 31, 1, 71, 58, 46, 9, 42, 3, 70, 75, 24, 53]}
+> Iteration 2
+	BestSolution: {cost: -717, size: 27, elements:[17, 64, 62, 19, 76, 71, 60, 48, 9, 46, 37, 23, 2, 58, 29, 18, 54, 31, 69, 36, 42, 3, 75, 73, 24, 43, 32]}
+> Iteration 3
+	BestSolution: {cost: -730, size: 31, elements:[6, 20, 4, 44, 11, 67, 70, 2, 3, 34, 54, 42, 18, 58, 76, 14, 13, 51, 49, 1, 12, 43, 61, 74, 55, 68, 57, 63, 69, 32, 36]}
+> Iteration 5
+	BestSolution: {cost: -746, size: 31, elements:[69, 48, 42, 36, 24, 23, 39, 7, 53, 75, 3, 31, 2, 18, 54, 13, 4, 65, 11, 44, 6, 70, 9, 74, 14, 58, 76, 71, 12, 20, 49]}
+> Iteration 9
+	BestSolution: {cost: -759, size: 29, elements:[23, 6, 11, 48, 37, 18, 60, 54, 2, 3, 42, 19, 36, 69, 4, 61, 8, 50, 31, 58, 14, 7, 15, 44, 20, 49, 47, 13, 21]}
+> Iteration 30
+	BestSolution: {cost: -761, size: 29, elements:[6, 34, 37, 36, 53, 13, 49, 23, 69, 44, 18, 14, 50, 61, 60, 4, 20, 3, 7, 15, 54, 31, 2, 8, 47, 42, 48, 11, 74]}
+> Iteration 31
+	BestSolution: {cost: -788, size: 31, elements:[74, 69, 7, 49, 76, 61, 4, 75, 52, 24, 50, 3, 55, 11, 1, 42, 2, 54, 18, 6, 44, 14, 13, 8, 68, 53, 34, 47, 36, 71, 32]}
+> Iteration 155
+	BestSolution: {cost: -800, size: 31, elements:[34, 45, 68, 3, 44, 6, 20, 14, 53, 31, 15, 13, 7, 21, 74, 1, 49, 47, 50, 4, 61, 2, 54, 11, 8, 36, 18, 32, 69, 60, 57]}
+> Iteration 591
+	BestSolution: {cost: -802, size: 31, elements:[20, 53, 4, 31, 8, 49, 2, 68, 13, 47, 3, 75, 1, 36, 14, 32, 18, 15, 7, 74, 50, 34, 11, 54, 61, 44, 69, 23, 6, 42, 63]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 802, size: 31, elements:[20, 53, 4, 31, 8, 49, 2, 68, 13, 47, 3, 75, 1, 36, 14, 32, 18, 15, 7, 74, 50, 34, 11, 54, 61, 44, 69, 23, 6, 42, 63]}
+Knapsack Weight of Best Solution: 284
+RunningTime: 25.248 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -130, size: 10, elements:[2, 7, 18, 54, 13, 23, 1, 69, 8, 3]}
+> Iteration 319
+	BestSolution: {cost: -228, size: 13, elements:[48, 19, 42, 70, 71, 23, 28, 9, 37, 20, 17, 44, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 228, size: 13, elements:[48, 19, 42, 70, 71, 23, 28, 9, 37, 20, 17, 44, 2]}
+Knapsack Weight of Best Solution: 122
+RunningTime: 0.265 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -648, size: 25, elements:[0, 72, 25, 37, 51, 49, 30, 13, 18, 52, 47, 24, 73, 2, 71, 1, 74, 3, 53, 7, 42, 54, 76, 75, 62]}
+> Iteration 1
+	BestSolution: {cost: -679, size: 28, elements:[17, 77, 29, 3, 48, 23, 11, 54, 31, 59, 8, 50, 75, 2, 4, 42, 18, 7, 61, 69, 36, 32, 15, 35, 53, 65, 47, 25]}
+> Iteration 2
+	BestSolution: {cost: -698, size: 27, elements:[49, 7, 74, 3, 53, 1, 13, 25, 72, 0, 51, 47, 73, 24, 52, 71, 76, 75, 55, 44, 70, 2, 42, 18, 4, 67, 69]}
+> Iteration 4
+	BestSolution: {cost: -741, size: 29, elements:[54, 3, 42, 6, 48, 11, 7, 2, 18, 31, 75, 23, 36, 4, 13, 8, 19, 37, 60, 69, 61, 44, 49, 50, 14, 58, 39, 24, 21]}
+> Iteration 8
+	BestSolution: {cost: -743, size: 28, elements:[15, 3, 53, 20, 7, 31, 36, 38, 14, 50, 32, 2, 4, 54, 18, 13, 69, 44, 49, 61, 60, 1, 51, 42, 37, 47, 8, 58]}
+> Iteration 31
+	BestSolution: {cost: -773, size: 29, elements:[20, 18, 3, 14, 2, 4, 15, 7, 53, 36, 31, 50, 47, 49, 8, 42, 61, 69, 44, 54, 6, 37, 60, 13, 1, 34, 68, 74, 11]}
+> Iteration 192
+	BestSolution: {cost: -787, size: 31, elements:[69, 34, 73, 76, 54, 44, 49, 4, 3, 7, 42, 13, 18, 2, 1, 75, 71, 24, 70, 51, 74, 9, 58, 31, 32, 53, 36, 14, 20, 47, 50]}
+> Iteration 949
+	BestSolution: {cost: -795, size: 31, elements:[20, 53, 31, 4, 3, 15, 65, 7, 36, 54, 13, 2, 18, 14, 44, 42, 69, 23, 32, 75, 50, 11, 61, 8, 49, 6, 74, 47, 1, 68, 34]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 795, size: 31, elements:[20, 53, 31, 4, 3, 15, 65, 7, 36, 54, 13, 2, 18, 14, 44, 42, 69, 23, 32, 75, 50, 11, 61, 8, 49, 6, 74, 47, 1, 68, 34]}
+Knapsack Weight of Best Solution: 284
+RunningTime: 25.98 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -4, size: 3, elements:[15, 22, 0]}
+> Iteration 1
+	BestSolution: {cost: -5, size: 2, elements:[5, 0]}
+> Iteration 8
+	BestSolution: {cost: -7, size: 2, elements:[66, 0]}
+> Iteration 11
+	BestSolution: {cost: -19, size: 3, elements:[64, 43, 0]}
+> Iteration 13
+	BestSolution: {cost: -64, size: 10, elements:[62, 31, 18, 47, 57, 48, 3, 35, 30, 0]}
+> Iteration 161
+	BestSolution: {cost: -78, size: 8, elements:[11, 48, 2, 58, 50, 29, 35, 1]}
+> Iteration 352
+	BestSolution: {cost: -122, size: 10, elements:[42, 36, 70, 58, 2, 32, 48, 62, 38, 3]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 122, size: 10, elements:[42, 36, 70, 58, 2, 32, 48, 62, 38, 3]}
+Knapsack Weight of Best Solution: 90
+RunningTime: 0.296 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -714, size: 27, elements:[15, 25, 49, 3, 8, 53, 50, 31, 7, 20, 47, 36, 18, 4, 2, 14, 13, 74, 1, 61, 42, 35, 54, 37, 60, 51, 6]}
+> Iteration 2
+	BestSolution: {cost: -761, size: 29, elements:[16, 48, 23, 31, 7, 11, 54, 3, 75, 18, 2, 42, 6, 4, 36, 13, 44, 61, 8, 60, 69, 49, 37, 50, 73, 24, 66, 10, 74]}
+> Iteration 45
+	BestSolution: {cost: -767, size: 30, elements:[71, 25, 23, 54, 3, 53, 1, 13, 31, 7, 15, 18, 2, 32, 75, 4, 11, 65, 74, 36, 48, 47, 35, 42, 8, 49, 50, 37, 24, 69]}
+> Iteration 149
+	BestSolution: {cost: -777, size: 30, elements:[69, 24, 74, 7, 61, 42, 6, 14, 50, 49, 55, 3, 76, 39, 75, 11, 2, 4, 18, 44, 54, 23, 36, 52, 53, 13, 1, 71, 47, 32]}
+-----------------
+instance: ../instances/kqbf/kqbf080
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 777, size: 30, elements:[69, 24, 74, 7, 61, 42, 6, 14, 50, 49, 55, 3, 76, 39, 75, 11, 2, 4, 18, 44, 54, 23, 36, 52, 53, 13, 1, 71, 47, 32]}
+Knapsack Weight of Best Solution: 284
+RunningTime: 26.037 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -799, size: 35, elements:[51, 36, 97, 35, 41, 70, 52, 40, 31, 27, 81, 30, 74, 64, 34, 88, 89, 38, 11, 24, 80, 77, 98, 33, 23, 68, 2, 85, 10, 22, 28, 71, 65, 17, 49]}
+> Iteration 3
+	BestSolution: {cost: -909, size: 38, elements:[92, 11, 58, 68, 93, 57, 43, 19, 56, 33, 89, 64, 99, 12, 38, 85, 62, 74, 10, 34, 25, 27, 51, 71, 77, 16, 63, 24, 81, 55, 72, 14, 44, 69, 79, 20, 6, 17]}
+> Iteration 4
+	BestSolution: {cost: -936, size: 35, elements:[49, 22, 18, 5, 23, 48, 57, 34, 10, 38, 92, 70, 94, 67, 44, 62, 56, 73, 90, 82, 9, 68, 7, 29, 63, 2, 51, 85, 40, 26, 17, 21, 33, 69, 74]}
+> Iteration 14
+	BestSolution: {cost: -963, size: 36, elements:[84, 32, 21, 94, 5, 83, 29, 63, 2, 22, 82, 23, 62, 9, 57, 61, 78, 34, 6, 10, 51, 13, 54, 91, 44, 56, 17, 33, 90, 96, 48, 18, 7, 95, 69, 74]}
+> Iteration 16
+	BestSolution: {cost: -1005, size: 33, elements:[57, 68, 80, 43, 56, 51, 78, 38, 74, 33, 66, 17, 89, 29, 18, 2, 22, 14, 23, 39, 49, 95, 31, 37, 52, 10, 44, 91, 62, 7, 3, 21, 24]}
+> Iteration 46
+	BestSolution: {cost: -1151, size: 38, elements:[37, 53, 65, 11, 49, 74, 3, 23, 21, 10, 68, 24, 79, 47, 62, 71, 22, 30, 32, 91, 93, 95, 29, 14, 39, 52, 2, 17, 90, 96, 51, 7, 15, 63, 84, 25, 44, 16]}
+> Iteration 134
+	BestSolution: {cost: -1213, size: 39, elements:[43, 11, 68, 57, 78, 66, 22, 38, 62, 17, 39, 63, 74, 29, 91, 82, 32, 84, 96, 49, 95, 90, 10, 18, 51, 23, 3, 24, 21, 7, 14, 71, 89, 64, 2, 93, 44, 33, 6]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 1213, size: 39, elements:[43, 11, 68, 57, 78, 66, 22, 38, 62, 17, 39, 63, 74, 29, 91, 82, 32, 84, 96, 49, 95, 90, 10, 18, 51, 23, 3, 24, 21, 7, 14, 71, 89, 64, 2, 93, 44, 33, 6]}
+Knapsack Weight of Best Solution: 335
+RunningTime: 6.056 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -1018, size: 40, elements:[21, 94, 20, 6, 69, 33, 73, 13, 45, 92, 77, 83, 71, 64, 10, 74, 67, 91, 17, 90, 16, 38, 96, 53, 11, 72, 25, 63, 34, 27, 93, 18, 51, 3, 22, 24, 82, 95, 56, 2]}
+> Iteration 8
+	BestSolution: {cost: -1032, size: 38, elements:[49, 0, 92, 94, 20, 73, 44, 18, 37, 29, 89, 3, 84, 96, 93, 2, 42, 7, 10, 63, 16, 71, 45, 90, 23, 34, 69, 54, 33, 32, 62, 6, 91, 21, 64, 74, 9, 24]}
+> Iteration 10
+	BestSolution: {cost: -1046, size: 37, elements:[11, 43, 68, 12, 30, 38, 51, 57, 84, 74, 22, 82, 3, 66, 78, 17, 39, 29, 95, 62, 42, 85, 32, 44, 10, 14, 86, 63, 6, 91, 64, 21, 33, 24, 47, 90, 49]}
+> Iteration 11
+	BestSolution: {cost: -1096, size: 36, elements:[49, 23, 22, 21, 5, 32, 44, 70, 9, 62, 74, 63, 48, 7, 51, 10, 2, 29, 90, 84, 78, 96, 15, 68, 61, 18, 3, 17, 39, 85, 31, 95, 14, 24, 89, 79]}
+> Iteration 21
+	BestSolution: {cost: -1204, size: 37, elements:[49, 68, 37, 39, 3, 32, 1, 2, 29, 23, 84, 10, 62, 78, 22, 57, 38, 66, 63, 82, 91, 51, 17, 47, 18, 90, 44, 42, 14, 95, 7, 74, 21, 96, 24, 31, 9]}
+> Iteration 109
+	BestSolution: {cost: -1219, size: 37, elements:[49, 44, 84, 32, 89, 3, 2, 66, 18, 78, 29, 39, 42, 62, 37, 10, 22, 23, 51, 74, 52, 7, 95, 38, 21, 96, 17, 63, 90, 14, 31, 24, 68, 47, 91, 82, 9]}
+> Iteration 861
+	BestSolution: {cost: -1228, size: 38, elements:[49, 21, 32, 22, 3, 24, 74, 84, 91, 79, 10, 23, 95, 47, 62, 93, 29, 39, 31, 90, 44, 63, 7, 2, 37, 52, 18, 51, 17, 14, 96, 89, 68, 15, 78, 66, 71, 9]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: DEFAULT
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 1228, size: 38, elements:[49, 21, 32, 22, 3, 24, 74, 84, 91, 79, 10, 23, 95, 47, 62, 93, 29, 39, 31, 90, 44, 63, 7, 2, 37, 52, 18, 51, 17, 14, 96, 89, 68, 15, 78, 66, 71, 9]}
+Knapsack Weight of Best Solution: 345
+RunningTime: 9.068 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -3, size: 2, elements:[72, 0]}
+> Iteration 1
+	BestSolution: {cost: -6, size: 2, elements:[90, 0]}
+> Iteration 5
+	BestSolution: {cost: -17, size: 3, elements:[58, 98, 0]}
+> Iteration 6
+	BestSolution: {cost: -18, size: 3, elements:[74, 14, 0]}
+> Iteration 10
+	BestSolution: {cost: -23, size: 3, elements:[44, 63, 2]}
+> Iteration 25
+	BestSolution: {cost: -58, size: 8, elements:[74, 81, 30, 62, 32, 26, 5, 0]}
+> Iteration 138
+	BestSolution: {cost: -59, size: 7, elements:[6, 20, 50, 33, 85, 93, 0]}
+> Iteration 163
+	BestSolution: {cost: -60, size: 9, elements:[97, 0, 25, 85, 28, 45, 3, 22, 2]}
+> Iteration 179
+	BestSolution: {cost: -78, size: 9, elements:[68, 2, 37, 36, 96, 97, 41, 54, 0]}
+> Iteration 537
+	BestSolution: {cost: -122, size: 8, elements:[94, 21, 22, 23, 73, 41, 72, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 122, size: 8, elements:[94, 21, 22, 23, 73, 41, 72, 2]}
+Knapsack Weight of Best Solution: 105
+RunningTime: 0.415 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -1101, size: 39, elements:[15, 21, 53, 11, 3, 30, 10, 6, 12, 84, 47, 32, 91, 69, 64, 71, 24, 81, 75, 74, 25, 77, 79, 72, 93, 16, 45, 85, 67, 38, 22, 62, 63, 44, 14, 68, 96, 95, 20]}
+> Iteration 2
+	BestSolution: {cost: -1215, size: 38, elements:[49, 37, 68, 57, 39, 38, 82, 63, 22, 14, 17, 91, 66, 29, 84, 3, 10, 2, 18, 51, 78, 96, 74, 89, 44, 62, 23, 7, 90, 95, 1, 21, 32, 47, 42, 24, 93, 71]}
+> Iteration 142
+	BestSolution: {cost: -1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+Knapsack Weight of Best Solution: 343
+RunningTime: 82.995 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -15, size: 2, elements:[52, 2]}
+> Iteration 4
+	BestSolution: {cost: -20, size: 4, elements:[13, 94, 15, 0]}
+> Iteration 21
+	BestSolution: {cost: -26, size: 3, elements:[44, 52, 2]}
+> Iteration 54
+	BestSolution: {cost: -56, size: 5, elements:[22, 94, 44, 53, 2]}
+> Iteration 62
+	BestSolution: {cost: -76, size: 6, elements:[70, 23, 22, 24, 85, 2]}
+> Iteration 87
+	BestSolution: {cost: -121, size: 11, elements:[51, 40, 9, 26, 78, 7, 74, 2, 1, 24, 4]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 121, size: 11, elements:[51, 40, 9, 26, 78, 7, 74, 2, 1, 24, 4]}
+Knapsack Weight of Best Solution: 85
+RunningTime: 0.423 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -1105, size: 39, elements:[83, 53, 11, 21, 77, 74, 65, 64, 10, 71, 33, 34, 38, 24, 25, 69, 42, 96, 18, 19, 78, 54, 57, 89, 99, 3, 6, 52, 93, 91, 84, 22, 63, 82, 14, 51, 17, 2, 7]}
+> Iteration 4
+	BestSolution: {cost: -1204, size: 37, elements:[49, 91, 21, 22, 84, 57, 82, 63, 32, 29, 3, 39, 66, 78, 17, 51, 14, 68, 2, 1, 10, 62, 38, 95, 23, 47, 44, 18, 7, 42, 96, 37, 74, 90, 31, 24, 9]}
+> Iteration 63
+	BestSolution: {cost: -1219, size: 37, elements:[49, 18, 38, 23, 39, 22, 24, 62, 7, 10, 74, 3, 37, 89, 2, 14, 44, 29, 96, 95, 68, 31, 51, 17, 63, 90, 78, 52, 21, 91, 47, 32, 84, 66, 42, 82, 9]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.2
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 1219, size: 37, elements:[49, 18, 38, 23, 39, 22, 24, 62, 7, 10, 74, 3, 37, 89, 2, 14, 44, 29, 96, 95, 68, 31, 51, 17, 63, 90, 78, 52, 21, 91, 47, 32, 84, 66, 42, 82, 9]}
+Knapsack Weight of Best Solution: 341
+RunningTime: 81.364 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -376, size: 24, elements:[62, 24, 71, 21, 20, 33, 18, 5, 15, 11, 73, 87, 90, 53, 6, 34, 3, 78, 32, 72, 10, 42, 12, 7]}
+> Iteration 11
+	BestSolution: {cost: -454, size: 31, elements:[27, 24, 68, 40, 41, 3, 16, 71, 69, 91, 10, 1, 84, 80, 33, 47, 22, 12, 85, 4, 92, 66, 64, 62, 44, 38, 58, 63, 14, 17, 49]}
+> Iteration 19
+	BestSolution: {cost: -469, size: 24, elements:[56, 61, 45, 2, 53, 10, 97, 83, 18, 27, 70, 28, 13, 69, 33, 23, 12, 51, 17, 48, 9, 85, 15, 1]}
+> Iteration 48
+	BestSolution: {cost: -613, size: 32, elements:[97, 3, 2, 80, 49, 40, 9, 4, 32, 34, 51, 73, 37, 12, 85, 48, 29, 92, 18, 71, 79, 84, 61, 78, 5, 94, 10, 39, 16, 23, 7, 17]}
+> Iteration 54
+	BestSolution: {cost: -621, size: 36, elements:[23, 82, 28, 42, 6, 75, 64, 24, 54, 7, 95, 93, 10, 88, 36, 51, 77, 73, 25, 30, 38, 99, 43, 62, 89, 81, 52, 2, 98, 74, 56, 58, 63, 33, 55, 14]}
+> Iteration 112
+	BestSolution: {cost: -700, size: 35, elements:[11, 71, 39, 92, 12, 84, 93, 13, 91, 41, 21, 63, 58, 72, 29, 68, 59, 4, 20, 44, 10, 80, 3, 6, 32, 96, 2, 16, 53, 34, 47, 42, 65, 49, 17]}
+> Iteration 125
+	BestSolution: {cost: -752, size: 37, elements:[92, 9, 53, 10, 13, 16, 1, 61, 12, 15, 82, 48, 63, 39, 96, 14, 84, 91, 20, 45, 72, 77, 67, 68, 71, 59, 2, 21, 83, 69, 41, 54, 17, 90, 75, 6, 49]}
+> Iteration 264
+	BestSolution: {cost: -911, size: 35, elements:[24, 84, 57, 81, 88, 69, 42, 34, 20, 2, 7, 26, 6, 38, 28, 25, 62, 71, 33, 50, 63, 18, 22, 16, 64, 14, 85, 72, 67, 19, 74, 39, 44, 10, 17]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 911, size: 35, elements:[24, 84, 57, 81, 88, 69, 42, 34, 20, 2, 7, 26, 6, 38, 28, 25, 62, 71, 33, 50, 63, 18, 22, 16, 64, 14, 85, 72, 67, 19, 74, 39, 44, 10, 17]}
+Knapsack Weight of Best Solution: 343
+RunningTime: 1.927 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -961, size: 33, elements:[21, 80, 55, 81, 15, 61, 9, 2, 36, 51, 27, 68, 16, 17, 1, 98, 35, 45, 23, 10, 30, 74, 38, 7, 69, 31, 70, 28, 41, 24, 62, 22, 50]}
+> Iteration 1
+	BestSolution: {cost: -973, size: 33, elements:[74, 26, 23, 68, 94, 27, 31, 22, 95, 2, 51, 9, 70, 17, 56, 69, 7, 38, 10, 62, 24, 81, 30, 16, 1, 28, 42, 39, 18, 82, 34, 41, 63]}
+> Iteration 2
+	BestSolution: {cost: -1111, size: 39, elements:[49, 44, 15, 61, 63, 96, 81, 62, 97, 17, 89, 10, 9, 21, 47, 69, 84, 3, 7, 23, 2, 24, 75, 70, 22, 52, 95, 31, 74, 18, 51, 14, 79, 71, 39, 68, 28, 91, 67]}
+> Iteration 5
+	BestSolution: {cost: -1215, size: 38, elements:[49, 37, 68, 57, 39, 38, 82, 63, 22, 14, 17, 91, 66, 29, 84, 3, 10, 2, 18, 51, 78, 96, 74, 89, 44, 62, 23, 7, 90, 95, 1, 21, 32, 47, 42, 24, 93, 71]}
+> Iteration 89
+	BestSolution: {cost: -1220, size: 37, elements:[49, 84, 51, 9, 10, 3, 32, 7, 21, 63, 22, 74, 23, 2, 29, 37, 62, 39, 78, 68, 31, 90, 17, 18, 44, 14, 96, 89, 24, 95, 52, 91, 47, 66, 15, 71, 42]}
+> Iteration 705
+	BestSolution: {cost: -1227, size: 38, elements:[49, 84, 57, 89, 44, 18, 2, 10, 22, 3, 14, 68, 39, 17, 66, 29, 78, 51, 63, 62, 42, 7, 96, 37, 74, 23, 38, 95, 91, 82, 93, 47, 24, 32, 21, 90, 52, 11]}
+> Iteration 888
+	BestSolution: {cost: -1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: DEFAULT
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+Knapsack Weight of Best Solution: 343
+RunningTime: 75.18 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -41, size: 6, elements:[56, 4, 94, 86, 72, 0]}
+> Iteration 26
+	BestSolution: {cost: -51, size: 6, elements:[73, 44, 62, 21, 72, 2]}
+> Iteration 31
+	BestSolution: {cost: -58, size: 9, elements:[73, 33, 2, 68, 6, 22, 72, 83, 4]}
+> Iteration 270
+	BestSolution: {cost: -62, size: 8, elements:[94, 29, 62, 73, 55, 92, 61, 0]}
+> Iteration 351
+	BestSolution: {cost: -91, size: 7, elements:[22, 18, 31, 52, 74, 20, 2]}
+> Iteration 733
+	BestSolution: {cost: -116, size: 12, elements:[2, 97, 20, 6, 45, 34, 37, 64, 33, 27, 5, 0]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 116, size: 12, elements:[2, 97, 20, 6, 45, 34, 37, 64, 33, 27, 5, 0]}
+Knapsack Weight of Best Solution: 121
+RunningTime: 0.401 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -947, size: 32, elements:[87, 7, 56, 58, 5, 40, 51, 73, 23, 60, 10, 18, 2, 29, 17, 85, 63, 84, 22, 49, 44, 52, 95, 90, 68, 62, 47, 39, 91, 15, 96, 24]}
+> Iteration 1
+	BestSolution: {cost: -1077, size: 35, elements:[17, 68, 11, 57, 19, 43, 56, 10, 38, 51, 7, 74, 33, 50, 85, 64, 86, 22, 14, 62, 44, 18, 28, 63, 29, 95, 93, 23, 91, 90, 96, 71, 78, 2, 49]}
+> Iteration 2
+	BestSolution: {cost: -1149, size: 35, elements:[49, 40, 22, 84, 2, 29, 32, 3, 18, 39, 78, 66, 14, 51, 17, 68, 63, 85, 31, 44, 7, 23, 62, 90, 95, 96, 10, 24, 47, 91, 37, 42, 74, 21, 73]}
+> Iteration 4
+	BestSolution: {cost: -1180, size: 36, elements:[49, 39, 37, 68, 28, 31, 23, 74, 51, 17, 29, 2, 14, 22, 18, 7, 95, 96, 90, 62, 44, 63, 10, 3, 78, 91, 86, 47, 25, 24, 79, 93, 85, 84, 32, 11]}
+> Iteration 49
+	BestSolution: {cost: -1219, size: 37, elements:[49, 89, 32, 29, 39, 37, 3, 84, 66, 2, 18, 78, 22, 14, 51, 17, 68, 31, 74, 96, 91, 82, 95, 23, 90, 44, 62, 7, 63, 10, 47, 52, 21, 24, 38, 42, 9]}
+> Iteration 347
+	BestSolution: {cost: -1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: RANDOM_PLUS_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+Knapsack Weight of Best Solution: 343
+RunningTime: 81.493 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -21, size: 3, elements:[58, 76, 0]}
+> Iteration 10
+	BestSolution: {cost: -25, size: 5, elements:[31, 40, 81, 72, 2]}
+> Iteration 15
+	BestSolution: {cost: -27, size: 4, elements:[3, 37, 59, 0]}
+> Iteration 23
+	BestSolution: {cost: -32, size: 4, elements:[44, 80, 45, 2]}
+> Iteration 26
+	BestSolution: {cost: -36, size: 5, elements:[4, 95, 66, 92, 0]}
+> Iteration 40
+	BestSolution: {cost: -66, size: 9, elements:[44, 7, 30, 4, 73, 60, 69, 31, 2]}
+> Iteration 54
+	BestSolution: {cost: -100, size: 8, elements:[27, 51, 58, 42, 16, 73, 49, 1]}
+> Iteration 476
+	BestSolution: {cost: -108, size: 10, elements:[13, 68, 49, 41, 92, 36, 97, 0, 46, 2]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: true
+iterations: 1000
+Best Solution Found: {cost: 108, size: 10, elements:[13, 68, 49, 41, 92, 36, 97, 0, 46, 2]}
+Knapsack Weight of Best Solution: 92
+RunningTime: 0.44 seconds
+
+
+=============================
+> Iteration 0
+	BestSolution: {cost: -882, size: 32, elements:[84, 58, 35, 40, 5, 51, 85, 73, 22, 56, 52, 18, 2, 23, 70, 34, 10, 24, 7, 44, 49, 29, 48, 63, 32, 90, 17, 62, 21, 33, 94, 9]}
+> Iteration 2
+	BestSolution: {cost: -1020, size: 34, elements:[31, 68, 27, 59, 95, 43, 26, 36, 51, 2, 17, 7, 56, 10, 23, 38, 74, 22, 62, 44, 14, 30, 24, 81, 64, 89, 69, 70, 18, 96, 40, 34, 33, 28]}
+> Iteration 3
+	BestSolution: {cost: -1105, size: 39, elements:[83, 53, 11, 21, 77, 74, 65, 64, 10, 71, 33, 34, 38, 24, 25, 69, 42, 96, 18, 19, 78, 54, 57, 89, 99, 3, 6, 52, 93, 91, 84, 22, 63, 82, 14, 51, 17, 2, 7]}
+> Iteration 6
+	BestSolution: {cost: -1122, size: 36, elements:[49, 74, 37, 23, 68, 31, 9, 51, 27, 2, 89, 3, 29, 39, 17, 66, 78, 22, 14, 18, 96, 84, 44, 95, 7, 62, 90, 63, 10, 91, 59, 47, 1, 32, 24, 38]}
+> Iteration 10
+	BestSolution: {cost: -1141, size: 36, elements:[49, 21, 73, 23, 22, 24, 74, 62, 38, 10, 7, 44, 63, 3, 32, 45, 90, 71, 18, 33, 29, 34, 42, 39, 78, 2, 96, 14, 64, 40, 51, 84, 85, 17, 95, 11]}
+> Iteration 13
+	BestSolution: {cost: -1153, size: 36, elements:[49, 24, 22, 84, 40, 2, 23, 21, 32, 29, 39, 5, 62, 47, 10, 7, 44, 18, 63, 90, 3, 14, 15, 71, 96, 91, 17, 95, 68, 31, 78, 51, 52, 74, 79, 37]}
+> Iteration 24
+	BestSolution: {cost: -1192, size: 37, elements:[32, 1, 84, 82, 39, 42, 53, 78, 18, 2, 96, 29, 66, 17, 91, 95, 22, 90, 44, 10, 62, 23, 7, 14, 21, 63, 38, 51, 68, 3, 37, 49, 74, 47, 24, 31, 9]}
+> Iteration 52
+	BestSolution: {cost: -1219, size: 37, elements:[49, 89, 52, 37, 2, 23, 51, 9, 74, 31, 7, 18, 22, 96, 44, 14, 95, 29, 17, 68, 10, 62, 39, 63, 3, 24, 21, 90, 78, 38, 32, 91, 47, 84, 66, 42, 82]}
+> Iteration 356
+	BestSolution: {cost: -1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+-----------------
+instance: ../instances/kqbf/kqbf100
+construction mechanist: SAMPLED_GREEDY
+alpha: 0.5
+firstImproving: false
+iterations: 1000
+Best Solution Found: {cost: 1234, size: 40, elements:[49, 21, 11, 3, 32, 24, 22, 78, 84, 63, 96, 82, 74, 38, 62, 39, 57, 68, 10, 91, 71, 17, 18, 29, 90, 34, 42, 44, 14, 64, 66, 89, 2, 95, 51, 23, 7, 93, 47, 69]}
+Knapsack Weight of Best Solution: 343
+RunningTime: 82.298 seconds
