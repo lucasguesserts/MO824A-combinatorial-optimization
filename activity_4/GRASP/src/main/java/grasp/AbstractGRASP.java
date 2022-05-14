@@ -206,7 +206,7 @@ public abstract class AbstractGRASP<E> {
                 constructiveHeuristic();
             } else if (constructionMechanism == ConstructionMechanism.RANDOM_PLUS_GREEDY) {
                 randomPlusGreedy();
-            } else if (constructionMechanism == ConstructionMechanism.RANDOM_PLUS_GREEDY) {
+            } else if (constructionMechanism == ConstructionMechanism.SAMPLED_GREEDY) {
                 sampledGreedy();
             }
             localSearch();
