@@ -43,12 +43,6 @@ public class Main {
     ) throws IOException {
         final long startTime = System.currentTimeMillis();
         System.out.println("\n\n=============================");
-        System.out.println("instance: " + fileName);
-        System.out.println("alpha: " + alpha);
-        System.out.println("construction mechanist: " + constructionMechanism);
-        System.out.println("firstImproving: " + firstImproving);
-        System.out.println("iterations: " + iterations);
-        System.out.println("-----------------");
         final GRASP_KQBF grasp = new GRASP_KQBF(alpha, iterations, firstImproving, constructionMechanism, fileName);
         final Solution<Integer> bestSolution = grasp.solve();
         final Integer knapsackWeight = grasp.getKnapsackWeightOfSolution();
