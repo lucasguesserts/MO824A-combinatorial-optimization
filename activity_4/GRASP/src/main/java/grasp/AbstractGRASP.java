@@ -164,8 +164,6 @@ public abstract class AbstractGRASP<E> {
     }
 
     private void updateRCL(int p) {
-        // Among all candidates, insert into the RCL those with the highest
-        // performance using parameter currentAlpha as threshold.
         int RCL_size = Math.min(p, CL.size());
         RCL.clear();
         Collections.shuffle(CL);

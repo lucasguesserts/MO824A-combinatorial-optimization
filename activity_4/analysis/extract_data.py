@@ -81,7 +81,7 @@ class Extractor ():
 
 
 if __name__ == "__main__":
-    filePath = "../experiments/2022-05-14.experiment_result"
+    filePath = "../experiments/01.experiment_result.txt"
     df = Extractor.getDataFrame(filePath)
     parts_argument = 8
     print(r"\begin{landscape}", "\n")
