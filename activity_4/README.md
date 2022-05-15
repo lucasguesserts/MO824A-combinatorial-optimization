@@ -1,4 +1,17 @@
-# Instructions
+# Activity 4
+
+## Credits
+
+This project was developed by:
+
+- Felipe Pereira
+- Sandro Henrique Uliana Catabriga
+- Lucas Guesser Targino da Silva (lucasguesserts@gmail.com)
+
+The GRASP framework was initially developed by:
+
+- Fábio Luiz Usberti (fusberti@ic.unicamp.br)
+- Celso Cavellucci (celsocv@ic.unicamp.br)
 
 ## Requirements
 
