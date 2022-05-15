@@ -1,0 +1,143 @@
+\begin{landscape}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight & duration \\
+    \midrule
+    0 &       020 &             default &   0.2 &  first improving &       1000 &       120 &     56 &    0.145 \\
+    1 &       020 &             default &   0.5 &  first improving &       1000 &       120 &     56 &    0.042 \\
+    2 &       020 &             default &   0.2 &   best improving &       1000 &       120 &     56 &    0.074 \\
+    3 &       020 &             default &   0.5 &   best improving &       1000 &       120 &     54 &      0.1 \\
+    4 &       020 &  random plus greedy &     - &  first improving &       1000 &        57 &     49 &    0.086 \\
+    5 &       020 &  random plus greedy &     - &   best improving &       1000 &       120 &     54 &    0.145 \\
+    6 &       020 &      sampled greedy &     - &  first improving &       1000 &        84 &     62 &     0.09 \\
+    7 &       020 &      sampled greedy &     - &   best improving &       1000 &       120 &     54 &    0.138 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 0.}
+    \label{table:all-data-0}
+    \end{table}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight & duration \\
+    \midrule
+    8  &       040 &             default &   0.2 &  first improving &       1000 &       306 &    136 &    0.353 \\
+    9  &       040 &             default &   0.5 &  first improving &       1000 &       269 &    132 &    0.196 \\
+    10 &       040 &             default &   0.2 &   best improving &       1000 &       295 &    137 &    1.765 \\
+    11 &       040 &             default &   0.5 &   best improving &       1000 &       286 &    133 &    1.627 \\
+    12 &       040 &  random plus greedy &     - &  first improving &       1000 &        92 &     95 &    0.063 \\
+    13 &       040 &  random plus greedy &     - &   best improving &       1000 &       224 &    137 &    1.806 \\
+    14 &       040 &      sampled greedy &     - &  first improving &       1000 &        89 &     76 &    0.061 \\
+    15 &       040 &      sampled greedy &     - &   best improving &       1000 &       277 &    137 &    1.616 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 1.}
+    \label{table:all-data-1}
+    \end{table}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight & duration \\
+    \midrule
+    16 &       060 &             default &   0.2 &  first improving &       1000 &       455 &    220 &    1.261 \\
+    17 &       060 &             default &   0.5 &  first improving &       1000 &       380 &    216 &    0.493 \\
+    18 &       060 &             default &   0.2 &   best improving &       1000 &       491 &    212 &    1.981 \\
+    19 &       060 &             default &   0.5 &   best improving &       1000 &       491 &    212 &    6.399 \\
+    20 &       060 &  random plus greedy &     - &  first improving &       1000 &        77 &     68 &    0.148 \\
+    21 &       060 &  random plus greedy &     - &   best improving &       1000 &       482 &    215 &    7.876 \\
+    22 &       060 &      sampled greedy &     - &  first improving &       1000 &        83 &     96 &    0.134 \\
+    23 &       060 &      sampled greedy &     - &   best improving &       1000 &       482 &    215 &    7.149 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 2.}
+    \label{table:all-data-2}
+    \end{table}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight & duration \\
+    \midrule
+    24 &       080 &             default &   0.2 &  first improving &       1000 &       783 &    286 &    3.016 \\
+    25 &       080 &             default &   0.5 &  first improving &       1000 &       598 &    271 &    1.184 \\
+    26 &       080 &             default &   0.2 &   best improving &       1000 &       795 &    284 &    4.242 \\
+    27 &       080 &             default &   0.5 &   best improving &       1000 &       802 &    284 &   25.248 \\
+    28 &       080 &  random plus greedy &     - &  first improving &       1000 &       118 &     69 &     0.27 \\
+    29 &       080 &  random plus greedy &     - &   best improving &       1000 &       802 &    284 &   20.344 \\
+    30 &       080 &      sampled greedy &     - &  first improving &       1000 &       151 &     69 &    0.249 \\
+    31 &       080 &      sampled greedy &     - &   best improving &       1000 &       791 &    287 &   19.385 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 3.}
+    \label{table:all-data-3}
+    \end{table}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight & duration \\
+    \midrule
+    32 &       100 &             default &   0.2 &  first improving &       1000 &      1213 &    335 &    6.056 \\
+    33 &       100 &             default &   0.5 &  first improving &       1000 &       911 &    343 &    1.927 \\
+    34 &       100 &             default &   0.2 &   best improving &       1000 &      1228 &    345 &    9.068 \\
+    35 &       100 &             default &   0.5 &   best improving &       1000 &      1234 &    343 &    75.18 \\
+    36 &       100 &  random plus greedy &     - &  first improving &       1000 &       101 &    100 &     0.42 \\
+    37 &       100 &  random plus greedy &     - &   best improving &       1000 &      1234 &    343 &   85.987 \\
+    38 &       100 &      sampled greedy &     - &  first improving &       1000 &       113 &     99 &    0.393 \\
+    39 &       100 &      sampled greedy &     - &   best improving &       1000 &      1234 &    343 &   50.211 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 4.}
+    \label{table:all-data-4}
+    \end{table}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight &  duration \\
+    \midrule
+    40 &       200 &             default &   0.2 &  first improving &       1000 &      3692 &    679 &    75.552 \\
+    41 &       200 &             default &   0.5 &  first improving &       1000 &      2672 &    669 &    11.496 \\
+    42 &       200 &             default &   0.2 &   best improving &       1000 &      3766 &    677 &   100.731 \\
+    43 &       200 &             default &   0.5 &   best improving &       1000 &      3840 &    678 &  1280.062 \\
+    44 &       200 &  random plus greedy &     - &  first improving &       1000 &        71 &     86 &     1.563 \\
+    45 &       200 &  random plus greedy &     - &   best improving &       1000 &      3829 &    678 &  1422.645 \\
+    46 &       200 &      sampled greedy &     - &  first improving &       1000 &       133 &    105 &     1.379 \\
+    47 &       200 &      sampled greedy &     - &   best improving &       1000 &      3837 &    678 &  1424.165 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 5.}
+    \label{table:all-data-5}
+    \end{table}
+
+    \begin{table}
+    \centering
+    \begin{tabular}{lllllllll}
+    \toprule
+    {} & instances &        construction & alpha &     local search & iterations & best cost & weight &  duration \\
+    \midrule
+    48 &       400 &             default &   0.2 &  first improving &       1000 &      9756 &   1342 &   650.589 \\
+    49 &       400 &             default &   0.5 &  first improving &       1000 &      7102 &   1343 &    77.348 \\
+    50 &       400 &             default &   0.2 &   best improving &       1000 &     10213 &   1343 &   973.293 \\
+    51 &       400 &             default &   0.5 &   best improving &       1000 &     10197 &   1343 &  1816.949 \\
+    52 &       400 &  random plus greedy &     - &  first improving &       1000 &        91 &    119 &     5.995 \\
+    53 &       400 &  random plus greedy &     - &   best improving &       1000 &      9833 &   1343 &  1815.805 \\
+    54 &       400 &      sampled greedy &     - &  first improving &       1000 &       147 &    118 &     6.574 \\
+    55 &       400 &      sampled greedy &     - &   best improving &       1000 &      9832 &   1343 &  1809.777 \\
+    \bottomrule
+    \end{tabular}
+    \caption{Número de possíveis soluções para cada tamanho de problema - parte 6.}
+    \label{table:all-data-6}
+    \end{table}
+
+    \end{landscape}
