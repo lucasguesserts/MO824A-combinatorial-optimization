@@ -1,0 +1,11 @@
+plugins {
+	id 'application'
+}
+
+application {
+    mainClass = 'Main'
+}
+
+dependencies {
+    implementation project(':GRASP')
+}

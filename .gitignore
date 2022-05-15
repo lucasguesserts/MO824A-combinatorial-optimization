@@ -1,15 +1,33 @@
+# temp
+foo*
+goo*
+hoo*
+
+# log
+*.log
+
 # python
 __pycache__/
 .ipynb_checkpoints/
 
 # vscode
-.vscode/
+.vscode/*
+!.vscode/launch.json
+activity_4/.vscode/*
+!activity_4/.vscode/launch.json
 
 # c++
 *.o
 activity_3/KTSP/KTSP
 activity_3/tests
 activity_3/build
+
+# java
+build/
+.gradle/
+bin/
+.classpath
+.project
 
 
 # latex

@@ -1,0 +1,266 @@
+\documentclass{article}
+\usepackage[a4paper]{geometry}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xspace}
+\usepackage{lscape}
+\usepackage{booktabs}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definição}
+\newtheorem{fact}{Fato}
+
+\newcommand{\Set}[1]{\left\{#1\right\}}
+\newcommand{\Sum}[4]{\displaystyle\sum\limits_{#1 = #2}^{#3} #4}
+\newcommand{\function}[3]{#1: #2 \rightarrow #3}
+\newcommand{\transpose}[1]{#1^{T}}
+
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\Bn}{\mathbb{B}^n}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zn}{\mathbb{Z}^n}
+
+\newcommand{\qbf}{QBF\xspace}
+\newcommand{\maxqbf}{MAX-QBF\xspace}
+\newcommand{\maxkqbf}{MAX-KQBF\xspace}
+
+\newcommand{\w}{w}
+\newcommand{\W}{W}
+
+\newcommand{\aij}{a_{i,j}}
+\newcommand{\A}{A}
+
+\newcommand{\firstImproving}{\textit{First Improving}\xspace}
+\newcommand{\bestImproving}{\textit{Best Improving}\xspace}
+\newcommand{\default}{\textit{Padrão}\xspace}
+\newcommand{\randomPlusGreedy}{\textit{Random Plus Greedy}\xspace}
+\newcommand{\sampledGreedy}{\textit{Sampled Greedy}\xspace}
+
+\title{Atividade 4 - GRASP}
+\author{
+    Felipe Pereira RA 263808 \\
+    Sandro Henrique Uliana Catabriga RA 219597 \\
+    Lucas Guesser Targino da Silva RA 203534
+}
+
+\begin{document}
+
+\maketitle
+
+\section{Definições}
+
+\begin{defn}[Conjunto Binário]
+    $\B = \Set{0, 1}$
+\end{defn}
+
+\begin{defn}[Função Binária Quadrática (\qbf)]
+    É uma função $\function{f}{\Bn}{\Z}$ da forma:
+    $$
+        f(x)
+        = \Sum{j}{1}{n}{x_i \cdot \aij \cdot x_j}
+        = \transpose{x} \cdot \A \cdot x
+    $$
+    em que $\aij \in \Z, \ \forall i,j \in \Set{1, \cdots, n}$ e $\A$ é a matriz $n$ por $n$ induzida pelos $\aij$.
+\end{defn}
+
+\begin{defn}[Problema de Maximização de uma Função Binária Quadrática (\maxqbf)]
+Dada uma \qbf $f$, um \maxqbf é um problema da forma:
+$$
+    \max\limits_{x} f(x)
+$$
+\end{defn}
+
+\begin{fact}
+\maxqbf é NP-difícil \cite{bib:max-qbf}
+\end{fact}
+
+\begin{defn}[Maximum knapsack quadractic binary function (\maxkqbf)]
+Dada uma \qbf $f$, um vetor $\w \in \Zn$\footnote{O problema original foi definido com números reais. Decidimos aqui utilizar inteiros por dois motivos. Primeiro, todas as instâncias fornecidas possuem apenas valores inteiros para $\aij, \w, \W$. Garante-se que os valores são sempre inteiros pois $\Z$ é fechado nas operações envolvidas: adição e multiplicação. Segundo, simplifica a implementação e comparações (não é necessário fazer comparação de números em ponto flutuante).}, e um valor $\W \in \Z$, um \maxkqbf é um problema da forma:
+\begin{eqnarray*}
+    \max & f(x) \\
+    \mbox{subjected to} & \transpose{\w} x \leq \W \\
+    & x \in \Bn
+\end{eqnarray*}
+\end{defn}
+
+\section{Metodologia}
+Abordaremos nessa seção os itens básicos para podermos implementar os métodos de construção do GRASP: lista de candidatos e critérios de parada. Definidos esses pontos, apresentamos os três métodos implementados e comparados: heurística construtiva padrão, \textit{random plus greedy}, e \textit{sampled gredy}.
+
+\subsection{Lista de Candidatos}
+A lista de candidatos é independente do método de construção utilizado. Diferente do problema QBF, no MAX-KQBF temos uma restrição relativa à capacidade da mochila que deve ser respeitada. Portanto, são candidatas a comporem a solução aquelas variáveis cujo peso, quando inseridas na mochila, não ultrapassa a capacidade definida.
+
+Podemos definir a lista de candidatos CL como: CL $ = \{x_i \mid W_{s'} + w_i \leq W, \forall i \in \{1, \dots, n\} \setminus s'\}$, onde $s'$ é a solução atual (que está em construção). Ou seja, são candidatas as variáveis que não fazem parte da solução atual, e quando incorporadas a ela não estouram a capacidade da mochila.
+
+\subsection{Critérios de Parada dos Métodos de Construtivos}
+% Critérios de Parada: soluação não melhorar ou não ter mais candidatos
+Para todos os métodos de construção utilizados, os critérios de parada foram os mesmos. São eles:
+\begin{enumerate}
+    \item Solução não melhora: quando a inserção de um candidato na solução não a melhora.
+    \item Lista de candidatos vazia: quando não há mais candidatos para serem inseridos na solução.
+\end{enumerate}
+
+Dessa forma, as soluções são construídas iterativamente até que um dos critérios de parada ocorra.
+
+\subsection{Heurística Construtiva Padrão}
+% Explicar alphas utilizados, como é construída a RCL, como é escolhido o candidato a entrar na solução.
+Para a heurística construtiva padrão do GRASP, consideramos dois valores de $\alpha$: $0.2$ e $0.5$. Para cada iteração, enquanto o critério de parada não era atingido, a lista restrita de candidatos RCL era construída a partir da lista de candidatos CL e do valor de $\alpha$.
+
+Seja $c(x_i)$ a função que mede a contribuição da variável $x_i$ na função objetivo, $c^{min}$ a menor contribuição dentre os candidatos, e $c^{max}$ a maior contribuição. Podemos definir a lista restrita de candidatos RCL: RCL $ = \{x_{i} \mid c(x_i) \in [c^{min}, c^{min} + \alpha(c^{max} - c^{min})]\}$. Ou seja, entram para a lista restrita de candidatos todos os candidatos que estão em um intervalo de qualidade definido por $\alpha$.
+
+A partir da RCL, seleciona-se então aleatoriamente um candidato para ser integrado à solução.
+
+\subsection{Método de Construção Alternativo 1}
+% Explicar random plus greedy. Falar qual valor de p utilizamos, como foi construída a RCL, e como foi escolhido o candidato a entrar na solução.
+Para o método de construção \textit{random plus greedy}, que busca juntar aleatoriedade e determinismo, utilizamos $p = n \times 0.8$, onde $n$ é o número de variáveis no nosso problema. Dessa forma, buscamos utilizar aleatoriedade completa, com $\alpha = 1$, em aproximadamente $80\%$ dos passos construtivos, e no restante utilizar determinismo, com $\alpha = 0$.
+
+A construção da lista restrita de candidatos foi equivalente a da heurística construtiva padrão, mas, devido ao valor de $p$, nas primeiras $p$ iterações utilizamos $\alpha = 1$, e nas restantes $\alpha = 0$. Quando $\alpha = 1$, o candidato selecionado para compor a solução foi escolhido aleatoriamente, e quando $\alpha = 0$, o candidato selecionado para compor a solução foi o melhor da lista de candidatos.
+
+\subsection{Método de Construção Alternativo 2}
+% Explicar sampled greedy. Falar qual valor de p utilizamos, como foi construída a RCL, e como foi escolhido o candidato a entrar na solução.
+Para o \textit{sampled greedy}, que também busca combinar aleatoriedade e determinismo, utilizamos $p = n \times 0.7$. Assim, a lista restrita de candidatos RCL foi composta por $min(p, |CL|)$ candidatos da lista de candidatos CL, selecionados aleatoriamente.
+
+Portanto, a cada iteração, a RCL era construída selecionando aleatoriamente $min(p, |CL|)$ candidatos da CL. Para compor a solução, era selecionado o melhor candidato da RCL.
+
+\subsection{Operadores de Busca Local}
+% Explicar como funciona a remoção, a inserção e a troca. Sempre considerando o peso da mochila.
+Existem três Operadores: Inserção, Remoção e Troca.
+
+Cada operador foi implementado para levar em consideração o peso atual da Mochila.
+
+No caso do Operador de Inclusão, cada candidato da Lista de Candidatos é avaliado conjuntamente à solução atual disponível. O novo item é inserido na Mochila, e a Mochila possui seu peso avaliado, verificando se as restrições de peso mínimo e peso total da Mochila estão sendo atendidas.
+
+Para o Operador de Remoção, são avaliados todos os itens da Mochila, e o item com menor contribuição para o custo da solução é retirado da Mochila.
+
+Por fim, o Operador de Troca é implementado de tal forma que ele escolhe dois itens, um da solução e um da lista de candidatos, de forma a otimizar o custo da solução. O primeiro é removido enquanto que o segundo é inserido.
+
+\subsection{Métodos de Busca}
+% Explicar first-improving e best-improving
+Foram implementados dois métodos de busca: First-Improving e Best-Improving.
+
+\subsection{First-Improving}
+
+O método de First-Improving foi implementado de forma que a primeira coisa importante a acontecer é a avaliação do peso atual da Mochila e, logo em seguida, a atualização das Lista de Candidatos.
+
+Para cada item da Lista de Candidatos atualizada, é feita uma primeira verificação para avaliar se o item pode ser inserido na Mochila sem violar as restrições do problema. Caso sim, o item é inserido com sucesso se a inserção deste item melhora o custo da solução.
+
+Logo em seguida é avaliado a exclusão de algum item da lista. Se um candidato apropriado, e que melhore o custo da solução, é encontrado, ele é removido da solução corrente.
+
+Por fim, para cada item da Lista de Candidatos, é avaliado se a troca de um item da Lista de Candidatos (adição à solução corrente) por um item da Mochila (exclusão da solução corrente) é benéfica para a solução como um todo. Se sim, a troca é feita.
+
+O custo da solução é sempre levado em conta, através do cálculo da função objetivo, e as modificações só são operadas se e somente se: obedecem às restrições e reduzem o custo da função. Quando um item é inserido, removido ou trocado, o restante das possibilidades não são exploradas, tal qual o First-Improving exige.
+
+\subsection{Best-Improving}
+
+O algoritmo de Best-Improving tem uma implementação relativamente parecida, porém com uma diferença importante: os passos de Inserção, Exclusão e Troca são avaliados para cada item, porém só são executados de fato após todos os itens serem avaliados.
+
+Ou seja, primeiramente avalia-se, da Lista de Candidatos, todos os itens candidatos a serem inseridos na Mochila.
+
+Em seguida avalia-se, na Solução Corrente, todos os itens que podem ser excluídos. Por fim avaliam-se, para todos os itens da Lista de Candidatos e da Solução Corrente, quais são as trocas vantajosas para o custo da solução.
+
+Apenas ao fim de todas estas avaliações, o algoritmo decide qual é o melhor movimento a ser feito e implementa apenas o melhor movimento a ser feito, seja ele de Inserção, Remoção ou Troca.
+
+
+\subsection{Critérios de Parada do GRASP}
+Para o GRASP, no método principal, realizamos sempre $1000$ iterações. Esse foi o critério de parada estabelecido. Para as instâncias menores, era suficiente para encontramos uma boa solução. Para as instâncias maiores, era suficiente para executar o GRASP até o tempo limite máximo estabelecido, que foi de $30$ minutos.
+
+\section{Experimentos Computacionais}
+
+\subsection{Configurações da Máquina}
+% Colocar as configurações da máquina que executou os testes
+O problema foi executado num ideapad S145 81S90005BR: Lenovo IdeaPad S145 Notebook Intel Core i5-8265U (6MB Cache, 1.6GHz, 8 cores), 8GB DDR4-SDRAM, 460 GB SSD, Intel UHD Graphics 620.
+
+O sistema operacional foi o Fedora 35 executando o Java 11 e Gradle 6.8.
+
+\subsection{Instâncias}
+% Comentar sobre as intâncias
+Foram utilizadas as instâncias fornecidas para este problema conforme a Tabela 1.
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        Instância & |x| & Número de possibilidades & MAX-KQBF ($Z_*$) \\\hline
+        kqbf020 &  20 &  1.0e+06 & [80, 151] \\\hline
+        kqbf040 &  40 &  1.1e+12 & [275, 429] \\\hline
+        kqbf060 &  60 &  1.2e+18 & [446, 576] \\\hline
+        kqbf080 &  80 &  1.2e+24 & [729, 1000] \\\hline
+        kqbf100 & 100 &  1.3e+30 & [851, 1539] \\\hline
+        kqbf200 & 200 &  1.6e+60 & [3597, 5826] \\\hline
+        kqbf400 & 400 & 2.6e+120 & [10846, 16625] \\\hline
+    \end{tabular}
+    \caption{Definição das instâncias utilizadas.}
+    \label{table:tab-instances}
+\end{table}
+
+\section{Análise}
+
+\subsection{Custo das Soluções}
+
+Comparando os custos ótimos obtidos com os fornecidos na Tabela \ref{table:tab-instances}, verifica-se que os valores ótimos obtidos estão dentro do intervalo de referência. Isso dá alguma credibilidade para os resultados.
+
+\subsection{Tempo de Execução}
+
+\subsubsection{\firstImproving e \bestImproving}
+
+Observa-se que \bestImproving é mais lento porém leva a soluções melhores do que o \firstImproving.
+
+Tanto o \bestImproving quanto o \firstImproving implementam um procedimento de troca: incluir um elemento e excluir outro da solução atual caso isso leve a uma melhora. A diferença é que no \bestImproving ela sempre é executado, enquanto que no \firstImproving a troca só é feita quando ela é a única opção de melhora da solução.
+
+Se a mochila está cheia, ou muito próxima de cheia, adicionar um elemento é quase inviável. Além disso, remover elementos, em geral, não é uma opção que leva a melhora de solução\footnote{Isso é uma hipótese baseada na intuição dos autores. Seria interessante implementar contadores e monitorar o número de inserções, remoções, e trocas, para então verificar tal suposição. Isso está além do escopo da presente atividade entretanto.}. Portanto, soluções boas são obtidas com maior probabilidade quando trocas são feitas. Isso, pelo exposto no parágrafo anterior, leva a piora nos tempos computacionais. Pode-se inferir, então, que execuções muito rápidas terão soluções ruins pois não exploram tão bem a vizinhança.
+
+Considerando a restrição de limite da mochila, seria interessante implementar buscas locais que permitissem trocas entre três elementos (remover dois e adicionar um, remover um adicionar dois). Em tal caso, o tempo computacional provavelmente aumentaria consideravelmente por causa do aumento da complexidade do algoritmo. Seria também interessante considerar exceder tal limite temporariamente a fim de explorar mais soluções interessantes (é fácil corrigir uma solução assim com uma estratégia gulosa: basta remover elementos com alto peso e baixa contribuição no objetivo). Novamente, isso está além do escopo da presente atividade.
+
+\subsection{Parâmetros Ótimos}
+
+Observa-se que os melhores resultados, tanto em tempo de execução quanto em custo da solução, foram obtidos com o seguintes parâmetros:
+
+\begin{itemize}
+    \item $\alpha = 0.2$
+    \item local search = \bestImproving
+    \item método de construção = default
+    \item iterações = 1000
+\end{itemize}
+
+Comparando os resultados das configurações acima com $\alpha = 0.5$ observa-se que o custo ainda é bom mas o tempo de execução é muito prejudicado. Constata-se que valores muito altos para $\alpha$ requerem uma busca local muito intensa, o que explica o tempo computacional maior.
+
+Já comparando os resultados das configurações acima com o método de busca local com \firstImproving, nota-se que eles não são muito diferentes, nem em tempo de execução nem em custo. De fato, ambos são bem parecidos quando caem no caso de troca de elementos na solução. Como esse é um algoritmo guloso, é muito provável que no momento da busca local, a única forma de melhorar a solução é com trocas e por isso ambas acabam tendo performances muito parecidas.
+
+\subsection{\randomPlusGreedy}
+\label{subsec:random-plus-greedy}
+
+Observa-se que o método de construção \randomPlusGreedy obtém custos bons para a busca local \bestImproving, mas não para a \firstImproving. Nesse problema, tanto soluções puramente aleatórias quanto puramente gulosas demandam muito da busca local, o que explica os altos tempos de execução observados (comparando com o método \default).
+
+Observando a performance do \firstImproving, pode-se obter três conclusões importantes:
+
+\begin{enumerate}
+    \item as soluções obtidas pelo método de construção \randomPlusGreedy são inicialmente bem ruins, demandando um método de busca local muito bom (se não fosse esse o caso, as soluções com a busca local \firstImproving deveriam ser melhores);
+    \item o método de busca local \bestImproving é bastante bom para o problema, ele é capaz de encontrar ótimos locais bons mesmo partindo de soluções inicialmente ruins;
+    \item a qualidade da solução depende fortemente do método de busca local, enquanto que o tempo de execução depende fortemente do método de construção. O último é o que demanda menos tempo, de forma que quanto melhor ele for, menor o caminho que a busca local tem que fazer. Obviamente, um ótimo é obtido com uma busca local não tão custosa (e eventualmente menos poderosa) aliada a um método de construção bom.
+\end{enumerate}
+
+\subsection{\sampledGreedy}
+
+Os resultados do \sampledGreedy são muitíssimo parecidos com os do \randomPlusGreedy. Na verdade, ambos os métodos são bastante parecidos, segundo \cite{bib:grasp} ambos visam combinar características gulosas e diversificadoras. Essa sofre do mesmo problema de excesso de diversificação descrito na Subseção \ref{subsec:random-plus-greedy}: as soluções iniciais são ruins e dependem muito da qualidade da busca local.
+
+\subsection{Método de Construção - Conclusão}
+
+Conclui-se que ambos \randomPlusGreedy e \sampledGreedy são ineficientes para o problema tratado nesse trabalho. Observa-se ainda que ajustar os parâmetros de tais métodos, considerando a análise feita, não indica nenhuma perspectiva de melhora. Portanto, o método de construção mais indicado é \default.
+
+\section{Resultados}
+
+\include{raw_results}
+
+\include{optimal_strategy}
+
+\bibliographystyle{ieeetr}
+\bibliography{bibliography}
+
+\end{document}
