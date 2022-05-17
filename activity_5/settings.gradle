@@ -1,0 +1,3 @@
+rootProject.name = 'activity_5'
+include 'tabu_search'
+include 'qbf'
