@@ -13,7 +13,7 @@ class Main {
         // evaluates randomly generated values for the domain, saving the best
         // one.
         for (int i = 0; i < 100000; i++) {
-            for (int j = 0; j < qbf.size; j++) {
+            for (int j = 0; j < qbf.getDomainSize(); j++) {
                 if (Math.random() < 0.5)
                     qbf.variables[j] = 0.0;
                 else
@@ -28,14 +28,14 @@ class Main {
         System.out.println("maxVal = " + maxVal);
 
         // evaluates the zero array.
-        for (int j = 0; j < qbf.size; j++) {
+        for (int j = 0; j < qbf.getDomainSize(); j++) {
             qbf.variables[j] = 0.0;
         }
         System.out.println("x = " + Arrays.toString(qbf.variables));
         System.out.println("f(x) = " + qbf.evaluateQBF());
 
         // evaluates the all-ones array.
-        for (int j = 0; j < qbf.size; j++) {
+        for (int j = 0; j < qbf.getDomainSize(); j++) {
             qbf.variables[j] = 1.0;
         }
         System.out.println("x = " + Arrays.toString(qbf.variables));

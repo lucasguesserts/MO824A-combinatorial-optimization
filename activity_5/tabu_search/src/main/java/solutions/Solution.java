@@ -2,22 +2,31 @@ package solutions;
 
 import java.util.ArrayList;
 
-public class Solution<E> extends ArrayList<E> {
+public class Solution<E, V extends Number> extends ArrayList<E> {
 
-	public Double cost = Double.POSITIVE_INFINITY;
+	private V cost;
 
-	public Solution() {
+	public Solution(final V cost) {
 		super();
+        this.cost = cost;
 	}
 
-	public Solution(Solution<E> sol) {
+	public Solution(Solution<E, V> sol) {
 		super(sol);
-		cost = sol.cost;
+		this.cost = sol.cost;
 	}
+
+    public V getCost() {
+        return this.cost;
+    }
 
 	@Override
 	public String toString() {
-		return "Solution: cost=[" + cost + "], size=[" + this.size() + "], elements=" + super.toString();
+		return String.format("Solution: {cost: %f, size: %f, elements: [%s]",
+            this.cost,
+            this.size(),
+            super.toString()
+        );
 	}
 
 }
