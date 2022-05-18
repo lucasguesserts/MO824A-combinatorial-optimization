@@ -1,33 +1,15 @@
 package solutions;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Solution<E, V extends Number> extends ArrayList<E> {
+public interface Solution<E, V> {
 
-	private V cost;
-
-	public Solution(final V cost) {
-		super();
-        this.cost = cost;
-	}
-
-	public Solution(Solution<E, V> sol) {
-		super(sol);
-		this.cost = sol.cost;
-	}
-
-    public V getCost() {
-        return this.cost;
-    }
-
-	@Override
-	public String toString() {
-		return String.format("Solution: {cost: %f, size: %f, elements: [%s]",
-            this.cost,
-            this.size(),
-            super.toString()
-        );
-	}
+    public List<E> getElements();
+    public V getCost();
+    public void add(final E element, final V costIncrement);
+    public void remove(final E element, final V costIncrement);
+    public Solution<E, V> clone();
+    public String toString();
 
 }
 

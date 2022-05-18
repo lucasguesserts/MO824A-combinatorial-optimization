@@ -2,16 +2,12 @@ package problems;
 
 import solutions.Solution;
 
-public interface Evaluator<E, V extends Number> {
+public interface Evaluator<E, V> {
 
-	public abstract Integer getDomainSize();
-
-	public abstract V evaluate(Solution<E, V> sol);
-
-	public abstract V evaluateInsertionCost(E elem, Solution<E, V> sol);
-
-	public abstract V evaluateRemovalCost(E elem, Solution<E, V> sol);
-
-	public abstract V evaluateExchangeCost(E elemIn, E elemOut, Solution<E, V> sol);
+    public Integer getDomainSize();
+    public V evaluate(final Solution<E, V> solution);
+    public V evaluateInsertionCost(final E element, final Solution<E, V> solution);
+    public V evaluateRemovalCost(final E element, final Solution<E, V> solution);
+    public V evaluateExchangeCost(final E elementToInsert, final E elementToRemove, final Solution<E, V> solution);
 
 }

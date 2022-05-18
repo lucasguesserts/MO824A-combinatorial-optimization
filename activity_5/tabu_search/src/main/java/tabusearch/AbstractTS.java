@@ -115,7 +115,8 @@ public abstract class AbstractTS<E, V extends Number> {
 			int rndIndex = rng.nextInt(RCL.size());
 			E inCand = RCL.get(rndIndex);
 			CL.remove(inCand);
-			sol.add(inCand);
+            final var insertionIncrement = ObjFunction.evaluateInsertionCost(inCand, sol);
+			sol.add(inCand, insertionIncrement);
 			ObjFunction.evaluate(sol);
 			RCL.clear();
 
@@ -139,7 +140,7 @@ public abstract class AbstractTS<E, V extends Number> {
 		for (int i = 0; i < iterations; i++) {
 			neighborhoodMove();
 			if (bestSol.getCost().doubleValue() > sol.getCost().doubleValue()) {
-				bestSol = new Solution<E, V>(sol);
+				bestSol = sol.clone();
 				if (verbose)
 					System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
 			}
