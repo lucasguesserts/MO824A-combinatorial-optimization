@@ -2,7 +2,7 @@ package problems;
 
 import solutions.Solution;
 
-public interface Evaluator<E, V> {
+public interface ObjectiveFunction<E, V> {
 
     public Integer getDomainSize();
     public V evaluate(final Solution<E, V> solution);

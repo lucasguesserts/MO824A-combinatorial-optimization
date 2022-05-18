@@ -1,4 +1,4 @@
-package problems.qbf.solvers;
+package tabusearch;
 
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import problems.qbf.QBF_Inverse;
 import solutions.Solution;
 import solutions.SolutionInteger;
-import tabusearch.AbstractTS;
 
 
 

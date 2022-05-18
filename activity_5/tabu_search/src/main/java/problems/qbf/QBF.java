@@ -8,11 +8,11 @@ import java.io.StreamTokenizer;
 import java.util.Arrays;
 import java.util.List;
 
-import problems.Evaluator;
+import problems.ObjectiveFunction;
 import solutions.Solution;
 
 
-public class QBF implements Evaluator<Integer, Integer> {
+public class QBF implements ObjectiveFunction<Integer, Integer> {
 
     private final Integer size;
     private final Integer[] variables;

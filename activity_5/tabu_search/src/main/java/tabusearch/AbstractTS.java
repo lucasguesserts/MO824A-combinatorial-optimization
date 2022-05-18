@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Random;
 
-import problems.Evaluator;
+import problems.ObjectiveFunction;
 import solutions.Solution;
 
 public abstract class AbstractTS<E, V extends Number> {
@@ -16,7 +16,7 @@ public abstract class AbstractTS<E, V extends Number> {
 
 	static Random rng = new Random(0);
 
-	protected Evaluator<E, V> ObjFunction;
+	protected ObjectiveFunction<E, V> ObjFunction;
 
 	protected Double bestCost;
 
@@ -68,7 +68,7 @@ public abstract class AbstractTS<E, V extends Number> {
 	 * @param iterations
 	 *            The number of iterations which the TS will be executed.
 	 */
-	public AbstractTS(Evaluator<E, V> objFunction, Integer tenure, Integer iterations) {
+	public AbstractTS(ObjectiveFunction<E, V> objFunction, Integer tenure, Integer iterations) {
 		this.ObjFunction = objFunction;
 		this.tenure = tenure;
 		this.iterations = iterations;
