@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
-import problems.qbf.QBF_Inverse;
-import solutions.Solution;
-import solutions.SolutionInteger;
+import SolutionCost.SolutionCost;
+import SolutionCost.SolutionCostInteger;
 
 
 
@@ -37,7 +36,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 	 *             necessary for I/O operations.
 	 */
 	public TS_QBF(Integer tenure, Integer iterations, String filename) throws IOException {
-		super(new QBF_Inverse(filename), tenure, iterations);
+		super(new SolutionCostInteger(filename), tenure, iterations);
 	}
 
 	/* (non-Javadoc)
@@ -47,7 +46,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 	public ArrayList<Integer> makeCL() {
 
 		ArrayList<Integer> _CL = new ArrayList<Integer>();
-		for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
+		for (int i = 0; i < sol.getDomainSize(); i++) {
 			Integer cand = i;
 			_CL.add(cand);
 		}
@@ -101,8 +100,9 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 	 * to zero has also zero cost.
 	 */
 	@Override
-	public Solution<Integer, Integer> createEmptySol() {
-		SolutionInteger sol = new SolutionInteger(0);
+	public SolutionCost<Integer, Integer> createEmptySol() {
+		SolutionCost<Integer, Integer> sol = this.sol.clone();
+        sol.reset();
 		return sol;
 	}
 
@@ -113,7 +113,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 	 * composed by the neighborhood moves Insertion, Removal and 2-Exchange.
 	 */
 	@Override
-	public SolutionInteger neighborhoodMove() {
+	public SolutionCost<Integer, Integer> neighborhoodMove() {
 
 		Integer minDeltaCost;
 		Integer bestCandIn = null, bestCandOut = null;
@@ -122,7 +122,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 		updateCL();
 		// Evaluate insertions
 		for (Integer candIn : CL) {
-			Integer deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
+			Integer deltaCost = sol.evaluateInsertionCost(candIn);
 			if (!TL.contains(candIn) || sol.getCost().doubleValue()+deltaCost < bestSol.getCost().doubleValue()) {
 				if (deltaCost < minDeltaCost) {
 					minDeltaCost = deltaCost;
@@ -133,7 +133,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 		}
 		// Evaluate removals
 		for (Integer candOut: sol.getElements()) {
-			Integer deltaCost = ObjFunction.evaluateRemovalCost(candOut, sol);
+			Integer deltaCost = sol.evaluateRemovalCost(candOut);
 			if (!TL.contains(candOut) || sol.getCost().doubleValue()+deltaCost < bestSol.getCost().doubleValue()) {
 				if (deltaCost < minDeltaCost) {
 					minDeltaCost = deltaCost;
@@ -145,7 +145,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 		// Evaluate exchanges
 		for (Integer candIn : CL) {
 			for (Integer candOut : sol.getElements()) {
-				Integer deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, sol);
+				Integer deltaCost = sol.evaluateExchangeCost(candIn, candOut);
 				if ((!TL.contains(candIn) && !TL.contains(candOut)) || sol.getCost().doubleValue()+deltaCost < bestSol.getCost().doubleValue()) {
 					if (deltaCost < minDeltaCost) {
 						minDeltaCost = deltaCost;
@@ -158,8 +158,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 		// Implement the best non-tabu move
 		TL.poll();
 		if (bestCandOut != null) {
-			Integer removalCost = ObjFunction.evaluateRemovalCost(bestCandOut, sol);
-			sol.remove(bestCandOut, removalCost);
+			sol.remove(bestCandOut);
 			CL.add(bestCandOut);
 			TL.add(bestCandOut);
 		} else {
@@ -167,14 +166,12 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 		}
 		TL.poll();
 		if (bestCandIn != null) {
-			Integer insertionCost = ObjFunction.evaluateInsertionCost(bestCandIn, sol);
-			sol.add(bestCandIn, insertionCost);
+			sol.add(bestCandIn);
 			CL.remove(bestCandIn);
 			TL.add(bestCandIn);
 		} else {
 			TL.add(fake);
 		}
-		ObjFunction.evaluate(sol);
 
 		return null;
 	}
@@ -187,7 +184,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
 
 		long startTime = System.currentTimeMillis();
 		TS_QBF tabusearch = new TS_QBF(20, 1000, "instances/qbf/qbf100");
-		Solution<Integer, Integer> bestSol = tabusearch.solve();
+		SolutionCost<Integer, Integer> bestSol = tabusearch.solve();
 		System.out.println("maxVal = " + bestSol);
 		long endTime   = System.currentTimeMillis();
 		long totalTime = endTime - startTime;

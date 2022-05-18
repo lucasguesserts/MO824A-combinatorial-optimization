@@ -7,8 +7,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Random;
 
-import problems.ObjectiveFunction;
-import solutions.Solution;
+import SolutionCost.SolutionCost;
 
 public abstract class AbstractTS<E, V extends Number> {
 
@@ -16,15 +15,13 @@ public abstract class AbstractTS<E, V extends Number> {
 
 	static Random rng = new Random(0);
 
-	protected ObjectiveFunction<E, V> ObjFunction;
-
 	protected Double bestCost;
 
 	protected Double cost;
 
-	protected Solution<E, V> bestSol;
+	protected SolutionCost<E, V> bestSol;
 
-	protected Solution<E, V> sol;
+	protected SolutionCost<E, V> sol;
 
 	protected Integer iterations;
 
@@ -44,7 +41,7 @@ public abstract class AbstractTS<E, V extends Number> {
 
 	public abstract void updateCL();
 
-	public abstract Solution<E, V> createEmptySol();
+	public abstract SolutionCost<E, V> createEmptySol();
 
 	/**
 	 * The TS local search phase is responsible for repeatedly applying a
@@ -56,7 +53,7 @@ public abstract class AbstractTS<E, V extends Number> {
 	 *
 	 * @return An local optimum solution.
 	 */
-	public abstract Solution<E, V> neighborhoodMove();
+	public abstract SolutionCost<E, V> neighborhoodMove();
 
 	/**
 	 * Constructor for the AbstractTS class.
@@ -68,8 +65,8 @@ public abstract class AbstractTS<E, V extends Number> {
 	 * @param iterations
 	 *            The number of iterations which the TS will be executed.
 	 */
-	public AbstractTS(ObjectiveFunction<E, V> objFunction, Integer tenure, Integer iterations) {
-		this.ObjFunction = objFunction;
+	public AbstractTS(SolutionCost<E, V> sol, Integer tenure, Integer iterations) {
+		this.sol = sol;
 		this.tenure = tenure;
 		this.iterations = iterations;
 	}
@@ -81,7 +78,7 @@ public abstract class AbstractTS<E, V extends Number> {
 	 *
 	 * @return A feasible solution to the problem being minimized.
 	 */
-	public Solution<E, V> constructiveHeuristic() {
+	public SolutionCost<E, V> constructiveHeuristic() {
 		CL = makeCL();
 		RCL = makeRCL();
 		sol = createEmptySol();
@@ -95,7 +92,7 @@ public abstract class AbstractTS<E, V extends Number> {
 			 * highest and lowest cost variation achieved by the candidates.
 			 */
 			for (E c : CL) {
-				Double deltaCost = ObjFunction.evaluateInsertionCost(c, sol).doubleValue();
+				Double deltaCost = sol.evaluateInsertionCost(c).doubleValue();
 				if (deltaCost < minCost)
 					minCost = deltaCost;
 				if (deltaCost > maxCost)
@@ -106,7 +103,7 @@ public abstract class AbstractTS<E, V extends Number> {
 			 * performance.
 			 */
 			for (E c : CL) {
-				Double deltaCost = ObjFunction.evaluateInsertionCost(c, sol).doubleValue();
+				Double deltaCost = sol.evaluateInsertionCost(c).doubleValue();
 				if (deltaCost <= minCost) {
 					RCL.add(c);
 				}
@@ -115,13 +112,9 @@ public abstract class AbstractTS<E, V extends Number> {
 			int rndIndex = rng.nextInt(RCL.size());
 			E inCand = RCL.get(rndIndex);
 			CL.remove(inCand);
-            final var insertionIncrement = ObjFunction.evaluateInsertionCost(inCand, sol);
-			sol.add(inCand, insertionIncrement);
-			ObjFunction.evaluate(sol);
+			sol.add(inCand);
 			RCL.clear();
-
 		}
-
 		return sol;
 	}
 
@@ -132,12 +125,13 @@ public abstract class AbstractTS<E, V extends Number> {
 	 *
 	 * @return The best feasible solution obtained throughout all iterations.
 	 */
-	public Solution<E, V> solve() {
+	public SolutionCost<E, V> solve() {
 
 		bestSol = createEmptySol();
 		constructiveHeuristic();
 		TL = makeTL();
 		for (int i = 0; i < iterations; i++) {
+            sol.reset();
 			neighborhoodMove();
 			if (bestSol.getCost().doubleValue() > sol.getCost().doubleValue()) {
 				bestSol = sol.clone();

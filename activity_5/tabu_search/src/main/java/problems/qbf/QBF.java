@@ -14,15 +14,30 @@ import solutions.Solution;
 
 public class QBF implements ObjectiveFunction<Integer, Integer> {
 
+    public static final Integer INITIAL_COST = 0;
+
     private final Integer size;
     private final Integer[] variables;
     private final Integer[][] matrix;
 
-    public QBF(final String fileName) throws IOException {
+    public QBF(final String fileName, final Solution<Integer> solution) throws IOException {
         final var inputReader = new InputReader(fileName);
         this.size = inputReader.size;
         this.matrix = inputReader.matrix;
         this.variables = new Integer[this.size];
+        this.setVariables(solution);
+    }
+
+    public QBF(final QBF other) {
+        this.size = other.size;
+        this.matrix = new Integer[this.size][this.size];
+        this.variables = new Integer[this.size];
+        for (Integer i = 0; i < size; ++i) {
+            this.variables[i] = other.variables[i];
+            for (Integer j = 0; j < size; ++j) {
+                this.matrix[i][j] = other.matrix[i][j];
+            }
+        }
     }
 
     @Override
@@ -30,28 +45,45 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         return size;
     }
 
-    @Override
-    public Integer evaluate(final Solution<Integer, Integer> sol) {
-        setVariables(sol);
-        return evaluateQBF();
+    public void addVariable(final Integer element) {
+        this.variables[element] = 1;
+    }
+
+    public void removeVariable(final Integer element) {
+        this.variables[element] = 0;
+    }
+
+    public void reset() {
+        this.resetVariables();
     }
 
     @Override
-    public Integer evaluateInsertionCost(final Integer element, final Solution<Integer, Integer> solution) {
-        setVariables(solution);
-        return evaluateInsertionQBF(element);
+    public Integer evaluateInsertionCost(final Integer element) {
+        if (variables[element] == 1)
+            return 0;
+        return evaluateContributionQBF(element);
     }
 
     @Override
-    public Integer evaluateRemovalCost(final Integer element, final Solution<Integer, Integer> solution) {
-        setVariables(solution);
-        return evaluateRemovalQBF(element);
+    public Integer evaluateRemovalCost(final Integer element) {
+        if (variables[element] == 0)
+            return 0;
+        return -evaluateContributionQBF(element);
     }
 
     @Override
-    public Integer evaluateExchangeCost(final Integer elementToInsert, final Integer elementToRemove, Solution<Integer, Integer> solution) {
-        setVariables(solution);
-        return evaluateExchangeQBF(elementToInsert, elementToRemove);
+    public Integer evaluateExchangeCost(final Integer elementToInsert, final Integer elementToRemove) {
+        if (elementToInsert == elementToRemove)
+            return 0;
+        if (variables[elementToInsert] == 1)
+            return evaluateRemovalCost(elementToRemove);
+        if (variables[elementToRemove] == 0)
+            return evaluateInsertionCost(elementToInsert);
+        Integer sum = 0;
+        sum += evaluateContributionQBF(elementToInsert);
+        sum -= evaluateContributionQBF(elementToRemove);
+        sum -= matrix[elementToInsert][elementToRemove] + matrix[elementToRemove][elementToInsert];
+        return sum;
     }
 
     public String toString() {
@@ -66,14 +98,6 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
             str.append("\n");
         }
         return str.toString();
-    }
-
-    private void setVariables(final Solution<Integer, Integer> solution) {
-        resetVariables();
-        final List<Integer> elementsOfSolution = solution.getElements();
-        for (final Integer element: elementsOfSolution) {
-            this.variables[element] = 1;
-        }
     }
 
     protected Integer evaluateQBF() {
@@ -91,34 +115,7 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
 
     }
 
-    protected Integer evaluateInsertionQBF(final Integer element) {
-        if (variables[element] == 1)
-            return 0;
-        return evaluateContributionQBF(element);
-    }
-
-    protected Integer evaluateRemovalQBF(final Integer element) {
-        if (variables[element] == 0)
-            return 0;
-        return -evaluateContributionQBF(element);
-
-    }
-
-    protected Integer evaluateExchangeQBF(final Integer elementToInsert, final Integer elementToRemove) {
-        if (elementToInsert == elementToRemove)
-            return 0;
-        if (variables[elementToInsert] == 1)
-            return evaluateRemovalQBF(elementToRemove);
-        if (variables[elementToRemove] == 0)
-            return evaluateInsertionQBF(elementToInsert);
-        Integer sum = 0;
-        sum += evaluateContributionQBF(elementToInsert);
-        sum -= evaluateContributionQBF(elementToRemove);
-        sum -= matrix[elementToInsert][elementToRemove] + matrix[elementToRemove][elementToInsert];
-        return sum;
-    }
-
-    private Integer evaluateContributionQBF(final Integer element) {
+    protected Integer evaluateContributionQBF(final Integer element) {
         Integer sum = 0;
         for (Integer j = 0; j < size; j++) {
             if (element != j)
@@ -149,6 +146,15 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
                 }
             }
         }
+    }
+
+    private Integer setVariables(final Solution<Integer> solution) {
+        this.resetVariables();
+        final List<Integer> elementsOfSolution = solution.getElements();
+        for (final Integer element: elementsOfSolution) {
+            this.variables[element] = 1;
+        }
+        return evaluateQBF();
     }
 
     private void resetVariables() {

@@ -1,0 +1,89 @@
+package SolutionCost;
+
+import java.io.IOException;
+import java.util.List;
+
+import problems.qbf.QBF_Inverse;
+import solutions.SolutionInteger;
+
+public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
+
+    private SolutionInteger solution;
+    private QBF_Inverse objectiveFunction;
+    private Integer cost;
+
+    public SolutionCostInteger(final String fileName) throws IOException {
+        this.solution = new SolutionInteger();
+        this.objectiveFunction = new QBF_Inverse(fileName, this.solution);
+        this.cost = QBF_Inverse.INITIAL_COST;
+    }
+
+    public SolutionCostInteger(final SolutionCostInteger other){
+        this.cost = other.cost;
+        this.solution = new SolutionInteger(other.solution);
+        this.objectiveFunction = new QBF_Inverse(other.objectiveFunction);
+    }
+
+    @Override
+    public SolutionCostInteger clone() {
+        return new SolutionCostInteger(this);
+    }
+
+    @Override
+    public List<Integer> getElements() {
+        return this.solution.getElements();
+    }
+
+    @Override
+    public Integer getCost() {
+        return this.cost;
+    }
+
+    @Override
+    public void add(final Integer element) {
+        this.solution.add(element);
+        this.cost += this.objectiveFunction.evaluateInsertionCost(element);
+        this.objectiveFunction.addVariable(element);
+    }
+
+    @Override
+    public void remove(final Integer element) {
+        this.solution.remove(element);
+        this.cost -= this.objectiveFunction.evaluateRemovalCost(element);
+        this.objectiveFunction.removeVariable(element);
+    }
+
+    @Override
+    public void reset() {
+        this.solution.reset();
+        this.objectiveFunction.reset();
+        this.cost = QBF_Inverse.INITIAL_COST;
+    }
+
+    @Override
+    public Integer getDomainSize() {
+        return this.objectiveFunction.getDomainSize();
+    }
+
+    @Override
+    public Integer evaluateInsertionCost(final Integer element) {
+        return this.objectiveFunction.evaluateInsertionCost(element);
+    }
+
+    @Override
+    public Integer evaluateRemovalCost(final Integer element) {
+        return this.objectiveFunction.evaluateRemovalCost(element);
+    }
+
+    @Override
+    public Integer evaluateExchangeCost(final Integer elementToInsert, final Integer elementToRemove) {
+        return this.objectiveFunction.evaluateExchangeCost(elementToInsert, elementToRemove);
+    }
+
+    @Override
+    public String toString(){
+        return String.format(
+            "SolutionCost {cost: %s, %s}", this.cost.toString(), this.solution.toString());
+    }
+
+}

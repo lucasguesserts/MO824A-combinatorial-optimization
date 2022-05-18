@@ -2,13 +2,12 @@ package solutions;
 
 import java.util.List;
 
-public interface Solution<E, V> {
+public interface Solution<E> {
 
     public List<E> getElements();
-    public V getCost();
-    public void add(final E element, final V costIncrement);
-    public void remove(final E element, final V costIncrement);
-    public Solution<E, V> clone();
+    public void add(final E element);
+    public void remove(final E element);
+    public void reset();
     public String toString();
 
 }
