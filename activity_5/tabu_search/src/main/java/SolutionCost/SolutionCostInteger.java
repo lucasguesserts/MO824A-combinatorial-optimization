@@ -41,15 +41,15 @@ public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
 
     @Override
     public void add(final Integer element) {
-        this.solution.add(element);
         this.cost += this.objectiveFunction.evaluateInsertionCost(element);
+        this.solution.add(element);
         this.objectiveFunction.addVariable(element);
     }
 
     @Override
     public void remove(final Integer element) {
+        this.cost += this.objectiveFunction.evaluateRemovalCost(element);
         this.solution.remove(element);
-        this.cost -= this.objectiveFunction.evaluateRemovalCost(element);
         this.objectiveFunction.removeVariable(element);
     }
 

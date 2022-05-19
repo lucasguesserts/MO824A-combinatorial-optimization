@@ -15,13 +15,18 @@ public class QBF_Inverse extends QBF {
     }
 
     @Override
-    protected Integer evaluateContributionQBF(final Integer element) {
-        return -super.evaluateContributionQBF(element);
+    public Integer evaluateInsertionCost(final Integer i) {
+        return -super.evaluateInsertionCost(i);
     }
 
     @Override
-    protected Integer evaluateQBF() {
-        return -super.evaluateQBF();
+    public Integer evaluateRemovalCost(final Integer i) {
+        return -super.evaluateRemovalCost(i);
+    }
+
+    @Override
+    public Integer evaluateExchangeCost(final Integer in, final Integer out) {
+        return -super.evaluateExchangeCost(in,out);
     }
 
 }

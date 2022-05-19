@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
-import java.util.List;
 
 import problems.ObjectiveFunction;
 import solutions.Solution;
@@ -25,7 +24,7 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         this.size = inputReader.size;
         this.matrix = inputReader.matrix;
         this.variables = new Integer[this.size];
-        this.setVariables(solution);
+        this.resetVariables();
     }
 
     public QBF(final QBF other) {
@@ -59,25 +58,25 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
 
     @Override
     public Integer evaluateInsertionCost(final Integer element) {
-        if (variables[element] == 1)
+        if (variables[element].equals(1))
             return 0;
         return evaluateContributionQBF(element);
     }
 
     @Override
     public Integer evaluateRemovalCost(final Integer element) {
-        if (variables[element] == 0)
+        if (variables[element].equals(0))
             return 0;
         return -evaluateContributionQBF(element);
     }
 
     @Override
     public Integer evaluateExchangeCost(final Integer elementToInsert, final Integer elementToRemove) {
-        if (elementToInsert == elementToRemove)
+        if (elementToInsert.equals(elementToRemove))
             return 0;
-        if (variables[elementToInsert] == 1)
+        if (variables[elementToInsert].equals(1))
             return evaluateRemovalCost(elementToRemove);
-        if (variables[elementToRemove] == 0)
+        if (variables[elementToRemove].equals(0))
             return evaluateInsertionCost(elementToInsert);
         Integer sum = 0;
         sum += evaluateContributionQBF(elementToInsert);
@@ -100,25 +99,10 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         return str.toString();
     }
 
-    protected Integer evaluateQBF() {
-        Integer sum = 0;
-        for (int i = 0; i < this.size; i++) {
-            Integer aux = 0;
-            Integer vecAux[] = new Integer[this.size];
-            for (int j = 0; j < this.size; j++) {
-                aux += this.variables[j] * this.matrix[i][j];
-            }
-            vecAux[i] = aux;
-            sum += aux * variables[i];
-        }
-        return sum;
-
-    }
-
     protected Integer evaluateContributionQBF(final Integer element) {
         Integer sum = 0;
-        for (Integer j = 0; j < size; j++) {
-            if (element != j)
+        for (Integer j = 0; j < this.size; ++j) {
+            if (!element.equals(j))
                 sum += this.variables[j] * (this.matrix[element][j] + this.matrix[j][element]);
         }
         sum += this.matrix[element][element];
@@ -146,15 +130,6 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
                 }
             }
         }
-    }
-
-    private Integer setVariables(final Solution<Integer> solution) {
-        this.resetVariables();
-        final List<Integer> elementsOfSolution = solution.getElements();
-        for (final Integer element: elementsOfSolution) {
-            this.variables[element] = 1;
-        }
-        return evaluateQBF();
     }
 
     private void resetVariables() {

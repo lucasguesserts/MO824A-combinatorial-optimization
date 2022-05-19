@@ -3,5 +3,5 @@ plugins {
 }
 
 application {
-mainClass = 'problems.qbf.QBF'
+mainClass = 'problems.qbf.solvers.TS_QBF'
 }

@@ -3,193 +3,114 @@ package tabusearch;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 
 import SolutionCost.SolutionCost;
 import SolutionCost.SolutionCostInteger;
 
-
-
-/**
- * Metaheuristic TS (Tabu Search) for obtaining an optimal solution to a QBF
- * (Quadractive Binary Function -- {@link #QuadracticBinaryFunction}).
- * Since by default this TS considers minimization problems, an inverse QBF
- *  function is adopted.
- *
- * @author ccavellucci, fusberti
- */
 public class TS_QBF extends AbstractTS<Integer, Integer> {
 
-	private final Integer fake = -1;
+    private final Integer fake = -1;
 
-	/**
-	 * Constructor for the TS_QBF class. An inverse QBF objective function is
-	 * passed as argument for the superclass constructor.
-	 *
-	 * @param tenure
-	 *            The Tabu tenure parameter.
-	 * @param iterations
-	 *            The number of iterations which the TS will be executed.
-	 * @param filename
-	 *            Name of the file for which the objective function parameters
-	 *            should be read.
-	 * @throws IOException
-	 *             necessary for I/O operations.
-	 */
-	public TS_QBF(Integer tenure, Integer iterations, String filename) throws IOException {
-		super(new SolutionCostInteger(filename), tenure, iterations);
-	}
+    public TS_QBF(
+        final Integer tenure,
+        final Integer iterations,
+        final String fileName
+    ) throws IOException {
+        super(new SolutionCostInteger(fileName), tenure, iterations);
+    }
 
-	/* (non-Javadoc)
-	 * @see metaheuristics.tabusearch.AbstractTS#makeCL()
-	 */
-	@Override
-	public ArrayList<Integer> makeCL() {
+    @Override
+    public ArrayList<Integer> makeCL() {
+        final ArrayList<Integer> candicateList = new ArrayList<Integer>();
+        for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
+            candicateList.add(candidate);
+        }
+        return candicateList;
+    }
 
-		ArrayList<Integer> _CL = new ArrayList<Integer>();
-		for (int i = 0; i < sol.getDomainSize(); i++) {
-			Integer cand = i;
-			_CL.add(cand);
-		}
+    @Override
+    public ArrayList<Integer> makeRCL() {
+        return new ArrayList<Integer>();
+    }
 
-		return _CL;
+    @Override
+    public Deque<Integer> makeTL() {
+        Deque<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
+        for (int i=0; i<2*tenure; i++) {
+            _TS.add(fake);
+        }
+        return _TS;
+    }
 
-	}
+    @Override
+    public void updateCL() {}
 
-	/* (non-Javadoc)
-	 * @see metaheuristics.tabusearch.AbstractTS#makeRCL()
-	 */
-	@Override
-	public ArrayList<Integer> makeRCL() {
+    @Override
+    public SolutionCost<Integer, Integer> createEmptySol() {
+        final SolutionCost<Integer, Integer> emptySolution = this.incubentSolution.clone();
+        emptySolution.reset();
+        return emptySolution;
+    }
 
-		ArrayList<Integer> _RCL = new ArrayList<Integer>();
-
-		return _RCL;
-
-	}
-
-	/* (non-Javadoc)
-	 * @see metaheuristics.tabusearch.AbstractTS#makeTL()
-	 */
-	@Override
-	public ArrayDeque<Integer> makeTL() {
-
-		ArrayDeque<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
-		for (int i=0; i<2*tenure; i++) {
-			_TS.add(fake);
-		}
-
-		return _TS;
-
-	}
-
-	/* (non-Javadoc)
-	 * @see metaheuristics.tabusearch.AbstractTS#updateCL()
-	 */
-	@Override
-	public void updateCL() {
-
-		// do nothing
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * This createEmptySol instantiates an empty solution and it attributes a
-	 * zero cost, since it is known that a QBF solution with all variables set
-	 * to zero has also zero cost.
-	 */
-	@Override
-	public SolutionCost<Integer, Integer> createEmptySol() {
-		SolutionCost<Integer, Integer> sol = this.sol.clone();
-        sol.reset();
-		return sol;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 *
-	 * The local search operator developed for the QBF objective function is
-	 * composed by the neighborhood moves Insertion, Removal and 2-Exchange.
-	 */
-	@Override
-	public SolutionCost<Integer, Integer> neighborhoodMove() {
-
-		Integer minDeltaCost;
-		Integer bestCandIn = null, bestCandOut = null;
-
-		minDeltaCost = Integer.MAX_VALUE;
-		updateCL();
-		// Evaluate insertions
-		for (Integer candIn : CL) {
-			Integer deltaCost = sol.evaluateInsertionCost(candIn);
-			if (!TL.contains(candIn) || sol.getCost().doubleValue()+deltaCost < bestSol.getCost().doubleValue()) {
-				if (deltaCost < minDeltaCost) {
-					minDeltaCost = deltaCost;
-					bestCandIn = candIn;
-					bestCandOut = null;
-				}
-			}
-		}
-		// Evaluate removals
-		for (Integer candOut: sol.getElements()) {
-			Integer deltaCost = sol.evaluateRemovalCost(candOut);
-			if (!TL.contains(candOut) || sol.getCost().doubleValue()+deltaCost < bestSol.getCost().doubleValue()) {
-				if (deltaCost < minDeltaCost) {
-					minDeltaCost = deltaCost;
-					bestCandIn = null;
-					bestCandOut = candOut;
-				}
-			}
-		}
-		// Evaluate exchanges
-		for (Integer candIn : CL) {
-			for (Integer candOut : sol.getElements()) {
-				Integer deltaCost = sol.evaluateExchangeCost(candIn, candOut);
-				if ((!TL.contains(candIn) && !TL.contains(candOut)) || sol.getCost().doubleValue()+deltaCost < bestSol.getCost().doubleValue()) {
-					if (deltaCost < minDeltaCost) {
-						minDeltaCost = deltaCost;
-						bestCandIn = candIn;
-						bestCandOut = candOut;
-					}
-				}
-			}
-		}
-		// Implement the best non-tabu move
-		TL.poll();
-		if (bestCandOut != null) {
-			sol.remove(bestCandOut);
-			CL.add(bestCandOut);
-			TL.add(bestCandOut);
-		} else {
-			TL.add(fake);
-		}
-		TL.poll();
-		if (bestCandIn != null) {
-			sol.add(bestCandIn);
-			CL.remove(bestCandIn);
-			TL.add(bestCandIn);
-		} else {
-			TL.add(fake);
-		}
-
-		return null;
-	}
-
-	/**
-	 * A main method used for testing the TS metaheuristic.
-	 *
-	 */
-	public static void main(String[] args) throws IOException {
-
-		long startTime = System.currentTimeMillis();
-		TS_QBF tabusearch = new TS_QBF(20, 1000, "instances/qbf/qbf100");
-		SolutionCost<Integer, Integer> bestSol = tabusearch.solve();
-		System.out.println("maxVal = " + bestSol);
-		long endTime   = System.currentTimeMillis();
-		long totalTime = endTime - startTime;
-		System.out.println("Time = "+(double)totalTime/(double)1000+" seg");
-
-	}
+    @Override
+    public void neighborhoodMove() {
+        Integer minDeltaCost = Integer.MAX_VALUE;
+        Integer bestCandIn = null;
+        Integer bestCandOut = null;
+        updateCL();
+        // Evaluate insertions
+        for (final Integer candIn: this.CL) {
+            final Integer deltaCost = this.incubentSolution.evaluateInsertionCost(candIn);
+            if (!this.TL.contains(candIn) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
+                if (deltaCost < minDeltaCost) {
+                    minDeltaCost = deltaCost;
+                    bestCandIn = candIn;
+                    bestCandOut = null;
+                }
+            }
+        }
+        // Evaluate removals
+        for (final Integer candOut: this.incubentSolution.getElements()) {
+            final Integer deltaCost = this.incubentSolution.evaluateRemovalCost(candOut);
+            if (!this.TL.contains(candOut) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
+                if (deltaCost < minDeltaCost) {
+                    minDeltaCost = deltaCost;
+                    bestCandIn = null;
+                    bestCandOut = candOut;
+                }
+            }
+        }
+        // Evaluate exchanges
+        for (final Integer candIn: this.CL) {
+            for (final Integer candOut: this.incubentSolution.getElements()) {
+                final Integer deltaCost = incubentSolution.evaluateExchangeCost(candIn, candOut);
+                if ((!this.TL.contains(candIn) && !TL.contains(candOut)) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
+                    if (deltaCost < minDeltaCost) {
+                        minDeltaCost = deltaCost;
+                        bestCandIn = candIn;
+                        bestCandOut = candOut;
+                    }
+                }
+            }
+        }
+        // Implement the best non-tabu move
+        this.TL.poll();
+        if (bestCandOut != null) {
+            this.incubentSolution.remove(bestCandOut);
+            this.CL.add(bestCandOut);
+            this.TL.add(bestCandOut);
+        } else {
+            this.TL.add(fake);
+        }
+        this.TL.poll();
+        if (bestCandIn != null) {
+            this.incubentSolution.add(bestCandIn);
+            this.CL.remove(bestCandIn);
+            this.TL.add(bestCandIn);
+        } else {
+            this.TL.add(fake);
+        }
+    }
 
 }

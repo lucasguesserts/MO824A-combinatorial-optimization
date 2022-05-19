@@ -1,39 +1,22 @@
 import java.io.IOException;
 
-import SolutionCost.SolutionCostInteger;
+import tabusearch.TS_QBF;
 
 class Main {
     public static void main(String[] args) throws IOException {
-
-        {
-            final SolutionCostInteger solution = new SolutionCostInteger("../instances/qbf/qbf040");
-            SolutionCostInteger bestSolution = new SolutionCostInteger(solution);
-            for (Integer i = 0; i < 100000; i++) {
-                for (Integer j = 0; j < solution.getDomainSize(); j++) {
-                    if (Math.random() < 0.5) {
-                        solution.add(j);
-                    }
-                }
-                // System.out.println(String.format("iteration %d", i));
-                if (bestSolution.getCost() < solution.getCost())
-                    bestSolution = new SolutionCostInteger(solution);
-                solution.reset();
-            }
-            System.out.println(String.format(
-                "Best solution found: \n\t%s",
-                bestSolution.toString()
-            ));
-        }
-
-        { // evaluates the all-ones array.
-            final SolutionCostInteger solution = new SolutionCostInteger("../instances/qbf/qbf040");
-            for (Integer j = 0; j < solution.getDomainSize(); j++) {
-                solution.add(j);
-            }
-            System.out.println(String.format(
-                "All ones solution: \n\t%s",
-                solution.toString()
-            ));
-        }
+        final String INSTANCE = "../instances/qbf/qbf100";
+		final var startTime = System.currentTimeMillis();
+        final var tabuSearch = new TS_QBF(20, 1000, INSTANCE);
+        final var bestSolution = tabuSearch.solve();
+        System.out.println(String.format(
+            "Best solution found: \n\t%s",
+            bestSolution.toString()
+        ));
+		final var endTime = System.currentTimeMillis();
+		final var totalTime = (double) (endTime - startTime);
+		System.out.println(String.format(
+            "Running time = %f seconds",
+            totalTime / 1000
+        ));
     }
 }
