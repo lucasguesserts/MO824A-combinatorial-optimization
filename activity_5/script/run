@@ -6,4 +6,30 @@ SCRIPT_DIR="$PROJECT_PATH/script"
 
 cd $PROJECT_PATH
 
-gradle qbf:run | tee ${PROJECT_PATH}/run.log
+PROJ_LIST="qbf qbf_random"
+DEFAULT_PROJ="qbf"
+
+function usage {
+    echo "usage: $0 PROJ"
+    echo "PROJ = $PROJ_LIST"
+    exit
+}
+
+function exists_in_list() { # https://www.baeldung.com/linux/check-variable-exists-in-list
+    LIST=$1
+    DELIMITER=" "
+    VALUE=$2
+    [[ "$LIST" =~ ($DELIMITER|^)$VALUE($DELIMITER|$) ]]
+}
+
+if [ $# -eq 0 ]
+then
+    PROJ=$DEFAULT_PROJ
+elif [ $# -eq 1 ] && exists_in_list "$PROJ_LIST" $1
+then
+    PROJ=$1
+else
+    usage
+fi
+
+gradle $PROJ:run | tee ${PROJECT_PATH}/run.log
