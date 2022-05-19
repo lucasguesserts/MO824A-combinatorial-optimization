@@ -6,7 +6,7 @@ SCRIPT_DIR="$PROJECT_PATH/script"
 
 cd $PROJECT_PATH
 
-PROJ_LIST="qbf qbf_random"
+PROJ_LIST="qbf qbf_random professor"
 DEFAULT_PROJ="qbf"
 
 function usage {
