@@ -32,4 +32,4 @@ else
     usage
 fi
 
-gradle $PROJ:run | tee ${PROJECT_PATH}/run.log
+gradle $PROJ:run | tee ${PROJECT_PATH}/$PROJ.log
