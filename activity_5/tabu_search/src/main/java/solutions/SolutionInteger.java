@@ -39,7 +39,7 @@ public class SolutionInteger implements Solution<Integer> {
 
     @Override
     public String toString() {
-        return String.format("Solution: {size: %d, elements: [%s]",
+        return String.format("Solution: {size: %d, elements: %s",
             this.elements.size(),
             this.elements.toString()
         );

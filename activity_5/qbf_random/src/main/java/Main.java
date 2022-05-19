@@ -4,9 +4,10 @@ import SolutionCost.SolutionCostInteger;
 
 class Main {
     public static void main(String[] args) throws IOException {
+        final String INSTANCE = "../instances/qbf/qbf040";
 
         {
-            final SolutionCostInteger solution = new SolutionCostInteger("../instances/qbf/qbf040");
+            final SolutionCostInteger solution = new SolutionCostInteger(INSTANCE);
             SolutionCostInteger bestSolution = new SolutionCostInteger(solution);
             for (Integer i = 0; i < 100000; i++) {
                 for (Integer j = 0; j < solution.getDomainSize(); j++) {
@@ -26,7 +27,7 @@ class Main {
         }
 
         { // evaluates the all-ones array.
-            final SolutionCostInteger solution = new SolutionCostInteger("../instances/qbf/qbf040");
+            final SolutionCostInteger solution = new SolutionCostInteger(INSTANCE);
             for (Integer j = 0; j < solution.getDomainSize(); j++) {
                 solution.add(j);
             }
