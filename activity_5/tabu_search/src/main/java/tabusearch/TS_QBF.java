@@ -1,6 +1,5 @@
 package tabusearch;
 
-import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
         final Integer tenure,
         final Integer iterations,
         final InputReaderQBF input
-    ) throws IOException {
+    ) {
         super(new SolutionCostInteger(input), tenure, iterations);
     }
 
