@@ -1,15 +1,16 @@
 import java.io.IOException;
 
+import SolutionCost.SolutionCostInteger;
 import inputReader.InputReaderQBF;
-import tabuSearch.TabuSearchQBF;
+import tabuSearch.TabuSearch;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        final String INSTANCE = "../instances/qbf/qbf020";
+        final String INSTANCE = "../instances/qbf/qbf100";
 		final var startTime = System.currentTimeMillis();
         final var input = new InputReaderQBF(INSTANCE);
-        input.printMatrix();
-        final var tabuSearch = new TabuSearchQBF(20, 1000, input);
+        final var initialSolution = new SolutionCostInteger(input);
+        final var tabuSearch = new TabuSearch(initialSolution, 20, 1000);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
             "Best solution found: \n\t%s",

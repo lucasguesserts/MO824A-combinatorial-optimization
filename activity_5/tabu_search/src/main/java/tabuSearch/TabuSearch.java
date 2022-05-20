@@ -1,100 +1,116 @@
 package tabuSearch;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Random;
 
 import SolutionCost.SolutionCost;
 
-public abstract class TabuSearch<E, V extends Number> {
+public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
 
-    public static boolean verbose = true;
-    static Random rng = new Random(0);
-
-    protected V bestCost;
-    protected V incubentCost;
-    protected SolutionCost<E, V> bestSolution;
-    protected SolutionCost<E, V> incubentSolution;
-    protected Integer iterations;
-    protected Integer tenure;
-    protected List<E> CL;
-    protected List<E> RCL;
-    protected Queue<E> TL;
-
-    public abstract List<E> makeCL();
-    public abstract List<E> makeRCL();
-    public abstract Queue<E> makeTL();
-    public abstract void updateCL();
-    public abstract SolutionCost<E, V> createEmptySol();
-    public abstract void neighborhoodMove();
+    private final Integer fake = -1;
 
     public TabuSearch(
-        final SolutionCost<E, V> sol,
+        final SolutionCost<Integer, Integer> initialSolution,
         final Integer tenure,
         final Integer iterations
     ) {
-        this.incubentSolution = sol;
-        this.tenure = tenure;
-        this.iterations = iterations;
+        super(initialSolution, tenure, iterations);
     }
 
-    public SolutionCost<E, V> constructiveHeuristic() {
-        this.CL = makeCL();
-        this.RCL = makeRCL();
-        this.incubentSolution = createEmptySol();
-        do {
-            Double maxCost = Double.NEGATIVE_INFINITY;
-            Double minCost = Double.POSITIVE_INFINITY;
-            this.incubentCost = incubentSolution.getCost();
-            updateCL();
-            for (final E candidate : this.CL) {
-                final Double deltaCost = this.incubentSolution.evaluateInsertionCost(candidate).doubleValue();
-                if (deltaCost < minCost)
-                    minCost = deltaCost;
-                if (deltaCost > maxCost)
-                    maxCost = deltaCost;
-            }
-            for (final E candidate: this.CL) {
-                final Double deltaCost = this.incubentSolution.evaluateInsertionCost(candidate).doubleValue();
-                if (deltaCost <= minCost) {
-                    this.RCL.add(candidate);
+    @Override
+    public List<Integer> makeCL() {
+        final List<Integer> candicateList = new ArrayList<Integer>(incubentSolution.getDomainSize());
+        for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
+            if (this.incubentSolution.isValidCandidate(candidate))
+                candicateList.add(candidate);
+        }
+        return candicateList;
+    }
+
+    @Override
+    public List<Integer> makeRCL() {
+        return new ArrayList<Integer>();
+    }
+
+    @Override
+    public Queue<Integer> makeTL() {
+        final Queue<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
+        for (int i=0; i<2*tenure; i++) {
+            _TS.add(fake);
+        }
+        return _TS;
+    }
+
+    @Override
+    public void updateCL() {}
+
+    @Override
+    public SolutionCost<Integer, Integer> createEmptySol() {
+        final SolutionCost<Integer, Integer> emptySolution = this.incubentSolution.clone();
+        emptySolution.reset();
+        return emptySolution;
+    }
+
+    @Override
+    public void neighborhoodMove() {
+        Integer minDeltaCost = Integer.MAX_VALUE;
+        Integer bestCandIn = null;
+        Integer bestCandOut = null;
+        updateCL();
+        // Evaluate insertions
+        for (final Integer candIn: this.CL) {
+            final Integer deltaCost = this.incubentSolution.evaluateInsertionCost(candIn);
+            if (!this.TL.contains(candIn) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
+                if (deltaCost < minDeltaCost) {
+                    minDeltaCost = deltaCost;
+                    bestCandIn = candIn;
+                    bestCandOut = null;
                 }
             }
-            final int randomIndex = rng.nextInt(RCL.size());
-            final E inCand = RCL.get(randomIndex);
-            this.CL.remove(inCand);
-            this.incubentSolution.add(inCand);
-            RCL.clear();
-        } while (!constructiveStopCriteria());
-        return this.incubentSolution;
-    }
-
-    public SolutionCost<E, V> solve() {
-        this.bestSolution = createEmptySol();
-        constructiveHeuristic();
-        this.TL = makeTL();
-        for (int i = 0; i < iterations; ++i) {
-            neighborhoodMove();
-            if (this.bestSolution.getCost().doubleValue() > this.incubentSolution.getCost().doubleValue()) {
-                this.bestSolution = this.incubentSolution.clone();
-                if (verbose)
-                    System.out.println(
-                        String.format("Iteration %d: Best Solution: %s", i, this.bestSolution.toString()
-                    ));
+        }
+        // Evaluate removals
+        for (final Integer candOut: this.incubentSolution.getElements()) {
+            final Integer deltaCost = this.incubentSolution.evaluateRemovalCost(candOut);
+            if (!this.TL.contains(candOut) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
+                if (deltaCost < minDeltaCost) {
+                    minDeltaCost = deltaCost;
+                    bestCandIn = null;
+                    bestCandOut = candOut;
+                }
             }
         }
-        return this.bestSolution;
-    }
-
-    /**
-     * A standard stopping criteria for the constructive heuristic is to repeat
-     * until the incumbent solution improves by inserting a new candidate
-     * element.
-     *
-     * @return true if the criteria is met.
-     */
-    public Boolean constructiveStopCriteria() {
-        return !(incubentCost.doubleValue() > incubentSolution.getCost().doubleValue());
+        // Evaluate exchanges
+        for (final Integer candIn: this.CL) {
+            for (final Integer candOut: this.incubentSolution.getElements()) {
+                final Integer deltaCost = incubentSolution.evaluateExchangeCost(candIn, candOut);
+                if ((!this.TL.contains(candIn) && !TL.contains(candOut)) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
+                    if (deltaCost < minDeltaCost) {
+                        minDeltaCost = deltaCost;
+                        bestCandIn = candIn;
+                        bestCandOut = candOut;
+                    }
+                }
+            }
+        }
+        // Implement the best non-tabu move
+        this.TL.poll();
+        if (bestCandOut != null) {
+            this.incubentSolution.remove(bestCandOut);
+            this.CL.add(bestCandOut);
+            this.TL.add(bestCandOut);
+        } else {
+            this.TL.add(fake);
+        }
+        this.TL.poll();
+        if (bestCandIn != null) {
+            this.incubentSolution.add(bestCandIn);
+            this.CL.remove(bestCandIn);
+            this.TL.add(bestCandIn);
+        } else {
+            this.TL.add(fake);
+        }
     }
 
 }
