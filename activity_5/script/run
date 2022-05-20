@@ -7,7 +7,7 @@ SCRIPT_DIR="$PROJECT_PATH/script"
 cd $PROJECT_PATH
 
 PROJ_LIST="kqbf qbf qbf_random professor"
-DEFAULT_PROJ="qbf"
+DEFAULT_PROJ="kqbf"
 
 function usage {
     echo "usage: $0 PROJ"
