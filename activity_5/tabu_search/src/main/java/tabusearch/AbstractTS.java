@@ -3,8 +3,8 @@
  */
 package tabusearch;
 
-import java.util.Deque;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 import SolutionCost.SolutionCost;
@@ -20,13 +20,13 @@ public abstract class AbstractTS<E, V extends Number> {
     protected SolutionCost<E, V> incubentSolution;
     protected Integer iterations;
     protected Integer tenure;
-    protected ArrayList<E> CL;
-    protected ArrayList<E> RCL;
-    protected Deque<E> TL;
+    protected List<E> CL;
+    protected List<E> RCL;
+    protected Queue<E> TL;
 
-    public abstract ArrayList<E> makeCL();
-    public abstract ArrayList<E> makeRCL();
-    public abstract Deque<E> makeTL();
+    public abstract List<E> makeCL();
+    public abstract List<E> makeRCL();
+    public abstract Queue<E> makeTL();
     public abstract void updateCL();
     public abstract SolutionCost<E, V> createEmptySol();
     public abstract void neighborhoodMove();

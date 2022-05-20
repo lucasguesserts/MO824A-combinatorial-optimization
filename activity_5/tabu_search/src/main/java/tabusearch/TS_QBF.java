@@ -3,7 +3,8 @@ package tabusearch;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
+import java.util.List;
+import java.util.Queue;
 
 import SolutionCost.SolutionCost;
 import SolutionCost.SolutionCostInteger;
@@ -21,8 +22,8 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
     }
 
     @Override
-    public ArrayList<Integer> makeCL() {
-        final ArrayList<Integer> candicateList = new ArrayList<Integer>();
+    public List<Integer> makeCL() {
+        final List<Integer> candicateList = new ArrayList<Integer>(incubentSolution.getDomainSize());
         for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
             if (this.incubentSolution.isValidCandidate(candidate))
                 candicateList.add(candidate);
@@ -31,13 +32,13 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
     }
 
     @Override
-    public ArrayList<Integer> makeRCL() {
+    public List<Integer> makeRCL() {
         return new ArrayList<Integer>();
     }
 
     @Override
-    public Deque<Integer> makeTL() {
-        Deque<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
+    public Queue<Integer> makeTL() {
+        final Queue<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
         for (int i=0; i<2*tenure; i++) {
             _TS.add(fake);
         }
