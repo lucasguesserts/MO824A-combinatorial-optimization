@@ -57,62 +57,67 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
 
     @Override
     public void neighborhoodMove() {
-        Integer minDeltaCost = Integer.MAX_VALUE;
-        Integer bestCandIn = null;
-        Integer bestCandOut = null;
+        Integer minimumCostVariation = Integer.MAX_VALUE;
+        Integer bestCandidateToAdd = null;
+        Integer bestCandidateToRemove = null;
         updateCL();
         // Evaluate insertions
-        for (final Integer candIn: this.CL) {
-            final Integer deltaCost = this.incubentSolution.evaluateInsertionCost(candIn);
-            if (!this.TL.contains(candIn) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
-                if (deltaCost < minDeltaCost) {
-                    minDeltaCost = deltaCost;
-                    bestCandIn = candIn;
-                    bestCandOut = null;
+        for (final Integer candidateToAdd: this.CL) {
+            final Integer costIncrement = this.incubentSolution.evaluateInsertionCost(candidateToAdd);
+            if (!this.TL.contains(candidateToAdd) || this.aspirationCriteria(costIncrement)) {
+                if (costIncrement < minimumCostVariation) {
+                    minimumCostVariation = costIncrement;
+                    bestCandidateToAdd = candidateToAdd;
+                    bestCandidateToRemove = null;
                 }
             }
         }
         // Evaluate removals
-        for (final Integer candOut: this.incubentSolution.getElements()) {
-            final Integer deltaCost = this.incubentSolution.evaluateRemovalCost(candOut);
-            if (!this.TL.contains(candOut) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
-                if (deltaCost < minDeltaCost) {
-                    minDeltaCost = deltaCost;
-                    bestCandIn = null;
-                    bestCandOut = candOut;
+        for (final Integer candidateToRemove: this.incubentSolution.getElements()) {
+            final Integer costIncrement = this.incubentSolution.evaluateRemovalCost(candidateToRemove);
+            if (!this.TL.contains(candidateToRemove) || this.aspirationCriteria(costIncrement)) {
+                if (costIncrement < minimumCostVariation) {
+                    minimumCostVariation = costIncrement;
+                    bestCandidateToAdd = null;
+                    bestCandidateToRemove = candidateToRemove;
                 }
             }
         }
         // Evaluate exchanges
         for (final Integer candIn: this.CL) {
             for (final Integer candOut: this.incubentSolution.getElements()) {
-                final Integer deltaCost = incubentSolution.evaluateExchangeCost(candIn, candOut);
-                if ((!this.TL.contains(candIn) && !TL.contains(candOut)) || (this.incubentSolution.getCost() + deltaCost < this.bestSolution.getCost())) {
-                    if (deltaCost < minDeltaCost) {
-                        minDeltaCost = deltaCost;
-                        bestCandIn = candIn;
-                        bestCandOut = candOut;
+                final Integer costIncrement = incubentSolution.evaluateExchangeCost(candIn, candOut);
+                if ((!this.TL.contains(candIn) && !TL.contains(candOut)) || this.aspirationCriteria(costIncrement)) {
+                    if (costIncrement < minimumCostVariation) {
+                        minimumCostVariation = costIncrement;
+                        bestCandidateToAdd = candIn;
+                        bestCandidateToRemove = candOut;
                     }
                 }
             }
         }
         // Implement the best non-tabu move
         this.TL.poll();
-        if (bestCandOut != null) {
-            this.incubentSolution.remove(bestCandOut);
-            this.CL.add(bestCandOut);
-            this.TL.add(bestCandOut);
+        if (bestCandidateToRemove != null) {
+            this.incubentSolution.remove(bestCandidateToRemove);
+            this.CL.add(bestCandidateToRemove);
+            this.TL.add(bestCandidateToRemove);
         } else {
             this.TL.add(fake);
         }
         this.TL.poll();
-        if (bestCandIn != null) {
-            this.incubentSolution.add(bestCandIn);
-            this.CL.remove(bestCandIn);
-            this.TL.add(bestCandIn);
+        if (bestCandidateToAdd != null) {
+            this.incubentSolution.add(bestCandidateToAdd);
+            this.CL.remove(bestCandidateToAdd);
+            this.TL.add(bestCandidateToAdd);
         } else {
             this.TL.add(fake);
         }
+    }
+
+    private Boolean aspirationCriteria(final Integer costIncrement) {
+        final Integer newSolutionCandidateCost = this.incubentSolution.getCost() + costIncrement;
+        return newSolutionCandidateCost < this.bestSolution.getCost();
     }
 
 }
