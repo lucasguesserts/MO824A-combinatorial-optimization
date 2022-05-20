@@ -1,7 +1,7 @@
 import java.io.IOException;
 
-import SolutionCost.SolutionCostInteger;
 import inputReader.InputReaderQBF;
+import problem.ProblemQBF;
 import tabuSearch.TabuSearch;
 
 class Main {
@@ -9,7 +9,7 @@ class Main {
         final String INSTANCE = "../instances/qbf/qbf100";
 		final var startTime = System.currentTimeMillis();
         final var input = new InputReaderQBF(INSTANCE);
-        final var initialSolution = new SolutionCostInteger(input);
+        final var initialSolution = new ProblemQBF(input);
         final var tabuSearch = new TabuSearch(initialSolution, 20, 1000);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(

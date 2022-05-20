@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
-import SolutionCost.SolutionCost;
+import problem.Problem;
 
 public abstract class TabuSearchAbstract<E, V extends Number> {
 
@@ -13,8 +13,8 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
 
     protected V bestCost;
     protected V incubentCost;
-    protected SolutionCost<E, V> bestSolution;
-    protected SolutionCost<E, V> incubentSolution;
+    protected Problem<E, V> bestSolution;
+    protected Problem<E, V> incubentSolution;
     protected Integer iterations;
     protected Integer tenure;
     protected List<E> CL;
@@ -25,11 +25,11 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
     public abstract List<E> makeRCL();
     public abstract Queue<E> makeTL();
     public abstract void updateCL();
-    public abstract SolutionCost<E, V> createEmptySol();
+    public abstract Problem<E, V> createEmptySol();
     public abstract void neighborhoodMove();
 
     public TabuSearchAbstract(
-        final SolutionCost<E, V> initialSolution,
+        final Problem<E, V> initialSolution,
         final Integer tenure,
         final Integer iterations
     ) {
@@ -38,7 +38,7 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
         this.iterations = iterations;
     }
 
-    public SolutionCost<E, V> constructiveHeuristic() {
+    public Problem<E, V> constructiveHeuristic() {
         this.CL = makeCL();
         this.RCL = makeRCL();
         this.incubentSolution = createEmptySol();
@@ -69,7 +69,7 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
         return this.incubentSolution;
     }
 
-    public SolutionCost<E, V> solve() {
+    public Problem<E, V> solve() {
         this.bestSolution = createEmptySol();
         constructiveHeuristic();
         this.TL = makeTL();

@@ -1,32 +1,32 @@
-package SolutionCost;
+package problem;
 
 import java.util.Collection;
 
-import inputReader.InputReaderKQBF;
+import inputReader.InputReaderQBF;
 import objectiveFunction.qbf.QBF_Inverse;
-import solutions.SolutionKnapsack;
+import solutions.SolutionInteger;
 
-public class SolutionCostKQBF implements SolutionCost<Integer, Integer> {
+public class ProblemQBF implements Problem<Integer, Integer> {
 
-    private SolutionKnapsack solution;
+    private SolutionInteger solution;
     private QBF_Inverse objectiveFunction;
     private Integer cost;
 
-    public SolutionCostKQBF(final InputReaderKQBF input) {
-        this.solution = new SolutionKnapsack(input.getKnapsackCapacity(), input.getKnapsackWeights());
+    public ProblemQBF(final InputReaderQBF input) {
+        this.solution = new SolutionInteger();
         this.objectiveFunction = new QBF_Inverse(input, this.solution);
         this.cost = QBF_Inverse.INITIAL_COST;
     }
 
-    protected SolutionCostKQBF(final SolutionCostKQBF other){
+    protected ProblemQBF(final ProblemQBF other){
         this.cost = other.cost;
         this.solution = other.solution.clone();
         this.objectiveFunction = other.objectiveFunction.clone();
     }
 
     @Override
-    public SolutionCostKQBF clone() {
-        return new SolutionCostKQBF(this);
+    public ProblemQBF clone() {
+        return new ProblemQBF(this);
     }
 
     @Override
@@ -41,20 +41,16 @@ public class SolutionCostKQBF implements SolutionCost<Integer, Integer> {
 
     @Override
     public void add(final Integer element) {
-        if (this.solution.isValidCandidate(element)) {
-            this.cost += this.objectiveFunction.evaluateInsertionCost(element);
-            this.solution.add(element);
-            this.objectiveFunction.addVariable(element);
-        }
+        this.cost += this.objectiveFunction.evaluateInsertionCost(element);
+        this.solution.add(element);
+        this.objectiveFunction.addVariable(element);
     }
 
     @Override
     public void remove(final Integer element) {
-        if (this.solution.contains(element)) {
-            this.cost += this.objectiveFunction.evaluateRemovalCost(element);
-            this.solution.remove(element);
-            this.objectiveFunction.removeVariable(element);
-        }
+        this.cost += this.objectiveFunction.evaluateRemovalCost(element);
+        this.solution.remove(element);
+        this.objectiveFunction.removeVariable(element);
     }
 
     @Override
@@ -92,7 +88,7 @@ public class SolutionCostKQBF implements SolutionCost<Integer, Integer> {
     @Override
     public String toString(){
         return String.format(
-            "SolutionCost {cost: %s, solutionKnapsack: %s}", this.cost.toString(), this.solution.toString());
+            "SolutionCost {cost: %s, %s}", this.cost.toString(), this.solution.toString());
     }
 
 }

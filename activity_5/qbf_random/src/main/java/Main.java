@@ -1,7 +1,7 @@
 import java.io.IOException;
 
-import SolutionCost.SolutionCostInteger;
 import inputReader.InputReaderQBF;
+import problem.ProblemQBF;
 
 class Main {
     public static void main(String[] args) throws IOException {
@@ -9,8 +9,8 @@ class Main {
         final var input = new InputReaderQBF(INSTANCE);
 
         {
-            final SolutionCostInteger solution = new SolutionCostInteger(input);
-            SolutionCostInteger bestSolution = solution.clone();
+            final ProblemQBF solution = new ProblemQBF(input);
+            ProblemQBF bestSolution = solution.clone();
             for (Integer i = 0; i < 100000; i++) {
                 for (Integer j = 0; j < solution.getDomainSize(); j++) {
                     if (Math.random() < 0.5) {
@@ -29,7 +29,7 @@ class Main {
         }
 
         { // evaluates the all-ones array.
-            final SolutionCostInteger solution = new SolutionCostInteger(input);
+            final ProblemQBF solution = new ProblemQBF(input);
             for (Integer j = 0; j < solution.getDomainSize(); j++) {
                 solution.add(j);
             }

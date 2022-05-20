@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import SolutionCost.SolutionCost;
+import problem.Problem;
 
 public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
 
     private final Integer fake = -1;
 
     public TabuSearch(
-        final SolutionCost<Integer, Integer> initialSolution,
+        final Problem<Integer, Integer> initialSolution,
         final Integer tenure,
         final Integer iterations
     ) {
@@ -47,8 +47,8 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
     public void updateCL() {}
 
     @Override
-    public SolutionCost<Integer, Integer> createEmptySol() {
-        final SolutionCost<Integer, Integer> emptySolution = this.incubentSolution.clone();
+    public Problem<Integer, Integer> createEmptySol() {
+        final Problem<Integer, Integer> emptySolution = this.incubentSolution.clone();
         emptySolution.reset();
         return emptySolution;
     }

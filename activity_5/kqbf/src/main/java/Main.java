@@ -1,8 +1,8 @@
 import java.io.IOException;
 import java.util.Random;
 
-import SolutionCost.SolutionCostKQBF;
 import inputReader.InputReaderKQBF;
+import problem.ProblemKQBF;
 import tabuSearch.TabuSearch;
 
 
@@ -15,7 +15,7 @@ class Main {
         final String INSTANCE = "../instances/kqbf/kqbf020";
         final var startTime = System.currentTimeMillis();
         final var input = new InputReaderKQBF(INSTANCE);
-        final var initialSolution = new SolutionCostKQBF(input);
+        final var initialSolution = new ProblemKQBF(input);
         final var tabuSearch = new TabuSearch(initialSolution, 20, 1000);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
