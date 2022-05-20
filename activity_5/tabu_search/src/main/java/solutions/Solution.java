@@ -2,7 +2,7 @@ package solutions;
 
 import java.util.Collection;
 
-public interface Solution<E> {
+public interface Solution<E> extends Cloneable {
 
     public Collection<E> getElements();
     public Boolean isValidCandidate(final E element);

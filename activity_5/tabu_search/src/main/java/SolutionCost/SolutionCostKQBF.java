@@ -6,7 +6,7 @@ import inputReader.InputReaderKQBF;
 import objectiveFunction.qbf.QBF_Inverse;
 import solutions.SolutionKnapsack;
 
-public class SolutionCostKQBF implements SolutionCost<Integer, Integer>, Cloneable {
+public class SolutionCostKQBF implements SolutionCost<Integer, Integer> {
 
     private SolutionKnapsack solution;
     private QBF_Inverse objectiveFunction;
@@ -21,7 +21,7 @@ public class SolutionCostKQBF implements SolutionCost<Integer, Integer>, Cloneab
     protected SolutionCostKQBF(final SolutionCostKQBF other){
         this.cost = other.cost;
         this.solution = other.solution.clone();
-        this.objectiveFunction = new QBF_Inverse(other.objectiveFunction);
+        this.objectiveFunction = other.objectiveFunction.clone();
     }
 
     @Override

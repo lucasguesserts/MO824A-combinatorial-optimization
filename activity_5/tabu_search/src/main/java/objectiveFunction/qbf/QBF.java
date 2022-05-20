@@ -22,7 +22,7 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         this.resetVariables();
     }
 
-    public QBF(final QBF other) {
+    protected QBF(final QBF other) {
         this.size = other.size;
         this.matrix = new Integer[this.size][this.size];
         this.variables = new Integer[this.size];
@@ -32,6 +32,11 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
                 this.matrix[i][j] = other.matrix[i][j];
             }
         }
+    }
+
+    @Override
+    public QBF clone() {
+        return new QBF(this);
     }
 
     @Override

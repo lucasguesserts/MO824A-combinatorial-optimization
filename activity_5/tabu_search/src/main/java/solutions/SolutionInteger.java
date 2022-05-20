@@ -14,8 +14,13 @@ public class SolutionInteger implements Solution<Integer> {
         this.elements = new HashSet<>();
     }
 
-    public SolutionInteger(final SolutionInteger other) {
+    protected SolutionInteger(final SolutionInteger other) {
         this.elements = new HashSet<>(other.elements);
+    }
+
+    @Override
+    public SolutionInteger clone() {
+        return new SolutionInteger(this);
     }
 
     @Override

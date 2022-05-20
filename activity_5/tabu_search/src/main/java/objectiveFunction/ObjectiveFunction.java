@@ -1,6 +1,6 @@
 package objectiveFunction;
 
-public interface ObjectiveFunction<E, V> {
+public interface ObjectiveFunction<E, V> extends Cloneable {
 
     public Integer getDomainSize();
     public Boolean isValidCandidate(final E element);

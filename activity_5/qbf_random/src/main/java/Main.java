@@ -8,7 +8,7 @@ class Main {
 
         {
             final SolutionCostInteger solution = new SolutionCostInteger(INSTANCE);
-            SolutionCostInteger bestSolution = new SolutionCostInteger(solution);
+            SolutionCostInteger bestSolution = solution.clone();
             for (Integer i = 0; i < 100000; i++) {
                 for (Integer j = 0; j < solution.getDomainSize(); j++) {
                     if (Math.random() < 0.5) {
@@ -17,7 +17,7 @@ class Main {
                 }
                 // System.out.println(String.format("iteration %d", i));
                 if (bestSolution.getCost() < solution.getCost())
-                    bestSolution = new SolutionCostInteger(solution);
+                    bestSolution = solution.clone();
                 solution.reset();
             }
             System.out.println(String.format(

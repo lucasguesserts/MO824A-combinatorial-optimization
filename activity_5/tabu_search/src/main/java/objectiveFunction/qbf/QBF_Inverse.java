@@ -9,8 +9,13 @@ public class QBF_Inverse extends QBF {
         super(input, solution);
     }
 
-    public QBF_Inverse(final QBF_Inverse other) {
+    protected QBF_Inverse(final QBF_Inverse other) {
         super(other);
+    }
+
+    @Override
+    public QBF_Inverse clone() {
+        return new QBF_Inverse(this);
     }
 
     @Override

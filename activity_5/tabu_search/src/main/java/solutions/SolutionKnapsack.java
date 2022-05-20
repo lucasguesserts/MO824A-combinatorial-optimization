@@ -3,7 +3,7 @@ package solutions;
 import java.util.Collections;
 import java.util.List;
 
-public class SolutionKnapsack extends SolutionInteger implements Cloneable {
+public class SolutionKnapsack extends SolutionInteger {
 
     private final Integer knapsackCapacity;
     private final List<Integer> knapsackWeights;

@@ -20,10 +20,10 @@ public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
         this.cost = QBF_Inverse.INITIAL_COST;
     }
 
-    public SolutionCostInteger(final SolutionCostInteger other){
+    protected SolutionCostInteger(final SolutionCostInteger other){
         this.cost = other.cost;
-        this.solution = new SolutionInteger(other.solution);
-        this.objectiveFunction = new QBF_Inverse(other.objectiveFunction);
+        this.solution = other.solution.clone();
+        this.objectiveFunction = other.objectiveFunction.clone();
     }
 
     @Override
