@@ -1,12 +1,9 @@
 package objectiveFunction.qbf;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StreamTokenizer;
 import java.util.Arrays;
 
+import inputReader.InputReaderQBF;
 import objectiveFunction.ObjectiveFunction;
 import solutions.Solution;
 
@@ -19,10 +16,9 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
     private final Integer[] variables;
     private final Integer[][] matrix;
 
-    public QBF(final String fileName, final Solution<Integer> solution) throws IOException {
-        final var inputReader = new InputReader(fileName);
-        this.size = inputReader.size;
-        this.matrix = inputReader.matrix;
+    public QBF(final InputReaderQBF input, final Solution<Integer> solution) throws IOException {
+        this.size = input.getSize();
+        this.matrix = input.getMatrix();
         this.variables = new Integer[this.size];
         this.resetVariables();
     }
@@ -112,29 +108,6 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         }
         sum += this.matrix[element][element];
         return sum;
-    }
-
-    private class InputReader {
-
-        public final Integer size;
-        public final Integer[][] matrix;
-
-        InputReader(final String fileName) throws IOException {
-            final Reader file = new BufferedReader(new FileReader(fileName));
-            final StreamTokenizer stok = new StreamTokenizer(file);
-            stok.nextToken();
-            this.size = (int) stok.nval;
-            this.matrix = new Integer[this.size][this.size];
-            for (int i = 0; i < this.size; ++i) {
-                Arrays.fill(this.matrix[i], 0);
-            }
-            for (int i = 0; i < this.size; ++i) {
-                for (int j = i; j < this.size; ++j) {
-                    stok.nextToken();
-                    this.matrix[i][j] = (int) Math.round(stok.nval);
-                }
-            }
-        }
     }
 
     private void resetVariables() {

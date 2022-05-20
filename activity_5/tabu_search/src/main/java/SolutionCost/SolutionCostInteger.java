@@ -3,6 +3,7 @@ package SolutionCost;
 import java.io.IOException;
 import java.util.Collection;
 
+import inputReader.InputReaderQBF;
 import objectiveFunction.qbf.QBF_Inverse;
 import solutions.SolutionInteger;
 
@@ -14,7 +15,8 @@ public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
 
     public SolutionCostInteger(final String fileName) throws IOException {
         this.solution = new SolutionInteger();
-        this.objectiveFunction = new QBF_Inverse(fileName, this.solution);
+        final var input = new InputReaderQBF(fileName);
+        this.objectiveFunction = new QBF_Inverse(input, this.solution);
         this.cost = QBF_Inverse.INITIAL_COST;
     }
 

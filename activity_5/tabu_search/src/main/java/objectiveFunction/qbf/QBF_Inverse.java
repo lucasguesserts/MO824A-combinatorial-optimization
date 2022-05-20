@@ -2,12 +2,13 @@ package objectiveFunction.qbf;
 
 import java.io.IOException;
 
+import inputReader.InputReaderQBF;
 import solutions.Solution;
 
 public class QBF_Inverse extends QBF {
 
-    public QBF_Inverse(final String fileName, final Solution<Integer> solution) throws IOException {
-        super(fileName, solution);
+    public QBF_Inverse(final InputReaderQBF input, final Solution<Integer> solution) throws IOException {
+        super(input, solution);
     }
 
     public QBF_Inverse(final QBF_Inverse other) {
