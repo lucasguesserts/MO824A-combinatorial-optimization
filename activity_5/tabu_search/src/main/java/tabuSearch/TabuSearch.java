@@ -1,7 +1,4 @@
-/**
- *
- */
-package tabusearch;
+package tabuSearch;
 
 import java.util.List;
 import java.util.Queue;
@@ -9,7 +6,7 @@ import java.util.Random;
 
 import SolutionCost.SolutionCost;
 
-public abstract class AbstractTS<E, V extends Number> {
+public abstract class TabuSearch<E, V extends Number> {
 
     public static boolean verbose = true;
     static Random rng = new Random(0);
@@ -31,7 +28,7 @@ public abstract class AbstractTS<E, V extends Number> {
     public abstract SolutionCost<E, V> createEmptySol();
     public abstract void neighborhoodMove();
 
-    public AbstractTS(
+    public TabuSearch(
         final SolutionCost<E, V> sol,
         final Integer tenure,
         final Integer iterations

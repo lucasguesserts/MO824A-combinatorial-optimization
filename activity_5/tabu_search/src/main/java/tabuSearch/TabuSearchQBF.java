@@ -1,4 +1,4 @@
-package tabusearch;
+package tabuSearch;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -9,11 +9,11 @@ import SolutionCost.SolutionCost;
 import SolutionCost.SolutionCostInteger;
 import inputReader.InputReaderQBF;
 
-public class TS_QBF extends AbstractTS<Integer, Integer> {
+public class TabuSearchQBF extends TabuSearch<Integer, Integer> {
 
     private final Integer fake = -1;
 
-    public TS_QBF(
+    public TabuSearchQBF(
         final Integer tenure,
         final Integer iterations,
         final InputReaderQBF input

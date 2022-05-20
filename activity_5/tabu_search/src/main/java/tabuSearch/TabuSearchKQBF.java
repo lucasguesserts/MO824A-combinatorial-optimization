@@ -1,12 +1,12 @@
-package tabusearch;
+package tabuSearch;
 
 import java.io.IOException;
 
 import inputReader.InputReaderKQBF;
 
-public class TS_KQBF extends TS_QBF {
+public class TabuSearchKQBF extends TabuSearchQBF {
 
-    public TS_KQBF(
+    public TabuSearchKQBF(
         final Integer tenure,
         final Integer iterations,
         final InputReaderKQBF input

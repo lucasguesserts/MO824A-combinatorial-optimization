@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.Random;
 
 import inputReader.InputReaderKQBF;
-import tabusearch.TS_KQBF;
+import tabuSearch.TabuSearchKQBF;
 
 
 class Main {
@@ -15,7 +15,7 @@ class Main {
         final var startTime = System.currentTimeMillis();
         final var input = new InputReaderKQBF(INSTANCE);
         input.printMatrix();
-        final var tabuSearch = new TS_KQBF(20, 1000, input);
+        final var tabuSearch = new TabuSearchKQBF(20, 1000, input);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
             "Best solution found: \n\t%s",

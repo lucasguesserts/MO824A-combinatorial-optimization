@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 import inputReader.InputReaderQBF;
-import tabusearch.TS_QBF;
+import tabuSearch.TabuSearchQBF;
 
 class Main {
     public static void main(String[] args) throws IOException {
@@ -9,7 +9,7 @@ class Main {
 		final var startTime = System.currentTimeMillis();
         final var input = new InputReaderQBF(INSTANCE);
         input.printMatrix();
-        final var tabuSearch = new TS_QBF(20, 1000, input);
+        final var tabuSearch = new TabuSearchQBF(20, 1000, input);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
             "Best solution found: \n\t%s",
