@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+import costCoparer.CostComparer;
 import problem.Problem;
 
 public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
@@ -13,10 +14,11 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
 
     public TabuSearch(
         final Problem<Integer, Integer> initialSolution,
+        final CostComparer<Integer> costComparer,
         final Integer tenure,
         final Integer iterations
     ) {
-        super(initialSolution, tenure, iterations);
+        super(initialSolution, costComparer, tenure, iterations);
     }
 
     @Override

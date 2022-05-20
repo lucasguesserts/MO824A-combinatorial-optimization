@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+import costCoparer.CostComparer;
 import problem.Problem;
 
 public abstract class TabuSearchAbstract<E, V extends Number> {
@@ -15,11 +16,12 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
     protected V incubentCost;
     protected Problem<E, V> bestSolution;
     protected Problem<E, V> incubentSolution;
-    protected Integer iterations;
-    protected Integer tenure;
     protected List<E> CL;
     protected List<E> RCL;
     protected Queue<E> TL;
+    protected final CostComparer<V> costComparer;
+    protected final Integer tenure;
+    protected final Integer iterations;
 
     public abstract List<E> makeCL();
     public abstract List<E> makeRCL();
@@ -30,10 +32,12 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
 
     public TabuSearchAbstract(
         final Problem<E, V> initialSolution,
+        final CostComparer<V> costComparer,
         final Integer tenure,
         final Integer iterations
     ) {
         this.incubentSolution = initialSolution;
+        this.costComparer = costComparer;
         this.tenure = tenure;
         this.iterations = iterations;
     }
@@ -43,20 +47,20 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
         this.RCL = makeRCL();
         this.incubentSolution = createEmptySol();
         do {
-            Double maxCost = Double.NEGATIVE_INFINITY;
-            Double minCost = Double.POSITIVE_INFINITY;
+            V maxCost = this.costComparer.getMinCost();
+            V minCost = this.costComparer.getMaxCost();
             this.incubentCost = incubentSolution.getCost();
             updateCL();
             for (final E candidate : this.CL) {
-                final Double deltaCost = this.incubentSolution.evaluateInsertionCost(candidate).doubleValue();
-                if (deltaCost < minCost)
+                final V deltaCost = this.incubentSolution.evaluateInsertionCost(candidate);
+                if (this.costComparer.isSmaller(deltaCost, minCost))
                     minCost = deltaCost;
-                if (deltaCost > maxCost)
+                if (this.costComparer.isSmaller(maxCost, deltaCost))
                     maxCost = deltaCost;
             }
             for (final E candidate: this.CL) {
-                final Double deltaCost = this.incubentSolution.evaluateInsertionCost(candidate).doubleValue();
-                if (deltaCost <= minCost) {
+                final V deltaCost = this.incubentSolution.evaluateInsertionCost(candidate);
+                if (this.costComparer.isSmaller(deltaCost, minCost) || deltaCost.equals(minCost)) {
                     this.RCL.add(candidate);
                 }
             }
@@ -75,7 +79,7 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
         this.TL = makeTL();
         for (int i = 0; i < iterations; ++i) {
             neighborhoodMove();
-            if (this.bestSolution.getCost().doubleValue() > this.incubentSolution.getCost().doubleValue()) {
+            if (this.costComparer.isSmaller(this.incubentSolution.getCost(), this.bestSolution.getCost())) {
                 this.bestSolution = this.incubentSolution.clone();
                 if (verbose)
                     System.out.println(
@@ -86,15 +90,8 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
         return this.bestSolution;
     }
 
-    /**
-     * A standard stopping criteria for the constructive heuristic is to repeat
-     * until the incumbent solution improves by inserting a new candidate
-     * element.
-     *
-     * @return true if the criteria is met.
-     */
     public Boolean constructiveStopCriteria() {
-        return !(incubentCost.doubleValue() > incubentSolution.getCost().doubleValue());
+        return ! this.costComparer.isSmaller(incubentCost, incubentSolution.getCost());
     }
 
 }

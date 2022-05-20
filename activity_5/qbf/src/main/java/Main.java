@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import costCoparer.IntegerCostComparer;
 import inputReader.InputReaderQBF;
 import problem.ProblemQBF;
 import tabuSearch.TabuSearch;
@@ -9,8 +10,9 @@ class Main {
         final String INSTANCE = "../instances/qbf/qbf100";
 		final var startTime = System.currentTimeMillis();
         final var input = new InputReaderQBF(INSTANCE);
+        final var integerCostComparer = IntegerCostComparer.getInstance();
         final var initialSolution = new ProblemQBF(input);
-        final var tabuSearch = new TabuSearch(initialSolution, 20, 1000);
+        final var tabuSearch = new TabuSearch(initialSolution, integerCostComparer, 20, 1000);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
             "Best solution found: \n\t%s",
