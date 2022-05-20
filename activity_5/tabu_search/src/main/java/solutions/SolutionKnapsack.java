@@ -20,7 +20,7 @@ public class SolutionKnapsack extends SolutionInteger {
         super(other);
         this.knapsackCapacity = other.knapsackCapacity;
         this.knapsackWeights = Collections.unmodifiableList(other.knapsackWeights);
-        this.currentKnapsackWeight = other.knapsackCapacity;
+        this.currentKnapsackWeight = other.currentKnapsackWeight;
     }
 
     @Override
