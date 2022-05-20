@@ -1,34 +1,64 @@
 import java.io.IOException;
-import java.util.Random;
+import java.security.InvalidParameterException;
 
 import costCoparer.IntegerCostComparer;
 import inputReader.InputReaderKQBF;
+import problem.Problem;
 import problem.ProblemKQBF;
 import tabuSearch.TabuSearch;
 
 
 class Main {
 
-    static final Random rng = new Random(0);
-    static final Integer ITERATIONS = 1000;
+    private static final String PROBLEM_PREFIX = "kqbf";
+    private static final String DIR_PATH = "../instances";
+
+    private static long startTime;
+    private static long endTime;
+    private static TabuSearch tabuSearch;
+    private static Problem<Integer, Integer> solution;
 
     public static void main(String[] args) throws IOException {
-        final String INSTANCE = "../instances/kqbf/kqbf020";
-        final var startTime = System.currentTimeMillis();
-        final var input = new InputReaderKQBF(INSTANCE);
+        start(args);
+        solve();
+        finish();
+    }
+
+    private static void start(final String[] args) throws IOException {
+        if (args.length != 1) throw new InvalidParameterException("Give one and only one parameter to this program");
+        final String problemInstance = getProblemInstance(args[0]);
+        final var input = new InputReaderKQBF(problemInstance);
         final var integerCostComparer = IntegerCostComparer.getInstance();
         final var initialSolution = new ProblemKQBF(input);
-        final var tabuSearch = new TabuSearch(initialSolution, integerCostComparer, 20, 1000);
-        final var bestSolution = tabuSearch.solve();
+        tabuSearch = new TabuSearch(initialSolution, integerCostComparer, 20, 1000);
+    }
+
+    private static void solve() {
+        startTime = System.currentTimeMillis();
+        solution = tabuSearch.solve();
+        endTime = System.currentTimeMillis();
+    }
+
+    private static void finish() {
         System.out.println(String.format(
             "Best solution found: \n\t%s",
-            bestSolution.toString()
+            solution.toString()
         ));
-		final var endTime = System.currentTimeMillis();
-		final var totalTime = (double) (endTime - startTime);
-		System.out.println(String.format(
+        final var totalTime = (double) (endTime - startTime);
+        System.out.println(String.format(
             "Running time = %f seconds",
             totalTime / 1000
         ));
+    }
+
+    private static String getProblemInstance(final String arg) {
+        final Integer instanceNumber = Integer.parseInt(arg);
+        return String.format(
+            "%s/%s/%s%03d",
+            DIR_PATH,
+            PROBLEM_PREFIX,
+            PROBLEM_PREFIX,
+            instanceNumber
+        );
     }
 }
