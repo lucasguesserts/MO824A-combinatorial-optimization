@@ -8,6 +8,13 @@
             "request": "launch",
             "mainClass": "${workspaceFolder}/qbf/src/main/java/Main.java",
             "cwd": "${workspaceFolder}/qbf"
+        },
+        {
+            "type": "java",
+            "name": "kqbf",
+            "request": "launch",
+            "mainClass": "${workspaceFolder}/kqbf/src/main/java/Main.java",
+            "cwd": "${workspaceFolder}/kqbf"
         }
     ]
 }
