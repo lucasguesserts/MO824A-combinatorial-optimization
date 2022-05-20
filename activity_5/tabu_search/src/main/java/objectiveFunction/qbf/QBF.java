@@ -1,6 +1,5 @@
 package objectiveFunction.qbf;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 import inputReader.InputReaderQBF;
@@ -16,7 +15,7 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
     private final Integer[] variables;
     private final Integer[][] matrix;
 
-    public QBF(final InputReaderQBF input, final Solution<Integer> solution) throws IOException {
+    public QBF(final InputReaderQBF input, final Solution<Integer> solution) {
         this.size = input.getSize();
         this.matrix = input.getMatrix();
         this.variables = new Integer[this.size];
