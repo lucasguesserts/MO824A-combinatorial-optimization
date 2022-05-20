@@ -41,7 +41,7 @@ public class SolutionCostKQBF implements SolutionCost<Integer, Integer> {
 
     @Override
     public void add(final Integer element) {
-        if (this.solution.fitsIntoKnapsack(element)) {
+        if (this.solution.isValidCandidate(element)) {
             this.cost += this.objectiveFunction.evaluateInsertionCost(element);
             this.solution.add(element);
             this.objectiveFunction.addVariable(element);
