@@ -1,4 +1,4 @@
-package problems.qbf;
+package objectiveFunction.qbf;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
 package SolutionCost;
 
-import problems.ObjectiveFunction;
+import objectiveFunction.ObjectiveFunction;
 import solutions.Solution;
 
 public interface SolutionCost<E, V>  extends ObjectiveFunction<E, V>, Solution<E> {

@@ -3,7 +3,7 @@ package SolutionCost;
 import java.io.IOException;
 import java.util.List;
 
-import problems.qbf.QBF_Inverse;
+import objectiveFunction.qbf.QBF_Inverse;
 import solutions.SolutionInteger;
 
 public class SolutionCostInteger implements SolutionCost<Integer, Integer> {

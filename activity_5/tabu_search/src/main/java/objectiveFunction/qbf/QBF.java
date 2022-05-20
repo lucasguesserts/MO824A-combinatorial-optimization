@@ -1,4 +1,4 @@
-package problems.qbf;
+package objectiveFunction.qbf;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,7 +7,7 @@ import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.util.Arrays;
 
-import problems.ObjectiveFunction;
+import objectiveFunction.ObjectiveFunction;
 import solutions.Solution;
 
 

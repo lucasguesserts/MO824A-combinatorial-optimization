@@ -1,4 +1,4 @@
-package problems;
+package objectiveFunction;
 
 public interface ObjectiveFunction<E, V> {
 
