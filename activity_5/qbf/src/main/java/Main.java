@@ -1,12 +1,15 @@
 import java.io.IOException;
 
+import inputReader.InputReaderQBF;
 import tabusearch.TS_QBF;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        final String INSTANCE = "../instances/qbf/qbf100";
+        final String INSTANCE = "../instances/qbf/qbf020";
 		final var startTime = System.currentTimeMillis();
-        final var tabuSearch = new TS_QBF(20, 1000, INSTANCE);
+        final var input = new InputReaderQBF(INSTANCE);
+        input.printMatrix();
+        final var tabuSearch = new TS_QBF(20, 1000, input);
         final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
             "Best solution found: \n\t%s",

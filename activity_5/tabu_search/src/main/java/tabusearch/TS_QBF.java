@@ -8,6 +8,7 @@ import java.util.Queue;
 
 import SolutionCost.SolutionCost;
 import SolutionCost.SolutionCostInteger;
+import inputReader.InputReaderQBF;
 
 public class TS_QBF extends AbstractTS<Integer, Integer> {
 
@@ -16,9 +17,9 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
     public TS_QBF(
         final Integer tenure,
         final Integer iterations,
-        final String fileName
+        final InputReaderQBF input
     ) throws IOException {
-        super(new SolutionCostInteger(fileName), tenure, iterations);
+        super(new SolutionCostInteger(input), tenure, iterations);
     }
 
     @Override

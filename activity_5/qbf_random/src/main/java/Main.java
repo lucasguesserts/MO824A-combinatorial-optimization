@@ -1,13 +1,15 @@
 import java.io.IOException;
 
 import SolutionCost.SolutionCostInteger;
+import inputReader.InputReaderQBF;
 
 class Main {
     public static void main(String[] args) throws IOException {
         final String INSTANCE = "../instances/qbf/qbf040";
+        final var input = new InputReaderQBF(INSTANCE);
 
         {
-            final SolutionCostInteger solution = new SolutionCostInteger(INSTANCE);
+            final SolutionCostInteger solution = new SolutionCostInteger(input);
             SolutionCostInteger bestSolution = solution.clone();
             for (Integer i = 0; i < 100000; i++) {
                 for (Integer j = 0; j < solution.getDomainSize(); j++) {
@@ -27,7 +29,7 @@ class Main {
         }
 
         { // evaluates the all-ones array.
-            final SolutionCostInteger solution = new SolutionCostInteger(INSTANCE);
+            final SolutionCostInteger solution = new SolutionCostInteger(input);
             for (Integer j = 0; j < solution.getDomainSize(); j++) {
                 solution.add(j);
             }

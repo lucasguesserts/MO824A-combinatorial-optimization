@@ -13,9 +13,8 @@ public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
     private QBF_Inverse objectiveFunction;
     private Integer cost;
 
-    public SolutionCostInteger(final String fileName) throws IOException {
+    public SolutionCostInteger(final InputReaderQBF input) throws IOException {
         this.solution = new SolutionInteger();
-        final var input = new InputReaderQBF(fileName);
         this.objectiveFunction = new QBF_Inverse(input, this.solution);
         this.cost = QBF_Inverse.INITIAL_COST;
     }
