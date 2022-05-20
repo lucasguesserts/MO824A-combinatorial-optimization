@@ -56,7 +56,7 @@ public class SolutionInteger implements Solution<Integer> {
         );
     }
 
-    protected Boolean contains(final Integer element) {
+    public Boolean contains(final Integer element) {
         return this.elements.contains(element);
     }
 

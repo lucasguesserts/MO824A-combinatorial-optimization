@@ -33,7 +33,7 @@ public class SolutionKnapsack extends SolutionInteger {
         return super.isValidCandidate(element) && this.fitsIntoKnapsack(element);
     }
 
-    private Boolean fitsIntoKnapsack(final Integer element) {
+    public Boolean fitsIntoKnapsack(final Integer element) {
         final var elementWeight = this.knapsackWeights.get(element);
         return this.currentKnapsackWeight + elementWeight <= this.knapsackCapacity;
     }

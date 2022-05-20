@@ -1,8 +1,8 @@
 import java.io.IOException;
 import java.util.Random;
 
-import SolutionCost.SolutionCostKQBF;
 import inputReader.InputReaderKQBF;
+import tabusearch.TS_KQBF;
 
 
 class Main {
@@ -15,19 +15,15 @@ class Main {
         final var startTime = System.currentTimeMillis();
         final var input = new InputReaderKQBF(INSTANCE);
         input.printMatrix();
-        input.printKnapsack();
-        final var solutionCost = new SolutionCostKQBF(input);
-        int rndIndex = 0;
-        for (int i = 0; i < ITERATIONS; ++i) {
-            rndIndex = rng.nextInt(solutionCost.getDomainSize());
-            solutionCost.add(rndIndex);
-            rndIndex = rng.nextInt(solutionCost.getDomainSize());
-            solutionCost.remove(rndIndex);
-        }
-        System.out.println(solutionCost.toString());
-        final var endTime = System.currentTimeMillis();
-        final var totalTime = (double) (endTime - startTime);
+        final var tabuSearch = new TS_KQBF(20, 1000, input);
+        final var bestSolution = tabuSearch.solve();
         System.out.println(String.format(
+            "Best solution found: \n\t%s",
+            bestSolution.toString()
+        ));
+		final var endTime = System.currentTimeMillis();
+		final var totalTime = (double) (endTime - startTime);
+		System.out.println(String.format(
             "Running time = %f seconds",
             totalTime / 1000
         ));
