@@ -1,7 +1,7 @@
 package SolutionCost;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 
 import objectiveFunction.qbf.QBF_Inverse;
 import solutions.SolutionInteger;
@@ -30,7 +30,7 @@ public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
     }
 
     @Override
-    public List<Integer> getElements() {
+    public Collection<Integer> getElements() {
         return this.solution.getElements();
     }
 
@@ -63,6 +63,11 @@ public class SolutionCostInteger implements SolutionCost<Integer, Integer> {
     @Override
     public Integer getDomainSize() {
         return this.objectiveFunction.getDomainSize();
+    }
+
+    @Override
+    public Boolean isValidCandidate(final Integer element) {
+        return this.objectiveFunction.isValidCandidate(element) && this.solution.isValidCandidate(element);
     }
 
     @Override

@@ -44,16 +44,9 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         return size;
     }
 
-    public void addVariable(final Integer element) {
-        this.variables[element] = 1;
-    }
-
-    public void removeVariable(final Integer element) {
-        this.variables[element] = 0;
-    }
-
-    public void reset() {
-        this.resetVariables();
+    @Override
+    public Boolean isValidCandidate(final Integer element) {
+        return (0 <= element) && (element < this.size);
     }
 
     @Override
@@ -99,7 +92,19 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         return str.toString();
     }
 
-    protected Integer evaluateContributionQBF(final Integer element) {
+    public void addVariable(final Integer element) {
+        this.variables[element] = 1;
+    }
+
+    public void removeVariable(final Integer element) {
+        this.variables[element] = 0;
+    }
+
+    public void reset() {
+        this.resetVariables();
+    }
+
+    private Integer evaluateContributionQBF(final Integer element) {
         Integer sum = 0;
         for (Integer j = 0; j < this.size; ++j) {
             if (!element.equals(j))

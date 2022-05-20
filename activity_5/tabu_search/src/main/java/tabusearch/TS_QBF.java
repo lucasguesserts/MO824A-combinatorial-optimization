@@ -24,7 +24,8 @@ public class TS_QBF extends AbstractTS<Integer, Integer> {
     public ArrayList<Integer> makeCL() {
         final ArrayList<Integer> candicateList = new ArrayList<Integer>();
         for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
-            candicateList.add(candidate);
+            if (this.incubentSolution.isValidCandidate(candidate))
+                candicateList.add(candidate);
         }
         return candicateList;
     }

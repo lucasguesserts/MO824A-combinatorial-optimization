@@ -1,25 +1,31 @@
 package solutions;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SolutionInteger implements Solution<Integer> {
 
-    private final List<Integer> elements;
+    private final Set<Integer> elements;
 
     public SolutionInteger() {
         super();
-        this.elements = new ArrayList<>();
+        this.elements = new HashSet<>();
     }
 
     public SolutionInteger(final SolutionInteger other) {
-        this.elements = new ArrayList<>(other.elements);
+        this.elements = new HashSet<>(other.elements);
     }
 
     @Override
-    public List<Integer> getElements() {
-        return Collections.unmodifiableList(this.elements);
+    public Collection<Integer> getElements() {
+        return Collections.unmodifiableSet(this.elements);
+    }
+
+    @Override
+    public Boolean isValidCandidate(final Integer element) {
+        return ! this.elements.contains(element);
     }
 
     @Override
