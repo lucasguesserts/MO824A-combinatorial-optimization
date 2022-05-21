@@ -1,19 +1,12 @@
 package tabuSearch;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-
 import costCoparer.CostComparer;
 import neighborhoodMove.NeighborhoodMove;
 import problem.Problem;
 
-public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
+public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolution {
 
-    private final Integer fake = -1;
-
-    public TabuSearch(
+    public TabuSearchNeighbohoodMove(
         final Problem<Integer, Integer> initialSolution,
         final CostComparer<Integer> costComparer,
         final Integer tenure,
@@ -23,41 +16,7 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
     }
 
     @Override
-    public List<Integer> makeCL() {
-        final List<Integer> candicateList = new ArrayList<Integer>(incubentSolution.getDomainSize());
-        for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
-            if (this.incubentSolution.isValidCandidate(candidate))
-                candicateList.add(candidate);
-        }
-        return candicateList;
-    }
-
-    @Override
-    public List<Integer> makeRCL() {
-        return new ArrayList<Integer>();
-    }
-
-    @Override
-    public Queue<Integer> makeTL() {
-        final Queue<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
-        for (int i=0; i<2*tenure; i++) {
-            _TS.add(fake);
-        }
-        return _TS;
-    }
-
-    @Override
-    public void updateCL() {}
-
-    @Override
-    public Problem<Integer, Integer> createEmptySol() {
-        final Problem<Integer, Integer> emptySolution = this.incubentSolution.clone();
-        emptySolution.reset();
-        return emptySolution;
-    }
-
-    @Override
-    public void neighborhoodMove() {
+    protected void neighborhoodMove() {
         final var neighborhoodMove = new NeighborhoodMove(
             this.incubentSolution.getCost(),
             this.bestSolution.getCost()

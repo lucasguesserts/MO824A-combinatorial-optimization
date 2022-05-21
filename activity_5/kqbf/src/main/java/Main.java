@@ -5,7 +5,7 @@ import costCoparer.IntegerCostComparer;
 import inputReader.InputReaderKQBF;
 import problem.Problem;
 import problem.ProblemKQBF;
-import tabuSearch.TabuSearch;
+import tabuSearch.TabuSearchNeighbohoodMove;
 
 
 class Main {
@@ -15,7 +15,7 @@ class Main {
 
     private static long startTime;
     private static long endTime;
-    private static TabuSearch tabuSearch;
+    private static TabuSearchNeighbohoodMove tabuSearch;
     private static Problem<Integer, Integer> solution;
 
     public static void main(String[] args) throws IOException {
@@ -29,8 +29,8 @@ class Main {
         final String problemInstance = getProblemInstance(args[0]);
         final var input = new InputReaderKQBF(problemInstance);
         final var integerCostComparer = IntegerCostComparer.getInstance();
-        final var initialSolution = new ProblemKQBF(input);
-        tabuSearch = new TabuSearch(initialSolution, integerCostComparer, 20, 1000);
+        final var emptySolution = new ProblemKQBF(input);
+        tabuSearch = new TabuSearchNeighbohoodMove(emptySolution, integerCostComparer, 20, 1000);
     }
 
     private static void solve() {
