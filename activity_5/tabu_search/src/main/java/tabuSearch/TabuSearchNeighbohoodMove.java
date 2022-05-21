@@ -1,8 +1,12 @@
 package tabuSearch;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 import costCoparer.CostComparer;
 import neighborhoodMove.NeighborhoodMove;
 import problem.Problem;
+import solutions.SolutionKnapsack;
 
 public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolution {
 
@@ -45,19 +49,39 @@ public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolutio
             case NO_MOVE:
                 break;
         }
+        this.updateTL(neighborhoodMove);
     }
 
     private void addCandidate(final NeighborhoodMove neighborhoodMove) {
         this.incubentSolution.add(neighborhoodMove.getBestCandidateToAdd());
         this.CL.remove(neighborhoodMove.getBestCandidateToAdd());
         this.TL.add(neighborhoodMove.getBestCandidateToAdd());
-        this.TL.poll();
     }
 
     private void removeCandidate(final NeighborhoodMove neighborhoodMove) {
         this.incubentSolution.remove(neighborhoodMove.getBestCandidateToRemove());
         this.CL.add(neighborhoodMove.getBestCandidateToRemove());
         this.TL.add(neighborhoodMove.getBestCandidateToRemove());
+    }
+
+    @Override
+    protected Queue<Integer> makeTL() {
+        final Integer tabuListSize = 2*tenure;
+        final Queue<Integer> tabuList = new ArrayDeque<Integer>(tabuListSize);
+        for (int i = 0; i < tabuListSize; ++i) {
+            tabuList.add(SolutionKnapsack.NULL_CANDIDATE);
+        }
+        return tabuList;
+    }
+
+    private void updateTL(final NeighborhoodMove neighborhoodMove) {
+        // TL always have 2*tenure elements
+        // always include two elements and remove two
+        final var added = neighborhoodMove.getBestCandidateToAdd();
+        final var removed = neighborhoodMove.getBestCandidateToRemove();
+        this.TL.add(added == NeighborhoodMove.NULL_CANDIDATE ? SolutionKnapsack.NULL_CANDIDATE : added);
+        this.TL.add(removed == NeighborhoodMove.NULL_CANDIDATE ? SolutionKnapsack.NULL_CANDIDATE : removed);
+        this.TL.poll();
         this.TL.poll();
     }
 

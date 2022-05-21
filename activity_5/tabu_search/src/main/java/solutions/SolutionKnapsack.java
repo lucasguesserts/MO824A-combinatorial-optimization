@@ -5,6 +5,8 @@ import java.util.List;
 
 public class SolutionKnapsack extends SolutionInteger {
 
+    public static Integer NULL_CANDIDATE = -1; // this is a value that will never be in the solution, but will be used to fill the Tabu List
+
     private final Integer knapsackCapacity;
     private final List<Integer> knapsackWeights;
     private Integer currentKnapsackWeight;

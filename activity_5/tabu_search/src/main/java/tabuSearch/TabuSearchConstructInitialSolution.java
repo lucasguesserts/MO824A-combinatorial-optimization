@@ -1,16 +1,13 @@
 package tabuSearch;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 
 import costCoparer.CostComparer;
 import problem.Problem;
 
 public abstract class TabuSearchConstructInitialSolution extends TabuSearchAbstract<Integer, Integer> {
 
-    private final Integer fake = -1;
 
     public TabuSearchConstructInitialSolution(
         final Problem<Integer, Integer> initialSolution,
@@ -34,15 +31,6 @@ public abstract class TabuSearchConstructInitialSolution extends TabuSearchAbstr
     @Override
     protected List<Integer> makeRCL() {
         return new ArrayList<Integer>();
-    }
-
-    @Override
-    protected Queue<Integer> makeTL() {
-        final Queue<Integer> _TS = new ArrayDeque<Integer>(2*tenure);
-        for (int i=0; i<2*tenure; i++) {
-            _TS.add(fake);
-        }
-        return _TS;
     }
 
     @Override

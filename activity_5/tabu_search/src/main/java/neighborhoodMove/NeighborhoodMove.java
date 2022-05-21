@@ -3,6 +3,9 @@ package neighborhoodMove;
 import java.util.Collection;
 
 public class NeighborhoodMove {
+
+    public static final Integer NULL_CANDIDATE = null;
+
     private Integer minimumCostVariation = Integer.MAX_VALUE;
     private Integer bestCandidateToAdd = null;
     private Integer bestCandidateToRemove = null;
@@ -89,7 +92,7 @@ public class NeighborhoodMove {
         for (final var candidate: candidateList) {
             final Integer costIncrement = costEvaluator.evaluate(candidate);
             if (conditionEvaluator.satisfy(candidate) || this.aspirationCriteria(costIncrement)) {
-                this.update(costIncrement, candidate, null, Move.ADD);
+                this.update(costIncrement, candidate, NULL_CANDIDATE, Move.ADD);
             }
         }
     }
@@ -102,7 +105,7 @@ public class NeighborhoodMove {
         for (final var candidate: candidateList) {
             final Integer costIncrement = costEvaluator.evaluate(candidate);
             if (conditionEvaluator.satisfy(candidate) || this.aspirationCriteria(costIncrement)) {
-                this.update(costIncrement, null, candidate, Move.REMOVE);
+                this.update(costIncrement, NULL_CANDIDATE, candidate, Move.REMOVE);
             }
         }
 
@@ -144,10 +147,10 @@ public class NeighborhoodMove {
             switch (move) {
                 case ADD:
                     this.bestCandidateToAdd = bestCandidateToAdd;
-                    this.bestCandidateToRemove = null;
+                    this.bestCandidateToRemove = NULL_CANDIDATE;
                     break;
                 case REMOVE:
-                    this.bestCandidateToAdd = null;
+                    this.bestCandidateToAdd = NULL_CANDIDATE;
                     this.bestCandidateToRemove = bestCandidateToRemove;
                     break;
                 case EXCHANGE:
