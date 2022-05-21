@@ -1,6 +1,8 @@
 package tabuSearch;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 import costCoparer.CostComparer;
@@ -11,6 +13,7 @@ import solutions.SolutionKnapsack;
 public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolution {
 
     private NeighborhoodMove neighborhoodMove;
+    private List<Integer> candidateList;
 
     public TabuSearchNeighbohoodMove(
         final Problem<Integer, Integer> initialSolution,
@@ -19,6 +22,7 @@ public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolutio
         final Integer iterations
     ) {
         super(initialSolution, costComparer, tenure, iterations);
+        this.candidateList = this.makeCandidateList();
     }
 
     @Override
@@ -28,7 +32,7 @@ public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolutio
             this.bestSolution.getCost()
         );
         this.neighborhoodMove.searchMove(
-            this.CL,
+            this.candidateList,
             this.incubentSolution.getElements(),
             (candidate) -> this.incubentSolution.evaluateInsertionCost(candidate),
             (candidate) -> !this.TL.contains(candidate),
@@ -54,13 +58,13 @@ public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolutio
 
     private void addCandidate() {
         this.incubentSolution.add(this.neighborhoodMove.getBestCandidateToAdd());
-        this.CL.remove(this.neighborhoodMove.getBestCandidateToAdd());
+        this.candidateList.remove(this.neighborhoodMove.getBestCandidateToAdd());
         this.TL.add(this.neighborhoodMove.getBestCandidateToAdd());
     }
 
     private void removeCandidate() {
         this.incubentSolution.remove(this.neighborhoodMove.getBestCandidateToRemove());
-        this.CL.add(this.neighborhoodMove.getBestCandidateToRemove());
+        this.candidateList.add(this.neighborhoodMove.getBestCandidateToRemove());
         this.TL.add(this.neighborhoodMove.getBestCandidateToRemove());
     }
 
@@ -84,6 +88,15 @@ public class TabuSearchNeighbohoodMove extends TabuSearchConstructInitialSolutio
         this.TL.add(removed == NeighborhoodMove.NULL_CANDIDATE ? SolutionKnapsack.NULL_CANDIDATE : removed);
         this.TL.poll();
         this.TL.poll();
+    }
+
+    private List<Integer> makeCandidateList() {
+        final List<Integer> candicateList = new ArrayList<Integer>(incubentSolution.getDomainSize());
+        for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
+            if (this.incubentSolution.isValidCandidate(candidate))
+                candicateList.add(candidate);
+        }
+        return candicateList;
     }
 
 }

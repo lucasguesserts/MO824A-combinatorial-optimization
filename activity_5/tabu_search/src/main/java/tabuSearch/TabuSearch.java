@@ -14,7 +14,6 @@ public abstract class TabuSearch<E, V extends Number> {
     protected V incubentCost;
     protected Problem<E, V> bestSolution;
     protected Problem<E, V> incubentSolution;
-    protected List<E> CL;
     protected List<E> RCL;
     protected Queue<E> TL;
     protected final CostComparer<V> costComparer;
