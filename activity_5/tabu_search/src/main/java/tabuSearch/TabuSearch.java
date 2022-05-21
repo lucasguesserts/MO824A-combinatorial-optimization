@@ -7,7 +7,7 @@ import java.util.Random;
 import costCoparer.CostComparer;
 import problem.Problem;
 
-public abstract class TabuSearchAbstract<E, V extends Number> {
+public abstract class TabuSearch<E, V extends Number> {
 
     static Random rng = new Random(0);
 
@@ -26,7 +26,7 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
     protected abstract void constructiveHeuristic();
     protected abstract void neighborhoodMove();
 
-    public TabuSearchAbstract(
+    public TabuSearch(
         final Problem<E, V> emptySolution,
         final CostComparer<V> costComparer,
         final Integer tenure,

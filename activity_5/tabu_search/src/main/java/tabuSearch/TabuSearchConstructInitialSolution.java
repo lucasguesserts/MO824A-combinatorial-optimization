@@ -6,7 +6,7 @@ import java.util.List;
 import costCoparer.CostComparer;
 import problem.Problem;
 
-public abstract class TabuSearchConstructInitialSolution extends TabuSearchAbstract<Integer, Integer> {
+public abstract class TabuSearchConstructInitialSolution extends TabuSearch<Integer, Integer> {
 
 
     public TabuSearchConstructInitialSolution(
