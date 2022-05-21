@@ -58,35 +58,30 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
 
     @Override
     public void neighborhoodMove() {
-        final var neighborhoodMove = new NeighborhoodMove();
+        final var neighborhoodMove = new NeighborhoodMove(
+            this.incubentSolution.getCost(),
+            this.bestSolution.getCost()
+        );
         updateCL();
         // Evaluate insertions
-        for (final Integer candidateToAdd: this.CL) {
-            neighborhoodMove.markAddMove(
-                candidateToAdd,
-                (candidate) -> this.incubentSolution.evaluateInsertionCost(candidate),
-                (candidate, costIncrement) -> (!this.TL.contains(candidate) || this.aspirationCriteria(costIncrement))
-            );
-        }
+        neighborhoodMove.searchAddMove(
+            this.CL,
+            (candidate) -> this.incubentSolution.evaluateInsertionCost(candidate),
+            (candidate) -> !this.TL.contains(candidate)
+        );
         // Evaluate removals
-        for (final Integer candidateToRemove: this.incubentSolution.getElements()) {
-            neighborhoodMove.markRemoveMove(
-                candidateToRemove,
-                (candidate) -> this.incubentSolution.evaluateRemovalCost(candidate),
-                (candidate, costIncrement) -> (!this.TL.contains(candidate) || this.aspirationCriteria(costIncrement))
-            );
-        }
+        neighborhoodMove.searchRemoveMove(
+            this.incubentSolution.getElements(),
+            (candidate) -> this.incubentSolution.evaluateRemovalCost(candidate),
+            (candidate) -> !this.TL.contains(candidate)
+        );
         // Evaluate exchanges
-        for (final Integer candIn: this.CL) {
-            for (final Integer candOut: this.incubentSolution.getElements()) {
-                neighborhoodMove.markExchangesMove(
-                    candIn,
-                    candOut,
-                    (candidateToAdd, candidateToRemove) -> incubentSolution.evaluateExchangeCost(candidateToAdd, candidateToRemove),
-                    (candidateToAdd, candidateToRemove, costIncrement) -> ((!this.TL.contains(candidateToAdd) && !TL.contains(candidateToRemove)) || this.aspirationCriteria(costIncrement))
-                );
-            }
-        }
+        neighborhoodMove.searchExchangesMove(
+            this.CL,
+            this.incubentSolution.getElements(),
+            (candidateToAdd, candidateToRemove) -> incubentSolution.evaluateExchangeCost(candidateToAdd, candidateToRemove),
+            (candidateToAdd, candidateToRemove) -> (!this.TL.contains(candidateToAdd) && !TL.contains(candidateToRemove))
+        );
         // Implement the best non-tabu move
         this.TL.poll();
         switch (neighborhoodMove.getMove()) {
@@ -116,11 +111,6 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
         this.CL.add(neighborhoodMove.getBestCandidateToRemove());
         this.TL.add(neighborhoodMove.getBestCandidateToRemove());
         this.TL.poll();
-    }
-
-    private Boolean aspirationCriteria(final Integer costIncrement) {
-        final Integer newSolutionCandidateCost = this.incubentSolution.getCost() + costIncrement;
-        return newSolutionCandidateCost < this.bestSolution.getCost();
     }
 
 }
