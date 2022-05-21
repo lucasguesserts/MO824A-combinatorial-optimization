@@ -7,14 +7,16 @@
             "name": "qbf",
             "request": "launch",
             "mainClass": "${workspaceFolder}/qbf/src/main/java/Main.java",
-            "cwd": "${workspaceFolder}/qbf"
+            "cwd": "${workspaceFolder}/qbf",
+            "args": "20"
         },
         {
             "type": "java",
             "name": "kqbf",
             "request": "launch",
             "mainClass": "${workspaceFolder}/kqbf/src/main/java/Main.java",
-            "cwd": "${workspaceFolder}/kqbf"
+            "cwd": "${workspaceFolder}/kqbf",
+            "args": "20"
         }
     ]
 }
