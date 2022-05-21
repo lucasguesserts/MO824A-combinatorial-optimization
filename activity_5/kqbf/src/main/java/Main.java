@@ -1,58 +1,35 @@
 import java.io.IOException;
-import java.security.InvalidParameterException;
 
 import costCoparer.IntegerCostComparer;
 import inputReader.InputReaderKQBF;
-import problem.Problem;
+import main.AbstractMain;
 import problem.ProblemKQBF;
+import tabuSearch.TabuSearch;
 import tabuSearch.TabuSearchNeighbohoodMove;
 
+class Main extends AbstractMain {
 
-class Main {
-
-    private static final String PROBLEM_PREFIX = "kqbf";
-    private static final String DIR_PATH = "../instances";
-
-    private static long startTime;
-    private static long endTime;
-    private static TabuSearchNeighbohoodMove tabuSearch;
-    private static Problem<Integer, Integer> solution;
-
-    public static void main(String[] args) throws IOException {
-        start(args);
-        solve();
-        finish();
+    private Main(final String[] args) throws IOException {
+        super(args);
     }
 
-    private static void start(final String[] args) throws IOException {
-        if (args.length != 1) throw new InvalidParameterException("Give one and only one parameter to this program");
-        final String problemInstance = getProblemInstance(args[0]);
+    public static void main(String[] args) throws IOException {
+        new Main(args);
+    }
+
+    @Override
+    protected TabuSearch<Integer, Integer> makeSearchProcedure(final String problemInstance) throws IOException {
         final var input = new InputReaderKQBF(problemInstance);
         final var integerCostComparer = IntegerCostComparer.getInstance();
         final var emptySolution = new ProblemKQBF(input);
-        tabuSearch = new TabuSearchNeighbohoodMove(emptySolution, integerCostComparer, 20, 1000);
+        final var tabuSearch = new TabuSearchNeighbohoodMove(emptySolution, integerCostComparer, 20, 1000);
+        return tabuSearch;
     }
 
-    private static void solve() {
-        startTime = System.currentTimeMillis();
-        tabuSearch.solve();
-        solution = tabuSearch.getBestSolution();
-        endTime = System.currentTimeMillis();
-    }
-
-    private static void finish() {
-        System.out.println(String.format(
-            "Best solution found: \n\t%s",
-            solution.toString()
-        ));
-        final var totalTime = (double) (endTime - startTime);
-        System.out.println(String.format(
-            "Running time = %f seconds",
-            totalTime / 1000
-        ));
-    }
-
-    private static String getProblemInstance(final String arg) {
+    @Override
+    protected String getProblemInstance(final String arg) {
+        final String DIR_PATH = "../instances";
+        final String PROBLEM_PREFIX = "kqbf";
         final Integer instanceNumber = Integer.parseInt(arg);
         return String.format(
             "%s/%s/%s%03d",
