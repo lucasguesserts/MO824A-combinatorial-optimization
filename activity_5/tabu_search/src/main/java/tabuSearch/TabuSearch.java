@@ -63,27 +63,16 @@ public class TabuSearch extends TabuSearchAbstract<Integer, Integer> {
             this.bestSolution.getCost()
         );
         updateCL();
-        // Evaluate insertions
-        neighborhoodMove.searchAddMove(
+        neighborhoodMove.searchMove(
             this.CL,
+            this.incubentSolution.getElements(),
             (candidate) -> this.incubentSolution.evaluateInsertionCost(candidate),
-            (candidate) -> !this.TL.contains(candidate)
-        );
-        // Evaluate removals
-        neighborhoodMove.searchRemoveMove(
-            this.incubentSolution.getElements(),
+            (candidate) -> !this.TL.contains(candidate),
             (candidate) -> this.incubentSolution.evaluateRemovalCost(candidate),
-            (candidate) -> !this.TL.contains(candidate)
-        );
-        // Evaluate exchanges
-        neighborhoodMove.searchExchangesMove(
-            this.CL,
-            this.incubentSolution.getElements(),
+            (candidate) -> !this.TL.contains(candidate),
             (candidateToAdd, candidateToRemove) -> incubentSolution.evaluateExchangeCost(candidateToAdd, candidateToRemove),
             (candidateToAdd, candidateToRemove) -> (!this.TL.contains(candidateToAdd) && !TL.contains(candidateToRemove))
         );
-        // Implement the best non-tabu move
-        this.TL.poll();
         switch (neighborhoodMove.getMove()) {
             case ADD:
                 this.addCandidate(neighborhoodMove);

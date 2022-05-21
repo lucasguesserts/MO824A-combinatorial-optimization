@@ -53,7 +53,35 @@ public class NeighborhoodMove {
         return this.bestCandidateToRemove;
     }
 
-    public void searchAddMove(
+    public void searchMove (
+        final Collection<Integer> candidateToAddList,
+        final Collection<Integer> candidateToRemoveList,
+        final CostEvaluator addCostEvaluator,
+        final ConditionEvaluator addConditionEvaluator,
+        final CostEvaluator removeCostEvaluator,
+        final ConditionEvaluator removeConditionEvaluator,
+        final CostEvaluatorExchange exchangeCostEvaluator,
+        final ConditionEvaluatorExchange exchangeConditionEvaluator
+    ) {
+        this.searchAddMove(
+            candidateToAddList,
+            addCostEvaluator,
+            addConditionEvaluator
+        );
+        this.searchRemoveMove(
+            candidateToRemoveList,
+            removeCostEvaluator,
+            removeConditionEvaluator
+        );
+        this.searchExchangesMove(
+            candidateToAddList,
+            candidateToRemoveList,
+            exchangeCostEvaluator,
+            exchangeConditionEvaluator
+        );
+    }
+
+    private void searchAddMove(
         final Collection<Integer> candidateList,
         final CostEvaluator costEvaluator,
         final ConditionEvaluator conditionEvaluator
@@ -66,7 +94,7 @@ public class NeighborhoodMove {
         }
     }
 
-    public void searchRemoveMove(
+    private void searchRemoveMove(
         final Collection<Integer> candidateList,
         final CostEvaluator costEvaluator,
         final ConditionEvaluator conditionEvaluator
@@ -80,7 +108,7 @@ public class NeighborhoodMove {
 
     }
 
-    public void searchExchangesMove(
+    private void searchExchangesMove(
         final Collection<Integer> candidateToAddList,
         final Collection<Integer> candidateToRemoveList,
         final CostEvaluatorExchange costEvaluator,
