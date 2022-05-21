@@ -19,41 +19,15 @@ public abstract class TabuSearchConstructInitialSolution extends TabuSearchAbstr
     }
 
     @Override
-    protected List<Integer> makeCL() {
-        final List<Integer> candicateList = new ArrayList<Integer>(incubentSolution.getDomainSize());
-        for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
-            if (this.incubentSolution.isValidCandidate(candidate))
-                candicateList.add(candidate);
-        }
-        return candicateList;
-    }
-
-    @Override
-    protected List<Integer> makeRCL() {
-        return new ArrayList<Integer>();
-    }
-
-    @Override
-    protected void updateCL() {}
-
-    @Override
-    protected Problem<Integer, Integer> createEmptySol() {
-        final Problem<Integer, Integer> emptySolution = this.incubentSolution.clone();
-        emptySolution.reset();
-        return emptySolution;
-    }
-
-    @Override
     protected void constructiveHeuristic() {
         // This is the construction procedure of the GRASP algorithm
+        this.incubentSolution.reset();
         this.CL = makeCL();
-        this.RCL = makeRCL();
-        this.incubentSolution = createEmptySol();
+        this.RCL = new ArrayList<Integer>();
         do {
             Integer maxCost = this.costComparer.getMinCost();
             Integer minCost = this.costComparer.getMaxCost();
             this.incubentCost = incubentSolution.getCost();
-            updateCL();
             for (final Integer candidate : this.CL) {
                 final Integer deltaCost = this.incubentSolution.evaluateInsertionCost(candidate);
                 if (this.costComparer.isSmaller(deltaCost, minCost))
@@ -73,6 +47,15 @@ public abstract class TabuSearchConstructInitialSolution extends TabuSearchAbstr
             this.incubentSolution.add(inCand);
             RCL.clear();
         } while (!constructiveStopCriteria());
+    }
+
+    private List<Integer> makeCL() {
+        final List<Integer> candicateList = new ArrayList<Integer>(incubentSolution.getDomainSize());
+        for (Integer candidate = 0; candidate < incubentSolution.getDomainSize(); ++candidate) {
+            if (this.incubentSolution.isValidCandidate(candidate))
+                candicateList.add(candidate);
+        }
+        return candicateList;
     }
 
     private Boolean constructiveStopCriteria() {

@@ -35,7 +35,8 @@ class Main {
 
     private static void solve() {
         startTime = System.currentTimeMillis();
-        solution = tabuSearch.solve();
+        tabuSearch.solve();
+        solution = tabuSearch.getBestSolution();
         endTime = System.currentTimeMillis();
     }
 

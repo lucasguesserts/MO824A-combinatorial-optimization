@@ -9,7 +9,6 @@ import problem.Problem;
 
 public abstract class TabuSearchAbstract<E, V extends Number> {
 
-    public static boolean verbose = false;
     static Random rng = new Random(0);
 
     protected V incubentCost;
@@ -22,11 +21,8 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
     protected final Integer tenure;
     protected final Integer iterations;
 
-    protected abstract List<E> makeCL();
-    protected abstract List<E> makeRCL();
     protected abstract Queue<E> makeTL();
-    protected abstract void updateCL();
-    protected abstract Problem<E, V> createEmptySol();
+    protected abstract void updateTL();
     protected abstract void constructiveHeuristic();
     protected abstract void neighborhoodMove();
 
@@ -42,21 +38,25 @@ public abstract class TabuSearchAbstract<E, V extends Number> {
         this.iterations = iterations;
     }
 
-    public Problem<E, V> solve() {
-        this.bestSolution = createEmptySol();
+    public void solve() {
         constructiveHeuristic();
+        this.bestSolution = this.incubentSolution.clone();
         this.TL = makeTL();
         for (int i = 0; i < iterations; ++i) {
             neighborhoodMove();
-            if (this.costComparer.isSmaller(this.incubentSolution.getCost(), this.bestSolution.getCost())) {
-                this.bestSolution = this.incubentSolution.clone();
-                if (verbose)
-                    System.out.println(
-                        String.format("Iteration %d: Best Solution: %s", i, this.bestSolution.toString()
-                    ));
-            }
+            updateBestSolution();
+            updateTL();
         }
+    }
+
+    public Problem<E, V> getBestSolution() {
         return this.bestSolution;
+    }
+
+    private void updateBestSolution() {
+        if (this.costComparer.isSmaller(this.incubentSolution.getCost(), this.bestSolution.getCost())) {
+            this.bestSolution = this.incubentSolution.clone();
+        }
     }
 
 }
