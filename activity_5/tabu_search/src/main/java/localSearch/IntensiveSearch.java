@@ -10,7 +10,8 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
 
     protected static final Integer NULL_CANDIDATE = null;
 
-    private Boolean localOptimalFound = false;
+    private Boolean localOptimalFound = Boolean.FALSE;
+    private Boolean solutionImproved = Boolean.FALSE;
 
     protected Problem<Integer, Integer> solution;
     private Collection<Integer> elementsManipulated = new HashSet<>();
@@ -38,9 +39,12 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
     }
 
     private void findLocalOptimal() {
-        this.searchMove();
-        this.addCandidates();
-        this.removeCandidates();
+        do {
+            solutionImproved = Boolean.FALSE;
+            this.searchMove();
+            this.addCandidates();
+            this.removeCandidates();
+        } while (solutionImproved);
     }
 
     private void addCandidates() {
@@ -148,8 +152,9 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
     ) {
         if (this.isBestMove(costIncrement)) {
             this.minimumCostVariation = costIncrement;
-            this.candidatesToAdd = candidatesToAdd;
-            this.candidatesToRemove = candidatesToRemove;
+            this.candidatesToAdd.addAll(candidatesToAdd);
+            this.candidatesToRemove.addAll(candidatesToRemove);
+            this.solutionImproved = Boolean.TRUE;
         }
     }
 
