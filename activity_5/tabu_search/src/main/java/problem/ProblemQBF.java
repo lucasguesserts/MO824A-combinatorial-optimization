@@ -40,6 +40,19 @@ public class ProblemQBF implements Problem<Integer, Integer> {
     }
 
     @Override
+    public Boolean isValid(final Collection<Integer> elementsToAdd, final Collection<Integer> elementsToRemove) {
+        Boolean valid = Boolean.TRUE;
+        valid &= elementsToAdd.stream().anyMatch(
+            element -> (element < 0 || element >= objectiveFunction.getDomainSize())
+        );
+        if (valid)
+            valid &= elementsToRemove.stream().anyMatch(
+                element -> (element < 0 || element >= objectiveFunction.getDomainSize())
+            );
+        return valid;
+    }
+
+    @Override
     public void add(final Integer element) {
         this.cost += this.objectiveFunction.evaluateInsertionCost(element);
         this.solution.add(element);
@@ -85,22 +98,11 @@ public class ProblemQBF implements Problem<Integer, Integer> {
         return this.objectiveFunction.evaluateExchangeCost(elementToInsert, elementToRemove);
     }
 
-    @Override
-    public Integer evaluateTwoAdditionOneRemovalCost(
-        final Integer firstElementToInsert,
-        final Integer secondElementToInsert,
-        final Integer elementToRemove
+    public Integer evaluate(
+        final Collection<Integer> elementsToInsert,
+        final Collection<Integer> elementsToRemove
     ) {
-        return this.objectiveFunction.evaluateTwoAdditionOneRemovalCost(firstElementToInsert, secondElementToInsert, elementToRemove);
-    }
-
-    @Override
-    public Integer evaluateOneAdditionTwoRemovalCost(
-        final Integer elementToInsert,
-        final Integer firstElementToRemove,
-        final Integer secondElementToRemove
-    ) {
-        return this.objectiveFunction.evaluateOneAdditionTwoRemovalCost(elementToInsert, firstElementToRemove, secondElementToRemove);
+        return this.objectiveFunction.evaluate(elementsToInsert, elementsToRemove);
     }
 
     @Override

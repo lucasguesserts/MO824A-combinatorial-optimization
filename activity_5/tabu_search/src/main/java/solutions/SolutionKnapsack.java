@@ -35,6 +35,18 @@ public class SolutionKnapsack extends SolutionInteger {
         return super.isValidCandidate(element) && this.fitsIntoKnapsack(element);
     }
 
+    public Integer getKnapsackCapacity() {
+        return this.knapsackCapacity;
+    }
+
+    public Integer getCurrentKnapsackWeight() {
+        return this.currentKnapsackWeight;
+    }
+
+    public Integer getWeightOfElement(final Integer element) {
+        return this.knapsackWeights.get(element);
+    }
+
     private Boolean fitsIntoKnapsack(final Integer element) {
         final var elementWeight = this.knapsackWeights.get(element);
         return this.currentKnapsackWeight + elementWeight <= this.knapsackCapacity;

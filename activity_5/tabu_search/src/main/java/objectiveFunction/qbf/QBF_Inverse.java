@@ -1,5 +1,7 @@
 package objectiveFunction.qbf;
 
+import java.util.Collection;
+
 import inputReader.InputReaderQBF;
 import solutions.Solution;
 
@@ -34,21 +36,11 @@ public class QBF_Inverse extends QBF {
     }
 
     @Override
-    public Integer evaluateTwoAdditionOneRemovalCost(
-        final Integer firstElementToInsert,
-        final Integer secondElementToInsert,
-        final Integer elementToRemove
+    public Integer evaluate(
+        final Collection<Integer> elementsToInsert,
+        final Collection<Integer> elementsToRemove
     ) {
-        return -super.evaluateTwoAdditionOneRemovalCost(firstElementToInsert, secondElementToInsert, elementToRemove);
-    }
-
-    @Override
-    public Integer evaluateOneAdditionTwoRemovalCost(
-        final Integer elementToInsert,
-        final Integer firstElementToRemove,
-        final Integer secondElementToRemove
-    ) {
-        return -super.evaluateOneAdditionTwoRemovalCost(elementToInsert, firstElementToRemove, secondElementToRemove);
+        return - super.evaluate(elementsToInsert, elementsToRemove);
     }
 
 }

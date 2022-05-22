@@ -1,6 +1,7 @@
 package objectiveFunction.qbf;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 import inputReader.InputReaderQBF;
 import objectiveFunction.ObjectiveFunction;
@@ -60,7 +61,16 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
     public Integer evaluateRemovalCost(final Integer element) {
         if (variables[element].equals(0))
             return 0;
-        return -evaluateContributionQBF(element);
+        final Integer thisEvaluation = this.evaluateQBF();
+        final Integer diff = - evaluateContributionQBF(element);
+        final Integer thisNewEvaluation = thisEvaluation + diff;
+        final var other = this.clone();
+        other.removeVariable(element);
+        final Integer otherEvaluation = other.evaluateQBF();
+        if (!thisNewEvaluation.equals(otherEvaluation)) {
+            throw new RuntimeException("removal is wrong!");
+        }
+        return diff;
     }
 
     @Override
@@ -78,30 +88,18 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         return sum;
     }
 
-    public Integer evaluateTwoAdditionOneRemovalCost(
-        final Integer firstElementToInsert,
-        final Integer secondElementToInsert,
-        final Integer elementToRemove
+    public Integer evaluate(
+        final Collection<Integer> elementsToInsert,
+        final Collection<Integer> elementsToRemove
     ) {
         // this is very inneficient, but it does the job
         final var other = this.clone();
-        other.addVariable(firstElementToInsert);
-        other.addVariable(secondElementToInsert);
-        other.removeVariable(elementToRemove);
-        final var diff = this.evaluateQBF() - other.evaluateQBF();
-        return diff;
-    }
-
-    public Integer evaluateOneAdditionTwoRemovalCost(
-        final Integer elementToInsert,
-        final Integer firstElementToRemove,
-        final Integer secondElementToRemove
-    ) {
-        // this is very inneficient, but it does the job
-        final var other = this.clone();
-        other.addVariable(elementToInsert);
-        other.removeVariable(firstElementToRemove);
-        other.removeVariable(secondElementToRemove);
+        for (final var toInsert: elementsToInsert) {
+            other.addVariable(toInsert);
+        }
+        for (final var toRemove: elementsToRemove) {
+            other.removeVariable(toRemove);
+        }
         final var diff = this.evaluateQBF() - other.evaluateQBF();
         return diff;
     }

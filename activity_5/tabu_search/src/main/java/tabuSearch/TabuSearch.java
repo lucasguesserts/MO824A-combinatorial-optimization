@@ -25,6 +25,7 @@ public abstract class TabuSearch<E, V extends Number> {
     protected abstract void constructiveHeuristic();
     protected abstract void neighborhoodMove();
     protected abstract Boolean intensificationCriteria();
+    protected abstract void updateIntensificationCriteria();
     protected abstract Problem<E, V> makeIntenseSearch(final Problem<E, V> solution);
 
     protected TabuSearch(
@@ -58,8 +59,9 @@ public abstract class TabuSearch<E, V extends Number> {
         return this.bestSolution;
     }
 
-    private void updateBestSolution() {
+    protected void updateBestSolution() {
         if (this.costComparer.isSmaller(this.incubentSolution.getCost(), this.bestSolution.getCost())) {
+            this.updateIntensificationCriteria();
             this.bestSolution = this.incubentSolution.clone();
             this.iterationLog();
         }

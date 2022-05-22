@@ -99,9 +99,9 @@ public abstract class ImprovingSearchAbstract implements LocalSearch<Integer, In
     private Collection<Integer> makeCandidateToAddList() {
         final Collection<Integer> candicateList = new ArrayList<Integer>(this.incubentSolution.getDomainSize());
         for (Integer candidate = 0; candidate < this.incubentSolution.getDomainSize(); ++candidate) {
-            if (this.incubentSolution.isValidCandidate(candidate))
-                candicateList.add(candidate);
+            candicateList.add(candidate);
         }
+        candicateList.removeAll(this.incubentSolution.getElements());
         return candicateList;
     }
 

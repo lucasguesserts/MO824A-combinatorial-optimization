@@ -1,8 +1,8 @@
 package localSearch;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import problem.Problem;
 
@@ -12,20 +12,17 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
 
     private Boolean localOptimalFound = false;
 
-    protected final Problem<Integer, Integer> originalSolution;
     protected Problem<Integer, Integer> solution;
-    private Collection<Integer> elementsManipulated;
+    private Collection<Integer> elementsManipulated = new HashSet<>();
 
     private Integer minimumCostVariation = Integer.MAX_VALUE;
-    private Collection<Integer> candidatesToAdd = new ArrayList<>();
-    private Collection<Integer> candidatesToRemove = new ArrayList<>();
+    private Collection<Integer> candidatesToAdd = new HashSet<>();
+    private Collection<Integer> candidatesToRemove = new HashSet<>();
 
     public IntensiveSearch(
         final Problem<Integer, Integer> solution
     ){
-        originalSolution = solution.clone();
         this.solution = solution;
-        this.elementsManipulated = new ArrayList<>();
     }
 
     public Problem<Integer, Integer> getLocalOptimal() {
@@ -63,57 +60,54 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
     private void searchMove () {
         this.searchTwoAdditionsOneRemoval();
         this.searchOneAdditionTwoRemovals();
-        this.solution = this.originalSolution.clone();
     }
 
     private void searchTwoAdditionsOneRemoval() {
         final Collection<Integer> candidateToRemoveList = this.makeCandidateToRemoveList();
-        for (final var candidateToRemove: candidateToRemoveList) {
-            this.solution = this.originalSolution.clone();
-            this.solution.remove(candidateToRemove);
-            final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
-            for (final var firstCandidateToAdd: candidateToAddList)
-            for (final var secondCandidateToAdd: candidateToAddList) {
-                final var localSolution = this.solution.clone();
-                localSolution.add(firstCandidateToAdd);
-                localSolution.add(secondCandidateToAdd);
-                final Integer costIncrement = localSolution.getCost() - this.originalSolution.getCost();
-                this.update(
-                    costIncrement,
-                    Arrays.asList(firstCandidateToAdd, secondCandidateToAdd),
-                    Arrays.asList(candidateToRemove)
-                );
-            }
+        final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
+        for (final var candidateToRemove: candidateToRemoveList)
+        for (final var firstCandidateToAdd: candidateToAddList)
+        for (final var secondCandidateToAdd: candidateToAddList) {
+            final Collection<Integer> elementsToInsert =
+                firstCandidateToAdd.equals(secondCandidateToAdd)
+                ? Set.of(firstCandidateToAdd)
+                : Set.of(firstCandidateToAdd, secondCandidateToAdd);
+            final Collection<Integer> elementsToRemove = Set.of(candidateToRemove);
+            final Integer costIncrement = this.solution.evaluate(elementsToInsert, elementsToRemove);
+            this.update(
+                costIncrement,
+                elementsToInsert,
+                elementsToRemove
+            );
         }
     }
 
     private void searchOneAdditionTwoRemovals() {
         final Collection<Integer> candidateToRemoveList = this.makeCandidateToRemoveList();
+        final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
         for (final var firstCandidateToRemove: candidateToRemoveList)
-        for (final var secondCandidateToRemove: candidateToRemoveList) {
-            this.solution = this.originalSolution.clone();
-            this.solution.remove(firstCandidateToRemove);
-            this.solution.remove(secondCandidateToRemove);
-            final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
-            for (final var candidateToAdd: candidateToAddList) {
-                final var localSolution = this.solution.clone();
-                localSolution.add(candidateToAdd);
-                final Integer costIncrement = localSolution.getCost() - this.originalSolution.getCost();
-                this.update(
-                    costIncrement,
-                    Arrays.asList(candidateToAdd),
-                    Arrays.asList(firstCandidateToRemove, secondCandidateToRemove)
-                );
-            }
+        for (final var secondCandidateToRemove: candidateToRemoveList)
+        for (final var candidateToAdd: candidateToAddList) {
+            final Collection<Integer> elementsToInsert = Set.of(candidateToAdd);
+            final Collection<Integer> elementsToRemove =
+                firstCandidateToRemove.equals(secondCandidateToRemove)
+                ? Set.of(firstCandidateToRemove)
+                : Set.of(firstCandidateToRemove, secondCandidateToRemove);
+            final Integer costIncrement = this.solution.evaluate(elementsToInsert, elementsToRemove);
+            this.update(
+                costIncrement,
+                elementsToInsert,
+                elementsToRemove
+            );
         }
     }
 
     private Collection<Integer> makeCandidateToAddList() {
-        final Collection<Integer> candicateList = new ArrayList<Integer>(this.solution.getDomainSize());
+        final Collection<Integer> candicateList = new HashSet<Integer>(this.solution.getDomainSize());
         for (Integer candidate = 0; candidate < this.solution.getDomainSize(); ++candidate) {
-            if (this.solution.isValidCandidate(candidate))
-                candicateList.add(candidate);
+            candicateList.add(candidate);
         }
+        candicateList.removeAll(this.solution.getElements());
         return candicateList;
     }
 

@@ -40,6 +40,39 @@ public class ProblemKQBF implements Problem<Integer, Integer> {
     }
 
     @Override
+    public Boolean isValid(final Collection<Integer> elementsToAdd, final Collection<Integer> elementsToRemove) {
+        Boolean valid = Boolean.TRUE;
+        valid &= this.validRange(elementsToAdd, elementsToRemove);
+        valid &= this.validWeight(elementsToAdd, elementsToRemove);
+        return valid;
+    }
+
+    private Boolean validRange(final Collection<Integer> elementsToAdd, final Collection<Integer> elementsToRemove) {
+        Boolean valid = Boolean.TRUE;
+        valid &= elementsToAdd.stream().anyMatch(
+            element -> (element < 0 || element >= objectiveFunction.getDomainSize())
+        );
+        if (valid)
+            valid &= elementsToRemove.stream().anyMatch(
+                element -> (element < 0 || element >= objectiveFunction.getDomainSize())
+            );
+        return valid;
+    }
+
+    private Boolean validWeight(final Collection<Integer> elementsToAdd, final Collection<Integer> elementsToRemove) {
+        Boolean valid = Boolean.TRUE;
+        Integer weight = this.solution.getCurrentKnapsackWeight();
+        for (final var element: elementsToRemove) {
+            weight -= this.solution.getWeightOfElement(element);
+        }
+        for (final var element: elementsToAdd) {
+            weight += this.solution.getWeightOfElement(element);
+        }
+        valid &= (weight < this.solution.getKnapsackCapacity());
+        return valid;
+    }
+
+    @Override
     public void add(final Integer element) {
         if (this.solution.isValidCandidate(element)) {
             this.cost += this.objectiveFunction.evaluateInsertionCost(element);
@@ -76,7 +109,10 @@ public class ProblemKQBF implements Problem<Integer, Integer> {
 
     @Override
     public Integer evaluateInsertionCost(final Integer element) {
-        return this.objectiveFunction.evaluateInsertionCost(element);
+        if (this.isValidCandidate(element))
+            return this.objectiveFunction.evaluateInsertionCost(element);
+        else
+            return 0;
     }
 
     @Override
@@ -86,25 +122,25 @@ public class ProblemKQBF implements Problem<Integer, Integer> {
 
     @Override
     public Integer evaluateExchangeCost(final Integer elementToInsert, final Integer elementToRemove) {
-        return this.objectiveFunction.evaluateExchangeCost(elementToInsert, elementToRemove);
+        final Integer newKnapsackWeight =
+            this.solution.getCurrentKnapsackWeight()
+            + this.solution.getWeightOfElement(elementToInsert)
+            - this.solution.getWeightOfElement(elementToRemove);
+        if (newKnapsackWeight < this.solution.getKnapsackCapacity())
+            return this.objectiveFunction.evaluateExchangeCost(elementToInsert, elementToRemove);
+        else
+            return Integer.MAX_VALUE; // it is a minimization algorithm so return the worst improvement in order to forbid such move
     }
 
-    @Override
-    public Integer evaluateTwoAdditionOneRemovalCost(
-        final Integer firstElementToInsert,
-        final Integer secondElementToInsert,
-        final Integer elementToRemove
+    public Integer evaluate(
+        final Collection<Integer> elementsToInsert,
+        final Collection<Integer> elementsToRemove
     ) {
-        return this.objectiveFunction.evaluateTwoAdditionOneRemovalCost(firstElementToInsert, secondElementToInsert, elementToRemove);
-    }
-
-    @Override
-    public Integer evaluateOneAdditionTwoRemovalCost(
-        final Integer elementToInsert,
-        final Integer firstElementToRemove,
-        final Integer secondElementToRemove
-    ) {
-        return this.objectiveFunction.evaluateOneAdditionTwoRemovalCost(elementToInsert, firstElementToRemove, secondElementToRemove);
+        if (this.isValid(elementsToInsert, elementsToRemove)) {
+            return this.objectiveFunction.evaluate(elementsToInsert, elementsToRemove);
+        } else {
+            return 0;
+        }
     }
 
     @Override
