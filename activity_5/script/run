@@ -8,13 +8,17 @@ cd $PROJECT_PATH
 
 PROJ_LIST="kqbf qbf qbf_random professor"
 INSTANCE_NUMBER_LIST="20 40 60 80 100 200 400"
+LOCAL_SEARCH_METHOD_LIST="best_improving first_improving"
+
 DEFAULT_PROJ="kqbf"
 DEFAULT_INSTANCE_NUMBER="20"
+DEFAULT_LOCAL_SEARCH_METHOD="best_improving"
 
 function usage {
     echo "usage: $0 PROJ INSTANCE_NUMBER"
     echo "PROJ = $PROJ_LIST"
     echo "INSTANCE_NUMBER = $INSTANCE_NUMBER_LIST"
+    echo "LOCAL_SEARCH_METHOD = $LOCAL_SEARCH_METHOD_LIST"
     exit
 }
 
@@ -28,16 +32,25 @@ function exists_in_list() { # https://www.baeldung.com/linux/check-variable-exis
 if [ $# -eq 0 ]
 then
     PROJ=$DEFAULT_PROJ
+    INSTANCE=$DEFAULT_INSTANCE_NUMBER
+    LOCAL_SEARCH_METHOD=$DEFAULT_LOCAL_SEARCH_METHOD
 elif [ $# -eq 1 ] && exists_in_list "$PROJ_LIST" $1
 then
     PROJ=$1
     INSTANCE=$DEFAULT_INSTANCE_NUMBER
+    LOCAL_SEARCH_METHOD=$DEFAULT_LOCAL_SEARCH_METHOD
 elif [ $# -eq 2 ] && exists_in_list "$PROJ_LIST" $1 && exists_in_list "$INSTANCE_NUMBER_LIST" $2
 then
     PROJ=$1
     INSTANCE=$2
+    LOCAL_SEARCH_METHOD=$DEFAULT_LOCAL_SEARCH_METHOD
+elif [ $# -eq 3 ] && exists_in_list "$PROJ_LIST" $1 && exists_in_list "$INSTANCE_NUMBER_LIST" $2 && exists_in_list "$LOCAL_SEARCH_METHOD_LIST" $3
+then
+    PROJ=$1
+    INSTANCE=$2
+    LOCAL_SEARCH_METHOD=$3
 else
     usage
 fi
 
-gradle $PROJ:run --args=$INSTANCE | tee ${PROJECT_PATH}/$PROJ.log
+gradle $PROJ:run --args="$INSTANCE $LOCAL_SEARCH_METHOD" | tee ${PROJECT_PATH}/$PROJ.log

@@ -14,6 +14,11 @@ public abstract class AbstractMain {
     private TabuSearch<Integer, Integer> tabuSearch;
     private Problem<Integer, Integer> bestProblemSolution;
 
+    protected enum LocalSearchMethod {
+        BEST_IMPROVING,
+        FIRST_IMPROVING
+    }
+
     public AbstractMain(final String[] args) throws IOException {
         start(args);
         solve();
@@ -21,13 +26,17 @@ public abstract class AbstractMain {
     }
 
     protected abstract String getProblemInstance(final String arg);
-    protected abstract TabuSearch<Integer, Integer> makeSearchProcedure(final String problemInstance) throws IOException;
+    protected abstract TabuSearch<Integer, Integer> makeSearchProcedure(
+        final String problemInstance,
+        final LocalSearchMethod localSearchMethod
+    ) throws IOException;
 
 
     private void start(final String[] args) throws IOException {
-        if (args.length != 1) throw new InvalidParameterException("Give one and only one parameter to this program");
-        final String problemInstance = getProblemInstance(args[0]);
-        tabuSearch = makeSearchProcedure(problemInstance);
+        if (args.length != 2) throw new InvalidParameterException("Give exactly two parameters to this program");
+        final var problemInstance = getProblemInstance(args[0]);
+        final var localSearchMethod = getLocaSearchMethod(args[1]);
+        tabuSearch = makeSearchProcedure(problemInstance, localSearchMethod);
     }
 
     private void solve() {
@@ -47,5 +56,13 @@ public abstract class AbstractMain {
             "Running time = %f seconds",
             totalTime / 1000
         ));
+    }
+
+    private LocalSearchMethod getLocaSearchMethod(final String arg) {
+        if (arg.equals(LocalSearchMethod.BEST_IMPROVING.toString().toLowerCase())) {
+            return LocalSearchMethod.BEST_IMPROVING;
+        } else if (arg.equals(LocalSearchMethod.FIRST_IMPROVING.toString().toLowerCase())) {
+            return LocalSearchMethod.FIRST_IMPROVING;
+        } else throw new RuntimeException("the Local Search Method provided is invalid");
     }
 }

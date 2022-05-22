@@ -1,16 +1,9 @@
 package tabuSearch;
 
-import java.util.ArrayDeque;
-import java.util.Collection;
-import java.util.Queue;
-
 import localSearch.FirstImproving;
 import problem.Problem;
-import solutions.SolutionKnapsack;
 
-public class TabuSearchFirstImproving extends TabuSearchConstructInitialSolution {
-
-    private Collection<Integer> elementsManipulated;
+public class TabuSearchFirstImproving extends TabuSearchBestImproving {
 
     public TabuSearchFirstImproving(
         final Problem<Integer, Integer> initialSolution,
@@ -29,26 +22,6 @@ public class TabuSearchFirstImproving extends TabuSearchConstructInitialSolution
         );
         this.incubentSolution = neighborhoodSearch.getLocalOptimal();
         this.elementsManipulated = neighborhoodSearch.getElementsManipulated();
-    }
-
-    @Override
-    protected Queue<Integer> makeTL() {
-        final Integer tabuListSize = 2*tenure;
-        final Queue<Integer> tabuList = new ArrayDeque<Integer>(tabuListSize);
-        for (int i = 0; i < tabuListSize; ++i) {
-            tabuList.add(SolutionKnapsack.NULL_CANDIDATE);
-        }
-        return tabuList;
-    }
-
-    @Override
-    protected void updateTL() {
-        // TL always have 2*tenure elements
-        // always include two elements and remove two
-        this.TL.addAll(this.elementsManipulated);
-        for (int i = 0; i < this.elementsManipulated.size(); ++i){
-            this.TL.poll();
-        }
     }
 
 }

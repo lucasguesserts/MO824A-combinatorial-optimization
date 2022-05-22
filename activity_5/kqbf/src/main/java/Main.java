@@ -5,6 +5,7 @@ import main.AbstractMain;
 import problem.ProblemKQBF;
 import tabuSearch.TabuSearch;
 import tabuSearch.TabuSearchBestImproving;
+import tabuSearch.TabuSearchFirstImproving;
 
 class Main extends AbstractMain {
 
@@ -17,11 +18,20 @@ class Main extends AbstractMain {
     }
 
     @Override
-    protected TabuSearch<Integer, Integer> makeSearchProcedure(final String problemInstance) throws IOException {
+    protected TabuSearch<Integer, Integer> makeSearchProcedure(
+        final String problemInstance,
+        final LocalSearchMethod localSearchMethod
+    ) throws IOException {
         final var input = new InputReaderKQBF(problemInstance);
         final var emptySolution = new ProblemKQBF(input);
-        final var tabuSearch = new TabuSearchBestImproving(emptySolution, 20, 1000);
-        return tabuSearch;
+        switch (localSearchMethod) {
+            case BEST_IMPROVING:
+                return new TabuSearchBestImproving(emptySolution, 20, 1000);
+            case FIRST_IMPROVING:
+                return new TabuSearchFirstImproving(emptySolution, 20, 1000);
+            default:
+                throw new RuntimeException("the Local Search Method provided is invalid");
+        }
     }
 
     @Override

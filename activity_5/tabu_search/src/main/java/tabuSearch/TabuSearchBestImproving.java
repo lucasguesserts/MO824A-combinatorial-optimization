@@ -10,7 +10,7 @@ import solutions.SolutionKnapsack;
 
 public class TabuSearchBestImproving extends TabuSearchConstructInitialSolution {
 
-    private Collection<Integer> elementsManipulated;
+    protected Collection<Integer> elementsManipulated;
 
     public TabuSearchBestImproving(
         final Problem<Integer, Integer> initialSolution,
