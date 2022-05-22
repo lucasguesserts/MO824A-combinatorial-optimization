@@ -33,4 +33,22 @@ public class QBF_Inverse extends QBF {
         return -super.evaluateExchangeCost(in,out);
     }
 
+    @Override
+    public Integer evaluateTwoAdditionOneRemovalCost(
+        final Integer firstElementToInsert,
+        final Integer secondElementToInsert,
+        final Integer elementToRemove
+    ) {
+        return -super.evaluateTwoAdditionOneRemovalCost(firstElementToInsert, secondElementToInsert, elementToRemove);
+    }
+
+    @Override
+    public Integer evaluateOneAdditionTwoRemovalCost(
+        final Integer elementToInsert,
+        final Integer firstElementToRemove,
+        final Integer secondElementToRemove
+    ) {
+        return -super.evaluateOneAdditionTwoRemovalCost(elementToInsert, firstElementToRemove, secondElementToRemove);
+    }
+
 }

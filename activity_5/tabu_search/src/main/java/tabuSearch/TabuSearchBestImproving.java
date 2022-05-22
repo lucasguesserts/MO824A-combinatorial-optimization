@@ -8,7 +8,7 @@ import localSearch.BestImproving;
 import problem.Problem;
 import solutions.SolutionKnapsack;
 
-public class TabuSearchBestImproving extends TabuSearchConstructInitialSolution {
+public class TabuSearchBestImproving extends TabuSearchIntensificationByRestart {
 
     protected Collection<Integer> elementsManipulated;
 

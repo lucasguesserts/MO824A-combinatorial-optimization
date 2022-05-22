@@ -90,6 +90,24 @@ public class ProblemKQBF implements Problem<Integer, Integer> {
     }
 
     @Override
+    public Integer evaluateTwoAdditionOneRemovalCost(
+        final Integer firstElementToInsert,
+        final Integer secondElementToInsert,
+        final Integer elementToRemove
+    ) {
+        return this.objectiveFunction.evaluateTwoAdditionOneRemovalCost(firstElementToInsert, secondElementToInsert, elementToRemove);
+    }
+
+    @Override
+    public Integer evaluateOneAdditionTwoRemovalCost(
+        final Integer elementToInsert,
+        final Integer firstElementToRemove,
+        final Integer secondElementToRemove
+    ) {
+        return this.objectiveFunction.evaluateOneAdditionTwoRemovalCost(elementToInsert, firstElementToRemove, secondElementToRemove);
+    }
+
+    @Override
     public String toString(){
         return String.format(
             "SolutionCost {cost: %s, solutionKnapsack: %s}", this.cost.toString(), this.solution.toString());

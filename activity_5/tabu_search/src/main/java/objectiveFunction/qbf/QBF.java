@@ -78,6 +78,34 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
         return sum;
     }
 
+    public Integer evaluateTwoAdditionOneRemovalCost(
+        final Integer firstElementToInsert,
+        final Integer secondElementToInsert,
+        final Integer elementToRemove
+    ) {
+        // this is very inneficient, but it does the job
+        final var other = this.clone();
+        other.addVariable(firstElementToInsert);
+        other.addVariable(secondElementToInsert);
+        other.removeVariable(elementToRemove);
+        final var diff = this.evaluateQBF() - other.evaluateQBF();
+        return diff;
+    }
+
+    public Integer evaluateOneAdditionTwoRemovalCost(
+        final Integer elementToInsert,
+        final Integer firstElementToRemove,
+        final Integer secondElementToRemove
+    ) {
+        // this is very inneficient, but it does the job
+        final var other = this.clone();
+        other.addVariable(elementToInsert);
+        other.removeVariable(firstElementToRemove);
+        other.removeVariable(secondElementToRemove);
+        final var diff = this.evaluateQBF() - other.evaluateQBF();
+        return diff;
+    }
+
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("QBF Evaluator:");
@@ -116,6 +144,21 @@ public class QBF implements ObjectiveFunction<Integer, Integer> {
 
     private void resetVariables() {
         Arrays.fill(variables, 0);
+    }
+
+    private Integer evaluateQBF() {
+        Integer aux = 0;
+        Integer sum = 0;
+        Integer vecAux[] = new Integer[this.size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                aux += this.variables[j] * this.matrix[i][j];
+            }
+            vecAux[i] = aux;
+            sum += aux * variables[i];
+            aux = 0;
+        }
+        return sum;
     }
 
 }
