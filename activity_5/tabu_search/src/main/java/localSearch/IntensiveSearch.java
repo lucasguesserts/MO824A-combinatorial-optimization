@@ -60,6 +60,7 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
     private void searchMove () {
         this.searchTwoAdditionsOneRemoval();
         this.searchOneAdditionTwoRemovals();
+        this.searchTwoAdditionsTwoRemovals();
     }
 
     private void searchTwoAdditionsOneRemoval() {
@@ -89,6 +90,30 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
         for (final var secondCandidateToRemove: candidateToRemoveList)
         for (final var candidateToAdd: candidateToAddList) {
             final Collection<Integer> elementsToInsert = Set.of(candidateToAdd);
+            final Collection<Integer> elementsToRemove =
+                firstCandidateToRemove.equals(secondCandidateToRemove)
+                ? Set.of(firstCandidateToRemove)
+                : Set.of(firstCandidateToRemove, secondCandidateToRemove);
+            final Integer costIncrement = this.solution.evaluate(elementsToInsert, elementsToRemove);
+            this.update(
+                costIncrement,
+                elementsToInsert,
+                elementsToRemove
+            );
+        }
+    }
+
+    private void searchTwoAdditionsTwoRemovals() {
+        final Collection<Integer> candidateToRemoveList = this.makeCandidateToRemoveList();
+        final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
+        for (final var firstCandidateToRemove: candidateToRemoveList)
+        for (final var secondCandidateToRemove: candidateToRemoveList)
+        for (final var firstCandidateToAdd: candidateToAddList)
+        for (final var secondCandidateToAdd: candidateToAddList) {
+            final Collection<Integer> elementsToInsert =
+                firstCandidateToAdd.equals(secondCandidateToAdd)
+                ? Set.of(firstCandidateToAdd)
+                : Set.of(firstCandidateToAdd, secondCandidateToAdd);
             final Collection<Integer> elementsToRemove =
                 firstCandidateToRemove.equals(secondCandidateToRemove)
                 ? Set.of(firstCandidateToRemove)
