@@ -1,4 +1,4 @@
-package neighborhoodMove;
+package localSearch;
 
 import java.util.Collection;
 

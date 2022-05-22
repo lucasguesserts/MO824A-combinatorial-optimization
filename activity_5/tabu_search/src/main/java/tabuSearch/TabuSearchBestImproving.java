@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Queue;
 
-import neighborhoodMove.BestImproving;
+import localSearch.BestImproving;
 import problem.Problem;
 import solutions.SolutionKnapsack;
 
