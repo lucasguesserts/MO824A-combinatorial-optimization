@@ -10,10 +10,10 @@ abstract class TabuSearchConstructInitialSolution extends TabuSearch<Integer, In
 
     protected TabuSearchConstructInitialSolution(
         final Problem<Integer, Integer> initialSolution,
-        final Integer tenure,
+        final Double tenureRatio,
         final Integer iterations
     ) {
-        super(initialSolution, IntegerCostComparer.getInstance(), tenure, iterations);
+        super(initialSolution, IntegerCostComparer.getInstance(), tenureRatio, iterations);
     }
 
     @Override

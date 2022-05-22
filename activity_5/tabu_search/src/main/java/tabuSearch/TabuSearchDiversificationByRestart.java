@@ -12,10 +12,10 @@ abstract class TabuSearchDiversificationByRestart extends TabuSearchIntensificat
 
     protected TabuSearchDiversificationByRestart(
         final Problem<Integer, Integer> initialSolution,
-        final Integer tenure,
+        final Double tenureRatio,
         final Integer iterations
     ) {
-        super(initialSolution, tenure, iterations);
+        super(initialSolution, tenureRatio, iterations);
     }
 
     @Override

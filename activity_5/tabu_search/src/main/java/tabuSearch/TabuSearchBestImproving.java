@@ -14,10 +14,10 @@ public class TabuSearchBestImproving extends TabuSearchDiversificationByRestart 
 
     public TabuSearchBestImproving(
         final Problem<Integer, Integer> initialSolution,
-        final Integer tenure,
+        final Double tenureRatio,
         final Integer iterations
     ) {
-        super(initialSolution, tenure, iterations);
+        super(initialSolution, tenureRatio, iterations);
     }
 
     @Override

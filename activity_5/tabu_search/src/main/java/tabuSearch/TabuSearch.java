@@ -36,12 +36,12 @@ public abstract class TabuSearch<E, V extends Number> {
     protected TabuSearch(
         final Problem<E, V> emptySolution,
         final CostComparer<V> costComparer,
-        final Integer tenure,
+        final Double tenureRatio,
         final Integer iterations
     ) {
         this.incubentSolution = emptySolution;
         this.costComparer = costComparer;
-        this.tenure = tenure;
+        this.tenure = (int) Math.round(tenureRatio * emptySolution.getDomainSize());
         this.maximumNumberOfIterations = iterations;
     }
 

@@ -1,44 +1,63 @@
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
-import inputReader.InputReaderKQBF;
 import main.AbstractMain;
-import problem.ProblemKQBF;
-import tabuSearch.TabuSearch;
-import tabuSearch.TabuSearchBestImproving;
-import tabuSearch.TabuSearchFirstImproving;
+import main.Parameters;
 
 class Main extends AbstractMain {
 
-    private Main(final String[] args) throws IOException {
-        super(args);
+    private Main() throws IOException {
+        super();
+        this.makeInstanceList();
+        this.makeLocalSearchList();
+        this.makeTenureRatioList();
+        this.makeMethodVariationList();
+        this.makeNumberOfIterationsList();
+        this.makeTimeLimitList();
     }
 
     public static void main(String[] args) throws IOException {
-        new Main(args);
+        final var solver = new Main();
+        solver.run();
     }
 
-    @Override
-    protected TabuSearch<Integer, Integer> makeSearchProcedure(
-        final String problemInstance,
-        final LocalSearchMethod localSearchMethod
-    ) throws IOException {
-        final var input = new InputReaderKQBF(problemInstance);
-        final var emptySolution = new ProblemKQBF(input);
-        switch (localSearchMethod) {
-            case BEST_IMPROVING:
-                return new TabuSearchBestImproving(emptySolution, 20, 1000);
-            case FIRST_IMPROVING:
-                return new TabuSearchFirstImproving(emptySolution, 20, 1000);
-            default:
-                throw new RuntimeException("the Local Search Method provided is invalid");
-        }
+    private void makeInstanceList() {
+        parameters.instanceList = Arrays.asList(
+            20,
+            40,
+            60,
+            80,
+            100,
+            200,
+            400
+        ).stream().map(n -> makeInstanceName(n)).collect(Collectors.toList());
     }
 
-    @Override
-    protected String getProblemInstance(final String arg) {
+    private void makeLocalSearchList() {
+        this.parameters.localSearchList = Arrays.asList(Parameters.LocalSearchMethod.values());
+    }
+
+    private void makeTenureRatioList() {
+        this.parameters.tenureRatioList.add(0.2);
+        this.parameters.tenureRatioList.add(0.4);
+    }
+
+    private void makeMethodVariationList() {
+        this.parameters.methodVariationList = Arrays.asList(Parameters.Variation.values());
+    }
+
+    private void makeNumberOfIterationsList() {
+        this.parameters.numberOfIterationsList.add(1000);
+    }
+
+    private void makeTimeLimitList() {
+        this.parameters.timeLimitMillisecondsList.add(30*60*1000);
+    }
+
+    private String makeInstanceName(final Integer instanceNumber) {
         final String DIR_PATH = "../instances";
         final String PROBLEM_PREFIX = "kqbf";
-        final Integer instanceNumber = Integer.parseInt(arg);
         return String.format(
             "%s/%s/%s%03d",
             DIR_PATH,
