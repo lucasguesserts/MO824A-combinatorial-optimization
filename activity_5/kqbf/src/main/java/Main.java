@@ -5,7 +5,7 @@ import inputReader.InputReaderKQBF;
 import main.AbstractMain;
 import problem.ProblemKQBF;
 import tabuSearch.TabuSearch;
-import tabuSearch.TabuSearchNeighbohoodMove;
+import tabuSearch.TabuSearchBestImproving;
 
 class Main extends AbstractMain {
 
@@ -22,7 +22,7 @@ class Main extends AbstractMain {
         final var input = new InputReaderKQBF(problemInstance);
         final var integerCostComparer = IntegerCostComparer.getInstance();
         final var emptySolution = new ProblemKQBF(input);
-        final var tabuSearch = new TabuSearchNeighbohoodMove(emptySolution, integerCostComparer, 20, 1000);
+        final var tabuSearch = new TabuSearchBestImproving(emptySolution, integerCostComparer, 20, 1000);
         return tabuSearch;
     }
 
