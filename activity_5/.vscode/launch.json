@@ -8,7 +8,7 @@
             "request": "launch",
             "mainClass": "${workspaceFolder}/qbf/src/main/java/Main.java",
             "cwd": "${workspaceFolder}/qbf",
-            "args": "20"
+            "args": "20 best_improving"
         },
         {
             "type": "java",
@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "${workspaceFolder}/kqbf/src/main/java/Main.java",
             "cwd": "${workspaceFolder}/kqbf",
-            "args": "20"
+            "args": "20 best_improving"
         }
     ]
 }
