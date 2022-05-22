@@ -30,6 +30,11 @@ abstract class TabuSearchIntensificationByRestart extends TabuSearchConstructIni
         this.intensificationByRestartDoneforCurrentBestSolution = Boolean.TRUE;
         this.iterationOfLastRestart = this.currentIteration;
         final var localSearch = new IntensiveSearch(this.bestSolution.clone());
+        final var elementsManipulated = localSearch.getElementsManipulated();
+        for (int i = 0; i < elementsManipulated.size(); ++i) {
+            this.TL.poll();
+        }
+        TL.addAll(elementsManipulated);
         return localSearch.getLocalOptimal();
     }
 

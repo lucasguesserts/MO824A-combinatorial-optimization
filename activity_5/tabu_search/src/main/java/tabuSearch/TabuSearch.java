@@ -59,9 +59,18 @@ public abstract class TabuSearch<E, V extends Number> {
             }
             if (!intensificationCriteria() && diversificationCriteria()) {
                 this.incubentSolution = makeDiversificationConstruction();
+                this.TL = this.makeTL(); // reset tabu list
+                this.makeIntensiveSearchOnDiversificationConstruction();
                 updateBestSolution();
             }
         }
+    }
+
+    private void makeIntensiveSearchOnDiversificationConstruction() {
+        final var originalBestSolution = this.bestSolution;
+        this.bestSolution = this.incubentSolution.clone();
+        this.incubentSolution = makeIntenseSearch();
+        this.bestSolution = originalBestSolution;
     }
 
     public Problem<E, V> getBestSolution() {
