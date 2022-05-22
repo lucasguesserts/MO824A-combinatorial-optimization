@@ -7,7 +7,7 @@ abstract class TabuSearchDiversificationByRestart extends TabuSearchIntensificat
 
     private static Double ALPHA = 0.2;
 
-    private static final Double RESTART_TOLERANCE = 0.60;
+    private static final Double RESTART_TOLERANCE = 0.20;
     private Integer iterationOfLastRestart = 0;
 
     protected TabuSearchDiversificationByRestart(
