@@ -22,11 +22,16 @@ public abstract class TabuSearch<E, V extends Number> {
 
     protected abstract Queue<E> makeTL();
     protected abstract void updateTL();
+
     protected abstract void constructiveHeuristic();
     protected abstract void neighborhoodMove();
+
     protected abstract Boolean intensificationCriteria();
     protected abstract void updateIntensificationCriteria();
-    protected abstract Problem<E, V> makeIntenseSearch(final Problem<E, V> solution);
+    protected abstract Problem<E, V> makeIntenseSearch();
+
+    protected abstract Boolean diversificationCriteria();
+    protected abstract Problem<E, V> makeDiversificationConstruction();
 
     protected TabuSearch(
         final Problem<E, V> emptySolution,
@@ -49,7 +54,11 @@ public abstract class TabuSearch<E, V extends Number> {
             updateBestSolution();
             updateTL();
             if (intensificationCriteria()) {
-                this.incubentSolution = makeIntenseSearch(this.bestSolution);
+                this.incubentSolution = makeIntenseSearch();
+                updateBestSolution();
+            }
+            if (!intensificationCriteria() && diversificationCriteria()) {
+                this.incubentSolution = makeDiversificationConstruction();
                 updateBestSolution();
             }
         }

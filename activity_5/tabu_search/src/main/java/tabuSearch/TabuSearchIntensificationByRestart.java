@@ -25,7 +25,7 @@ abstract class TabuSearchIntensificationByRestart extends TabuSearchConstructIni
     }
 
     @Override
-    protected Problem<Integer, Integer> makeIntenseSearch(final Problem<Integer, Integer> solution) {
+    protected Problem<Integer, Integer> makeIntenseSearch() {
         System.out.println(">>>>>>>>>>>>>>>>>>>> Intensification by restart <<<<<<<<<<<<<<<<<<<");
         this.intensificationByRestartDoneforCurrentBestSolution = Boolean.TRUE;
         this.iterationOfLastRestart = this.currentIteration;
