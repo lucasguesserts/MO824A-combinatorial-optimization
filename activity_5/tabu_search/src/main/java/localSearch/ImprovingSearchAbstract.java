@@ -9,6 +9,8 @@ public abstract class ImprovingSearchAbstract implements LocalSearch<Integer, In
 
     protected static final Integer NULL_CANDIDATE = null;
 
+    private Boolean localOptimalFound = false;
+
     protected Problem<Integer, Integer> incubentSolution;
     private final Integer originalBestSolutionCost;
     private Collection<Integer> elementsManipulated;
@@ -28,10 +30,13 @@ public abstract class ImprovingSearchAbstract implements LocalSearch<Integer, In
         this.originalBestSolutionCost = originalBestSolutionCost;
         this.tabuList = tabuList;
         this.elementsManipulated = new ArrayList<>();
-        this.findLocalOptimal();
     }
 
     public Problem<Integer, Integer> getLocalOptimal() {
+        if (!this.localOptimalFound) {
+            this.findLocalOptimal();
+            this.localOptimalFound = Boolean.TRUE;
+        }
         return this.incubentSolution;
     }
 
