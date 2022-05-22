@@ -12,6 +12,7 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
 
     private Boolean localOptimalFound = false;
 
+    protected final Problem<Integer, Integer> originalSolution;
     protected Problem<Integer, Integer> solution;
     private Collection<Integer> elementsManipulated;
 
@@ -22,6 +23,7 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
     public IntensiveSearch(
         final Problem<Integer, Integer> solution
     ){
+        originalSolution = solution.clone();
         this.solution = solution;
         this.elementsManipulated = new ArrayList<>();
     }
@@ -59,41 +61,50 @@ public class IntensiveSearch implements LocalSearch<Integer, Integer> {
     }
 
     private void searchMove () {
-        final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
-        final Collection<Integer> candidateToRemoveList = this.makeCandidateToRemoveList();
-        this.searchTwoAdditionsOneRemoval(candidateToAddList, candidateToRemoveList);
-        this.searchOneAdditionTwoRemovals(candidateToAddList, candidateToRemoveList);
+        this.searchTwoAdditionsOneRemoval();
+        this.searchOneAdditionTwoRemovals();
+        this.solution = this.originalSolution.clone();
     }
 
-    private void searchTwoAdditionsOneRemoval(
-        final Collection<Integer> candidateToAddList,
-        final Collection<Integer> candidateToRemoveList
-    ) {
-        for (final var firstCandidateToAdd: candidateToAddList)
-        for (final var secondCandidateToAdd: candidateToAddList)
+    private void searchTwoAdditionsOneRemoval() {
+        final Collection<Integer> candidateToRemoveList = this.makeCandidateToRemoveList();
         for (final var candidateToRemove: candidateToRemoveList) {
-            final Integer costIncrement = solution.evaluateTwoAdditionOneRemovalCost(firstCandidateToAdd, secondCandidateToAdd, candidateToRemove);
-            this.update(
-                costIncrement,
-                Arrays.asList(firstCandidateToAdd, secondCandidateToAdd),
-                Arrays.asList(candidateToRemove)
-            );
+            this.solution = this.originalSolution.clone();
+            this.solution.remove(candidateToRemove);
+            final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
+            for (final var firstCandidateToAdd: candidateToAddList)
+            for (final var secondCandidateToAdd: candidateToAddList) {
+                final var localSolution = this.solution.clone();
+                localSolution.add(firstCandidateToAdd);
+                localSolution.add(secondCandidateToAdd);
+                final Integer costIncrement = localSolution.getCost() - this.originalSolution.getCost();
+                this.update(
+                    costIncrement,
+                    Arrays.asList(firstCandidateToAdd, secondCandidateToAdd),
+                    Arrays.asList(candidateToRemove)
+                );
+            }
         }
     }
 
-    private void searchOneAdditionTwoRemovals(
-        final Collection<Integer> candidateToAddList,
-        final Collection<Integer> candidateToRemoveList
-    ) {
-        for (final var candidateToAdd: candidateToAddList)
+    private void searchOneAdditionTwoRemovals() {
+        final Collection<Integer> candidateToRemoveList = this.makeCandidateToRemoveList();
         for (final var firstCandidateToRemove: candidateToRemoveList)
         for (final var secondCandidateToRemove: candidateToRemoveList) {
-            final Integer costIncrement = solution.evaluateOneAdditionTwoRemovalCost(candidateToAdd, firstCandidateToRemove, secondCandidateToRemove);
-            this.update(
-                costIncrement,
-                Arrays.asList(candidateToAdd),
-                Arrays.asList(firstCandidateToRemove, secondCandidateToRemove)
-            );
+            this.solution = this.originalSolution.clone();
+            this.solution.remove(firstCandidateToRemove);
+            this.solution.remove(secondCandidateToRemove);
+            final Collection<Integer> candidateToAddList = this.makeCandidateToAddList();
+            for (final var candidateToAdd: candidateToAddList) {
+                final var localSolution = this.solution.clone();
+                localSolution.add(candidateToAdd);
+                final Integer costIncrement = localSolution.getCost() - this.originalSolution.getCost();
+                this.update(
+                    costIncrement,
+                    Arrays.asList(candidateToAdd),
+                    Arrays.asList(firstCandidateToRemove, secondCandidateToRemove)
+                );
+            }
         }
     }
 
