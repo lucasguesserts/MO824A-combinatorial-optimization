@@ -1,6 +1,5 @@
 import java.io.IOException;
 
-import costCoparer.IntegerCostComparer;
 import inputReader.InputReaderKQBF;
 import main.AbstractMain;
 import problem.ProblemKQBF;
@@ -20,9 +19,8 @@ class Main extends AbstractMain {
     @Override
     protected TabuSearch<Integer, Integer> makeSearchProcedure(final String problemInstance) throws IOException {
         final var input = new InputReaderKQBF(problemInstance);
-        final var integerCostComparer = IntegerCostComparer.getInstance();
         final var emptySolution = new ProblemKQBF(input);
-        final var tabuSearch = new TabuSearchBestImproving(emptySolution, integerCostComparer, 20, 1000);
+        final var tabuSearch = new TabuSearchBestImproving(emptySolution, 20, 1000);
         return tabuSearch;
     }
 

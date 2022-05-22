@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Queue;
 
-import costCoparer.CostComparer;
 import neighborhoodMove.BestImproving;
 import problem.Problem;
 import solutions.SolutionKnapsack;
@@ -15,11 +14,10 @@ public class TabuSearchBestImproving extends TabuSearchConstructInitialSolution 
 
     public TabuSearchBestImproving(
         final Problem<Integer, Integer> initialSolution,
-        final CostComparer<Integer> costComparer,
         final Integer tenure,
         final Integer iterations
     ) {
-        super(initialSolution, costComparer, tenure, iterations);
+        super(initialSolution, tenure, iterations);
     }
 
     @Override

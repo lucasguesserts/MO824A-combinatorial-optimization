@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import costCoparer.CostComparer;
+import costCoparer.IntegerCostComparer;
 import problem.Problem;
 
 public abstract class TabuSearchConstructInitialSolution extends TabuSearch<Integer, Integer> {
 
     public TabuSearchConstructInitialSolution(
         final Problem<Integer, Integer> initialSolution,
-        final CostComparer<Integer> costComparer,
         final Integer tenure,
         final Integer iterations
     ) {
-        super(initialSolution, costComparer, tenure, iterations);
+        super(initialSolution, IntegerCostComparer.getInstance(), tenure, iterations);
     }
 
     @Override
