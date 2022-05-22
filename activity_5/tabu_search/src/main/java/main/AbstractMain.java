@@ -18,6 +18,7 @@ public abstract class AbstractMain {
     private long endTime;
 
     private TabuSearch<Integer, Integer> tabuSearch;
+    private Double runningTime;
     private Problem<Integer, Integer> bestProblemSolution;
 
     protected Parameters parameters = new Parameters();
@@ -44,17 +45,11 @@ public abstract class AbstractMain {
             this.methodVariation = methodVariation;
             this.timeLimitMilliseconds = timeLimitMilliseconds;
             this.numberOfIterations = numberOfIterations;
-            System.out.println("\n\n>>>>>>>>>>>>> START Case:");
-            System.out.println(String.format("instance = %s", this.instance.toString()));
-            System.out.println(String.format("localSearch = %s", this.localSearch.toString()));
-            System.out.println(String.format("tenureRatio = %s", this.tenureRatio.toString()));
-            System.out.println(String.format("methodVariation = %s", this.methodVariation.toString()));
-            System.out.println(String.format("timeLimitMilliseconds = %s", this.timeLimitMilliseconds.toString()));
-            System.out.println(String.format("numberOfIterations = %s", this.numberOfIterations.toString()));
+            System.out.println("\n\n========== START ==========");
             start();
             solve();
             finish();
-            System.out.println("\n\n<<<<<<<<<<<<<<<<<<< END");
+            System.out.println("========== END ==========\n\n");
         }
     }
 
@@ -86,18 +81,18 @@ public abstract class AbstractMain {
         tabuSearch.solve();
         bestProblemSolution = tabuSearch.getBestSolution();
         endTime = System.currentTimeMillis();
+        this.runningTime = (double) (endTime - startTime);
     }
 
     private void finish() {
-        System.out.println(String.format(
-            "Best solution found: \n\t%s",
-            bestProblemSolution.toString()
-        ));
-        final var totalTime = (double) (endTime - startTime);
-        System.out.println(String.format(
-            "Running time = %f seconds",
-            totalTime / 1000
-        ));
+        System.out.println(String.format("instance = %s", this.instance.toString()));
+        System.out.println(String.format("localSearch = %s", this.localSearch.toString()));
+        System.out.println(String.format("tenureRatio = %s", this.tenureRatio.toString()));
+        System.out.println(String.format("methodVariation = %s", this.methodVariation.toString()));
+        System.out.println(String.format("timeLimitMilliseconds = %s", this.timeLimitMilliseconds.toString()));
+        System.out.println(String.format("numberOfIterations = %s", this.numberOfIterations.toString()));
+        System.out.println(String.format("runningTime = %f seconds", this.runningTime / 1000));
+        System.out.println(String.format("bestProblemSolution = %s", this.bestProblemSolution.toString()));
     }
 
 }
