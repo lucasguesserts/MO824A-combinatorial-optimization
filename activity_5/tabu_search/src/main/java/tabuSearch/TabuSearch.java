@@ -10,7 +10,6 @@ public abstract class TabuSearch<E, V extends Number> {
 
     static Random rng = new Random(0);
 
-    protected V incubentCost;
     protected Problem<E, V> bestSolution;
     protected Problem<E, V> incubentSolution;
     protected Queue<E> TL;
@@ -19,6 +18,10 @@ public abstract class TabuSearch<E, V extends Number> {
     protected final Integer maximumNumberOfIterations;
     protected Integer currentIteration = 0;
     private final Boolean verbose = Boolean.TRUE;
+
+    private long startTime;
+    private long elapsedTime;
+    private final long maximimRunningTime;
 
     protected abstract Queue<E> makeTL();
     protected abstract void updateTL();
@@ -43,13 +46,20 @@ public abstract class TabuSearch<E, V extends Number> {
         this.costComparer = costComparer;
         this.tenure = (int) Math.round(tenureRatio * emptySolution.getDomainSize());
         this.maximumNumberOfIterations = iterations;
+        this.maximimRunningTime = 30*60*1000; // milliseconds
     }
 
     public void solve() {
+        this.startTime = System.currentTimeMillis();
         constructiveHeuristic();
+        System.out.println(String.format("initialSolution: %s", this.incubentSolution.toString()));
         this.bestSolution = this.incubentSolution.clone();
         this.TL = makeTL();
-        for (this.currentIteration = 0; this.currentIteration < maximumNumberOfIterations; ++this.currentIteration) {
+        this.elapsedTime = System.currentTimeMillis() - this.startTime;
+        for (this.currentIteration = 0;
+            this.currentIteration < maximumNumberOfIterations && this.elapsedTime < this.maximimRunningTime;
+            ++this.currentIteration
+        ) {
             neighborhoodMove();
             updateBestSolution();
             updateTL();
@@ -63,6 +73,7 @@ public abstract class TabuSearch<E, V extends Number> {
                 this.makeIntensiveSearchOnDiversificationConstruction();
                 updateBestSolution();
             }
+            this.elapsedTime = System.currentTimeMillis() - this.startTime;
         }
     }
 
