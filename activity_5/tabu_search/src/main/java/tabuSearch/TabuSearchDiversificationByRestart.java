@@ -3,14 +3,14 @@ package tabuSearch;
 import problem.Problem;
 import solutionConstruction.GRASPConstruction;
 
-abstract class TabuSearchDiversificationByRestart extends TabuSearchIntensificationByRestart {
+public class TabuSearchDiversificationByRestart extends TabuSearchIntensificationByRestart {
 
     private static Double ALPHA = 0.2;
 
     private static final Double RESTART_TOLERANCE = 0.20;
     private Integer iterationOfLastRestart = 0;
 
-    protected TabuSearchDiversificationByRestart(
+    public TabuSearchDiversificationByRestart(
         final Problem<Integer, Integer> initialSolution,
         final Double tenureRatio,
         final Integer iterations

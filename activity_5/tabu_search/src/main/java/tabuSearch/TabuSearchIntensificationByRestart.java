@@ -3,13 +3,13 @@ package tabuSearch;
 import localSearch.IntensiveSearch;
 import problem.Problem;
 
-abstract class TabuSearchIntensificationByRestart extends TabuSearchConstructInitialSolution {
+public class TabuSearchIntensificationByRestart extends TabuSearchBestImproving {
 
     private static final Double RESTART_TOLERANCE = 0.20;
     private Integer iterationOfLastRestart = 0;
     private Boolean intensificationByRestartDoneforCurrentBestSolution = Boolean.FALSE;
 
-    protected TabuSearchIntensificationByRestart(
+    public TabuSearchIntensificationByRestart(
         final Problem<Integer, Integer> initialSolution,
         final Double tenureRatio,
         final Integer iterations

@@ -14,7 +14,6 @@ class Main extends AbstractMain {
         this.makeTenureRatioList();
         this.makeMethodVariationList();
         this.makeNumberOfIterationsList();
-        this.makeTimeLimitList();
     }
 
     public static void main(String[] args) throws IOException {
@@ -49,10 +48,6 @@ class Main extends AbstractMain {
 
     private void makeNumberOfIterationsList() {
         this.parameters.numberOfIterationsList.add(1000);
-    }
-
-    private void makeTimeLimitList() {
-        this.parameters.timeLimitMillisecondsList.add(30*60*1000);
     }
 
     private String makeInstanceName(final Integer instanceNumber) {

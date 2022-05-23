@@ -8,7 +8,7 @@ abstract class TabuSearchConstructInitialSolution extends TabuSearch<Integer, In
 
     private static Double ALPHA = 0.0;
 
-    protected TabuSearchConstructInitialSolution(
+    public TabuSearchConstructInitialSolution(
         final Problem<Integer, Integer> initialSolution,
         final Double tenureRatio,
         final Integer iterations
@@ -24,6 +24,29 @@ abstract class TabuSearchConstructInitialSolution extends TabuSearch<Integer, In
         );
         solutionConstructor.construct();
         this.incubentSolution = solutionConstructor.getSolution();
+    }
+
+    @Override
+    protected Boolean intensificationCriteria() {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    protected Problem<Integer, Integer> makeIntenseSearch() {
+        return this.bestSolution.clone();
+    }
+
+    @Override
+    protected void updateIntensificationCriteria() {}
+
+    @Override
+    protected Boolean diversificationCriteria() {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    protected Problem<Integer, Integer> makeDiversificationConstruction() {
+        return this.incubentSolution.clone();
     }
 
 }

@@ -13,7 +13,7 @@ public class Parameters {
     public enum Variation {
         NONE,
         INTENSIFICATION_BY_RESTART,
-        DIVERSIFICATION_BY_RESTART
+        INTENSIFICATION_BY_RESTART_AND_DIVERSIFICATION_BY_RESTART
     }
 
     public Integer size;
@@ -22,7 +22,6 @@ public class Parameters {
     public List<Double> tenureRatioList = new ArrayList<>();
     public List<Variation> methodVariationList = new ArrayList<>();
     public List<Integer> numberOfIterationsList = new ArrayList<>();
-    public List<Integer> timeLimitMillisecondsList = new ArrayList<>();
 
     public LocalSearchMethod getLocaSearchMethod(final String arg) {
         if (arg.equals(LocalSearchMethod.BEST_IMPROVING.toString().toLowerCase())) {

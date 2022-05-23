@@ -8,7 +8,7 @@ import localSearch.BestImproving;
 import problem.Problem;
 import solutions.SolutionKnapsack;
 
-public class TabuSearchBestImproving extends TabuSearchDiversificationByRestart {
+public class TabuSearchBestImproving extends TabuSearchConstructInitialSolution {
 
     protected Collection<Integer> elementsManipulated;
 
@@ -49,6 +49,30 @@ public class TabuSearchBestImproving extends TabuSearchDiversificationByRestart 
         for (int i = 0; i < this.elementsManipulated.size(); ++i){
             this.TL.poll();
         }
+    }
+
+    @Override
+    protected Boolean diversificationCriteria() {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    protected Problem<Integer, Integer> makeDiversificationConstruction() {
+        return this.bestSolution;
+    }
+
+    @Override
+    protected Boolean intensificationCriteria() {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    protected Problem<Integer, Integer> makeIntenseSearch() {
+        return this.bestSolution;
+    }
+
+    @Override
+    protected void updateIntensificationCriteria() {
     }
 
 }
