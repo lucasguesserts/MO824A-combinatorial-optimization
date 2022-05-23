@@ -57,7 +57,7 @@ public class GRASPConstruction {
             this.nextCost = this.solution.getCost();
             candidateList.remove(inCand);
             RCL.clear();
-        } while (!constructiveStopCriteria());
+        } while (keepGoing());
     }
 
     private List<Integer> makeCandidateList() {
@@ -69,7 +69,7 @@ public class GRASPConstruction {
         return candicateList;
     }
 
-    private Boolean constructiveStopCriteria() {
+    private Boolean keepGoing() {
         final var deltaCost = this.nextCost - this.previousCost;
         return deltaCost < 0;
     }
