@@ -17,6 +17,15 @@
             "mainClass": "${workspaceFolder}/kqbf/src/main/java/Main.java",
             "cwd": "${workspaceFolder}/kqbf",
             "args": "20 best_improving"
+        },
+        {
+          "name": "Python: Current File",
+          "type": "python",
+          "request": "launch",
+          "program": "${file}",
+          "console": "integratedTerminal",
+          "justMyCode": true,
+          "cwd": "${fileDirname}"
         }
     ]
 }
