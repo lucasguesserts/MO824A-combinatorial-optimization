@@ -1,0 +1,44 @@
+\section{Problem Statement}
+
+\subsection{Input}
+
+\begin{enumerate}
+	\item $\itemInput \subseteq \itemSet$: the set of items
+	\item $\vehicleInput \in \vehicleSet$: the vehicle
+\end{enumerate}
+
+\subsection{Constraints}
+
+\subsubsection*{Loading Limit Constraint}
+\begin{equation}
+	\label{constraint:loading-limit}
+	\displaystyle\sum\limits_{\itemO \in \itemInput}
+		\loadingFunctionApply{\itemO}
+		\leq \loadingLimit
+\end{equation}
+
+\subsubsection*{Stacking Constraint}
+\begin{equation}
+	\label{constraint:stacking}
+	\mbox{An item can only be removed if all items above it have already been removed}
+\end{equation}
+
+We represent whether such constraint is satisfied or not by $\stackingPredicate{\itemOutput} \in \Set{\true, \false}$
+
+\subsection{Output}
+
+A subset $\itemOutput \subseteq \itemInput$ of the input items.
+
+\subsection{Objective}
+
+\begin{eqnarray}
+	\label{problem:items-removal}
+	\min & \abs{\itemInput} - \abs{\itemOutput} \\
+	\subjectedTo
+		& \displaystyle\sum\limits_{\itemO \in \itemInput}
+			\loadingFunctionApply{\itemO}
+			\leq \loadingLimit \nonumber\\
+		& \stackingPredicate{\itemOutput} \nonumber
+\end{eqnarray}
+
+Minimize the number of items removed so that all constraints are satisfied.
