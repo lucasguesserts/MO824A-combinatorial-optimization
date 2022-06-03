@@ -1,44 +1,31 @@
 \section{Problem Statement}
 
-\subsection{Input}
+Given a graph $G = (V,E)$, with a multi-dimensional weight function $w: V \rightarrow \mathbb{R}_+^n$, where $n \in \mathbb N$, and a maximum capacity $W \in \mathbb{R}_+^n$.
+Suppose that there is a partial order relation $\prec$ on $V$. We say that the tuple $(V,\prec)$ is partially ordered set. We'd like to remove the minimum amount of vertices in our graph such that, for every iteration, we remove a maximal element from our partially ordered set, so that $\sum\limits_{v \in S} w_v \leq W$ where $S \subseteq V$ is the set of remaining vertices at the end of our iterations.
 
-\begin{enumerate}
-	\item $\itemInput \subseteq \itemSet$: the set of items
-	\item $\vehicleInput \in \vehicleSet$: the vehicle
-\end{enumerate}
+The problem we propose here is a knapsack problem adapted to satisfy two extra constraints: partial ordering and multi-dimensional weights.
 
-\subsection{Constraints}
 
-\subsubsection*{Loading Limit Constraint}
+\section*{PLI Model}
+
+
+\subsection*{Decision Variables}
+
 \begin{equation}
-	\label{constraint:loading-limit}
-	\displaystyle\sum\limits_{\itemO \in \itemInput}
-		\loadingFunctionApply{\itemO}
-		\leq \loadingLimit
+    x_v :=  \begin{cases}
+      1 & \mbox{Se $v \in V$ for retirado,} \\
+      0 & \mbox{c.c.}
+   \end{cases} \nonumber
 \end{equation}
 
-\subsubsection*{Stacking Constraint}
-\begin{equation}
-	\label{constraint:stacking}
-	\mbox{An item can only be removed if all items above it have already been removed}
-\end{equation}
-
-We represent whether such constraint is satisfied or not by $\stackingPredicate{\itemOutput} \in \Set{\true, \false}$
-
-\subsection{Output}
-
-A subset $\itemOutput \subseteq \itemInput$ of the input items.
-
-\subsection{Objective}
+\setlength\parindent{72pt}
+\subsection*{Linear Programming}
 
 \begin{eqnarray}
-	\label{problem:items-removal}
-	\min & \abs{\itemInput} - \abs{\itemOutput} \\
-	\subjectedTo
-		& \displaystyle\sum\limits_{\itemO \in \itemInput}
-			\loadingFunctionApply{\itemO}
-			\leq \loadingLimit \nonumber\\
-		& \stackingPredicate{\itemOutput} \nonumber
+    \label{constraint:stacking}
+	\underset{S \subseteq V}{max} & \sum\limits_{v \in S} x_v \\
+	s.t. & \nonumber\\
+		 & \displaystyle\sum\limits_{v \in S} x_v w_v \leq W\\
+		 & x_u \leq x_v  & \quad \forall (u,v) \in \prec \\
+		 & x_v \in \{0,1\} & \quad \forall v \in V
 \end{eqnarray}
-
-Minimize the number of items removed so that all constraints are satisfied.
