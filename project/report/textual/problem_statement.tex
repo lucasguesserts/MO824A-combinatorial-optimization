@@ -6,7 +6,14 @@
     \item a directed acyclic graph $\graph = \tuple{\vertices,\edges}$;
     \item a multi-dimensional weight function $\function{\weight}{\vertices}{\weightCodomain}$, where $\wn \in \natural$;
         \subitem We will usually write $\weightE = \apply{\weight}{\solutionE}$
-    \item a maximum capacity $\maximumWeight \in \weightCodomain$;
+    \item a maximum capacity of the knapsack $\maximumWeight \in \weightCodomain$;
+\end{enumerate}
+
+Besides that, one requires the input to satisfy the constraints below \cite{bib:constrained-knapsack}, otherwise the problem would be trivial:
+
+\begin{enumerate}
+    \item $\weightE \leqslant \maximumWeight$: the weight of each vertex must be smaller than the knapsack capacity;
+    \item $\Sum{\solutionE \in \vertices}{}{\weightE} \geqslant \maximumWeight$: the weight of all vertices combined must be greater than the knapsack capacity;
 \end{enumerate}
 
 \subsubsection{Partial Order}
@@ -34,7 +41,7 @@
 A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
 
 \begin{equation}
-    \label{eq:maximum-weight-constraint}
+    \label{eq:capacity-constraint}
     \Sum
         {\solutionE \in \solution}
         {}
@@ -44,7 +51,7 @@ A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
 \end{equation}
 
 \begin{equation}
-    \label{eq:order-constraint}
+    \label{eq:precedence-constraint}
     \forAll
         {\solutionE}
         {\ifThen
@@ -59,9 +66,9 @@ A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
         }
 \end{equation}
 
-\eqref{eq:maximum-weight-constraint} is the maximum weight constraint, the total weight of all vertices in the solution set $\solution$ must not be greater than the weight limit $\maximumWeight$.
+\eqref{eq:capacity-constraint} is the maximum weight constraint, the total weight of all vertices in the solution set $\solution$ must not be greater than the weight limit $\maximumWeight$. It is called Capacity-Constraint.
 
-\eqref{eq:order-constraint}\footnote{It is a First-order logic expression \cite{bib:logic}.} says that, if a $\solutionE$ is included in the solution, then all the $\solutionEp$ lower than it (in the sense of the partial order $\partialLower$) must also be included.
+\eqref{eq:precedence-constraint}\footnote{It is a First-order logic expression \cite{bib:logic}.} says that, if a $\solutionE$ is included in the solution, then all the $\solutionEp$ lower than it (in the sense of the partial order $\partialLower$) must also be included. It is called Precedence-Constraint.
 
 \subsection{Objective}
 
