@@ -5,6 +5,7 @@
 \begin{enumerate}
     \item a directed acyclic graph $\graph = \tuple{\vertices,\edges}$;
     \item a multi-dimensional weight function $\function{\weight}{\vertices}{\weightCodomain}$, where $\wn \in \natural$;
+        \subitem We will usually write $\weightE = \apply{\weight}{\solutionE}$
     \item a maximum capacity $\maximumWeight \in \weightCodomain$;
 \end{enumerate}
 
@@ -37,7 +38,7 @@ A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
     \Sum
         {\solutionE \in \solution}
         {}
-        {\weightS}
+        {\weightE}
     \leqslant
     \maximumWeight
 \end{equation}

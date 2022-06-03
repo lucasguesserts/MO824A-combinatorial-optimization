@@ -4,6 +4,7 @@
 
 
 % number sets
+\nsmc{\binary}{\Set{0, 1}}
 \nsmc{\positiveInteger}{\mathbb{Z}_{>}}
 \nsmc{\real}{\mathbb{R}}
 \nsmc{\realpositive}{\mathbb{R}_{\geqslant}}
@@ -34,7 +35,7 @@
 \nsmc{\solution}{S}
 \nsmc{\solutionE}{v} % solution element
 \nsmc{\solutionEp}{v'} % solution element
-\nsmc{\weightS}{\apply{\weight}{\solutionE}}
+\nsmc{\weightE}{\weight_{\solutionE}}
 
 % other
 \nmc{\subjectedTo}{0}{\mbox{subjected to}}
@@ -53,3 +54,9 @@
 
 % references
 \renewcommand{\eqref}[1]{Equation (\ref{#1})\xspace}
+
+% ILP
+
+\nsmc{\var}{x}
+\nsmc{\varE}{\var_{\solutionE}}
+\nsmc{\varDomain}{\binary^{\wn}}
