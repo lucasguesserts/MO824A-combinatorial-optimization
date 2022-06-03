@@ -1,13 +1,13 @@
-\newcommand{\nc}[2]{\newcommand{#1}{#2\xspace}}
-\newcommand{\nmc}[3]{\newcommand{#1}[#2]{\ensuremath{#3}\xspace}}
+\newcommand{\nc}[2]{\newcommand{#1}{#2\xspace}} % new command
+\newcommand{\nsmc}[2]{\newcommand{#1}{\ensuremath{#2}\xspace}} % new simple math command
+\newcommand{\nmc}[3]{\newcommand{#1}[#2]{\ensuremath{#3}\xspace}} % new math command
 
 
 % number sets
-\nmc{\real}{0}{\mathbb{R}}
-\nmc{\realnonnegative}{0}{\mathbb{R}_{+}}
-\nmc{\realpositive}{0}{\mathbb{R}_{+}^{*}}
-\nmc{\nrealnonnegative}{1}{\mathbb{R}_{+}^{#1}}
-\nmc{\nrealpositive}{1}{\mathbb{R}_{+}^{*#1}}
+\nsmc{\positiveInteger}{\mathbb{Z}_{>}}
+\nsmc{\real}{\mathbb{R}}
+\nsmc{\realpositive}{\mathbb{R}_{\geqslant}}
+\nmc{\nrealpositive}{1}{\realpositive^{#1}}
 
 % boolean
 \nmc{\true}{0}{true}
@@ -17,8 +17,24 @@
 \nmc{\abs}{1}{\left| #1 \right|}
 \nmc{\Set}{1}{\left\{#1\right\}}
 \nmc{\SetOf}{2}{\Set{#1 : #2}}
-\nmc{\tuple}{1}{\langle#1\rangle}
+\nmc{\tuple}{1}{\left\langle #1 \right\rangle}
 \nmc{\function}{3}{#1: #2 \rightarrow #3}
+\nmc{\Sum}{3}{\displaystyle\sum\limits_{#1}^{#2} #3}
+\nmc{\apply}{2}{#1\left( #2 \right)}
+
+% problem
+\nsmc{\graph}{G}
+\nsmc{\vertices}{V}
+\nsmc{\edges}{E}
+\nsmc{\weight}{w}
+\nsmc{\wn}{n_{w}}
+\nsmc{\maximumWeight}{W}
+\nsmc{\weightCodomain}{\positiveInteger^{\wn}}
+\nsmc{\partialLower}{\prec}
+\nsmc{\solution}{S}
+\nsmc{\solutionE}{v} % solution element
+\nsmc{\solutionEp}{v'} % solution element
+\nsmc{\weightS}{\apply{\weight}{\solutionE}}
 
 % other
 \nmc{\subjectedTo}{0}{\mbox{subjected to}}
@@ -30,3 +46,10 @@
 \nc{\zoKP}{0-1KP}
 \nc{\MKPV}{Multidimensional Knapsack Problem}
 \nc{\MKP}{MKP}
+
+% logical
+\nmc{\forAll}{2}{\forall #1 \left( #2 \right)}
+\nmc{\ifThen}{2}{#1 \rightarrow #2}
+
+% references
+\renewcommand{\eqref}[1]{Equation (\ref{#1})\xspace}

@@ -1,0 +1,22 @@
+\section*{ILP Model}
+
+\subsection*{Decision Variables}
+
+\begin{equation}
+    x_v :=  \begin{cases}
+      1 & \mbox{Se $v \in V$ for retirado,} \\
+      0 & \mbox{c.c.}
+   \end{cases} \nonumber
+\end{equation}
+
+\setlength\parindent{72pt}
+\subsection*{Linear Programming}
+
+\begin{eqnarray}
+    \label{constraint:stacking}
+	\underset{S \subseteq V}{max} & \sum\limits_{v \in S} x_v \\
+	s.t. & \nonumber\\
+		 & \displaystyle\sum\limits_{v \in S} x_v w_v \leq W\\
+		 & x_u \leq x_v  & \quad \forall (u,v) \in \prec \\
+		 & x_v \in \{0,1\} & \quad \forall v \in V
+\end{eqnarray}

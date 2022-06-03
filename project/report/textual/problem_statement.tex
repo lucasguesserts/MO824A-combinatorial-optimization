@@ -1,31 +1,67 @@
 \section{Problem Statement}
 
-Given a graph $G = (V,E)$, with a multi-dimensional weight function $w: V \rightarrow \mathbb{R}_+^n$, where $n \in \mathbb N$, and a maximum capacity $W \in \mathbb{R}_+^n$.
-Suppose that there is a partial order relation $\prec$ on $V$. We say that the tuple $(V,\prec)$ is partially ordered set. We'd like to remove the minimum amount of vertices in our graph such that, for every iteration, we remove a maximal element from our partially ordered set, so that $\sum\limits_{v \in S} w_v \leq W$ where $S \subseteq V$ is the set of remaining vertices at the end of our iterations.
+\subsection{Input}
 
-The problem we propose here is a knapsack problem adapted to satisfy two extra constraints: partial ordering and multi-dimensional weights.
+\begin{enumerate}
+    \item a directed acyclic graph $\graph = \tuple{\vertices,\edges}$;
+    \item a multi-dimensional weight function $\function{\weight}{\vertices}{\weightCodomain}$, where $\wn \in \natural$;
+    \item a maximum capacity $\maximumWeight \in \weightCodomain$;
+\end{enumerate}
 
+\subsubsection{Partial Order}
 
-\section*{PLI Model}
+\begin{defn}[Partial Order on Directed Acyclics Graph]
+    Given a directed acyclic graph $\graph = \tuple{\vertices,\edges}$, we define the set:
+    \begin{equation}
+        \partialLower
+        \ =
+        \SetOf
+            {\tuple{\solutionE, \solutionE'}}
+            {\mbox{there is a path from the first to the second}}
+    \end{equation}
+    and so $\partialLower$ is a partial order over the set $\vertices$.
+\end{defn}
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/directed acyclic graph.png}
+    \caption{Example of a directed acyclic graph. The black dot indicates the root vertices. For this case, the induced partial order satisfy: $v5 \partialLower v2$, $v7 \partialLower v1$, $v14 \partialLower v10$.}
+\end{figure}
 
-\subsection*{Decision Variables}
+\subsection{Output}
+
+A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
 
 \begin{equation}
-    x_v :=  \begin{cases}
-      1 & \mbox{Se $v \in V$ for retirado,} \\
-      0 & \mbox{c.c.}
-   \end{cases} \nonumber
+    \label{eq:maximum-weight-constraint}
+    \Sum
+        {\solutionE \in \solution}
+        {}
+        {\weightS}
+    \leqslant
+    \maximumWeight
 \end{equation}
 
-\setlength\parindent{72pt}
-\subsection*{Linear Programming}
+\begin{equation}
+    \label{eq:order-constraint}
+    \forAll
+        {\solutionE}
+        {\ifThen
+            {\solutionE \in \solution}
+            {\forAll
+                {\solutionEp}
+                {\ifThen
+                    {\solutionEp \partialLower \solutionE}
+                    {\solutionEp \in \solution}
+                }
+            }
+        }
+\end{equation}
 
-\begin{eqnarray}
-    \label{constraint:stacking}
-	\underset{S \subseteq V}{max} & \sum\limits_{v \in S} x_v \\
-	s.t. & \nonumber\\
-		 & \displaystyle\sum\limits_{v \in S} x_v w_v \leq W\\
-		 & x_u \leq x_v  & \quad \forall (u,v) \in \prec \\
-		 & x_v \in \{0,1\} & \quad \forall v \in V
-\end{eqnarray}
+\eqref{eq:maximum-weight-constraint} is the maximum weight constraint, the total weight of all vertices in the solution set $\solution$ must not be greater than the weight limit $\maximumWeight$.
+
+\eqref{eq:order-constraint}\footnote{It is a First-order logic expression \cite{bib:logic}.} says that, if a $\solutionE$ is included in the solution, then all the $\solutionEp$ lower than it (in the sense of the partial order $\partialLower$) must also be included.
+
+\subsection{Objective}
+
+Find $\solution$ that maximizes $\abs{\solution}$. In other words: find the solution with the maximum number of vertices.
