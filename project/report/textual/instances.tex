@@ -15,7 +15,7 @@ Consider the parameters:
 
 The process of generating the precedences is specified in \algref{algorith:find-trees}, which uses \algref{algorith:generate-precedences}. The \figref{fig:precedence-generation} has an example of such procedure. The following parameters are used to control the generation:
 
-\begin{algorithm}
+\begin{algorithm}[ht!]
     \caption{Find-Trees}
     \label{algorith:find-trees}
     \begin{algorithmic}[1]
@@ -41,7 +41,7 @@ The process of generating the precedences is specified in \algref{algorith:find-
     \end{algorithmic}
 \end{algorithm}
 
-\begin{algorithm}
+\begin{algorithm}[ht]
     \caption{Generate-Precedences}
     \label{algorith:generate-precedences}
     \begin{algorithmic}[1]
@@ -56,7 +56,7 @@ The process of generating the precedences is specified in \algref{algorith:find-
     \end{algorithmic}
 \end{algorithm}
 
-\begin{figure}[ht!]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.5\textwidth]{images/precedence_construction.jpg}
     \caption{Precedence generation. The root nodes are the green, red and lemon. Red has four leaf vertices. Green has two branches, the pink with one leaf and the purple with two leaves. Lemon has one leaf and one branch with two leaves.}
