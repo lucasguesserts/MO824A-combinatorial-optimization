@@ -6,7 +6,6 @@ In order to find a time optimal algorithm to solve the multidimensional preceden
     \caption{GRASP Pseudocode}
     \begin{algorithmic}[1]
         \Require{$MaxIterations, Seed$}
-        \State{$Read_Input();$}
         \For{$k=1,\ldots,MaxIterations$}
             \State{$Solution \leftarrow Greedy Randomized Construction(Seed);$}
             \If{Solution is not feasible}
@@ -15,7 +14,7 @@ In order to find a time optimal algorithm to solve the multidimensional preceden
             \State{$Solution \leftarrow LocalSearch(Solution);$}
             \State{$UpdateSolution(Solution, BestSolution);$}
         \EndFor
-        \\\Return{$Best_Solution$}
+        \\\Return{$BestSolution$}
     \end{algorithmic}
 \end{algorithm}
 where the candidate list is build greedily utilizing the current maximal elements on our input graph(as long as they fit).

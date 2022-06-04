@@ -1,0 +1,22 @@
+\subsection{Greedy Algorithm}
+
+It is a simple algorithm: add the vertices which minimize the added weight and does not violate the precedence-constraint iteratively until no more vertex can be added without exceeding the knapsack capacity. Such algorithm is presented below:
+
+\begin{algorithm}[ht!]
+    \caption{Greedy}
+    \begin{algorithmic}[1]
+        \Require{$\vertices, \edges, \weight, \maximumWeight$}
+        \State{$S \gets \emptyset$}
+        \State{$X \gets $ all leaf vertices}
+        \State{$Y \gets 0$}
+        \State{$\solutionE \gets \mathop{\mathrm{arg\,min}}\limits_{\solutionE \in X} \weightE$}
+        \While{$Y + \weightE \leqslant \maximumWeight$}
+            \State{$S \gets S \cup \Set{\solutionE}$}
+            \State{$Y \gets Y + \weightE$}
+            \State{$X \gets $ all the vertices not yet in $S$ that can be added to $S$ without violating the constraints}
+            \State{$\solutionE \gets \mathop{\mathrm{arg\,min}}\limits_{\solutionE \in X} \norm{\weightE}$}
+        \EndWhile
+        \\\Return{$S$}
+    \end{algorithmic}
+    \label{algorithm:greedy}
+\end{algorithm}
