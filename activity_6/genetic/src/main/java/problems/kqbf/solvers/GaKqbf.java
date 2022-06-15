@@ -1,8 +1,8 @@
-package problems.qbf.solvers;
+package problems.kqbf.solvers;
 
 import java.io.IOException;
 import metaheuristics.ga.AbstractGa;
-import problems.qbf.Kqbf;
+import problems.kqbf.Kqbf;
 import solutions.Solution;
 
 public class GaKqbf extends AbstractGa<Integer, Integer> {

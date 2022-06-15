@@ -1,5 +1,5 @@
 import java.io.IOException;
-import problems.qbf.solvers.GaKqbf;
+import problems.kqbf.solvers.GaKqbf;
 import solutions.Solution;
 
 public class ProblemInstanceSolver {

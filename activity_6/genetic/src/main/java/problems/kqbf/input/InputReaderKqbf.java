@@ -1,4 +1,4 @@
-package problems.qbf.input;
+package problems.kqbf.input;
 
 import java.io.IOException;
 import java.util.ArrayList;

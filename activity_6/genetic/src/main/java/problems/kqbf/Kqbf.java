@@ -1,9 +1,9 @@
-package problems.qbf;
+package problems.kqbf;
 
 import java.io.IOException;
 import java.util.Arrays;
 import problems.Evaluator;
-import problems.qbf.input.InputReaderKqbf;
+import problems.kqbf.input.InputReaderKqbf;
 import solutions.Solution;
 
 public class Kqbf implements Evaluator<Integer> {
