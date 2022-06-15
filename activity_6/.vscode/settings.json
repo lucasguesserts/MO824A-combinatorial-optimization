@@ -1,11 +1,13 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "java.configuration.runtimes": [
-      {
-        "name": "JavaSE-17",
-        "path": "${HOME}/.sdkman/candidates/java/17.0.3-oracle/",
-        "default": true
-      }
-    ],
-    "java.import.gradle.home": "${HOME}/.sdkman/candidates/gradle/7.4.2/"
-  }
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "${HOME}/.sdkman/candidates/java/17.0.3-oracle/",
+      "default": true
+    }
+  ],
+  "java.import.gradle.home": "${HOME}/.sdkman/candidates/gradle/7.4.2/",
+  "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
+  "java.checkstyle.version": "10.3"
+}
