@@ -87,6 +87,10 @@ public abstract class AbstractGa<G extends Number, F> {
                 bestChromosome = c;
             }
         }
+        if (bestChromosome == null) {
+            throw new RuntimeException(
+                "no chromosome satisfy the knapsack weight so all costs are '-inf'");
+        }
         return bestChromosome;
     }
 

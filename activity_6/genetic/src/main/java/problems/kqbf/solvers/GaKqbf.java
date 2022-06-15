@@ -19,7 +19,6 @@ public class GaKqbf extends AbstractGa<Integer, Integer> {
     @Override
     public Solution<Integer> createEmptySol() {
         final Solution<Integer> sol = new Solution<Integer>();
-        sol.cost = 0.0;
         return sol;
     }
 
@@ -38,9 +37,24 @@ public class GaKqbf extends AbstractGa<Integer, Integer> {
     @Override
     protected Chromosome generateRandomChromosome() {
         final Chromosome chromosome = new Chromosome();
+        // fill chromosome with zeros
         for (int i = 0; i < chromosomeSize; i++) {
-            chromosome.add(rng.nextInt(2));
+            chromosome.add(0);
         }
+        // add alleles till the fitness does not increase
+        Double currentFitness = 0.0;
+        Double newFitness = 0.0;
+        int index = -1;
+        while (true) {
+            currentFitness = newFitness;
+            index = rng.nextInt(chromosomeSize);
+            chromosome.set(index, 1);
+            newFitness = fitness(chromosome);
+            if (newFitness < currentFitness) {
+                break;
+            }
+        }
+        chromosome.set(index, 0); // unset index which made fitness lower
         return chromosome;
     }
 

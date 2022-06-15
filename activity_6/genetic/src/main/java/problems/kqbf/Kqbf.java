@@ -10,7 +10,7 @@ public class Kqbf implements Evaluator<Integer> {
 
     public final Integer size;
     public final Double[] variables;
-    public Double[][] matrix;
+    public final Double[][] matrix;
     public final Integer knapsackCapacity;
     public final Integer[] weights;
 
@@ -40,7 +40,21 @@ public class Kqbf implements Evaluator<Integer> {
     @Override
     public Double evaluate(final Solution<Integer> sol) {
         setVariables(sol);
-        return sol.cost = evaluateQbf();
+        sol.cost = evaluateQbf();
+        sol.weight = evaluateWeight();
+        if (sol.weight > this.knapsackCapacity) {
+            sol.cost = Double.NEGATIVE_INFINITY;
+        }
+        return sol.cost;
+    }
+
+    @Override
+    public Integer evaluateWeight() {
+        Integer weight = 0;
+        for (int i = 0; i < this.size; ++i) {
+            weight += (int) Math.round(this.variables[i]) * this.weights[i];
+        }
+        return weight;
     }
 
     public Double evaluateQbf() {
@@ -61,7 +75,12 @@ public class Kqbf implements Evaluator<Integer> {
     @Override
     public Double evaluateInsertionCost(final Integer elem, final Solution<Integer> sol) {
         setVariables(sol);
-        return evaluateInsertionQbf(elem);
+        final var insertionCost = evaluateInsertionQbf(elem);
+        final var insertionWeight = evaluateInsertionWeight(elem);
+        if (sol.weight + insertionWeight > this.knapsackCapacity) {
+            return Double.NEGATIVE_INFINITY;
+        }
+        return insertionCost;
     }
 
     public Double evaluateInsertionQbf(final int i) {
@@ -92,7 +111,12 @@ public class Kqbf implements Evaluator<Integer> {
         final Solution<Integer> sol
     ) {
         setVariables(sol);
-        return evaluateExchangeQbf(elemIn, elemOut);
+        final var exchangeCost = evaluateExchangeQbf(elemIn, elemOut);
+        final var exchangeWeight = evaluateExchangeWeight(elemIn, elemOut);
+        if (sol.weight + exchangeWeight > knapsackCapacity) {
+            return Double.NEGATIVE_INFINITY;
+        }
+        return exchangeCost;
     }
 
     public Double evaluateExchangeQbf(final int in, final int out) {
@@ -139,6 +163,40 @@ public class Kqbf implements Evaluator<Integer> {
             }
             System.out.println();
         }
+    }
+
+    public Integer evaluateContributionWeight(final int i) {
+        return this.weights[i];
+    }
+
+    public Integer evaluateInsertionWeight(final int i) {
+        if (variables[i] == 1) {
+            return 0;
+        }
+        return evaluateContributionWeight(i);
+    }
+
+    public Integer evaluateRemovalWeight(final int i) {
+        if (variables[i] == 0) {
+            return 0;
+        }
+        return -evaluateContributionWeight(i);
+    }
+
+    public Integer evaluateExchangeWeight(final int in, final int out) {
+        if (in == out) {
+            return 0;
+        }
+        if (variables[in] == 1) {
+            return evaluateRemovalWeight(out);
+        }
+        if (variables[out] == 0) {
+            return evaluateInsertionWeight(in);
+        }
+        Integer sum = 0;
+        sum += evaluateContributionWeight(in);
+        sum -= evaluateContributionWeight(out);
+        return sum;
     }
 
 }
