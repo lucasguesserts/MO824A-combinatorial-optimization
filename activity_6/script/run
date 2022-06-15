@@ -6,6 +6,6 @@ SCRIPT_DIR="$PROJECT_PATH/script"
 
 cd $PROJECT_PATH
 
-PROJECT=genetic
+PROJECT=genetic_QBF
 
 gradle $PROJECT:run | tee ${PROJECT_PATH}/$PROJECT.log

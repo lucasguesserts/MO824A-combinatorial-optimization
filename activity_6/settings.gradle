@@ -1,2 +1,3 @@
 rootProject.name = 'activity_6'
 include 'genetic'
+include 'genetic_QBF'

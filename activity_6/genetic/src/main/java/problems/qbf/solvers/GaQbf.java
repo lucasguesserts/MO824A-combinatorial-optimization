@@ -54,14 +54,4 @@ public class GaQbf extends AbstractGa<Integer, Integer> {
         chromosome.set(locus, 1 - chromosome.get(locus));
     }
 
-    public static void main(String[] args) throws IOException {
-        final long startTime = System.currentTimeMillis();
-        final GaQbf ga = new GaQbf(1000, 100, 1.0 / 100.0, "../instances/qbf/qbf100");
-        final Solution<Integer> bestSol = ga.solve();
-        System.out.println("maxVal = " + bestSol);
-        final long endTime = System.currentTimeMillis();
-        final long totalTime = endTime - startTime;
-        System.out.println("Time = " + (double) totalTime / (double) 1000 + " seg");
-    }
-
 }

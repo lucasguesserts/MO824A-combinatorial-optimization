@@ -6,8 +6,8 @@
       "type": "java",
       "name": "genetic",
       "request": "launch",
-      "mainClass": "problems.qbf.solvers.GA_QBF",
-      "cwd": "${workspaceFolder}/src",
+      "mainClass": "Main",
+      "cwd": "${workspaceFolder}/genetic_QBF",
       "args": ""
     },
     {

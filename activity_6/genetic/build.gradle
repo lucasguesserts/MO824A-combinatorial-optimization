@@ -1,7 +1,3 @@
 plugins {
-	id 'application'
-}
-
-application {
-    mainClass = 'problems.qbf.solvers.GA_QBF'
+    id 'java'
 }
