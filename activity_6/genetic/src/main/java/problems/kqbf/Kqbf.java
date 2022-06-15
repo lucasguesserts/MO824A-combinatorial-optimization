@@ -38,6 +38,11 @@ public class Kqbf implements Evaluator<Integer> {
     }
 
     @Override
+    public Integer getknapsackCapacity() {
+        return this.knapsackCapacity;
+    }
+
+    @Override
     public Double evaluate(final Solution<Integer> sol) {
         setVariables(sol);
         sol.cost = evaluateQbf();

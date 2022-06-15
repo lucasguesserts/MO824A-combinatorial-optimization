@@ -20,12 +20,16 @@ public class Solution<E> extends ArrayList<E> {
     @Override
     public String toString() {
         return String.format(
-            "Solution: cost = [%f], weight = [%d], size = [%d], elements = %s",
+            "{ cost: %f, weight: %d, size: %d, elements = %s }",
             this.cost,
             this.weight,
             this.size(),
             super.toString()
         );
+    }
+
+    public String elementsToString() {
+        return super.toString();
     }
 
 }

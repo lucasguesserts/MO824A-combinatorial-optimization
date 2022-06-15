@@ -6,6 +6,8 @@ public interface Evaluator<E> {
 
     public abstract Integer getDomainSize();
 
+    public abstract Integer getknapsackCapacity();
+
     public abstract Double evaluate(Solution<E> sol);
 
     public abstract Double evaluateInsertionCost(E elem, Solution<E> sol);

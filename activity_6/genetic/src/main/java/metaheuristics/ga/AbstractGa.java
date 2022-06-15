@@ -167,4 +167,12 @@ public abstract class AbstractGa<G extends Number, F> {
         return offsprings;
     }
 
+    public Integer getKnapsackCapacity() {
+        return this.objFunction.getknapsackCapacity();
+    }
+
+    public Integer getDomainSize() {
+        return this.objFunction.getDomainSize();
+    }
+
 }
