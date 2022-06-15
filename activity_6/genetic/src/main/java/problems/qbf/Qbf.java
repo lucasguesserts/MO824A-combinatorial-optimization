@@ -1,12 +1,9 @@
 package problems.qbf;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StreamTokenizer;
 import java.util.Arrays;
 import problems.Evaluator;
+import problems.qbf.input.InputReaderQbf;
 import solutions.Solution;
 
 public class Qbf implements Evaluator<Integer> {
@@ -15,8 +12,10 @@ public class Qbf implements Evaluator<Integer> {
     public final Double[] variables;
     public Double[][] matrix;
 
-    public Qbf(final String filename) throws IOException {
-        size = readInput(filename);
+    public Qbf(final String fileName) throws IOException {
+        final var input = new InputReaderQbf(fileName);
+        this.size = input.getSize();
+        this.matrix = input.getMatrix();
         variables = allocateVariables();
     }
 
@@ -118,25 +117,6 @@ public class Qbf implements Evaluator<Integer> {
         }
         sum += matrix[i][i];
         return sum;
-    }
-
-    protected Integer readInput(final String fileName) throws IOException {
-        final Reader fileInst = new BufferedReader(new FileReader(fileName));
-        final StreamTokenizer stok = new StreamTokenizer(fileInst);
-        stok.nextToken();
-        final Integer size = (int) stok.nval;
-        matrix = new Double[size][size];
-        for (int i = 0; i < size; i++) {
-            for (int j = i; j < size; j++) {
-                stok.nextToken();
-                matrix[i][j] = stok.nval;
-                if (j > i) {
-                    matrix[j][i] = 0.0;
-                }
-            }
-        }
-        return size;
-
     }
 
     protected Double[] allocateVariables() {
