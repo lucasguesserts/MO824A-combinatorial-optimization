@@ -2,18 +2,18 @@ package problems.qbf.solvers;
 
 import java.io.IOException;
 import metaheuristics.ga.AbstractGa;
-import problems.qbf.Qbf;
+import problems.qbf.Kqbf;
 import solutions.Solution;
 
-public class GaQbf extends AbstractGa<Integer, Integer> {
+public class GaKqbf extends AbstractGa<Integer, Integer> {
 
-    public GaQbf(
+    public GaKqbf(
         final Integer generations,
         final Integer popSize,
         final Double mutationRate,
         final String filename
     ) throws IOException {
-        super(new Qbf(filename), generations, popSize, mutationRate);
+        super(new Kqbf(filename), generations, popSize, mutationRate);
     }
 
     @Override

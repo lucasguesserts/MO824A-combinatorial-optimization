@@ -1,5 +1,5 @@
 import java.io.IOException;
-import problems.qbf.solvers.GaQbf;
+import problems.qbf.solvers.GaKqbf;
 import solutions.Solution;
 
 public class ProblemInstanceSolver {
@@ -29,7 +29,7 @@ public class ProblemInstanceSolver {
 
     public void solve() throws IOException {
         this.startTime = System.currentTimeMillis();
-        final var ga = new GaQbf(
+        final var ga = new GaKqbf(
             numberOfGenerations,
             populationSize,
             mutationRate,

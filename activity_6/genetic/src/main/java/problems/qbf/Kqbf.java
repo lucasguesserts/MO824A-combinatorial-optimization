@@ -6,13 +6,13 @@ import problems.Evaluator;
 import problems.qbf.input.InputReaderQbf;
 import solutions.Solution;
 
-public class Qbf implements Evaluator<Integer> {
+public class Kqbf implements Evaluator<Integer> {
 
     public final Integer size;
     public final Double[] variables;
     public Double[][] matrix;
 
-    public Qbf(final String fileName) throws IOException {
+    public Kqbf(final String fileName) throws IOException {
         final var input = new InputReaderQbf(fileName);
         this.size = input.getSize();
         this.matrix = input.getMatrix();

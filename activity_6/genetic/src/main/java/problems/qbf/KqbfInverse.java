@@ -3,9 +3,9 @@ package problems.qbf;
 import java.io.IOException;
 
 
-public class QbfInverse extends Qbf {
+public class KqbfInverse extends Kqbf {
 
-    public QbfInverse(final String fileName) throws IOException {
+    public KqbfInverse(final String fileName) throws IOException {
         super(fileName);
     }
 
