@@ -10,14 +10,19 @@ public class Solution<E> extends ArrayList<E> {
         super();
     }
 
-    public Solution(Solution<E> sol) {
+    public Solution(final Solution<E> sol) {
         super(sol);
         cost = sol.cost;
     }
 
     @Override
     public String toString() {
-        return "Solution: cost=[" + cost + "], size=[" + this.size() + "], elements=" + super.toString();
+        return String.format(
+            "Solution: cost = [%f], size = [%d], elements = %s",
+            cost,
+            this.size(),
+            super.toString()
+        );
     }
 
 }

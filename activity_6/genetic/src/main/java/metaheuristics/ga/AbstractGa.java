@@ -2,19 +2,19 @@ package metaheuristics.ga;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 import problems.Evaluator;
 import solutions.Solution;
 
-public abstract class AbstractGA<G extends Number, F> {
+public abstract class AbstractGa<G extends Number, F> {
 
     public class Chromosome extends ArrayList<G> {}
+
     public class Population extends ArrayList<Chromosome> {}
 
     public static boolean verbose = true;
     public static final Random rng = new Random(0);
 
-    protected Evaluator<F> ObjFunction;
+    protected Evaluator<F> objFunction;
     protected int generations;
     protected int popSize;
     protected int chromosomeSize;
@@ -25,16 +25,25 @@ public abstract class AbstractGA<G extends Number, F> {
     protected Chromosome bestChromosome;
 
     public abstract Solution<F> createEmptySol();
+
     protected abstract Solution<F> decode(Chromosome chromosome);
+
     protected abstract Chromosome generateRandomChromosome();
+
     protected abstract Double fitness(Chromosome chromosome);
+
     protected abstract void mutateGene(Chromosome chromosome, Integer locus);
 
-    public AbstractGA(Evaluator<F> objFunction, Integer generations, Integer popSize, Double mutationRate) {
-        this.ObjFunction = objFunction;
+    public AbstractGa(
+        final Evaluator<F> objFunction,
+        final Integer generations,
+        final Integer popSize,
+        final Double mutationRate
+    ) {
+        this.objFunction = objFunction;
         this.generations = generations;
         this.popSize = popSize;
-        this.chromosomeSize = this.ObjFunction.getDomainSize();
+        this.chromosomeSize = this.objFunction.getDomainSize();
         this.mutationRate = mutationRate;
     }
 
@@ -44,34 +53,35 @@ public abstract class AbstractGA<G extends Number, F> {
         bestSol = decode(bestChromosome);
         System.out.println("(Gen. " + 0 + ") BestSol = " + bestSol);
         for (int g = 1; g <= generations; g++) {
-            Population parents = selectParents(population);
-            Population offsprings = crossover(parents);
-            Population mutants = mutate(offsprings);
-            Population newpopulation = selectPopulation(mutants);
+            final Population parents = selectParents(population);
+            final Population offsprings = crossover(parents);
+            final Population mutants = mutate(offsprings);
+            final Population newpopulation = selectPopulation(mutants);
             population = newpopulation;
             bestChromosome = getBestChromosome(population);
             if (fitness(bestChromosome) > bestSol.cost) {
                 bestSol = decode(bestChromosome);
-                if (verbose)
+                if (verbose) {
                     System.out.println("(Gen. " + g + ") BestSol = " + bestSol);
+                }
             }
         }
         return bestSol;
     }
 
     protected Population initializePopulation() {
-        Population population = new Population();
+        final Population population = new Population();
         while (population.size() < popSize) {
             population.add(generateRandomChromosome());
         }
         return population;
     }
 
-    protected Chromosome getBestChromosome(Population population) {
+    protected Chromosome getBestChromosome(final Population population) {
         double bestFitness = Double.NEGATIVE_INFINITY;
         Chromosome bestChromosome = null;
         for (Chromosome c : population) {
-            double fitness = fitness(c);
+            final double fitness = fitness(c);
             if (fitness > bestFitness) {
                 bestFitness = fitness;
                 bestChromosome = c;
@@ -80,11 +90,11 @@ public abstract class AbstractGA<G extends Number, F> {
         return bestChromosome;
     }
 
-    protected Chromosome getWorseChromosome(Population population) {
+    protected Chromosome getWorseChromosome(final Population population) {
         double worseFitness = Double.POSITIVE_INFINITY;
         Chromosome worseChromosome = null;
         for (Chromosome c : population) {
-            double fitness = fitness(c);
+            final double fitness = fitness(c);
             if (fitness < worseFitness) {
                 worseFitness = fitness;
                 worseChromosome = c;
@@ -93,13 +103,13 @@ public abstract class AbstractGA<G extends Number, F> {
         return worseChromosome;
     }
 
-    protected Population selectParents(Population population) {
-        Population parents = new Population();
+    protected Population selectParents(final Population population) {
+        final Population parents = new Population();
         while (parents.size() < popSize) {
-            int index1 = rng.nextInt(popSize);
-            Chromosome parent1 = population.get(index1);
-            int index2 = rng.nextInt(popSize);
-            Chromosome parent2 = population.get(index2);
+            final int index1 = rng.nextInt(popSize);
+            final Chromosome parent1 = population.get(index1);
+            final int index2 = rng.nextInt(popSize);
+            final Chromosome parent2 = population.get(index2);
             if (fitness(parent1) > fitness(parent2)) {
                 parents.add(parent1);
             } else {
@@ -109,15 +119,15 @@ public abstract class AbstractGA<G extends Number, F> {
         return parents;
     }
 
-    protected Population crossover(Population parents) {
-        Population offsprings = new Population();
+    protected Population crossover(final Population parents) {
+        final Population offsprings = new Population();
         for (int i = 0; i < popSize; i = i + 2) {
-            Chromosome parent1 = parents.get(i);
-            Chromosome parent2 = parents.get(i + 1);
-            int crosspoint1 = rng.nextInt(chromosomeSize + 1);
-            int crosspoint2 = crosspoint1 + rng.nextInt((chromosomeSize + 1) - crosspoint1);
-            Chromosome offspring1 = new Chromosome();
-            Chromosome offspring2 = new Chromosome();
+            final Chromosome parent1 = parents.get(i);
+            final Chromosome parent2 = parents.get(i + 1);
+            final int crosspoint1 = rng.nextInt(chromosomeSize + 1);
+            final int crosspoint2 = crosspoint1 + rng.nextInt((chromosomeSize + 1) - crosspoint1);
+            final Chromosome offspring1 = new Chromosome();
+            final Chromosome offspring2 = new Chromosome();
             for (int j = 0; j < chromosomeSize; j++) {
                 if (j >= crosspoint1 && j < crosspoint2) {
                     offspring1.add(parent2.get(j));
@@ -133,7 +143,7 @@ public abstract class AbstractGA<G extends Number, F> {
         return offsprings;
     }
 
-    protected Population mutate(Population offsprings) {
+    protected Population mutate(final Population offsprings) {
         for (Chromosome c : offsprings) {
             for (int locus = 0; locus < chromosomeSize; locus++) {
                 if (rng.nextDouble() < mutationRate) {
@@ -144,8 +154,8 @@ public abstract class AbstractGA<G extends Number, F> {
         return offsprings;
     }
 
-    protected Population selectPopulation(Population offsprings) {
-        Chromosome worse = getWorseChromosome(offsprings);
+    protected Population selectPopulation(final Population offsprings) {
+        final Chromosome worse = getWorseChromosome(offsprings);
         if (fitness(worse) < fitness(bestChromosome)) {
             offsprings.remove(worse);
             offsprings.add(bestChromosome);
