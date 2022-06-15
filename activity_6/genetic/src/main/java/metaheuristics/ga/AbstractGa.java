@@ -56,8 +56,8 @@ public abstract class AbstractGa<G extends Number, F> {
             final Population parents = selectParents(population);
             final Population offsprings = crossover(parents);
             final Population mutants = mutate(offsprings);
-            final Population newpopulation = selectPopulation(mutants);
-            population = newpopulation;
+            final Population newPopulation = selectPopulation(mutants);
+            population = newPopulation;
             bestChromosome = getBestChromosome(population);
             if (fitness(bestChromosome) > bestSol.cost) {
                 bestSol = decode(bestChromosome);
@@ -80,7 +80,7 @@ public abstract class AbstractGa<G extends Number, F> {
     protected Chromosome getBestChromosome(final Population population) {
         double bestFitness = Double.NEGATIVE_INFINITY;
         Chromosome bestChromosome = null;
-        for (Chromosome c : population) {
+        for (final Chromosome c : population) {
             final double fitness = fitness(c);
             if (fitness > bestFitness) {
                 bestFitness = fitness;
@@ -121,7 +121,7 @@ public abstract class AbstractGa<G extends Number, F> {
 
     protected Population crossover(final Population parents) {
         final Population offsprings = new Population();
-        for (int i = 0; i < popSize; i = i + 2) {
+        for (int i = 0; i < popSize; i += 2) {
             final Chromosome parent1 = parents.get(i);
             final Chromosome parent2 = parents.get(i + 1);
             final int crosspoint1 = rng.nextInt(chromosomeSize + 1);
@@ -144,7 +144,7 @@ public abstract class AbstractGa<G extends Number, F> {
     }
 
     protected Population mutate(final Population offsprings) {
-        for (Chromosome c : offsprings) {
+        for (final Chromosome c : offsprings) {
             for (int locus = 0; locus < chromosomeSize; locus++) {
                 if (rng.nextDouble() < mutationRate) {
                     mutateGene(c, locus);
