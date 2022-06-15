@@ -3,7 +3,7 @@ package problems.qbf;
 import java.io.IOException;
 import java.util.Arrays;
 import problems.Evaluator;
-import problems.qbf.input.InputReaderQbf;
+import problems.qbf.input.InputReaderKqbf;
 import solutions.Solution;
 
 public class Kqbf implements Evaluator<Integer> {
@@ -13,7 +13,7 @@ public class Kqbf implements Evaluator<Integer> {
     public Double[][] matrix;
 
     public Kqbf(final String fileName) throws IOException {
-        final var input = new InputReaderQbf(fileName);
+        final var input = new InputReaderKqbf(fileName);
         this.size = input.getSize();
         this.matrix = input.getMatrix();
         variables = allocateVariables();
