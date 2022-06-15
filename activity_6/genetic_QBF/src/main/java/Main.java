@@ -1,17 +1,21 @@
 import java.io.IOException;
-import problems.qbf.solvers.GaQbf;
-import solutions.Solution;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        final long startTime = System.currentTimeMillis();
-        final GaQbf ga = new GaQbf(1000, 100, 1.0 / 100.0, "../instances/qbf/qbf100");
-        final Solution<Integer> bestSol = ga.solve();
-        System.out.println("maxVal = " + bestSol);
-        final long endTime = System.currentTimeMillis();
-        final long totalTime = endTime - startTime;
-        System.out.println("Time = " + (double) totalTime / (double) 1000 + " seg");
+    private static final int numberOfGenerations = 1000;
+    private static final int populationSize = 100;
+    private static final double mutationRate = 1.0 / 100.0;
+    private static final String problemInstance = "../instances/qbf/qbf100";
+
+    public static void main(final String[] args) throws IOException {
+        final var solver = new ProblemInstanceSolver(
+            numberOfGenerations,
+            populationSize,
+            mutationRate,
+            problemInstance
+        );
+        solver.solve();
+        solver.log();
     }
 
 }
