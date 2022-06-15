@@ -1,13 +1,11 @@
 package problems.kqbf.input;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class InputReaderKqbf extends InputReaderQbf {
 
     private Integer knapsackCapacity;
-    private List<Integer> knapsackWeights;
+    private Integer[] knapsackWeights;
 
     public InputReaderKqbf(final String fileName) throws IOException {
         super(fileName);
@@ -17,7 +15,7 @@ public class InputReaderKqbf extends InputReaderQbf {
         return this.knapsackCapacity;
     }
 
-    public List<Integer> getKnapsackWeights() {
+    public Integer[] getKnapsackWeights() {
         return this.knapsackWeights;
     }
 
@@ -32,13 +30,13 @@ public class InputReaderKqbf extends InputReaderQbf {
     private String knapsackWeightsToString() {
         final var str = new StringBuilder();
         str.append("[");
-        for (int i = 0; i < this.knapsackWeights.size() - 1; ++i) {
-            final var value = this.knapsackWeights.get(i);
+        for (int i = 0; i < this.knapsackWeights.length - 1; ++i) {
+            final var value = this.knapsackWeights[i];
             str.append(String.format("%2d, ", value));
         }
         // last element
-        final int i = this.knapsackWeights.size() - 1;
-        final var value = this.knapsackWeights.get(i);
+        final int i = this.knapsackWeights.length - 1;
+        final var value = this.knapsackWeights[i];
         str.append(String.format("%2d", value));
         str.append("]");
         return new String(str);
@@ -54,11 +52,11 @@ public class InputReaderKqbf extends InputReaderQbf {
         this.readMatrix();
     }
 
-    protected List<Integer> readLine() throws IOException {
-        final var line = new ArrayList<Integer>(this.size);
+    protected Integer[] readLine() throws IOException {
+        final var line = new Integer[this.size];
         for (int i = 0; i < this.size; ++i) {
             this.stok.nextToken();
-            line.add((int) Math.round(stok.nval));
+            line[i] = ((int) Math.round(stok.nval));
         }
         return line;
     }

@@ -11,11 +11,15 @@ public class Kqbf implements Evaluator<Integer> {
     public final Integer size;
     public final Double[] variables;
     public Double[][] matrix;
+    public final Integer knapsackCapacity;
+    public final Integer[] weights;
 
     public Kqbf(final String fileName) throws IOException {
         final var input = new InputReaderKqbf(fileName);
         this.size = input.getSize();
         this.matrix = input.getMatrix();
+        this.knapsackCapacity = input.getKnapsackCapacity();
+        this.weights = input.getKnapsackWeights();
         variables = allocateVariables();
     }
 
