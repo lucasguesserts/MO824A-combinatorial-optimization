@@ -137,7 +137,7 @@ public abstract class AbstractGa<G extends Number, F> {
                 if (parent1.get(idx) != parent2.get(idx)) {
                     possibleCrossPoints.add(idx);
                 }
-            }
+            }eee
             
             if (possibleCrossPoints.size() > 0) {
                 crosspoint1 = rng.nextInt(possibleCrossPoints.size() + 1);
