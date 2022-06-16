@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import problems.Evaluator;
 import solutions.Solution;
+import java.util.*;
 
 public abstract class AbstractGa<G extends Number, F> {
 
@@ -56,7 +57,7 @@ public abstract class AbstractGa<G extends Number, F> {
             final Population parents = selectParents(population);
             final Population offsprings = crossover(parents);
             final Population mutants = mutate(offsprings);
-            final Population newPopulation = selectPopulation(mutants);
+            final Population newPopulation = selectPopulation(parents, mutants);
             population = newPopulation;
             bestChromosome = getBestChromosome(population);
             if (fitness(bestChromosome) > bestSol.cost) {
@@ -172,7 +173,16 @@ public abstract class AbstractGa<G extends Number, F> {
         return offsprings;
     }
 
-    protected Population selectPopulation(final Population offsprings) {
+    protected Population selectPopulation(final Population parents, final Population offsprings) {
+		offsprings.addAll(parents);
+		
+		Comparator<Chromosome> compareByFitness = (Chromosome c1, Chromosome c2) -> Double.compare(fitness(c1), fitness(c2));
+		Collections.sort(offsprings, compareByFitness);
+		
+		while(offsprings.size() > popSize) {
+			offsprings.remove(0);
+		}
+		
         final Chromosome worse = getWorseChromosome(offsprings);
         if (fitness(worse) < fitness(bestChromosome)) {
             offsprings.remove(worse);
