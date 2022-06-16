@@ -1,10 +1,11 @@
 package metaheuristics.ga;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 import problems.Evaluator;
 import solutions.Solution;
-import java.util.*;
 
 public abstract class AbstractGa<G extends Number, F> {
 
@@ -129,30 +130,25 @@ public abstract class AbstractGa<G extends Number, F> {
         for (int i = 0; i < popSize; i += 2) {
             final Chromosome parent1 = parents.get(i);
             final Chromosome parent2 = parents.get(i + 1);
-
             int crosspoint1 = rng.nextInt(chromosomeSize + 1);
             int crosspoint2 = crosspoint1 + rng.nextInt((chromosomeSize + 1) - crosspoint1);
-            
-            int L = -1, R = -1;
+            int leftIndex = -1;
+            int rightIndex = -1;
             for (int idx = 0; idx < parent1.size(); idx++) {
                 if (parent1.get(idx) != parent2.get(idx)) {
-					if (L == -1) {
-						L = idx;
-					} else {
-						R = idx;
-					}
+                    if (leftIndex == -1) {
+                        leftIndex = idx;
+                    } else {
+                        rightIndex = idx;
+                    }
                 }
             }
-            
-            
-            if (L != -1 &&  R != -1 &&  R > L) {
-                crosspoint1 = rng.nextInt(R - L + 1);
-                crosspoint2 = crosspoint1 + rng.nextInt((R - L + 1) - crosspoint1);
-                
-                crosspoint1 += L;
-                crosspoint2 += L;
+            if ((leftIndex != -1) && (rightIndex != -1) &&  (rightIndex > leftIndex)) {
+                crosspoint1 = rng.nextInt(rightIndex - leftIndex + 1);
+                crosspoint2 = crosspoint1 + rng.nextInt((rightIndex - leftIndex + 1) - crosspoint1);
+                crosspoint1 += leftIndex;
+                crosspoint2 += leftIndex;
             }
-
             final Chromosome offspring1 = new Chromosome();
             final Chromosome offspring2 = new Chromosome();
             for (int j = 0; j < chromosomeSize; j++) {
@@ -182,15 +178,13 @@ public abstract class AbstractGa<G extends Number, F> {
     }
 
     protected Population selectPopulation(final Population parents, final Population offsprings) {
-		offsprings.addAll(parents);
-		
-		Comparator<Chromosome> compareByFitness = (Chromosome c1, Chromosome c2) -> Double.compare(fitness(c1), fitness(c2));
-		Collections.sort(offsprings, compareByFitness);
-		
-		while(offsprings.size() > popSize) {
-			offsprings.remove(0);
-		}
-		
+        offsprings.addAll(parents);
+        final Comparator<Chromosome> compareByFitness =
+            (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2));
+        Collections.sort(offsprings, compareByFitness);
+        while (offsprings.size() > popSize) {
+            offsprings.remove(0);
+        }
         final Chromosome worse = getWorseChromosome(offsprings);
         if (fitness(worse) < fitness(bestChromosome)) {
             offsprings.remove(worse);
