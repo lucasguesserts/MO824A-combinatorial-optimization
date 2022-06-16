@@ -1,3 +1,4 @@
+import sys
 import json
 import pandas as pd
 
@@ -31,7 +32,7 @@ class Extractor ():
 
 
 if __name__ == "__main__":
-    filePath = "../experiments/2022-05-16.experiment_result.json"
+    filePath = sys.argv[1]
     df = Extractor.getDataFrame(filePath)
     print(r"\documentclass{article}")
     print(r"\usepackage[utf8]{inputenc}")
