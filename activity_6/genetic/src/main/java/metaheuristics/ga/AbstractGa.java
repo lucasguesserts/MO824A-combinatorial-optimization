@@ -2,7 +2,6 @@ package metaheuristics.ga;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
 import problems.Evaluator;
 import solutions.Solution;
@@ -178,19 +177,20 @@ public abstract class AbstractGa<G extends Number, F> {
     }
 
     protected Population selectPopulation(final Population parents, final Population offsprings) {
-        offsprings.addAll(parents);
-        final Comparator<Chromosome> compareByFitness =
-            (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2));
-        Collections.sort(offsprings, compareByFitness);
-        while (offsprings.size() > popSize) {
-            offsprings.remove(0);
-        }
-        final Chromosome worse = getWorseChromosome(offsprings);
-        if (fitness(worse) < fitness(bestChromosome)) {
-            offsprings.remove(worse);
-            offsprings.add(bestChromosome);
-        }
-        return offsprings;
+        final var allChromosomes = new Population();
+        allChromosomes.addAll(parents);
+        allChromosomes.addAll(offsprings);
+        Collections.sort(
+            allChromosomes,
+            (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2))
+        );
+        final var selectedPopulation = new Population();
+        selectedPopulation.addAll(
+            allChromosomes.subList(
+                allChromosomes.size() - this.popSize,
+                allChromosomes.size()
+        )); // select the popSize best chromosomes
+        return selectedPopulation;
     }
 
     public Integer getKnapsackCapacity() {
