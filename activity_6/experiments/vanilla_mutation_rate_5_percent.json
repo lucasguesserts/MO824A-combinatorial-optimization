@@ -1,0 +1,715 @@
+[
+  {
+    "Setup": {
+      "knapsackCapacity": 64,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf020",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf020",
+      "populationSize": 100,
+      "domainSize": 20
+    },
+    "RunningTime": 0.984,
+    "Solution": {
+      "cost": 120,
+      "elements": "[2, 3, 4, 11, 14, 15, 16]",
+      "weight": 54
+    },
+    "iterations": [
+      {
+        "cost": 36,
+        "iteration": 0
+      },
+      {
+        "cost": 50,
+        "iteration": 1
+      },
+      {
+        "cost": 55,
+        "iteration": 3
+      },
+      {
+        "cost": 62,
+        "iteration": 5
+      },
+      {
+        "cost": 66,
+        "iteration": 6
+      },
+      {
+        "cost": 80,
+        "iteration": 7
+      },
+      {
+        "cost": 86,
+        "iteration": 8
+      },
+      {
+        "cost": 95,
+        "iteration": 9
+      },
+      {
+        "cost": 98,
+        "iteration": 18
+      },
+      {
+        "cost": 99,
+        "iteration": 19
+      },
+      {
+        "cost": 107,
+        "iteration": 20
+      },
+      {
+        "cost": 120,
+        "iteration": 22
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 138,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf040",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf040",
+      "populationSize": 100,
+      "domainSize": 40
+    },
+    "RunningTime": 2.971,
+    "Solution": {
+      "cost": 309,
+      "elements": "[3, 4, 9, 11, 14, 15, 17, 20, 21, 22, 23, 24, 28, 29, 32, 33, 34, 36]",
+      "weight": 135
+    },
+    "iterations": [
+      {
+        "cost": 39,
+        "iteration": 0
+      },
+      {
+        "cost": 54,
+        "iteration": 1
+      },
+      {
+        "cost": 71,
+        "iteration": 2
+      },
+      {
+        "cost": 89,
+        "iteration": 3
+      },
+      {
+        "cost": 102,
+        "iteration": 4
+      },
+      {
+        "cost": 125,
+        "iteration": 5
+      },
+      {
+        "cost": 150,
+        "iteration": 7
+      },
+      {
+        "cost": 155,
+        "iteration": 9
+      },
+      {
+        "cost": 162,
+        "iteration": 11
+      },
+      {
+        "cost": 189,
+        "iteration": 16
+      },
+      {
+        "cost": 198,
+        "iteration": 20
+      },
+      {
+        "cost": 206,
+        "iteration": 24
+      },
+      {
+        "cost": 212,
+        "iteration": 28
+      },
+      {
+        "cost": 220,
+        "iteration": 31
+      },
+      {
+        "cost": 223,
+        "iteration": 41
+      },
+      {
+        "cost": 226,
+        "iteration": 53
+      },
+      {
+        "cost": 235,
+        "iteration": 67
+      },
+      {
+        "cost": 251,
+        "iteration": 69
+      },
+      {
+        "cost": 263,
+        "iteration": 142
+      },
+      {
+        "cost": 268,
+        "iteration": 159
+      },
+      {
+        "cost": 273,
+        "iteration": 232
+      },
+      {
+        "cost": 276,
+        "iteration": 278
+      },
+      {
+        "cost": 279,
+        "iteration": 351
+      },
+      {
+        "cost": 282,
+        "iteration": 359
+      },
+      {
+        "cost": 290,
+        "iteration": 414
+      },
+      {
+        "cost": 292,
+        "iteration": 781
+      },
+      {
+        "cost": 309,
+        "iteration": 810
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 221,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf060",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf060",
+      "populationSize": 100,
+      "domainSize": 60
+    },
+    "RunningTime": 5.943,
+    "Solution": {
+      "cost": 381,
+      "elements": "[4, 11, 12, 14, 17, 23, 24, 26, 29, 30, 31, 32, 35, 38, 42, 49, 50, 51, 53, 55, 56, 59]",
+      "weight": 215
+    },
+    "iterations": [
+      {
+        "cost": 70,
+        "iteration": 0
+      },
+      {
+        "cost": 103,
+        "iteration": 1
+      },
+      {
+        "cost": 121,
+        "iteration": 3
+      },
+      {
+        "cost": 144,
+        "iteration": 4
+      },
+      {
+        "cost": 217,
+        "iteration": 5
+      },
+      {
+        "cost": 224,
+        "iteration": 12
+      },
+      {
+        "cost": 228,
+        "iteration": 15
+      },
+      {
+        "cost": 231,
+        "iteration": 16
+      },
+      {
+        "cost": 255,
+        "iteration": 17
+      },
+      {
+        "cost": 261,
+        "iteration": 21
+      },
+      {
+        "cost": 265,
+        "iteration": 22
+      },
+      {
+        "cost": 287,
+        "iteration": 23
+      },
+      {
+        "cost": 306,
+        "iteration": 44
+      },
+      {
+        "cost": 351,
+        "iteration": 60
+      },
+      {
+        "cost": 356,
+        "iteration": 137
+      },
+      {
+        "cost": 359,
+        "iteration": 220
+      },
+      {
+        "cost": 361,
+        "iteration": 289
+      },
+      {
+        "cost": 369,
+        "iteration": 580
+      },
+      {
+        "cost": 381,
+        "iteration": 832
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 288,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf080",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf080",
+      "populationSize": 100,
+      "domainSize": 80
+    },
+    "RunningTime": 9.662,
+    "Solution": {
+      "cost": 605,
+      "elements": "[1, 2, 3, 4, 6, 11, 12, 18, 20, 23, 24, 25, 29, 31, 34, 36, 37, 42, 47, 48, 49, 50, 53, 54, 58, 61, 64, 69, 74]",
+      "weight": 285
+    },
+    "iterations": [
+      {
+        "cost": 64,
+        "iteration": 0
+      },
+      {
+        "cost": 108,
+        "iteration": 1
+      },
+      {
+        "cost": 164,
+        "iteration": 2
+      },
+      {
+        "cost": 169,
+        "iteration": 3
+      },
+      {
+        "cost": 184,
+        "iteration": 4
+      },
+      {
+        "cost": 257,
+        "iteration": 6
+      },
+      {
+        "cost": 267,
+        "iteration": 7
+      },
+      {
+        "cost": 348,
+        "iteration": 9
+      },
+      {
+        "cost": 413,
+        "iteration": 16
+      },
+      {
+        "cost": 432,
+        "iteration": 49
+      },
+      {
+        "cost": 442,
+        "iteration": 57
+      },
+      {
+        "cost": 452,
+        "iteration": 81
+      },
+      {
+        "cost": 491,
+        "iteration": 108
+      },
+      {
+        "cost": 501,
+        "iteration": 119
+      },
+      {
+        "cost": 517,
+        "iteration": 120
+      },
+      {
+        "cost": 529,
+        "iteration": 156
+      },
+      {
+        "cost": 544,
+        "iteration": 166
+      },
+      {
+        "cost": 547,
+        "iteration": 294
+      },
+      {
+        "cost": 568,
+        "iteration": 342
+      },
+      {
+        "cost": 570,
+        "iteration": 390
+      },
+      {
+        "cost": 594,
+        "iteration": 430
+      },
+      {
+        "cost": 601,
+        "iteration": 514
+      },
+      {
+        "cost": 605,
+        "iteration": 889
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 346,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf100",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf100",
+      "populationSize": 100,
+      "domainSize": 100
+    },
+    "RunningTime": 14.24,
+    "Solution": {
+      "cost": 898,
+      "elements": "[2, 3, 6, 7, 9, 10, 14, 16, 17, 19, 21, 22, 23, 24, 28, 29, 33, 34, 37, 38, 39, 50, 51, 55, 62, 63, 64, 68, 69, 71, 72, 74, 75, 79, 81, 90, 91, 93, 96]",
+      "weight": 343
+    },
+    "iterations": [
+      {
+        "cost": 99,
+        "iteration": 0
+      },
+      {
+        "cost": 113,
+        "iteration": 2
+      },
+      {
+        "cost": 168,
+        "iteration": 3
+      },
+      {
+        "cost": 247,
+        "iteration": 4
+      },
+      {
+        "cost": 288,
+        "iteration": 6
+      },
+      {
+        "cost": 334,
+        "iteration": 8
+      },
+      {
+        "cost": 365,
+        "iteration": 10
+      },
+      {
+        "cost": 378,
+        "iteration": 11
+      },
+      {
+        "cost": 459,
+        "iteration": 12
+      },
+      {
+        "cost": 473,
+        "iteration": 15
+      },
+      {
+        "cost": 484,
+        "iteration": 27
+      },
+      {
+        "cost": 499,
+        "iteration": 36
+      },
+      {
+        "cost": 524,
+        "iteration": 76
+      },
+      {
+        "cost": 612,
+        "iteration": 80
+      },
+      {
+        "cost": 648,
+        "iteration": 82
+      },
+      {
+        "cost": 661,
+        "iteration": 88
+      },
+      {
+        "cost": 662,
+        "iteration": 118
+      },
+      {
+        "cost": 687,
+        "iteration": 339
+      },
+      {
+        "cost": 705,
+        "iteration": 341
+      },
+      {
+        "cost": 780,
+        "iteration": 354
+      },
+      {
+        "cost": 793,
+        "iteration": 464
+      },
+      {
+        "cost": 891,
+        "iteration": 667
+      },
+      {
+        "cost": 898,
+        "iteration": 911
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 680,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf200",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf200",
+      "populationSize": 100,
+      "domainSize": 200
+    },
+    "RunningTime": 58.502,
+    "Solution": {
+      "cost": 1811,
+      "elements": "[1, 4, 6, 7, 10, 11, 16, 17, 18, 19, 21, 24, 25, 28, 29, 30, 45, 48, 49, 51, 53, 54, 56, 59, 62, 63, 65, 67, 72, 74, 83, 84, 85, 86, 87, 88, 90, 95, 100, 110, 111, 113, 117, 119, 121, 122, 123, 125, 126, 127, 130, 131, 133, 136, 138, 139, 144, 145, 150, 151, 154, 155, 157, 161, 167, 171, 172, 174, 176, 177, 179, 180, 181, 182, 189, 193, 194, 196]",
+      "weight": 677
+    },
+    "iterations": [
+      {
+        "cost": 69,
+        "iteration": 0
+      },
+      {
+        "cost": 132,
+        "iteration": 1
+      },
+      {
+        "cost": 256,
+        "iteration": 2
+      },
+      {
+        "cost": 335,
+        "iteration": 3
+      },
+      {
+        "cost": 439,
+        "iteration": 4
+      },
+      {
+        "cost": 470,
+        "iteration": 5
+      },
+      {
+        "cost": 703,
+        "iteration": 6
+      },
+      {
+        "cost": 764,
+        "iteration": 7
+      },
+      {
+        "cost": 1037,
+        "iteration": 8
+      },
+      {
+        "cost": 1066,
+        "iteration": 12
+      },
+      {
+        "cost": 1097,
+        "iteration": 16
+      },
+      {
+        "cost": 1132,
+        "iteration": 39
+      },
+      {
+        "cost": 1229,
+        "iteration": 48
+      },
+      {
+        "cost": 1244,
+        "iteration": 166
+      },
+      {
+        "cost": 1316,
+        "iteration": 215
+      },
+      {
+        "cost": 1396,
+        "iteration": 230
+      },
+      {
+        "cost": 1431,
+        "iteration": 281
+      },
+      {
+        "cost": 1453,
+        "iteration": 282
+      },
+      {
+        "cost": 1582,
+        "iteration": 294
+      },
+      {
+        "cost": 1634,
+        "iteration": 389
+      },
+      {
+        "cost": 1645,
+        "iteration": 410
+      },
+      {
+        "cost": 1655,
+        "iteration": 466
+      },
+      {
+        "cost": 1732,
+        "iteration": 588
+      },
+      {
+        "cost": 1811,
+        "iteration": 663
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 1344,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf400",
+      "mutationRate": 0.05,
+      "instanceIdentifier": "kqbf400",
+      "populationSize": 100,
+      "domainSize": 400
+    },
+    "RunningTime": 241.923,
+    "Solution": {
+      "cost": 2984,
+      "elements": "[1, 2, 5, 7, 9, 10, 12, 14, 16, 17, 19, 20, 22, 24, 30, 32, 38, 39, 44, 48, 49, 50, 51, 52, 53, 58, 62, 63, 66, 68, 70, 71, 74, 76, 78, 82, 83, 85, 87, 88, 89, 91, 92, 95, 96, 97, 100, 101, 108, 109, 110, 113, 116, 119, 120, 122, 124, 128, 129, 131, 136, 141, 143, 146, 152, 153, 154, 155, 162, 163, 166, 169, 173, 174, 176, 179, 182, 183, 193, 195, 197, 198, 203, 206, 207, 209, 210, 217, 220, 222, 223, 225, 226, 230, 231, 236, 241, 242, 243, 245, 249, 250, 252, 260, 263, 268, 269, 270, 271, 274, 276, 278, 279, 283, 291, 295, 299, 300, 301, 313, 315, 316, 317, 318, 319, 327, 328, 329, 331, 335, 338, 339, 344, 347, 349, 350, 357, 360, 361, 366, 367, 370, 375, 378, 379, 380, 382, 384, 386, 388, 389, 390, 397, 398]",
+      "weight": 1341
+    },
+    "iterations": [
+      {
+        "cost": 64,
+        "iteration": 0
+      },
+      {
+        "cost": 180,
+        "iteration": 1
+      },
+      {
+        "cost": 478,
+        "iteration": 2
+      },
+      {
+        "cost": 762,
+        "iteration": 3
+      },
+      {
+        "cost": 897,
+        "iteration": 4
+      },
+      {
+        "cost": 1379,
+        "iteration": 5
+      },
+      {
+        "cost": 1792,
+        "iteration": 6
+      },
+      {
+        "cost": 1873,
+        "iteration": 8
+      },
+      {
+        "cost": 2065,
+        "iteration": 9
+      },
+      {
+        "cost": 2299,
+        "iteration": 11
+      },
+      {
+        "cost": 2345,
+        "iteration": 26
+      },
+      {
+        "cost": 2347,
+        "iteration": 115
+      },
+      {
+        "cost": 2544,
+        "iteration": 124
+      },
+      {
+        "cost": 2742,
+        "iteration": 147
+      },
+      {
+        "cost": 2753,
+        "iteration": 156
+      },
+      {
+        "cost": 2970,
+        "iteration": 169
+      },
+      {
+        "cost": 2984,
+        "iteration": 626
+      }
+    ]
+  }
+]
