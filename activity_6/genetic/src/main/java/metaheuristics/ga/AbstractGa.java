@@ -59,7 +59,10 @@ public abstract class AbstractGa<G extends Number, F> {
         bestSol = decode(bestChromosome);
         this.currentGeneration = 0;
         this.logOfBestSolution();
-        for (this.currentGeneration = 1; this.currentGeneration <= numberOfGenerations; ++this.currentGeneration) {
+        for (this.currentGeneration = 1;
+            this.currentGeneration <= numberOfGenerations;
+            ++this.currentGeneration
+        ) {
             final Population parents = selectParents(population);
             final Population offsprings = crossover(parents);
             final Population mutants = mutate(offsprings);
