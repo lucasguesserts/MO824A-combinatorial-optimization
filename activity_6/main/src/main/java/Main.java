@@ -1,8 +1,13 @@
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+import org.json.JSONArray;
 
 public class Main {
+
+    private static final JSONArray experimentResults = new JSONArray();
 
     private static final int numberOfGenerations = 1000;
     private static final int populationSize = 100;
@@ -29,6 +34,23 @@ public class Main {
             solver.solve();
             solver.log();
             solver.logEnd();
+            experimentResults.put(solver.getLogAsJson());
+        }
+        saveExperimentResults();
+    }
+
+    private static void saveExperimentResults() {
+        try {
+            final var timestamp = new Timestamp(System.currentTimeMillis());
+            final var filePath = String.format(
+                "../experiments/%s.json",
+                timestamp.toString()
+            ).replace(" ", "T");
+            final var file = new FileWriter(filePath);
+            file.write(experimentResults.toString(2));
+            file.close();
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
         }
     }
 

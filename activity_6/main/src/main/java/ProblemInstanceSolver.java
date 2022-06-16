@@ -64,7 +64,7 @@ public class ProblemInstanceSolver {
     }
 
     public void log() {
-        System.out.println(this.getLog().toString(2));
+        System.out.println(this.getLogAsJson().toString(2));
     }
 
     private String getInstanceIdentifier() {
@@ -73,7 +73,7 @@ public class ProblemInstanceSolver {
         return lastPart;
     }
 
-    public JSONObject getLog() {
+    public JSONObject getLogAsJson() {
         final var obj = new JSONObject();
         obj.put("Setup", this.getSetup());
         obj.put("Solution", this.getSolution());
