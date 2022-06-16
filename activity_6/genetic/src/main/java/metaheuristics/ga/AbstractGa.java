@@ -66,7 +66,8 @@ public abstract class AbstractGa<G extends Number, F> {
             final Population parents = selectParents(population);
             final Population offsprings = crossover(parents);
             final Population mutants = mutate(offsprings);
-            final Population newPopulation = selectPopulation(parents, mutants);
+            final Population newPopulation = selectPopulation(mutants); // vanilla
+            // final Population newPopulation = selectPopulation(parents, mutants); // steady state
             population = newPopulation;
             bestChromosome = getBestChromosome(population);
             if (fitness(bestChromosome) > bestSol.cost) {
@@ -138,23 +139,25 @@ public abstract class AbstractGa<G extends Number, F> {
             final Chromosome parent2 = parents.get(i + 1);
             int crosspoint1 = rng.nextInt(chromosomeSize + 1);
             int crosspoint2 = crosspoint1 + rng.nextInt((chromosomeSize + 1) - crosspoint1);
-            int leftIndex = -1;
-            int rightIndex = -1;
-            for (int idx = 0; idx < parent1.size(); idx++) {
-                if (parent1.get(idx) != parent2.get(idx)) {
-                    if (leftIndex == -1) {
-                        leftIndex = idx;
-                    } else {
-                        rightIndex = idx;
-                    }
-                }
-            }
-            if ((leftIndex != -1) && (rightIndex != -1) &&  (rightIndex > leftIndex)) {
-                crosspoint1 = rng.nextInt(rightIndex - leftIndex + 1);
-                crosspoint2 = crosspoint1 + rng.nextInt((rightIndex - leftIndex + 1) - crosspoint1);
-                crosspoint1 += leftIndex;
-                crosspoint2 += leftIndex;
-            }
+            // // diversification - start
+            // int leftIndex = -1;
+            // int rightIndex = -1;
+            // for (int idx = 0; idx < parent1.size(); idx++) {
+            //     if (parent1.get(idx) != parent2.get(idx)) {
+            //         if (leftIndex == -1) {
+            //             leftIndex = idx;
+            //         } else {
+            //             rightIndex = idx;
+            //         }
+            //     }
+            // }
+            // if ((leftIndex != -1) && (rightIndex != -1) &&  (rightIndex > leftIndex)) {
+            //     crosspoint1 = rng.nextInt(rightIndex - leftIndex + 1);
+            //     crosspoint2 = crosspoint1 + rng.nextInt((rightIndex - leftIndex + 1) - crosspoint1);
+            //     crosspoint1 += leftIndex;
+            //     crosspoint2 += leftIndex;
+            // }
+            // // diversification - end
             final Chromosome offspring1 = new Chromosome();
             final Chromosome offspring2 = new Chromosome();
             for (int j = 0; j < chromosomeSize; j++) {
@@ -183,22 +186,33 @@ public abstract class AbstractGa<G extends Number, F> {
         return offsprings;
     }
 
-    protected Population selectPopulation(final Population parents, final Population offsprings) {
-        final var allChromosomes = new Population();
-        allChromosomes.addAll(parents);
-        allChromosomes.addAll(offsprings);
-        Collections.sort(
-            allChromosomes,
-            (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2))
-        );
-        final var selectedPopulation = new Population();
-        selectedPopulation.addAll(
-            allChromosomes.subList(
-                allChromosomes.size() - this.popSize,
-                allChromosomes.size()
-        )); // select the popSize best chromosomes
-        return selectedPopulation;
+    protected Population selectPopulation(final Population offsprings) {
+        // vanilla
+        final Chromosome worse = getWorseChromosome(offsprings);
+        if (fitness(worse) < fitness(bestChromosome)) {
+            offsprings.remove(worse);
+            offsprings.add(bestChromosome);
+        }
+        return offsprings;
     }
+
+    // protected Population selectPopulation(final Population parents, final Population offsprings) {
+    //     // steady state
+    //     final var allChromosomes = new Population();
+    //     allChromosomes.addAll(parents);
+    //     allChromosomes.addAll(offsprings);
+    //     Collections.sort(
+    //         allChromosomes,
+    //         (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2))
+    //     );
+    //     final var selectedPopulation = new Population();
+    //     selectedPopulation.addAll(
+    //         allChromosomes.subList(
+    //             allChromosomes.size() - this.popSize,
+    //             allChromosomes.size()
+    //     )); // select the popSize best chromosomes
+    //     return selectedPopulation;
+    // }
 
     public Integer getKnapsackCapacity() {
         return this.objFunction.getknapsackCapacity();
