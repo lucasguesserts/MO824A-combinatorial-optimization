@@ -30,6 +30,6 @@ See [this sdk config file](./.sdkmanrc) for more informantion.
 
 ## Debug in vscode
 
-Put a breakpoint in the file [`GA_QBF.java`](./genetic/src/main/java/problems/qbf/solvers/GA_QBF.java) and then press `F5` to see all the magic happening.
+Put a breakpoint in the file [`Main.java`](./main/src/main/java/Main.java) and then press `F5` to see all the magic happening.
 
 Obs: the JDK configured is specified in the [vscode settings file](./.vscode/settings.json). If it doesn't work for you, try either to set your own java runtime or delete the configurations completely and let vscode find it automatically (but do not commit such changes).
