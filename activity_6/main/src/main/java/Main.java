@@ -34,9 +34,13 @@ public class Main {
             solver.solve();
             solver.log();
             solver.logEnd();
-            experimentResults.put(solver.getLogAsJson());
+            collectExperimentResults(solver);
         }
         saveExperimentResults();
+    }
+
+    private static void collectExperimentResults(final ProblemInstanceSolver solver) {
+        experimentResults.put(solver.getLogAsJson());
     }
 
     private static void saveExperimentResults() {

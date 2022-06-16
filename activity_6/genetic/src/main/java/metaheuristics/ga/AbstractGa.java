@@ -3,6 +3,8 @@ package metaheuristics.ga;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import problems.Evaluator;
 import solutions.Solution;
 
@@ -12,14 +14,17 @@ public abstract class AbstractGa<G extends Number, F> {
 
     public class Population extends ArrayList<Chromosome> {}
 
-    public static boolean verbose = true;
     public static final Random rng = new Random(0);
 
+    public final JSONArray logOfIterations = new JSONArray();
+
     protected Evaluator<F> objFunction;
-    protected int generations;
+    protected int numberOfGenerations;
     protected int popSize;
     protected int chromosomeSize;
     protected double mutationRate;
+
+    protected int currentGeneration;
 
     protected Double bestCost;
     protected Solution<F> bestSol;
@@ -42,7 +47,7 @@ public abstract class AbstractGa<G extends Number, F> {
         final Double mutationRate
     ) {
         this.objFunction = objFunction;
-        this.generations = generations;
+        this.numberOfGenerations = generations;
         this.popSize = popSize;
         this.chromosomeSize = this.objFunction.getDomainSize();
         this.mutationRate = mutationRate;
@@ -52,8 +57,9 @@ public abstract class AbstractGa<G extends Number, F> {
         Population population = initializePopulation();
         bestChromosome = getBestChromosome(population);
         bestSol = decode(bestChromosome);
-        System.out.println("(Gen. " + 0 + ") BestSol = " + bestSol);
-        for (int g = 1; g <= generations; g++) {
+        this.currentGeneration = 0;
+        this.logOfBestSolution();
+        for (this.currentGeneration = 1; this.currentGeneration <= numberOfGenerations; ++this.currentGeneration) {
             final Population parents = selectParents(population);
             final Population offsprings = crossover(parents);
             final Population mutants = mutate(offsprings);
@@ -62,9 +68,7 @@ public abstract class AbstractGa<G extends Number, F> {
             bestChromosome = getBestChromosome(population);
             if (fitness(bestChromosome) > bestSol.cost) {
                 bestSol = decode(bestChromosome);
-                if (verbose) {
-                    System.out.println("(Gen. " + g + ") BestSol = " + bestSol);
-                }
+                this.logOfBestSolution();
             }
         }
         return bestSol;
@@ -199,6 +203,14 @@ public abstract class AbstractGa<G extends Number, F> {
 
     public Integer getDomainSize() {
         return this.objFunction.getDomainSize();
+    }
+
+    protected void logOfBestSolution() {
+        System.out.println("(Gen. " + this.currentGeneration + ") BestSol = " + bestSol);
+        final var obj = new JSONObject();
+        obj.put("iteration", this.currentGeneration);
+        obj.put("cost", this.bestSol.cost);
+        this.logOfIterations.put(obj);
     }
 
 }

@@ -11,6 +11,8 @@ public class ProblemInstanceSolver {
     private final String problemInstance;
     private final String instanceIdentifier;
 
+    private final GaKqbf ga;
+
     private Solution<Integer> bestSol;
     private Integer knapsackCapacity;
     private Integer domainSize;
@@ -24,22 +26,22 @@ public class ProblemInstanceSolver {
             final int populationSize,
             final double mutationRate,
             final String problemInstance
-    ) {
+    ) throws IOException {
         this.numberOfGenerations = numberOfGenerations;
         this.populationSize = populationSize;
         this.mutationRate = mutationRate;
         this.problemInstance = problemInstance;
         this.instanceIdentifier = this.getInstanceIdentifier();
+        this.ga = new GaKqbf(
+            this.numberOfGenerations,
+            this.populationSize,
+            this.mutationRate,
+            this.problemInstance
+        );
     }
 
-    public void solve() throws IOException {
+    public void solve() {
         this.startTime = System.currentTimeMillis();
-        final var ga = new GaKqbf(
-            numberOfGenerations,
-            populationSize,
-            mutationRate,
-            problemInstance
-        );
         System.out.println(">>>>> Solving problem:\n");
         this.bestSol = ga.solve();
         this.knapsackCapacity = ga.getKnapsackCapacity();
@@ -78,6 +80,7 @@ public class ProblemInstanceSolver {
         obj.put("Setup", this.getSetup());
         obj.put("Solution", this.getSolution());
         obj.put("RunningTime", (double) this.totalTime / 1000.0);
+        obj.put("iterations", this.ga.logOfIterations);
         return obj;
     }
 
