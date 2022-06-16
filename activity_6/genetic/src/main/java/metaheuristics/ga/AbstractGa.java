@@ -132,19 +132,27 @@ public abstract class AbstractGa<G extends Number, F> {
 
             int crosspoint1 = rng.nextInt(chromosomeSize + 1);
             int crosspoint2 = crosspoint1 + rng.nextInt((chromosomeSize + 1) - crosspoint1);
-
-            ArrayList<Integer> possibleCrossPoints = new ArrayList<>();
+            
+            int L = -1, R = -1;
             for (int idx = 0; idx < parent1.size(); idx++) {
                 if (parent1.get(idx) != parent2.get(idx)) {
-                    possibleCrossPoints.add(idx);
+					if (L == -1) {
+						L = idx;
+					} else {
+						R = idx;
+					}
                 }
             }
             
-            if (possibleCrossPoints.size() > 0) {
-                crosspoint1 = rng.nextInt(possibleCrossPoints.size() + 1);
-                crosspoint2 = crosspoint1 + rng.nextInt((possibleCrossPoints.size() + 1) - crosspoint1);
-            }
             
+            if (L != -1 &&  R != -1 &&  R > L) {
+                crosspoint1 = rng.nextInt(R - L + 1);
+                crosspoint2 = crosspoint1 + rng.nextInt((R - L + 1) - crosspoint1);
+                
+                crosspoint1 += L;
+                crosspoint2 += L;
+            }
+
             final Chromosome offspring1 = new Chromosome();
             final Chromosome offspring2 = new Chromosome();
             for (int j = 0; j < chromosomeSize; j++) {
