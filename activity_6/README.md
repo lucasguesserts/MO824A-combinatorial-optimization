@@ -33,3 +33,14 @@ See [this sdk config file](./.sdkmanrc) for more informantion.
 Put a breakpoint in the file [`Main.java`](./main/src/main/java/Main.java) and then press `F5` to see all the magic happening.
 
 Obs: the JDK configured is specified in the [vscode settings file](./.vscode/settings.json). If it doesn't work for you, try either to set your own java runtime or delete the configurations completely and let vscode find it automatically (but do not commit such changes).
+
+## Using `pipenv`
+
+```sh
+# activate virtual python environment
+pipenv shell
+# install dependencies
+pipenv install numpy
+```
+
+See also: [tutorial on pipenv](https://python.land/virtual-environments/pipenv).
