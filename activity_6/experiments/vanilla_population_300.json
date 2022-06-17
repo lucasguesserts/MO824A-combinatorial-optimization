@@ -1,0 +1,1227 @@
+[
+  {
+    "Setup": {
+      "knapsackCapacity": 64,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf020",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf020",
+      "populationSize": 300,
+      "domainSize": 20
+    },
+    "RunningTime": 2.411,
+    "Solution": {
+      "cost": 120,
+      "elements": "[2, 3, 4, 11, 14, 15, 16]",
+      "weight": 54
+    },
+    "iterations": [
+      {
+        "cost": 53,
+        "iteration": 0
+      },
+      {
+        "cost": 68,
+        "iteration": 2
+      },
+      {
+        "cost": 71,
+        "iteration": 3
+      },
+      {
+        "cost": 93,
+        "iteration": 4
+      },
+      {
+        "cost": 104,
+        "iteration": 7
+      },
+      {
+        "cost": 114,
+        "iteration": 12
+      },
+      {
+        "cost": 120,
+        "iteration": 14
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 138,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf040",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf040",
+      "populationSize": 300,
+      "domainSize": 40
+    },
+    "RunningTime": 7.634,
+    "Solution": {
+      "cost": 307,
+      "elements": "[4, 7, 9, 11, 12, 15, 19, 21, 24, 28, 31, 32, 33, 34, 36]",
+      "weight": 133
+    },
+    "iterations": [
+      {
+        "cost": 59,
+        "iteration": 0
+      },
+      {
+        "cost": 78,
+        "iteration": 2
+      },
+      {
+        "cost": 82,
+        "iteration": 3
+      },
+      {
+        "cost": 107,
+        "iteration": 4
+      },
+      {
+        "cost": 146,
+        "iteration": 5
+      },
+      {
+        "cost": 152,
+        "iteration": 6
+      },
+      {
+        "cost": 160,
+        "iteration": 8
+      },
+      {
+        "cost": 176,
+        "iteration": 9
+      },
+      {
+        "cost": 207,
+        "iteration": 11
+      },
+      {
+        "cost": 229,
+        "iteration": 13
+      },
+      {
+        "cost": 232,
+        "iteration": 15
+      },
+      {
+        "cost": 233,
+        "iteration": 17
+      },
+      {
+        "cost": 261,
+        "iteration": 18
+      },
+      {
+        "cost": 267,
+        "iteration": 20
+      },
+      {
+        "cost": 271,
+        "iteration": 21
+      },
+      {
+        "cost": 274,
+        "iteration": 24
+      },
+      {
+        "cost": 279,
+        "iteration": 25
+      },
+      {
+        "cost": 281,
+        "iteration": 26
+      },
+      {
+        "cost": 301,
+        "iteration": 28
+      },
+      {
+        "cost": 302,
+        "iteration": 35
+      },
+      {
+        "cost": 305,
+        "iteration": 36
+      },
+      {
+        "cost": 306,
+        "iteration": 38
+      },
+      {
+        "cost": 307,
+        "iteration": 39
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 221,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf060",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf060",
+      "populationSize": 300,
+      "domainSize": 60
+    },
+    "RunningTime": 16.005,
+    "Solution": {
+      "cost": 491,
+      "elements": "[2, 3, 4, 6, 8, 11, 17, 19, 21, 22, 23, 26, 27, 28, 30, 32, 38, 39, 44, 45, 51, 55, 56, 57]",
+      "weight": 212
+    },
+    "iterations": [
+      {
+        "cost": 70,
+        "iteration": 0
+      },
+      {
+        "cost": 85,
+        "iteration": 3
+      },
+      {
+        "cost": 96,
+        "iteration": 4
+      },
+      {
+        "cost": 104,
+        "iteration": 5
+      },
+      {
+        "cost": 115,
+        "iteration": 7
+      },
+      {
+        "cost": 134,
+        "iteration": 8
+      },
+      {
+        "cost": 183,
+        "iteration": 9
+      },
+      {
+        "cost": 197,
+        "iteration": 11
+      },
+      {
+        "cost": 227,
+        "iteration": 12
+      },
+      {
+        "cost": 248,
+        "iteration": 15
+      },
+      {
+        "cost": 258,
+        "iteration": 16
+      },
+      {
+        "cost": 295,
+        "iteration": 17
+      },
+      {
+        "cost": 300,
+        "iteration": 19
+      },
+      {
+        "cost": 333,
+        "iteration": 20
+      },
+      {
+        "cost": 342,
+        "iteration": 24
+      },
+      {
+        "cost": 349,
+        "iteration": 26
+      },
+      {
+        "cost": 363,
+        "iteration": 27
+      },
+      {
+        "cost": 377,
+        "iteration": 29
+      },
+      {
+        "cost": 393,
+        "iteration": 34
+      },
+      {
+        "cost": 401,
+        "iteration": 37
+      },
+      {
+        "cost": 405,
+        "iteration": 41
+      },
+      {
+        "cost": 413,
+        "iteration": 44
+      },
+      {
+        "cost": 428,
+        "iteration": 45
+      },
+      {
+        "cost": 430,
+        "iteration": 48
+      },
+      {
+        "cost": 433,
+        "iteration": 60
+      },
+      {
+        "cost": 434,
+        "iteration": 62
+      },
+      {
+        "cost": 446,
+        "iteration": 63
+      },
+      {
+        "cost": 451,
+        "iteration": 66
+      },
+      {
+        "cost": 470,
+        "iteration": 67
+      },
+      {
+        "cost": 482,
+        "iteration": 86
+      },
+      {
+        "cost": 491,
+        "iteration": 89
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 288,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf080",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf080",
+      "populationSize": 300,
+      "domainSize": 80
+    },
+    "RunningTime": 27.461,
+    "Solution": {
+      "cost": 783,
+      "elements": "[1, 2, 3, 4, 6, 7, 8, 11, 13, 18, 23, 24, 31, 32, 36, 37, 42, 44, 47, 48, 49, 50, 54, 55, 61, 69, 71, 73, 74, 75]",
+      "weight": 282
+    },
+    "iterations": [
+      {
+        "cost": 80,
+        "iteration": 0
+      },
+      {
+        "cost": 82,
+        "iteration": 1
+      },
+      {
+        "cost": 142,
+        "iteration": 3
+      },
+      {
+        "cost": 150,
+        "iteration": 4
+      },
+      {
+        "cost": 152,
+        "iteration": 5
+      },
+      {
+        "cost": 158,
+        "iteration": 6
+      },
+      {
+        "cost": 210,
+        "iteration": 7
+      },
+      {
+        "cost": 239,
+        "iteration": 8
+      },
+      {
+        "cost": 250,
+        "iteration": 9
+      },
+      {
+        "cost": 338,
+        "iteration": 10
+      },
+      {
+        "cost": 363,
+        "iteration": 12
+      },
+      {
+        "cost": 369,
+        "iteration": 13
+      },
+      {
+        "cost": 386,
+        "iteration": 15
+      },
+      {
+        "cost": 398,
+        "iteration": 16
+      },
+      {
+        "cost": 421,
+        "iteration": 17
+      },
+      {
+        "cost": 458,
+        "iteration": 18
+      },
+      {
+        "cost": 484,
+        "iteration": 20
+      },
+      {
+        "cost": 521,
+        "iteration": 21
+      },
+      {
+        "cost": 529,
+        "iteration": 23
+      },
+      {
+        "cost": 582,
+        "iteration": 24
+      },
+      {
+        "cost": 642,
+        "iteration": 25
+      },
+      {
+        "cost": 649,
+        "iteration": 32
+      },
+      {
+        "cost": 680,
+        "iteration": 35
+      },
+      {
+        "cost": 693,
+        "iteration": 41
+      },
+      {
+        "cost": 729,
+        "iteration": 43
+      },
+      {
+        "cost": 745,
+        "iteration": 49
+      },
+      {
+        "cost": 754,
+        "iteration": 63
+      },
+      {
+        "cost": 764,
+        "iteration": 84
+      },
+      {
+        "cost": 772,
+        "iteration": 86
+      },
+      {
+        "cost": 779,
+        "iteration": 91
+      },
+      {
+        "cost": 780,
+        "iteration": 165
+      },
+      {
+        "cost": 783,
+        "iteration": 476
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 346,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf100",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf100",
+      "populationSize": 300,
+      "domainSize": 100
+    },
+    "RunningTime": 41.52,
+    "Solution": {
+      "cost": 1208,
+      "elements": "[2, 3, 7, 10, 11, 14, 15, 17, 18, 21, 22, 23, 24, 25, 28, 29, 31, 32, 38, 39, 44, 47, 49, 51, 62, 63, 68, 69, 71, 72, 74, 78, 79, 81, 90, 91, 93, 95, 96]",
+      "weight": 346
+    },
+    "iterations": [
+      {
+        "cost": 124,
+        "iteration": 0
+      },
+      {
+        "cost": 131,
+        "iteration": 2
+      },
+      {
+        "cost": 163,
+        "iteration": 3
+      },
+      {
+        "cost": 238,
+        "iteration": 4
+      },
+      {
+        "cost": 254,
+        "iteration": 8
+      },
+      {
+        "cost": 399,
+        "iteration": 9
+      },
+      {
+        "cost": 460,
+        "iteration": 14
+      },
+      {
+        "cost": 477,
+        "iteration": 15
+      },
+      {
+        "cost": 502,
+        "iteration": 16
+      },
+      {
+        "cost": 508,
+        "iteration": 17
+      },
+      {
+        "cost": 513,
+        "iteration": 19
+      },
+      {
+        "cost": 542,
+        "iteration": 20
+      },
+      {
+        "cost": 593,
+        "iteration": 21
+      },
+      {
+        "cost": 647,
+        "iteration": 23
+      },
+      {
+        "cost": 671,
+        "iteration": 26
+      },
+      {
+        "cost": 705,
+        "iteration": 27
+      },
+      {
+        "cost": 776,
+        "iteration": 28
+      },
+      {
+        "cost": 798,
+        "iteration": 29
+      },
+      {
+        "cost": 805,
+        "iteration": 30
+      },
+      {
+        "cost": 806,
+        "iteration": 33
+      },
+      {
+        "cost": 812,
+        "iteration": 34
+      },
+      {
+        "cost": 827,
+        "iteration": 36
+      },
+      {
+        "cost": 831,
+        "iteration": 37
+      },
+      {
+        "cost": 866,
+        "iteration": 38
+      },
+      {
+        "cost": 908,
+        "iteration": 39
+      },
+      {
+        "cost": 917,
+        "iteration": 43
+      },
+      {
+        "cost": 922,
+        "iteration": 45
+      },
+      {
+        "cost": 936,
+        "iteration": 48
+      },
+      {
+        "cost": 957,
+        "iteration": 50
+      },
+      {
+        "cost": 995,
+        "iteration": 53
+      },
+      {
+        "cost": 1006,
+        "iteration": 63
+      },
+      {
+        "cost": 1021,
+        "iteration": 67
+      },
+      {
+        "cost": 1022,
+        "iteration": 68
+      },
+      {
+        "cost": 1075,
+        "iteration": 70
+      },
+      {
+        "cost": 1089,
+        "iteration": 81
+      },
+      {
+        "cost": 1113,
+        "iteration": 87
+      },
+      {
+        "cost": 1128,
+        "iteration": 99
+      },
+      {
+        "cost": 1153,
+        "iteration": 103
+      },
+      {
+        "cost": 1160,
+        "iteration": 113
+      },
+      {
+        "cost": 1203,
+        "iteration": 114
+      },
+      {
+        "cost": 1208,
+        "iteration": 122
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 680,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf200",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf200",
+      "populationSize": 300,
+      "domainSize": 200
+    },
+    "RunningTime": 165.724,
+    "Solution": {
+      "cost": 3550,
+      "elements": "[1, 3, 4, 7, 8, 9, 11, 12, 16, 17, 20, 21, 23, 24, 25, 28, 30, 32, 34, 48, 49, 50, 51, 53, 54, 63, 67, 68, 69, 70, 77, 78, 81, 82, 83, 84, 85, 86, 95, 98, 99, 100, 101, 104, 106, 108, 111, 112, 118, 119, 121, 124, 130, 131, 132, 133, 134, 136, 138, 139, 141, 145, 147, 148, 150, 151, 154, 155, 157, 162, 164, 165, 166, 167, 172, 174, 179, 180, 183, 192, 193]",
+      "weight": 679
+    },
+    "iterations": [
+      {
+        "cost": 88,
+        "iteration": 0
+      },
+      {
+        "cost": 112,
+        "iteration": 1
+      },
+      {
+        "cost": 131,
+        "iteration": 2
+      },
+      {
+        "cost": 165,
+        "iteration": 3
+      },
+      {
+        "cost": 223,
+        "iteration": 4
+      },
+      {
+        "cost": 226,
+        "iteration": 5
+      },
+      {
+        "cost": 337,
+        "iteration": 6
+      },
+      {
+        "cost": 340,
+        "iteration": 7
+      },
+      {
+        "cost": 428,
+        "iteration": 8
+      },
+      {
+        "cost": 433,
+        "iteration": 9
+      },
+      {
+        "cost": 451,
+        "iteration": 10
+      },
+      {
+        "cost": 612,
+        "iteration": 11
+      },
+      {
+        "cost": 634,
+        "iteration": 12
+      },
+      {
+        "cost": 706,
+        "iteration": 13
+      },
+      {
+        "cost": 794,
+        "iteration": 14
+      },
+      {
+        "cost": 848,
+        "iteration": 15
+      },
+      {
+        "cost": 888,
+        "iteration": 16
+      },
+      {
+        "cost": 1161,
+        "iteration": 17
+      },
+      {
+        "cost": 1219,
+        "iteration": 18
+      },
+      {
+        "cost": 1224,
+        "iteration": 19
+      },
+      {
+        "cost": 1277,
+        "iteration": 20
+      },
+      {
+        "cost": 1379,
+        "iteration": 21
+      },
+      {
+        "cost": 1417,
+        "iteration": 23
+      },
+      {
+        "cost": 1487,
+        "iteration": 24
+      },
+      {
+        "cost": 1512,
+        "iteration": 26
+      },
+      {
+        "cost": 1613,
+        "iteration": 27
+      },
+      {
+        "cost": 1665,
+        "iteration": 28
+      },
+      {
+        "cost": 1670,
+        "iteration": 30
+      },
+      {
+        "cost": 1753,
+        "iteration": 31
+      },
+      {
+        "cost": 1923,
+        "iteration": 32
+      },
+      {
+        "cost": 2010,
+        "iteration": 36
+      },
+      {
+        "cost": 2043,
+        "iteration": 38
+      },
+      {
+        "cost": 2177,
+        "iteration": 39
+      },
+      {
+        "cost": 2219,
+        "iteration": 41
+      },
+      {
+        "cost": 2247,
+        "iteration": 44
+      },
+      {
+        "cost": 2257,
+        "iteration": 48
+      },
+      {
+        "cost": 2270,
+        "iteration": 51
+      },
+      {
+        "cost": 2421,
+        "iteration": 52
+      },
+      {
+        "cost": 2429,
+        "iteration": 54
+      },
+      {
+        "cost": 2437,
+        "iteration": 57
+      },
+      {
+        "cost": 2511,
+        "iteration": 58
+      },
+      {
+        "cost": 2658,
+        "iteration": 60
+      },
+      {
+        "cost": 2717,
+        "iteration": 67
+      },
+      {
+        "cost": 2807,
+        "iteration": 68
+      },
+      {
+        "cost": 2909,
+        "iteration": 70
+      },
+      {
+        "cost": 2987,
+        "iteration": 97
+      },
+      {
+        "cost": 3018,
+        "iteration": 99
+      },
+      {
+        "cost": 3040,
+        "iteration": 106
+      },
+      {
+        "cost": 3079,
+        "iteration": 107
+      },
+      {
+        "cost": 3131,
+        "iteration": 111
+      },
+      {
+        "cost": 3168,
+        "iteration": 112
+      },
+      {
+        "cost": 3199,
+        "iteration": 131
+      },
+      {
+        "cost": 3267,
+        "iteration": 135
+      },
+      {
+        "cost": 3271,
+        "iteration": 172
+      },
+      {
+        "cost": 3298,
+        "iteration": 186
+      },
+      {
+        "cost": 3341,
+        "iteration": 193
+      },
+      {
+        "cost": 3349,
+        "iteration": 271
+      },
+      {
+        "cost": 3352,
+        "iteration": 439
+      },
+      {
+        "cost": 3356,
+        "iteration": 493
+      },
+      {
+        "cost": 3377,
+        "iteration": 508
+      },
+      {
+        "cost": 3403,
+        "iteration": 599
+      },
+      {
+        "cost": 3419,
+        "iteration": 603
+      },
+      {
+        "cost": 3487,
+        "iteration": 785
+      },
+      {
+        "cost": 3490,
+        "iteration": 808
+      },
+      {
+        "cost": 3501,
+        "iteration": 846
+      },
+      {
+        "cost": 3542,
+        "iteration": 916
+      },
+      {
+        "cost": 3550,
+        "iteration": 933
+      }
+    ]
+  },
+  {
+    "Setup": {
+      "knapsackCapacity": 1344,
+      "numberOfGenerations": 1000,
+      "problemInstance": "../instances/kqbf/kqbf400",
+      "mutationRate": 0.01,
+      "instanceIdentifier": "kqbf400",
+      "populationSize": 300,
+      "domainSize": 400
+    },
+    "RunningTime": 723.375,
+    "Solution": {
+      "cost": 8240,
+      "elements": "[5, 6, 9, 10, 11, 12, 15, 16, 17, 18, 20, 24, 30, 32, 38, 44, 45, 48, 49, 51, 56, 58, 61, 62, 63, 65, 66, 69, 70, 72, 74, 75, 76, 77, 83, 87, 88, 89, 91, 92, 94, 95, 97, 99, 100, 101, 103, 108, 110, 114, 121, 122, 124, 126, 131, 135, 136, 138, 140, 141, 144, 146, 147, 149, 150, 154, 155, 157, 158, 164, 165, 166, 169, 171, 172, 173, 174, 175, 177, 183, 188, 189, 190, 193, 194, 195, 196, 200, 204, 205, 208, 209, 210, 211, 215, 216, 218, 220, 223, 225, 231, 233, 237, 238, 240, 244, 251, 253, 254, 260, 266, 272, 273, 274, 276, 279, 281, 283, 284, 286, 288, 289, 290, 291, 293, 298, 299, 301, 304, 306, 307, 309, 311, 312, 316, 317, 320, 321, 323, 324, 325, 326, 327, 328, 331, 332, 335, 339, 348, 349, 351, 352, 354, 357, 363, 366, 368, 371, 378, 381, 386, 387, 389, 391, 395, 397]",
+      "weight": 1339
+    },
+    "iterations": [
+      {
+        "cost": 71,
+        "iteration": 0
+      },
+      {
+        "cost": 95,
+        "iteration": 1
+      },
+      {
+        "cost": 151,
+        "iteration": 2
+      },
+      {
+        "cost": 184,
+        "iteration": 3
+      },
+      {
+        "cost": 352,
+        "iteration": 4
+      },
+      {
+        "cost": 368,
+        "iteration": 5
+      },
+      {
+        "cost": 467,
+        "iteration": 6
+      },
+      {
+        "cost": 503,
+        "iteration": 7
+      },
+      {
+        "cost": 601,
+        "iteration": 8
+      },
+      {
+        "cost": 745,
+        "iteration": 10
+      },
+      {
+        "cost": 818,
+        "iteration": 11
+      },
+      {
+        "cost": 924,
+        "iteration": 12
+      },
+      {
+        "cost": 968,
+        "iteration": 13
+      },
+      {
+        "cost": 1130,
+        "iteration": 14
+      },
+      {
+        "cost": 1337,
+        "iteration": 15
+      },
+      {
+        "cost": 1361,
+        "iteration": 16
+      },
+      {
+        "cost": 1509,
+        "iteration": 17
+      },
+      {
+        "cost": 1700,
+        "iteration": 18
+      },
+      {
+        "cost": 1907,
+        "iteration": 20
+      },
+      {
+        "cost": 2027,
+        "iteration": 22
+      },
+      {
+        "cost": 2157,
+        "iteration": 23
+      },
+      {
+        "cost": 2159,
+        "iteration": 24
+      },
+      {
+        "cost": 2451,
+        "iteration": 25
+      },
+      {
+        "cost": 2935,
+        "iteration": 26
+      },
+      {
+        "cost": 2959,
+        "iteration": 29
+      },
+      {
+        "cost": 3062,
+        "iteration": 30
+      },
+      {
+        "cost": 3305,
+        "iteration": 33
+      },
+      {
+        "cost": 3333,
+        "iteration": 34
+      },
+      {
+        "cost": 3805,
+        "iteration": 35
+      },
+      {
+        "cost": 3864,
+        "iteration": 36
+      },
+      {
+        "cost": 3946,
+        "iteration": 38
+      },
+      {
+        "cost": 4022,
+        "iteration": 41
+      },
+      {
+        "cost": 4027,
+        "iteration": 42
+      },
+      {
+        "cost": 4452,
+        "iteration": 44
+      },
+      {
+        "cost": 4556,
+        "iteration": 48
+      },
+      {
+        "cost": 4585,
+        "iteration": 51
+      },
+      {
+        "cost": 4754,
+        "iteration": 53
+      },
+      {
+        "cost": 4916,
+        "iteration": 54
+      },
+      {
+        "cost": 5124,
+        "iteration": 56
+      },
+      {
+        "cost": 5165,
+        "iteration": 65
+      },
+      {
+        "cost": 5392,
+        "iteration": 67
+      },
+      {
+        "cost": 5523,
+        "iteration": 68
+      },
+      {
+        "cost": 5714,
+        "iteration": 71
+      },
+      {
+        "cost": 5751,
+        "iteration": 72
+      },
+      {
+        "cost": 5798,
+        "iteration": 83
+      },
+      {
+        "cost": 5833,
+        "iteration": 84
+      },
+      {
+        "cost": 5920,
+        "iteration": 86
+      },
+      {
+        "cost": 6172,
+        "iteration": 88
+      },
+      {
+        "cost": 6289,
+        "iteration": 96
+      },
+      {
+        "cost": 6730,
+        "iteration": 116
+      },
+      {
+        "cost": 6947,
+        "iteration": 121
+      },
+      {
+        "cost": 6963,
+        "iteration": 129
+      },
+      {
+        "cost": 7050,
+        "iteration": 140
+      },
+      {
+        "cost": 7081,
+        "iteration": 148
+      },
+      {
+        "cost": 7234,
+        "iteration": 150
+      },
+      {
+        "cost": 7238,
+        "iteration": 155
+      },
+      {
+        "cost": 7314,
+        "iteration": 170
+      },
+      {
+        "cost": 7539,
+        "iteration": 182
+      },
+      {
+        "cost": 7651,
+        "iteration": 237
+      },
+      {
+        "cost": 7671,
+        "iteration": 247
+      },
+      {
+        "cost": 7679,
+        "iteration": 292
+      },
+      {
+        "cost": 7733,
+        "iteration": 307
+      },
+      {
+        "cost": 7869,
+        "iteration": 335
+      },
+      {
+        "cost": 7877,
+        "iteration": 352
+      },
+      {
+        "cost": 7889,
+        "iteration": 478
+      },
+      {
+        "cost": 7982,
+        "iteration": 551
+      },
+      {
+        "cost": 8007,
+        "iteration": 584
+      },
+      {
+        "cost": 8019,
+        "iteration": 714
+      },
+      {
+        "cost": 8134,
+        "iteration": 736
+      },
+      {
+        "cost": 8141,
+        "iteration": 737
+      },
+      {
+        "cost": 8199,
+        "iteration": 807
+      },
+      {
+        "cost": 8240,
+        "iteration": 886
+      }
+    ]
+  }
+]
