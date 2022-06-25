@@ -4,6 +4,9 @@ goo*
 hoo*
 temp*
 
+# figures
+**/analysis/*.png
+
 # log
 *.log
 
