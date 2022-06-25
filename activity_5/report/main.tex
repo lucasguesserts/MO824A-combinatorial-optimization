@@ -1,0 +1,145 @@
+\documentclass[brazilian,12pt]{article}
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Allows you to insert figures
+\usepackage{float} % posição de figura ([H])
+\usepackage{amsmath} % Allows you to do equations
+\usepackage{fancyhdr} % Formats the header
+\usepackage{geometry} % Formats the paper size, orientation, and margins
+\usepackage[bitstream-charter]{mathdesign} % Mudamos a fonte para Charter BT
+\usepackage[T1]{fontenc} % Mudamos a fonte para Charter BT
+\usepackage{tablefootnote}
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{paralist} % compactitem
+\usepackage[pdftex]{hyperref}
+\usepackage{mathtools}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\usepackage{scalefnt}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
+\usepackage{cleveref} % referência com nomes
+
+% \usepackage{import}
+
+\urlstyle{same}
+\linespread{1.25} % about 1.5 spacing in Word
+\setlength{\parindent}{0pt} % no paragraph indents
+\setlength{\parskip}{1em} % paragraphs separated by one line
+
+\renewcommand{\headrulewidth}{0pt}
+\geometry{letterpaper, portrait, margin=1in}
+\setlength{\headheight}{14.49998pt}
+
+\newcommand\titleofdoc{Aplicação da \textit{Tabu Search} no Problema MAX-KBQF} %%%%% Put your document title in this argument
+\newcommand\GroupName{Grupo 7} %%%%% Put your group name here. If you are the only member of the group, just put your name
+
+\begin{document}
+\begin{titlepage}
+   \begin{center}
+        \vspace*{3cm} % Adjust spacings to ensure the title page is generally filled with text
+
+        % \Huge{\titleofdoc} 
+
+        % \vspace{0.5cm}
+        \LARGE{Aplicação da \textit{Tabu Search} no Problema MAX-KBQF}
+        \Large{Atividade 5}
+        
+            
+        \vspace{2 cm}
+        \Large{\GroupName}
+       
+        \vspace{0.25cm}
+        %% https://www.overleaf.com/project/6250b01f16f6860fd0884dcd
+        \large{Ítalo Fernandes Gonçalves - RA: 234990}\\
+        \large{Lucas Guesser Targino da Silva - RA: 203534}\\
+        \large{Luiz Gustavo Silva Aguiar - RA: 240499}\\
+       
+        \vspace{8 cm}
+        \Large{Maio de 2022}
+        
+        \vspace{0.25 cm}
+        \Large{MC859/MO824}
+       \vfill
+    \end{center}
+\end{titlepage}
+
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\GroupName - \titleofdoc}
+
+
+\section{Definição do Problema}
+
+Neste atividade, vamos abordar o problema denominado por \textit{Maximum Knapsack quadratic binary function} (MAX-KQBF). No MAX-KQBF temos uma mochila de capacidade W e um conjunto de itens I, onde cada item $i \in I$ tem um peso $w_i \in R$. Desejamos empacotar os itens $I$ na mochila, de forma a maximizar uma função quadrática e respeitando a capacidade da mochila, isto é, a soma dos pesos dos itens colocados na mochila precisa ser menor ou igual a $W$. Este problema pode ser formulado da seguinte forma:
+
+\begin{align}
+     &Max \quad & \displaystyle{\sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij} \cdot x_i \cdot x_j} \label{obj}\\
+     &Sujeito \mbox{ a}       & \displaystyle{\sum_{i=1}^{n} w_i \cdot x_i\leq \textit{W}}&\quad&\\
+     &&x_i \in \{0,1\} \quad && \forall i = \{1,\dots,n\}&
+\end{align}
+
+onde $a_{ij}$, $w_i$ e $W \in \mathbb{R}$ são parâmetros do problema, e $n = |I|$. O MAX-KQBF é uma generalização do problema \textit{Maximum Quadratic Binary Function} (MAXBQF), no qual é um problema NP-difícil \cite{NPHARD}
+
+\section{\textit{Tabu Search}}
+
+A metaheurística \textit{Tabu Search} (TS) é um procedimento adaptativo auxiliar, que direciona um algoritmo de busca local na exploração contínua dentro de um espaço de busca. Diferente de outras abordagens, a TS evita que retornar a um ótimo local visitado previamente de forma a superar a otimalidade local \cite{ts}.
+
+Nessa abordagem, o principio básico parte da ideia de direcionar a busca local, permitindo movimentos sem melhoria. O retorno as soluções visitadas previamente é evitado com uma memorização através das chamadas listas tabu. Essas listas armazenam o histórico recente da busca. Sua implementação consiste basicamente na definição de uma busca local e na estrategia de memorização das listas tabu. Tais etapas serão descritas sobre a ótica do problema MAX-KQBF, adentrando na adequação da abordagem ao problema. 
+
+\subsection{Solução inicial}
+  Utilizamos a heurística construtiva do método GRASP para encontrarmos uma solução inicial para o problema. A solução foi construída a partir de uma iteração do GRASP e ela foi construída de forma puramente gulosa tomando assim $ \alpha = 0$.
+
+\subsection{Lista Tabu}
+    A lista tabu que é uma das principais características dessa abordagem, evitam que a busca seja cíclica, voltando em soluções previamente exploradas e ainda colaborando para a realização de uma busca mais densa dentro do espaço de busca. Cada passo da busca é registrado na lista segundo as regras de ativação. Depois de adicionados permanecem na lista por um determinado período de iterações controlado pelo parâmetro \textit{tabu tenure}. Nas implementações realizadas, esse valor foi definido como uma razão do tamanho $n$ da entrada, e foram utilizados os valores $0.2 \cdot n$ e $0.4 \cdot n$.
+    
+\subsection{Critério de aspiração} 
+
+    Os tabus, como são chamadas as memorizações realizadas, são bem decisivas pois podem proibir movimentos atraentes mesmo quando não há possibilidade de ciclos ou podem levar a estagnação geral no processo de busca. O critério de aspiração permitem cancelar memorizações realizadas. Para a atual abordagem ao problema MAX-KQBF foi utilizado o critério de aspiração mais simples e utilizado, que consistem em permitir o movimento, mesmo que seja tabu, se resultar em uma solução com valor objetivo melhor que o da melhor solução conhecida.
+
+\subsection{Operadores de busca}
+
+A heurística de busca local com a estratégia \textit{Best Improvement} consiste em analisar todas as soluções vizinhas e se mover para aquela que tiver a melhor avaliação e que represente uma melhora em relação à solução corrente. Se não houver solução de melhora, então o método para e retorna a solução corrente como ótimo local em relação à estrutura de vizinhança utilizada. Diferente do método anterior, a \textit{Fisrt improvement}, a decisão para mover-se para uma nova solução vizinha não ocorre após a análise de toda a vizinhança mas sim na primeira solução vizinha encontrada melhor que a solução atual.
+
+% \subsection{Critério de parada}
+
+\subsection{Estrategias tabu alternativas}
+    Foram utilizadas 2 estrategias tabu alternativas: \textit{diversification by restart} e \textit{intensification by restart}.
+    A estrategia \textit{Diversification by restart} constroi uma nova solução (aleatorizada) e recomeça o processo de busca. A ideia dela é explorar regiões não atingidas pelo caminho até então percorrido. Já a estrategia \textit{intensification by restart} faz uma busca intensa (isto é, com uma vizinhança maior) na vizinhança de uma solução interessante. No caso presente, utilizou-se a a melhor solução conhecida como reinício e considerou-se a vizinhança para a busca intensiva:
+    
+\begin{itemize}
+    \item inserção de um elemento e remoção de dois;
+    \item remoção de um elemento e inserção de dois;
+    \item inserção de dois elementos e remoção de dois\footnote{essa opção foi desabilitada nas instâncias de tamanho 400 pois consumiam muito tempo computacional.};
+\end{itemize}
+
+\section{Resultados Computacionais}
+
+    A implementação foi feita com base na \textit{framework} disponibilizada com a implementação base da \textit{Tabu Search} na linguagem de programação java. O problema foi executado num ideapad S145 81S90005BR: Lenovo IdeaPad S145 Notebook Intel Core i5-8265U (6MB Cache, 1.6GHz), 8GB DDR4-SDRAM, 460 GB SSD, Intel UHD Graphics 620. O sistema operacional foi o Fedora 35 executando o Java 17 e Gradle 7. O código desenvolvido pode ser encontrado em \cite{Github}.
+    
+    As tabelas \ref{table:all-data-0}, \ref{table:all-data-1}, \ref{table:all-data-2}, \ref{table:all-data-3}, \ref{table:all-data-4}, \ref{table:all-data-5} e \ref{table:all-data-6} tem os resultados obtidos nos experimentos, variando as variações conforme solicitado nos requisitos desta atividade. A primeira coluna enumera cada instancia, a segunda coluna tem a identificação da instância atual, a terceira coluna a definição da busca local utilizada, a quarta coluna a variação do método e por fim na quinta e sexta coluna o tempo de execução e a melhor solução encontrada. Vale ressaltar que na variação do método, \textit{default} significa que não foi utilizada nenhuma estratégia de intensificação e diversificação, \textit{intensification} significa que foi utilizada apenas \textit{intensification by restart}, e \textit{diversification} significa que foram utilizadas \textit{intensification and diversification by restart}.
+
+\input{result} % A tabela com os resultados tá aqui
+
+
+\section{Análise}
+De acordo com os números apresentados, o cenário que mais se aproximou dos intervalos nos
+quais os valores das soluções ótimas eram esperados foi a variação \textit{Intensification} com o \textit{best-improving}.
+
+É notável a diferença em tempo por iteração da estratégia \textit{first-improving} em comparação com a \textit{best-improving} para as maiores instâncias. O que é esperado devido o \textit{first improving} fazer escolhas mais rápidas na média, em compensação as variações ficaram mais próximas do intervalo esperado com o \textit{best-improving}.
+
+A influência do parâmetro \textit{Tenure} pode ser observada, onde as instâncias com 0.4 obtiveram melhor resultado do que instâncias com 0.2, na maioria dos casos, levando em consideração a busca local. Tal resultado é interessante pois mostra quanto o algoritmo deve ser restringida no problema em mãos para que o processo de busca saia de mínimos locais e explore bem o espaço de solução.
+
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
+
+\end{document}
