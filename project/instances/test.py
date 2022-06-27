@@ -10,14 +10,15 @@ generator = InstanceGenerator(
     number_of_digits_to_round = 3,
 )
 
-dag, W, w = generator.generate()
+instance = generator.generate()
+instance.to_json()
 
-InstanceGenerator.display_graph(dag)
+instance.plot()
 
-print(f"weights:\n{w}")
+print(f"weights:\n{instance.weights}")
 print()
-print(f"weights shape:\n{w.shape}")
+print(f"weights shape:\n{instance.weights.shape}")
 print()
-print(f"sum of all weights: {np.sum(w, axis=0)}")
-print(f"weight capacity: {W}")
+print(f"sum of all weights: {np.sum(instance.weights, axis=0)}")
+print(f"weight capacity: {instance.capacity}")
 

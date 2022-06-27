@@ -2,8 +2,42 @@ import numpy as np
 import numpy.typing as npt
 import networkx as nx
 import matplotlib.pyplot as plt
+import json
 
-class InstanceGenerator:
+class ProblemInstance:
+    def __init__(
+        self,
+        graph: nx.DiGraph,
+        capacity: npt.NDArray[np.int_],
+        weights: npt.NDArray[np.int_]
+    ):
+        # tuple[, npt.NDArray[np.int_], npt.NDArray[np.int_
+        self.graph = graph
+        self.capacity = capacity
+        self.weights = weights
+
+    def to_json(self):
+        data = {}
+        data["number_of_nodes"] = len(self.graph.nodes)
+        data["weight_size"] = len(self.capacity)
+        data["capacity"] = self.capacity.tolist()
+        data["weights"] = self.weights.tolist()
+        data["edges"] = list(self.graph.edges)
+        with open("foo.json", "w") as file:
+            file.write(json.dumps(data, indent=2, ensure_ascii=True))
+
+    def plot(self, file_name: str="foo.png") -> None:
+        """Plot into a figure the input graph"""
+        plt.subplot(111)
+        nx.draw_shell(
+            self.graph,
+            with_labels=True,
+            node_color = "white"
+        )
+        plt.savefig(file_name)
+        plt.close()
+
+class InstanceGeneratorParameters:
 
     def __init__(
         self,
@@ -51,23 +85,6 @@ class InstanceGenerator:
         self.number_of_digits_to_round = number_of_digits_to_round
         self._validate_parameters()
 
-    def generate(self) -> tuple[nx.DiGraph, npt.NDArray[np.int_], npt.NDArray[np.int_]]:
-        graph = self._generate_randomized_transitive_reduced_DAG()
-        capacity, weights = self._generate_randomized_weights_and_capacity()
-        return (graph, capacity, weights)
-
-    @staticmethod
-    def display_graph(graph: nx.DiGraph, file_name: str="foo.png") -> None:
-        """Plot into a figure the input graph"""
-        plt.subplot(111)
-        nx.draw_shell(
-            graph,
-            with_labels=True,
-            node_color = "white"
-        )
-        plt.savefig(file_name)
-        plt.close()
-
     def _validate_parameters(self) -> None:
         if self.number_of_nodes < 2:
             raise ValueError("number_of_nodes must be greater than 1 (one)")
@@ -79,6 +96,15 @@ class InstanceGenerator:
             raise ValueError("percentage_of_nodes_to_fit must be a value between 0 (zero) (exclusive) and 1 (one) (exclusive)")
         if self.number_of_digits_to_round <= 0:
             raise ValueError("number_of_digits_to_round must must be greater than 0 (zero)")
+
+
+class InstanceGenerator (InstanceGeneratorParameters):
+
+    def generate(self) -> ProblemInstance:
+        graph = self._generate_randomized_transitive_reduced_DAG()
+        capacity, weights = self._generate_randomized_weights_and_capacity()
+        instance = ProblemInstance(graph, capacity, weights)
+        return instance
 
     def _generate_randomized_adjacent_matrix(self) -> npt.NDArray[np.bool_]:
         """
