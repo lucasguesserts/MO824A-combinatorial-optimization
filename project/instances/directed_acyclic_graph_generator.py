@@ -149,7 +149,7 @@ class ProblemInstance:
         return ProblemInstance(graph, capacity, weights, parameters)
 
 
-class InstanceGenerator (InstanceGeneratorParameters):
+class RandomizedInstanceGenerator (InstanceGeneratorParameters):
 
     def generate(self) -> ProblemInstance:
         graph = self._generate_randomized_transitive_reduced_DAG()
