@@ -3,7 +3,10 @@ import numpy.typing as npt
 import networkx as nx
 import matplotlib.pyplot as plt
 
-def generate_randomized_adjacent_matrix(number_of_vertices: int) -> npt.NDArray[np.bool_]:
+def generate_randomized_adjacent_matrix(
+    number_of_vertices: int = 10,
+    edge_probability: float = 0.5
+) -> npt.NDArray[np.bool_]:
     """
     Generate a random adjacent matrix of a DAG.
 
@@ -15,6 +18,10 @@ def generate_randomized_adjacent_matrix(number_of_vertices: int) -> npt.NDArray[
     ----------
     number_of_vertices : int
         Number of vertices of the induced graph
+    edge_probability: float
+        For each edge, the probability that it is generated.
+        - value 1.0: all edges are generated
+        - value 0.0: no edge is generated
 
     Raises
     ------
@@ -33,22 +40,32 @@ def generate_randomized_adjacent_matrix(number_of_vertices: int) -> npt.NDArray[
     """
     if number_of_vertices <= 1:
         raise ValueError("number_of_vertices must be greater than 1 (one)")
+    if not 0 <= edge_probability <= 1:
+        raise ValueError("edge_probability must be a value between 0 (inclusive) and 1 (inclusive)")
     random_matrix = np.random.rand(number_of_vertices, number_of_vertices)
-    random_binary_matrix = np.round(random_matrix).astype(np.int8)
-    random_binary_lower_triangular_matrix = np.tril(
+    random_binary_matrix = (random_matrix <= edge_probability).astype(np.int8)
+    random_binary_triangular_matrix = np.triu(
         m = random_binary_matrix,
-        k = -1
+        k = +1
     )
-    return random_binary_lower_triangular_matrix
+    print(random_binary_triangular_matrix)
+    return random_binary_triangular_matrix
 
-def generate_randomized_DAG(number_of_vertices: int) -> nx.DiGraph:
+def generate_randomized_DAG(
+    number_of_vertices: int = 10,
+    edge_probability: float = 0.5
+) -> nx.DiGraph:
     """
     Generate a random Directed Acyclic Graph (DAG).
 
     Parameters
     ----------
     number_of_vertices : int
-        Number of vertices of the graph
+        Number of vertices of the induced graph
+    edge_probability: float
+        For each edge, the probability that it is generated.
+        - value 1.0: all edges are generated
+        - value 0.0: no edge is generated
 
     Raises
     ------
@@ -61,7 +78,7 @@ def generate_randomized_DAG(number_of_vertices: int) -> nx.DiGraph:
         A Directed Acyclic Graph with `number_of_vertices`
         vertices and edges chosen randomly.
     """
-    adjacent_matrix = generate_randomized_adjacent_matrix(number_of_vertices)
+    adjacent_matrix = generate_randomized_adjacent_matrix(number_of_vertices, edge_probability)
     dag = nx.from_numpy_array(adjacent_matrix, create_using=nx.DiGraph)
     assert nx.is_directed_acyclic_graph(dag), f"something is odd, {generate_randomized_DAG.__name__} did not generate a directed acyclic graph"
     return dag
