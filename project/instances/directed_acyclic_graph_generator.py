@@ -1,3 +1,4 @@
+from this import d
 import numpy as np
 import numpy.typing as npt
 import networkx as nx
@@ -149,7 +150,60 @@ class ProblemInstance:
         return ProblemInstance(graph, capacity, weights, parameters)
 
 
-class RandomizedInstanceGenerator (InstanceGeneratorParameters):
+class WeightInstanceGenerator (InstanceGeneratorParameters):
+
+    def _generate_randomized_weights_and_capacity(self) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]:
+        """
+        Generate weights for the nodes and capacities for the knapsack.
+
+        Generate a vector of integers of size `weight_size`
+        for each node of a graph.
+
+        Generate a vector of integers of size `weight_size`
+        which is the knapsack capacity.
+
+        Returns
+        -------
+        tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]
+            The first entry is a vector of size `weight_size`
+            which is the capacity of the knapsack.
+            The second entry is a matrix of shape
+            `(number_of_nodes, weight_size)` which is the
+            weight of each node.
+        """
+        randomized_float_weights = np.random.rand(self.number_of_nodes, self.weight_size) # row: node, column: weight_size
+        randomized_weights = np.round(10**self.weight_size * randomized_float_weights).astype(np.int_)
+        capacity = np.round(self.percentage_of_nodes_to_fit * np.sum(randomized_weights, axis=0)).astype(np.int_)
+        return (capacity, randomized_weights)
+
+
+class RandomTreeGenerator (WeightInstanceGenerator):
+
+    def generate(self) -> ProblemInstance:
+        graph = nx.random_tree(self.number_of_nodes, create_using=nx.DiGraph)
+        capacity, weights = self._generate_randomized_weights_and_capacity()
+        instance = ProblemInstance(graph, capacity, weights, self)
+        return instance
+
+
+class RandomForestGenerator (WeightInstanceGenerator):
+
+    def generate(self) -> ProblemInstance:
+        graph = nx.random_tree(self.number_of_nodes, create_using=nx.DiGraph)
+        max_count = np.random.randint(low=0, high=len(graph.edges))
+        edges = list(graph.edges)
+        s = set()
+        for _ in range(np.random.randint(low=0, high=len(graph.edges))):
+            ri = np.random.randint(low=0, high=len(graph.edges))
+            s.add(edges[ri])
+        for e in s:
+            graph.remove_edge(*e)
+        capacity, weights = self._generate_randomized_weights_and_capacity()
+        instance = ProblemInstance(graph, capacity, weights, self)
+        return instance
+
+
+class RandomizedInstanceGenerator (WeightInstanceGenerator):
 
     def generate(self) -> ProblemInstance:
         graph = self._generate_randomized_transitive_reduced_DAG()
@@ -199,26 +253,3 @@ class RandomizedInstanceGenerator (InstanceGeneratorParameters):
         reduced_dag = nx.transitive_reduction(dag)
         return reduced_dag
 
-    def _generate_randomized_weights_and_capacity(self) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]:
-        """
-        Generate weights for the nodes and capacities for the knapsack.
-
-        Generate a vector of integers of size `weight_size`
-        for each node of a graph.
-
-        Generate a vector of integers of size `weight_size`
-        which is the knapsack capacity.
-
-        Returns
-        -------
-        tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]
-            The first entry is a vector of size `weight_size`
-            which is the capacity of the knapsack.
-            The second entry is a matrix of shape
-            `(number_of_nodes, weight_size)` which is the
-            weight of each node.
-        """
-        randomized_float_weights = np.random.rand(self.number_of_nodes, self.weight_size) # row: node, column: weight_size
-        randomized_weights = np.round(10**self.weight_size * randomized_float_weights).astype(np.int_)
-        capacity = np.round(self.percentage_of_nodes_to_fit * np.sum(randomized_weights, axis=0)).astype(np.int_)
-        return (capacity, randomized_weights)

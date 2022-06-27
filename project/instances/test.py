@@ -6,7 +6,7 @@ default_json_file_name = "foo.json"
 default_figure_file_name = "foo.png"
 other_figure_file_name = "goo.png"
 
-generator = RandomizedInstanceGenerator(
+generator = RandomForestGenerator(
     number_of_nodes = 10,
     edge_probability = 0.5,
     weight_size = 3,
