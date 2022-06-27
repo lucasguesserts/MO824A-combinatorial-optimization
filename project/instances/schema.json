@@ -1,55 +1,81 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "title": "problem instance schema",
-    "version": "0.0.0",
-    "type": "object",
-    "additionalProperties": false,
-    "required": [
-        "number_of_nodes",
-        "weight_size",
-        "capacity",
-        "edges",
-        "weights"
-    ],
-    "properties": {
-      "number_of_nodes": {
-        "type": "integer",
-        "minimum": 2
-      },
-      "weight_size": {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "problem instance schema",
+  "version": "0.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "capacity",
+    "edges",
+    "weights",
+    "parameters"
+  ],
+  "properties": {
+    "capacity": {
+      "type": "array",
+      "minContains": 1,
+      "items": {
         "type": "integer",
         "minimum": 1
-      },
-      "capacity": {
+      }
+    },
+    "edges": {
+      "type": "array",
+      "minContains": 1,
+      "items": {
         "type": "array",
-        "minContains": 1,
+        "length": 2,
+        "items": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "weights": {
+      "type": "array",
+      "minContains": 1,
+      "items": {
+        "type": "array",
         "items": {
           "type": "integer",
           "minimum": 1
         }
-      },
-      "edges": {
-        "type": "array",
-        "minContains": 1,
-        "items": {
-          "type": "array",
-          "length": 2,
-          "items": {
-            "type": "integer",
-            "minimum": 0
-          }
-        }
-      },
-      "weights": {
-        "type": "array",
-        "minContains": 1,
-        "items": {
-          "type": "array",
-          "items": {
-            "type": "integer",
-            "minimum": 1
-          }
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "number_of_nodes",
+        "edge_probability",
+        "weight_size",
+        "percentage_of_nodes_to_fit",
+        "number_of_digits_to_round"
+      ],
+      "properties": {
+        "number_of_nodes": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "edge_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "weight_size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "percentage_of_nodes_to_fit": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "number_of_digits_to_round": {
+          "type": "integer",
+          "minimum": 1
         }
       }
     }
   }
+}
