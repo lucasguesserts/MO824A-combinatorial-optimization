@@ -1,6 +1,6 @@
 import numpy as np
 import networkx as nx
-from directed_acyclic_graph_generator import InstanceGenerator
+from directed_acyclic_graph_generator import *
 
 generator = InstanceGenerator(
     number_of_nodes = 10,
@@ -11,9 +11,11 @@ generator = InstanceGenerator(
 )
 
 instance = generator.generate()
-instance.to_json()
+FileManipulation.dict_to_json(instance.to_dict())
+other_instance = ProblemInstance.from_dict(FileManipulation.json_to_dict())
 
 instance.plot()
+other_instance.plot("goo.png")
 
 print(f"weights:\n{instance.weights}")
 print()

@@ -4,38 +4,24 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import json
 
-class ProblemInstance:
-    def __init__(
-        self,
-        graph: nx.DiGraph,
-        capacity: npt.NDArray[np.int_],
-        weights: npt.NDArray[np.int_]
-    ):
-        # tuple[, npt.NDArray[np.int_], npt.NDArray[np.int_
-        self.graph = graph
-        self.capacity = capacity
-        self.weights = weights
+class FileManipulation:
 
-    def to_json(self):
-        data = {}
-        data["number_of_nodes"] = len(self.graph.nodes)
-        data["weight_size"] = len(self.capacity)
-        data["capacity"] = self.capacity.tolist()
-        data["weights"] = self.weights.tolist()
-        data["edges"] = list(self.graph.edges)
-        with open("foo.json", "w") as file:
+    @staticmethod
+    def json_to_dict(
+        file_name: str="foo.json"
+    ) -> dict:
+        with open(file_name, "r") as file:
+            data = json.load(file)
+        return data
+
+    @staticmethod
+    def dict_to_json(
+        data: dict,
+        file_name: str="foo.json",
+    ) -> None:
+        with open(file_name, "w") as file:
             file.write(json.dumps(data, indent=2, ensure_ascii=True))
-
-    def plot(self, file_name: str="foo.png") -> None:
-        """Plot into a figure the input graph"""
-        plt.subplot(111)
-        nx.draw_shell(
-            self.graph,
-            with_labels=True,
-            node_color = "white"
-        )
-        plt.savefig(file_name)
-        plt.close()
+        return
 
 class InstanceGeneratorParameters:
 
@@ -84,6 +70,7 @@ class InstanceGeneratorParameters:
         self.percentage_of_nodes_to_fit = percentage_of_nodes_to_fit
         self.number_of_digits_to_round = number_of_digits_to_round
         self._validate_parameters()
+        return
 
     def _validate_parameters(self) -> None:
         if self.number_of_nodes < 2:
@@ -96,6 +83,70 @@ class InstanceGeneratorParameters:
             raise ValueError("percentage_of_nodes_to_fit must be a value between 0 (zero) (exclusive) and 1 (one) (exclusive)")
         if self.number_of_digits_to_round <= 0:
             raise ValueError("number_of_digits_to_round must must be greater than 0 (zero)")
+        return
+
+    def to_dict(self) -> dict:
+        data = {}
+        data["number_of_nodes"] = self.number_of_nodes
+        data["edge_probability"] = self.edge_probability
+        data["weight_size"] = self.weight_size
+        data["percentage_of_nodes_to_fit"] = self.percentage_of_nodes_to_fit
+        data["number_of_digits_to_round"] = self.number_of_digits_to_round
+        return data
+
+    @staticmethod
+    def from_dict(data: dict):
+        return InstanceGeneratorParameters(
+            number_of_nodes = data["number_of_nodes"],
+            edge_probability = data["edge_probability"],
+            weight_size = data["weight_size"],
+            percentage_of_nodes_to_fit = data["percentage_of_nodes_to_fit"],
+            number_of_digits_to_round = data["number_of_digits_to_round"],
+        )
+
+
+class ProblemInstance:
+    def __init__(
+        self,
+        graph: nx.DiGraph,
+        capacity: npt.NDArray[np.int_],
+        weights: npt.NDArray[np.int_],
+        parameters: InstanceGeneratorParameters,
+    ):
+        self.graph = graph
+        self.capacity = capacity
+        self.weights = weights
+        self.parameters = parameters
+        return
+
+    def plot(self, file_name: str="foo.png") -> None:
+        """Plot into a figure the input graph"""
+        plt.subplot(111)
+        nx.draw_shell(
+            self.graph,
+            with_labels=True,
+            node_color = "white"
+        )
+        plt.savefig(file_name)
+        plt.close()
+
+    def to_dict(self) -> dict:
+        data = {}
+        data["capacity"] = self.capacity.tolist()
+        data["weights"] = self.weights.tolist()
+        data["edges"] = list(self.graph.edges)
+        data["parameters"] = self.parameters.to_dict()
+        return data
+
+    @staticmethod
+    def from_dict(data: dict):
+        graph = nx.DiGraph()
+        graph.add_nodes_from(range(data["parameters"]["number_of_nodes"]))
+        graph.add_edges_from(data["edges"])
+        capacity = np.array(data["capacity"], dtype=np.int_)
+        weights = np.array(data["weights"], dtype=np.int_)
+        parameters = InstanceGeneratorParameters.from_dict(data["parameters"])
+        return ProblemInstance(graph, capacity, weights, parameters)
 
 
 class InstanceGenerator (InstanceGeneratorParameters):
@@ -103,7 +154,7 @@ class InstanceGenerator (InstanceGeneratorParameters):
     def generate(self) -> ProblemInstance:
         graph = self._generate_randomized_transitive_reduced_DAG()
         capacity, weights = self._generate_randomized_weights_and_capacity()
-        instance = ProblemInstance(graph, capacity, weights)
+        instance = ProblemInstance(graph, capacity, weights, self)
         return instance
 
     def _generate_randomized_adjacent_matrix(self) -> npt.NDArray[np.bool_]:
