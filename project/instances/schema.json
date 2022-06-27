@@ -1,0 +1,55 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "problem instance schema",
+    "version": "0.0.0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "number_of_nodes",
+        "weight_size",
+        "capacity",
+        "edges",
+        "weights"
+    ],
+    "properties": {
+      "number_of_nodes": {
+        "type": "integer",
+        "minimum": 2
+      },
+      "weight_size": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "capacity": {
+        "type": "array",
+        "minContains": 1,
+        "items": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "edges": {
+        "type": "array",
+        "minContains": 1,
+        "items": {
+          "type": "array",
+          "length": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "weights": {
+        "type": "array",
+        "minContains": 1,
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
