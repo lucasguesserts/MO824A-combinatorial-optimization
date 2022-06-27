@@ -36,7 +36,7 @@ class InstanceGenerator:
         Raises
         ------
         ValueError
-            If `number_of_nodes` is not greater than 1 (one)
+            If `number_of_nodes` is smaller than 2 (two)
             If `edge_probability` is not in the interval [0, 1]
                 (between 0 (zero) (inclusive) and 1 (one) (inclusive))
             If `weight_size` is smaller or equal to 0 (zero)
@@ -52,7 +52,7 @@ class InstanceGenerator:
         self._validate_parameters()
 
     def generate(self) -> tuple[nx.DiGraph, npt.NDArray[np.int_], npt.NDArray[np.int_]]:
-        graph = self._generate_randomized_DAG()
+        graph = self._generate_randomized_transitive_reduced_DAG()
         capacity, weights = self._generate_randomized_weights_and_capacity()
         return (graph, capacity, weights)
 
@@ -68,9 +68,8 @@ class InstanceGenerator:
         plt.savefig(file_name)
         plt.close()
 
-
     def _validate_parameters(self) -> None:
-        if self.number_of_nodes <= 1:
+        if self.number_of_nodes < 2:
             raise ValueError("number_of_nodes must be greater than 1 (one)")
         if not 0 <= self.edge_probability <= 1:
             raise ValueError("edge_probability must be a value between 0 (inclusive) and 1 (inclusive)")
@@ -107,9 +106,9 @@ class InstanceGenerator:
         )
         return random_binary_triangular_matrix
 
-    def _generate_randomized_DAG(self) -> nx.DiGraph:
+    def _generate_randomized_transitive_reduced_DAG(self) -> nx.DiGraph:
         """
-        Generate a random Directed Acyclic Graph (DAG).
+        Generate a Randomized Transitive Reduced Directed Acyclic Graph (DAG).
 
         Returns
         -------
@@ -120,7 +119,8 @@ class InstanceGenerator:
         adjacent_matrix = self._generate_randomized_adjacent_matrix()
         dag = nx.from_numpy_array(adjacent_matrix, create_using=nx.DiGraph)
         assert nx.is_directed_acyclic_graph(dag), f"something is odd, {self._generate_randomized_DAG.__name__} did not generate a directed acyclic graph"
-        return dag
+        reduced_dag = nx.transitive_reduction(dag)
+        return reduced_dag
 
     def _generate_randomized_weights_and_capacity(self) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]:
         """
