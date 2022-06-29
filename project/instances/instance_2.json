@@ -1,0 +1,66 @@
+{
+  "number_of_nodes": 7,
+  "capacity": [
+    1147,
+    1884,
+    2711
+  ],
+  "weights": [
+    [
+      10,
+      449,
+      396,
+      22,
+      456,
+      37,
+      924
+    ],
+    [
+      559,
+      277,
+      875,
+      93,
+      764,
+      946,
+      254
+    ],
+    [
+      656,
+      541,
+      601,
+      836,
+      810,
+      999,
+      979
+    ]
+  ],
+  "edges": [
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      3,
+      5
+    ]
+  ],
+  "parameters": {
+    "number_of_nodes": 7,
+    "edge_probability": 0.3,
+    "weight_size": 3,
+    "percentage_of_nodes_to_fit": 0.5,
+    "number_of_digits_to_round": 3
+  }
+}
