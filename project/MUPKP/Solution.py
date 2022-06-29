@@ -12,3 +12,14 @@ class Solution(set):
     def add_all(self, elements: Iterable[int]) -> None:
         for element in elements:
             self.add(element)
+
+    def to_dict(self) -> dict:
+        data = {}
+        data["solution"] = list(self)
+        return data
+
+    @staticmethod
+    def from_dict(data: dict):
+        solution = Solution()
+        solution.add_all(data["solution"])
+        return solution
