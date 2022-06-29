@@ -3,3 +3,4 @@ from .InstanceGeneratorParameters import InstanceGeneratorParameters
 from .ProblemInstance import ProblemInstance
 from .RandomizedInstanceGenerator import RandomizedInstanceGenerator
 from .Solution import Solution
+from .SolutionVerifier import SolutionVerifier
