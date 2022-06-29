@@ -1,0 +1,5 @@
+#!/bin/sh
+
+SRC="./MUPKP ./tools"
+
+black --diff --check --line-length 88 $SRC
