@@ -6,8 +6,8 @@ default_json_file_name = "foo.json"
 default_figure_file_name = "foo.png"
 
 generator = RandomizedInstanceGenerator(
-    number_of_nodes = 10,
-    edge_probability = 0.5,
+    number_of_nodes = 7,
+    edge_probability = 0.3,
     weight_size = 3,
     percentage_of_nodes_to_fit = 0.5,
     number_of_digits_to_round = 3,
