@@ -5,12 +5,17 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "number_of_nodes",
     "capacity",
     "edges",
     "weights",
     "parameters"
   ],
   "properties": {
+    "number_of_nodes": {
+      "type": "integer",
+      "minimum": 2
+    },
     "capacity": {
       "type": "array",
       "minContains": 1,

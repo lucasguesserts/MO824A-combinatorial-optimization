@@ -133,6 +133,7 @@ class ProblemInstance:
 
     def to_dict(self) -> dict:
         data = {}
+        data["number_of_nodes"] = len(self.graph.nodes)
         data["capacity"] = self.capacity.tolist()
         data["weights"] = self.weights.tolist()
         data["edges"] = list(self.graph.edges)
@@ -142,7 +143,7 @@ class ProblemInstance:
     @staticmethod
     def from_dict(data: dict):
         graph = nx.DiGraph()
-        graph.add_nodes_from(range(data["parameters"]["number_of_nodes"]))
+        graph.add_nodes_from(range(data["number_of_nodes"]))
         graph.add_edges_from(data["edges"])
         capacity = np.array(data["capacity"], dtype=np.int_)
         weights = np.array(data["weights"], dtype=np.int_)
