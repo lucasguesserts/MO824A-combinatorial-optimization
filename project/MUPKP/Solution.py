@@ -9,6 +9,6 @@ class Solution(set):
             )
         set.add(self, element)
 
-    def addAll(self, elements: Iterable[int]) -> None:
+    def add_all(self, elements: Iterable[int]) -> None:
         for element in elements:
             self.add(element)
