@@ -22,6 +22,6 @@ print(f"weights:\n{instance.weights}")
 print()
 print(f"weights shape:\n{instance.weights.shape}")
 print()
-print(f"sum of all weights: {np.sum(instance.weights, axis=0)}")
+print(f"sum of all weights: {np.sum(instance.weights, axis=1)}")
 print(f"weight capacity: {instance.capacity}")
 

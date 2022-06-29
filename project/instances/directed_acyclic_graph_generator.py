@@ -169,12 +169,13 @@ class WeightInstanceGenerator (InstanceGeneratorParameters):
             The first entry is a vector of size `weight_size`
             which is the capacity of the knapsack.
             The second entry is a matrix of shape
-            `(number_of_nodes, weight_size)` which is the
+            `(weight_size, number_of_nodes)` which is the
+            weight matrix. Each column represents the multidimensional
             weight of each node.
         """
-        randomized_float_weights = np.random.rand(self.number_of_nodes, self.weight_size) # row: node, column: weight_size
+        randomized_float_weights = np.random.rand(self.weight_size, self.number_of_nodes)
         randomized_weights = np.round(10**self.weight_size * randomized_float_weights).astype(np.int_)
-        capacity = np.round(self.percentage_of_nodes_to_fit * np.sum(randomized_weights, axis=0)).astype(np.int_)
+        capacity = np.round(self.percentage_of_nodes_to_fit * np.sum(randomized_weights, axis=1)).astype(np.int_)
         return (capacity, randomized_weights)
 
 
