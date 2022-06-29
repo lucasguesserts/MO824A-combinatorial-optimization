@@ -4,9 +4,8 @@ from directed_acyclic_graph_generator import *
 
 default_json_file_name = "foo.json"
 default_figure_file_name = "foo.png"
-other_figure_file_name = "goo.png"
 
-generator = RandomForestGenerator(
+generator = RandomizedInstanceGenerator(
     number_of_nodes = 10,
     edge_probability = 0.5,
     weight_size = 3,
@@ -16,10 +15,8 @@ generator = RandomForestGenerator(
 
 instance = generator.generate()
 FileManipulation.dict_to_json(instance.to_dict(), default_json_file_name)
-other_instance = ProblemInstance.from_dict(FileManipulation.json_to_dict(default_json_file_name))
 
 instance.plot(default_figure_file_name)
-other_instance.plot(other_figure_file_name)
 
 print(f"weights:\n{instance.weights}")
 print()

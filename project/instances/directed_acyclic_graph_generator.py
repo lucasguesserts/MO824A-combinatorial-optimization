@@ -177,32 +177,6 @@ class WeightInstanceGenerator (InstanceGeneratorParameters):
         return (capacity, randomized_weights)
 
 
-class RandomTreeGenerator (WeightInstanceGenerator):
-
-    def generate(self) -> ProblemInstance:
-        graph = nx.random_tree(self.number_of_nodes, create_using=nx.DiGraph)
-        capacity, weights = self._generate_randomized_weights_and_capacity()
-        instance = ProblemInstance(graph, capacity, weights, self)
-        return instance
-
-
-class RandomForestGenerator (WeightInstanceGenerator):
-
-    def generate(self) -> ProblemInstance:
-        graph = nx.random_tree(self.number_of_nodes, create_using=nx.DiGraph)
-        max_count = np.random.randint(low=0, high=len(graph.edges))
-        edges = list(graph.edges)
-        s = set()
-        for _ in range(np.random.randint(low=0, high=len(graph.edges))):
-            ri = np.random.randint(low=0, high=len(graph.edges))
-            s.add(edges[ri])
-        for e in s:
-            graph.remove_edge(*e)
-        capacity, weights = self._generate_randomized_weights_and_capacity()
-        instance = ProblemInstance(graph, capacity, weights, self)
-        return instance
-
-
 class RandomizedInstanceGenerator (WeightInstanceGenerator):
 
     def generate(self) -> ProblemInstance:
