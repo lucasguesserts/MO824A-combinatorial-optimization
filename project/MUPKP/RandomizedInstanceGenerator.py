@@ -3,7 +3,7 @@ import numpy.typing as npt
 import networkx as nx
 
 from .InstanceGeneratorParameters import InstanceGeneratorParameters
-from .ProblemInstance import ProblemInstance
+from .Problem import Problem
 
 
 class WeightInstanceGenerator(InstanceGeneratorParameters):
@@ -42,10 +42,10 @@ class WeightInstanceGenerator(InstanceGeneratorParameters):
 
 
 class RandomizedInstanceGenerator(WeightInstanceGenerator):
-    def generate(self) -> ProblemInstance:
+    def generate(self) -> Problem:
         graph = self._generate_randomized_transitive_reduced_DAG()
         capacity, weights = self._generate_randomized_weights_and_capacity()
-        instance = ProblemInstance(graph, capacity, weights, self)
+        instance = Problem(graph, capacity, weights, self)
         return instance
 
     def _generate_randomized_adjacent_matrix(self) -> npt.NDArray[np.bool_]:

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from .InstanceGeneratorParameters import InstanceGeneratorParameters
 
 
-class ProblemInstance:
+class Problem:
     def __init__(
         self,
         graph: nx.DiGraph,
@@ -43,4 +43,4 @@ class ProblemInstance:
         capacity = np.array(data["capacity"], dtype=np.int_)
         weights = np.array(data["weights"], dtype=np.int_)
         parameters = InstanceGeneratorParameters.from_dict(data["parameters"])
-        return ProblemInstance(graph, capacity, weights, parameters)
+        return Problem(graph, capacity, weights, parameters)

@@ -1,11 +1,11 @@
 import numpy as np
 import networkx as nx
 from .Solution import Solution
-from .ProblemInstance import ProblemInstance
+from .Problem import Problem
 
 
 class SolutionVerifier:
-    def __init__(self, problem: ProblemInstance):
+    def __init__(self, problem: Problem):
         self.problem = problem
 
     def verify(self, solution: Solution) -> bool:

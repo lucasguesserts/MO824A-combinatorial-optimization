@@ -1,6 +1,6 @@
 from .FileManipulation import FileManipulation
 from .InstanceGeneratorParameters import InstanceGeneratorParameters
-from .ProblemInstance import ProblemInstance
+from .Problem import Problem
 from .RandomizedInstanceGenerator import RandomizedInstanceGenerator
 from .Solution import Solution
 from .SolutionVerifier import SolutionVerifier
