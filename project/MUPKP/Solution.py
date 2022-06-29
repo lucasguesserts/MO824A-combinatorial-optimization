@@ -1,4 +1,6 @@
 from typing import Iterable
+import numpy as np
+import numpy.typing as npt
 
 
 class Solution(set):
@@ -12,6 +14,15 @@ class Solution(set):
     def add_all(self, elements: Iterable[int]) -> None:
         for element in elements:
             self.add(element)
+
+    def to_array(self, size: int) -> npt.NDArray[np.int_]:
+        maxElement = max(self)
+        if maxElement >= size:
+            raise ValueError(f"size '{size}' must be larger than the maximum element '{maxElement}' the solution")
+        array = np.zeros(size).astype(np.int_)
+        for element in self:
+            array[element] = np.int_(1)
+        return array
 
     def to_dict(self) -> dict:
         data = {}
