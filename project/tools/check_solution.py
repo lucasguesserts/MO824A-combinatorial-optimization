@@ -1,5 +1,6 @@
+import itertools
 import numpy as np
-from MUPKP import Problem, Solution, SolutionVerifier, FileManipulation
+from MUPKP import BruteForceSolver, Problem, Solution, SolutionVerifier, FileManipulation
 
 instance_file_name = "./instances/instance_1.json"
 
@@ -21,7 +22,7 @@ print(s)
 # x = s.to_array()
 # print(x)
 
-xx = np.array([1, 0, 0, 1, 1])
+xx = np.array([0, 1, 1, 0, 0])
 A = np.array(
     [[812, 395, 414, 869, 425], [830, 224, 384, 706, 607], [631, 59, 753, 896, 680]]
 )
@@ -40,3 +41,6 @@ print(other)
 
 verifier = SolutionVerifier(instance)
 print(verifier.verify(s))
+
+solver = BruteForceSolver(instance)
+print(solver.solutions)
