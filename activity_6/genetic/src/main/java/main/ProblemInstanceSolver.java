@@ -21,7 +21,7 @@ public class ProblemInstanceSolver {
 
     protected long startTime = System.currentTimeMillis();
     protected long endTime = System.currentTimeMillis();
-    protected long totalTime = System.currentTimeMillis();
+    public long totalTime = System.currentTimeMillis();
 
     public ProblemInstanceSolver(
             final int numberOfGenerations,
@@ -73,7 +73,7 @@ public class ProblemInstanceSolver {
         return lastPart;
     }
 
-    protected JSONObject getSetup() {
+    public JSONObject getSetup() {
         final var obj = new JSONObject();
         obj.put("numberOfGenerations", this.numberOfGenerations);
         obj.put("populationSize", this.populationSize);
