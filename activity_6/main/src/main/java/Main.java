@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(final String[] args) throws IOException {
         for (final var problemInstance : problemInstanceList) {
-            final var solver = new ProblemInstanceSolver(
+            final var solver = new Solver(
                 numberOfGenerations,
                 populationSize,
                 mutationRate,
@@ -39,7 +39,7 @@ public class Main {
         saveExperimentResults();
     }
 
-    private static void collectExperimentResults(final ProblemInstanceSolver solver) {
+    private static void collectExperimentResults(final Solver solver) {
         experimentResults.put(solver.getLogAsJson());
     }
 

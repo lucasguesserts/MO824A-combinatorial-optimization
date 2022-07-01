@@ -1,3 +1,5 @@
+package main;
+
 import java.io.IOException;
 import org.json.JSONObject;
 import problems.kqbf.solvers.GaKqbf;
@@ -5,21 +7,21 @@ import solutions.Solution;
 
 public class ProblemInstanceSolver {
 
-    private final int numberOfGenerations;
-    private final int populationSize;
-    private final double mutationRate;
-    private final String problemInstance;
-    private final String instanceIdentifier;
+    protected final int numberOfGenerations;
+    protected final int populationSize;
+    protected final double mutationRate;
+    protected final String problemInstance;
+    protected final String instanceIdentifier;
 
-    private final GaKqbf ga;
+    protected final GaKqbf ga;
 
-    private Solution<Integer> bestSol;
-    private Integer knapsackCapacity;
-    private Integer domainSize;
+    protected Solution<Integer> bestSol;
+    protected Integer knapsackCapacity;
+    protected Integer domainSize;
 
-    private long startTime = System.currentTimeMillis();
-    private long endTime = System.currentTimeMillis();
-    private long totalTime = System.currentTimeMillis();
+    protected long startTime = System.currentTimeMillis();
+    protected long endTime = System.currentTimeMillis();
+    protected long totalTime = System.currentTimeMillis();
 
     public ProblemInstanceSolver(
             final int numberOfGenerations,
@@ -65,26 +67,13 @@ public class ProblemInstanceSolver {
         ));
     }
 
-    public void log() {
-        System.out.println(this.getLogAsJson().toString(2));
-    }
-
-    private String getInstanceIdentifier() {
+    protected String getInstanceIdentifier() {
         final String[] parts = this.problemInstance.split("/");
         final String lastPart = parts[parts.length - 1];
         return lastPart;
     }
 
-    public JSONObject getLogAsJson() {
-        final var obj = new JSONObject();
-        obj.put("Setup", this.getSetup());
-        obj.put("Solution", this.getSolution());
-        obj.put("RunningTime", (double) this.totalTime / 1000.0);
-        obj.put("iterations", this.ga.logOfIterations);
-        return obj;
-    }
-
-    private JSONObject getSetup() {
+    protected JSONObject getSetup() {
         final var obj = new JSONObject();
         obj.put("numberOfGenerations", this.numberOfGenerations);
         obj.put("populationSize", this.populationSize);
@@ -96,7 +85,7 @@ public class ProblemInstanceSolver {
         return obj;
     }
 
-    private JSONObject getSolution() {
+    protected JSONObject getSolution() {
         final var obj = new JSONObject();
         obj.put("cost", this.bestSol.cost);
         obj.put("weight", this.bestSol.weight);
