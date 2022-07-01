@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 ##      ---------------------------------------------------------------
 ##
 ##      tttplots: A Perl program to ...
@@ -38,7 +38,7 @@
 	$the_exp_filename = $filename . "-te" . ".dat";
 	$gpl_exp_filename = $filename . "-exp" . ".gpl";
 	$ps_exp_filename = $filename . "-exp" . ".ps";
-        
+
 ##      ----------------------------------------------------------------
 #	Open data file.
 ##      ----------------------------------------------------------------
@@ -55,7 +55,7 @@
 		$nfields=0;                 #
 		foreach $fld (@field){      # count number of fields
 			$nfields++;         #
-		}                           # 
+		}                           #
 
 		if ($nfields != 1){
 			die "Number of fields in data file must be 1 \n";
@@ -113,7 +113,7 @@
 
         $lambda = ($zu - $zl)/($qu - $ql);
         $mu = $zl - ($lambda * $ql);
- 
+
         print " Estimated parameters (theoretical shifted exponential distribution) > \n\n";
         print "    shift (mu)         : $mu \n";
         print "    std. dev. (lambda) : $lambda \n";
@@ -128,7 +128,7 @@
         $eps = $tmax/400;
 	$nn = 1;
 	while ($nn <= 400){
-                $theory_t[$nn-1]= $eps * $nn; 
+                $theory_t[$nn-1]= $eps * $nn;
                 $theory_p[$nn-1] = 1-exp(-$inv_lambda*($eps * $nn - $mu));
 		$nn++;
 	}
@@ -142,7 +142,7 @@
                 $theoretical_time[$nn] = -log(1-$prob[$nn]);
 		$nn++;
 	}
-        
+
 #
 #	----------------------------------------------------------------------
 #	Compute qqplot line, lower and upper error lines
@@ -162,15 +162,15 @@
 #	----------------------------------------------------------------------
 #	Write output files ...
 #	----------------------------------------------------------------------
-	open (EMP_LIN_FILE,">$emp_lin_filename") || 
+	open (EMP_LIN_FILE,">$emp_lin_filename") ||
                     die "Cannot open file: $emp_lin_filename \n";
-	open (UP_LIN_FILE,">$up_lin_filename") || 
+	open (UP_LIN_FILE,">$up_lin_filename") ||
                     die "Cannot open file: $up_lin_filename \n";
-	open (LO_LIN_FILE,">$lo_lin_filename") || 
+	open (LO_LIN_FILE,">$lo_lin_filename") ||
                     die "Cannot open file: $lo_lin_filename \n";
-	open (EMP_EXP_FILE,">$emp_exp_filename") || 
+	open (EMP_EXP_FILE,">$emp_exp_filename") ||
                     die "Cannot open file: $emp_exp_filename \n";
-	open (THE_LIN_FILE,">$the_lin_filename") || 
+	open (THE_LIN_FILE,">$the_lin_filename") ||
                     die "Cannot open file: $the_lin_filename \n";
 
 	$nn = 0;
@@ -189,7 +189,7 @@
 #	Theoretical exp file
 #	----------------------------------------------------------------------
 #
-	open (THE_EXP_FILE,">$the_exp_filename") || 
+	open (THE_EXP_FILE,">$the_exp_filename") ||
                 die "Cannot open file: $the_exp_filename \n";
 	$nn = 0;
 	while ($nn < 400){
@@ -202,7 +202,7 @@
 #	Create qqplot gnuplot file.
 #	----------------------------------------------------------------------
 #
-	open (GPL_LIN_FILE,">$gpl_lin_filename") || 
+	open (GPL_LIN_FILE,">$gpl_lin_filename") ||
                        die "Cannot open file: $gpl_lin_filename \n";
 	print GPL_LIN_FILE <<EOF;
 		set xlabel \'exponential quantiles\'
@@ -210,9 +210,9 @@
 		set ylabel \'measured times\'
 		set key right bottom
 		set title \'$filename\'
-		set terminal postscript color \'Helvetica\' 
+		set terminal postscript color \'Helvetica\'
 		set output \'$ps_lin_filename\'
-		plot "$emp_lin_filename" t "empirical" w points, "$the_lin_filename" t "estimated" with lines 3, "$up_lin_filename" t "+1 std dev range" w lines 4, "$lo_lin_filename" t "-1 std dev range" w lines 4 
+		plot "$emp_lin_filename" t "empirical" w points, "$the_lin_filename" t "estimated" w l, "$up_lin_filename" t "+1 std dev range" w l, "$lo_lin_filename" t "-1 std dev range" w l
 		quit
 EOF
 
@@ -221,7 +221,7 @@ EOF
 #	Create qqplot postscript graphic file.
 #	----------------------------------------------------------------------
 #
-	open (PS_EXP_FILE,">$ps_exp_filename") || 
+	open (PS_EXP_FILE,">$ps_exp_filename") ||
                      die "Cannot open file: $ps_exp_filename \n";
 	system("gnuplot $gpl_lin_filename") == 0 ||
                      die "gnuplot (needed for plotting) not found \n";
@@ -232,7 +232,7 @@ EOF
 #	Create empirical-theoretical distributions gnuplot file
 #	----------------------------------------------------------------------
 #
-	open (GPL_EXP_FILE,">$gpl_exp_filename") || 
+	open (GPL_EXP_FILE,">$gpl_exp_filename") ||
                 die "Cannot open file: $gpl_exp_filename \n";
 	print GPL_EXP_FILE <<EOF;
 		set xlabel \'time to target solution\'
@@ -244,7 +244,7 @@ EOF
 		set title \'$filename\'
 		set terminal postscript color \'Helvetica\'
 		set output \'$ps_exp_filename\'
-		plot "$emp_exp_filename" t "empirical" w points, "$the_exp_filename" t "theoretical" w lines 3
+		plot "$emp_exp_filename" t "empirical" w points, "$the_exp_filename" t "theoretical" w l
 		quit
 EOF
 
@@ -253,7 +253,7 @@ EOF
 #	Create empirical-theoretical distributions postscript graphic file
 #	----------------------------------------------------------------------
 #
-	open (PS_EXP_FILE,">$ps_exp_filename") || 
+	open (PS_EXP_FILE,">$ps_exp_filename") ||
                  die "Cannot open file: $ps_exp_filename \n";
 	system("gnuplot $gpl_exp_filename") == 0 ||
                      die "gnuplot (needed for plotting) not found \n";
