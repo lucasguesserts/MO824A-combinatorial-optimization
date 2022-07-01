@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 public final class Solver extends ProblemInstanceSolver {
 
+    private static final int targetValue = Integer.MAX_VALUE;
+
     public Solver(
             final int numberOfGenerations,
             final int populationSize,
@@ -14,7 +16,8 @@ public final class Solver extends ProblemInstanceSolver {
             numberOfGenerations,
             populationSize,
             mutationRate,
-            problemInstance
+            problemInstance,
+            targetValue
         );
     }
 
