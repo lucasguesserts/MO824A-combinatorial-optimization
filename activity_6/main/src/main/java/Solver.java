@@ -18,20 +18,6 @@ public final class Solver extends ProblemInstanceSolver {
         );
     }
 
-    public void logStart() {
-        System.out.println(String.format(
-            "\n\n========== Start: %s ==========\n\n",
-            instanceIdentifier
-        ));
-    }
-
-    public void logEnd() {
-        System.out.println(String.format(
-            "\n\n========== End: %s ==========\n\n",
-            instanceIdentifier
-        ));
-    }
-
     public void log() {
         System.out.println(this.getLogAsJson().toString(2));
     }
