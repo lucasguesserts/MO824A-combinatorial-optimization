@@ -12,6 +12,7 @@ public class ProblemInstanceSolver {
     protected final double mutationRate;
     protected final String problemInstance;
     protected final String instanceIdentifier;
+    protected final int targetValue;
 
     protected final GaKqbf ga;
 
@@ -27,18 +28,21 @@ public class ProblemInstanceSolver {
             final int numberOfGenerations,
             final int populationSize,
             final double mutationRate,
-            final String problemInstance
+            final String problemInstance,
+            final int targetValue
     ) throws IOException {
         this.numberOfGenerations = numberOfGenerations;
         this.populationSize = populationSize;
         this.mutationRate = mutationRate;
         this.problemInstance = problemInstance;
         this.instanceIdentifier = this.getInstanceIdentifier();
+        this.targetValue = targetValue;
         this.ga = new GaKqbf(
             this.numberOfGenerations,
             this.populationSize,
             this.mutationRate,
-            this.problemInstance
+            this.problemInstance,
+            (double) this.targetValue
         );
     }
 
@@ -82,6 +86,7 @@ public class ProblemInstanceSolver {
         obj.put("instanceIdentifier", this.instanceIdentifier);
         obj.put("knapsackCapacity", this.knapsackCapacity);
         obj.put("domainSize", this.domainSize);
+        obj.put("targetValue", this.targetValue);
         return obj;
     }
 

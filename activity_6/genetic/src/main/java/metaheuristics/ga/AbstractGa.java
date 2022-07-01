@@ -23,6 +23,7 @@ public abstract class AbstractGa<G extends Number, F> {
     protected int popSize;
     protected int chromosomeSize;
     protected double mutationRate;
+    protected Double targetValue;
 
     protected int currentGeneration;
 
@@ -44,13 +45,15 @@ public abstract class AbstractGa<G extends Number, F> {
         final Evaluator<F> objFunction,
         final Integer generations,
         final Integer popSize,
-        final Double mutationRate
+        final Double mutationRate,
+        final Double targetValue
     ) {
         this.objFunction = objFunction;
         this.numberOfGenerations = generations;
         this.popSize = popSize;
         this.chromosomeSize = this.objFunction.getDomainSize();
         this.mutationRate = mutationRate;
+        this.targetValue = targetValue;
     }
 
     public Solution<F> solve() {
@@ -73,6 +76,12 @@ public abstract class AbstractGa<G extends Number, F> {
             if (fitness(bestChromosome) > bestSol.cost) {
                 bestSol = decode(bestChromosome);
                 this.logOfBestSolution();
+                if (bestSol.cost > (targetValue - 1.0e-4)) {
+                    System.out.println(String.format("target value %f reached", targetValue));
+                    System.out.println(String.format("current solution cost %f", bestSol.cost));
+                    System.out.println("Algorithm stops here");
+                    break;
+                }
             }
         }
         return bestSol;

@@ -8,13 +8,15 @@ public final class Solver extends ProblemInstanceSolver {
             final int numberOfGenerations,
             final int populationSize,
             final double mutationRate,
-            final String problemInstance
+            final String problemInstance,
+            final int targetValue
     ) throws IOException {
         super(
             numberOfGenerations,
             populationSize,
             mutationRate,
-            problemInstance
+            problemInstance,
+            targetValue
         );
     }
 

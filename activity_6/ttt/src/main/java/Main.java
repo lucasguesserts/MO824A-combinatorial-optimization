@@ -11,22 +11,28 @@ public class Main {
     private static final JSONArray runningTimeResults = new JSONArray();
     private static final JSONObject experimentResults = new JSONObject();
 
-    private static final int numberOfRepetitions = 10;
+    private static final int numberOfRepetitions = 50;
     private static final int numberOfGenerations = 1000;
     private static final int populationSize = 100;
     private static final double mutationRate = 1.0 / 100.0;
     private static final List<String> problemInstanceList = Arrays.asList(
         "../instances/kqbf/kqbf020"
     );
+    private static final List<Integer> targetValueList = Arrays.asList(
+        120
+    );
 
     public static void main(final String[] args) throws IOException {
-        for (final var problemInstance : problemInstanceList) {
+        for (int instanceIndex = 0; instanceIndex < problemInstanceList.size(); ++instanceIndex) {
+            final var problemInstance = problemInstanceList.get(instanceIndex);
+            final int targetValue = targetValueList.get(instanceIndex);
             for (int runCount = 0; runCount < numberOfRepetitions; ++runCount) {
                 final var solver = new Solver(
                     numberOfGenerations,
                     populationSize,
                     mutationRate,
-                    problemInstance
+                    problemInstance,
+                    targetValue
                 );
                 solver.logStart();
                 solver.solve();
