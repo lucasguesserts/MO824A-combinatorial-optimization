@@ -6,6 +6,35 @@ SCRIPT_DIR="$PROJECT_PATH/script"
 
 cd $PROJECT_PATH
 
-PROJECT=main
+exists_in_list ()
+{
+    # $1: list to check against
+    # $2: value to be checked
+    for __VALUE in $1
+    do
+        if [ $2 = $__VALUE ]
+        then
+            return 0
+        fi
+    done
+    return 1
+}
+
+DEFAULT_PROJECT="main"
+PROJECTS_LIST="$DEFAULT_PROJECT ttt"
+PROJECT="$1"
+
+if ! [ $PROJECT ]
+then
+    PROJECT=$DEFAULT_PROJECT
+    echo "input arg is invalid: $1"
+    echo "setting project as '$DEFAULT_PROJECT'"
+fi
+
+if ! exists_in_list "$PROJECTS_LIST" "$PROJECT"
+then
+    echo "arg '$PROJECT' is invalid"
+    exit 1
+fi
 
 gradle $PROJECT:run | tee ${PROJECT_PATH}/$PROJECT.log
