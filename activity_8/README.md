@@ -1,24 +1,27 @@
 # Activity 6
 
+## Requirements
+
+- gnuplot 5
+- perl 5.34
+- python 3.10
+
 ## Credits
 
-This project was developed by Lucas Guesser Targino da Silva (lucasguesserts@gmail.com)
+This project was developed by Lucas Guesser Targino da Silva (lucasguesserts@gmail.com).
+
+### TTT Plots
 
 The program which creates the TTT (time-to-target) plots was developed by
 
 - Renata M. Aiex
 - Mauricio G. C. Resende
 
-## Requirements
+### Performance Profiles Plots
 
-- gnuplot 5
-- perl 5.34
+The python script used here was developed by [Daniel Steck](https://github.com/dmsteck).
 
-## run
-
-```sh
-./script/run
-```
+It is available at [github](https://github.com/dmsteck/perfprof.py) and [pypi](https://pypi.org/project/perfprof/).
 
 ## References
 
