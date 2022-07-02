@@ -1,0 +1,8 @@
+#GRASP_first_02,GRASP_first_05,GRASP_best_02,GRASP_best_05,GRASP_best_plus,GRASP_best_sampled,TABU_best_02_vanilla,TABU_best_02_intensification,TABU_best_02_diversification,TABU_best_04_vanilla,TABU_best_04_intensification,TABU_best_04_diversification,TABU_first_02_vanilla,TABU_first_02_intensification,TABU_first_02_diversification,TABU_first_04_vanilla,TABU_first_04_intensification,TABU_first_04_diversification,GENETIC_vanilla_100_1,GENETIC_vanilla_100_05,GENETIC_vanilla_300_1,GENETIC_steady_state_100_1,GENETIC_diversity_100_1
+0.145,0.042,0.074,0.100,0.145,0.138,1.263,0.447,0.246,0.997,0.476,0.255,0.043,0.035,0.031,0.057,0.205,0.035,0.918,0.974,2.411,3.015,1.033
+0.353,inf,1.765,1.627,inf,1.616,inf,1.633,inf,2.707,4.774,1.218,inf,inf,inf,inf,inf,inf,2.648,3.200,7.634,10.860,2.968
+1.261,inf,1.981,6.399,7.876,7.149,inf,4.510,3.904,5.427,5.166,5.662,inf,0.238,inf,inf,inf,3.064,5.082,5.529,16.005,23.954,5.415
+3.016,inf,4.242,25.248,20.344,19.385,inf,inf,7.651,10.318,8.769,inf,inf,inf,inf,inf,inf,inf,9.090,9.627,27.461,46.665,9.852
+6.056,1.927,9.068,75.180,85.987,50.211,17.558,15.455,130.585,17.549,28.078,17.294,0.118,1.041,inf,0.350,1.519,6.309,13.646,15.386,41.520,76.459,14.252
+75.552,inf,100.731,1280.062,1422.645,1424.165,123.439,132.799,inf,160.816,692.925,444.594,inf,inf,inf,inf,inf,inf,54.607,62.351,inf,254.404,inf
+inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf,inf
