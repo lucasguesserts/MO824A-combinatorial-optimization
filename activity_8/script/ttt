@@ -33,15 +33,15 @@ do
     cd $OUTPUT_DIR
 
     ./$TTT_SCRIPT -f $DATA_NAME
-    for PS_FILE in `ls *.ps`
-    do
-        PDF_FILE="${PS_FILE%.*}.pdf"
-        ps2pdf $PS_FILE
-    done
+    # for PS_FILE in `ls *.ps`
+    # do
+    #     PDF_FILE="${PS_FILE%.*}.pdf"
+    #     ps2pdf $PS_FILE
+    # done
 
     mkdir -p $GRAPHS_DIR
-    mv *.pdf $GRAPHS_DIR
+    mv *.jpeg $GRAPHS_DIR
     cd /tmp
-    rm -rf * $OUTPUT_DIR
+    rm -rf $OUTPUT_DIR
 
 done

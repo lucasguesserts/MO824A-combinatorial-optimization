@@ -33,11 +33,11 @@
 	$up_lin_filename = $filename . "-ul" . ".dat";
 	$lo_lin_filename = $filename . "-ll" . ".dat";
 	$gpl_lin_filename = $filename . "-qq" . ".gpl";
-	$ps_lin_filename = $filename . "-qq" . ".ps";
+	$fig_lin_filename = $filename . "-qq" . ".jpeg";
 	$emp_exp_filename = $filename . "-ee" . ".dat";
 	$the_exp_filename = $filename . "-te" . ".dat";
 	$gpl_exp_filename = $filename . "-exp" . ".gpl";
-	$ps_exp_filename = $filename . "-exp" . ".ps";
+	$fig_exp_filename = $filename . "-exp" . ".jpeg";
 
 ##      ----------------------------------------------------------------
 #	Open data file.
@@ -210,8 +210,8 @@
 		set ylabel \'measured times\'
 		set key right bottom
 		set title \'$filename\'
-		set terminal postscript color \'Helvetica\'
-		set output \'$ps_lin_filename\'
+		set terminal jpeg
+		set output \'$fig_lin_filename\'
 		plot "$emp_lin_filename" t "empirical" w points, "$the_lin_filename" t "estimated" w l, "$up_lin_filename" t "+1 std dev range" w l, "$lo_lin_filename" t "-1 std dev range" w l
 		quit
 EOF
@@ -221,8 +221,8 @@ EOF
 #	Create qqplot postscript graphic file.
 #	----------------------------------------------------------------------
 #
-	open (PS_EXP_FILE,">$ps_exp_filename") ||
-                     die "Cannot open file: $ps_exp_filename \n";
+	open (PS_EXP_FILE,">$fig_exp_filename") ||
+                     die "Cannot open file: $fig_exp_filename \n";
 	system("gnuplot $gpl_lin_filename") == 0 ||
                      die "gnuplot (needed for plotting) not found \n";
 ;
@@ -242,8 +242,8 @@ EOF
 		set key right bottom
                 set grid
 		set title \'$filename\'
-		set terminal postscript color \'Helvetica\'
-		set output \'$ps_exp_filename\'
+		set terminal jpeg
+		set output \'$fig_exp_filename\'
 		plot "$emp_exp_filename" t "empirical" w points, "$the_exp_filename" t "theoretical" w l
 		quit
 EOF
@@ -253,8 +253,8 @@ EOF
 #	Create empirical-theoretical distributions postscript graphic file
 #	----------------------------------------------------------------------
 #
-	open (PS_EXP_FILE,">$ps_exp_filename") ||
-                 die "Cannot open file: $ps_exp_filename \n";
+	open (PS_EXP_FILE,">$fig_exp_filename") ||
+                 die "Cannot open file: $fig_exp_filename \n";
 	system("gnuplot $gpl_exp_filename") == 0 ||
                      die "gnuplot (needed for plotting) not found \n";
 
@@ -272,8 +272,8 @@ EOF
         print "    theoretical lower 1 std dev qq-plot data : $lo_lin_filename\n";
         print "    theor. vs empir. ttt plot gnuplot file   : $gpl_exp_filename\n";
         print "    theor. vs empir. qq-plot gnuplot file    : $gpl_lin_filename\n";
-        print "    theor. vs empir. ttt plot postscript file: $ps_exp_filename\n";
-        print "    theor. vs empir. qq-plot postscript file : $ps_lin_filename\n";
+        print "    theor. vs empir. ttt plot postscript file: $fig_exp_filename\n";
+        print "    theor. vs empir. qq-plot postscript file : $fig_lin_filename\n";
 	print "\n DONE \n";
 	print "\@--------------------------------------------------------@\n";
         print "\n";
