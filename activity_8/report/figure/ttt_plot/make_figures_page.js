@@ -57,6 +57,7 @@ const latexFigures = cases.map(c => {
 
 const allFiguresTogether =
     '\\section{\\tttfull (\\ttt)}\n' +
+    '\\label{appendix:ttt-plot}\n' +
     latexFigures.join('\n')
 
 fs.writeFileSync(
