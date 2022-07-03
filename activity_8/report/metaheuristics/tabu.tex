@@ -1,2 +1,57 @@
 \subsection{\tabu}
 \label{subsection:tabu}
+
+A metaheurística \tabu é descrita no \aref{algorithm:tabu}.
+
+No desenvolvimento do trabalho 5, explorou-se variações do \tabu, com diferentes parâmetros, buscas locais, e variações. Duas delas, as que apresentaram melhor desempenho, foram escolhidas para serem utilizadas neste trabalho.
+
+Ambas usam:
+
+\begin{enumerate}
+    \item solução inicial a solução da estratégia construtiva do \grasp, \aref{algorithm:grasp-construction};
+    \item busca local \bestImproving. Ela é similar a \bestImproving descrita na \ssref{subsection:grasp}, entretanto ela não considera a adição ou remoção de elementos que estão na lista tabu $T$ (a menos que eles levem a uma solução melhor do que $S^*$);
+    \item \tenureRatio, parâmetro que controla o tamanho da lista tabu $T$, igual a $0.4$, o que significa que $T$ pode ter tamanho até 40\% do tamanho da entrada.
+\end{enumerate}
+
+A primeira variação, chamada \tabuVanilla, implementa \tabu com as características acima. A segunda variação, chamada \tabuMod, inclui estratégias de diversificação e intensificação, descritas nas \sssref{subsubsection:tabu-intensification} e \sssref{subsubsection:tabu-diversification}.
+
+\subsubsection{Estratégia de Intensificação}
+\label{subsubsection:tabu-intensification}
+
+A estratégia de intensificação aumenta o tamanho da vizinhaça, ao invés de considerar 1 adição, 1 remoção e 1 troca, ela considera:
+
+\begin{enumerate}
+    \item 2 adições e 1 remoção;
+    \item 2 remoções e 1 adição;
+    \item 2 adições e 2 remoções;
+\end{enumerate}
+
+A intensificação é feita em torno da melhor solução conhecida. Ela é ativada quando passam-se muitas iterações (o critério de parada é definido como um número máximo de iterações, e ``muitas iterações'' significa 20\% número máximo de iterações) sem melhora na solução ótima e sem sua ativação.
+
+\subsubsection{Estratégia de Diversificação}
+\label{subsubsection:tabu-diversification}
+
+A estratégia de diversificação constroi uma nova solução, utilizando a estratégia construtiva do GRASP, e recomeça a busca nesse outro local do espaço de solução. Além disso, antes de começar a busca, faz-se uma busca intensiva (usando a estratégia de intensificação) em torno dessa nova solução.
+
+Seu critério de ativação é o mesmo da Estratégia de Intensificação, excetuando-se que Diversificação é ativada apenas quando Intensificação não é (no programa, há um registro separado para quando cada uma delas foi ativada pela última vez).
+
+Assim, quando se passaram muitas iterações sem melhora na solução ótima, primeiro tenta-se intensificação. Caso essa falhe, executa-se a diversificação.
+
+\subsubsection{\tabuVanilla}
+\label{subsubsection:tabu-vanilla}
+
+\begin{enumerate}
+    \item Solução inicial: saída da estratégia construtiva do \grasp
+    \item \tenureRatio: \textbf{0.4}
+    \item Estratégia de busca local: \textbf{\bestImproving}
+\end{enumerate}
+
+\subsubsection{\tabuMod}
+\label{subsubsection:tabu-mod}
+
+\begin{enumerate}
+    \item Solução inicial: saída da estratégia construtiva do \grasp
+    \item \tenureRatio: \textbf{0.4}
+    \item Estratégia de busca local: \textbf{\bestImproving}
+    \item Adição das estratégias: \textbf{Intensificação e Diversificação}
+\end{enumerate}

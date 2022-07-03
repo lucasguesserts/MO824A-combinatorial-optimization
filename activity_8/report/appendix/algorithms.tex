@@ -2,7 +2,7 @@
 \label{appendix:grasp}
 
 \begin{algorithm}[H]
-    \caption{GRASP}
+    \caption{\grasp}
     \label{algorithm:grasp}
     \begin{algorithmic}[1]
         \State{$S_{\mbox{best}} \gets \varnothing$}
@@ -45,10 +45,40 @@
     \label{algorithm:grasp-local-search}
     \begin{algorithmic}[1]
         \While{$S$ is not local optimal}
-            \State{$S \gets \argmax{S' \in \mbox{N}(S)}{f(S')}$}
+            \State{$S \gets \argmax{S' \in N(S)}{f(S')}$}
                 \Comment{$N(S)$ is the neighborhood of $S$}
                 \Comment{$f$ is the goal function}
         \EndWhile
         \State{\textbf{return}\xspace $S$}
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{\tabu}
+\label{appendix:tabu}
+
+\begin{algorithm}[H]
+    \caption{\tabu($S_0$)}
+    \label{algorithm:tabu}
+    \begin{algorithmic}[1]
+        \State{$S \gets S_0$}
+            \Comment{$S_0$ is the initial solution}
+            \Comment{$S$ is the current solution}
+        \State{$S^* \gets S$}
+            \Comment{$S^*$ is the current best solution}
+        \State{$f^* \gets f(S^*)$}
+            \Comment{$f$ is the goal function}
+        \State{$T \gets \varnothing$}
+            \Comment{$T$ is the tabu list}
+        \While{not Termination-Criteria-Satisfied}
+            \State{$S \gets \argmax{S' \in N(S, T)}{f(S')}$}
+                \Comment{$N(S, T)$ is the neighborhood of $S$ limited by $T$}
+            \If{$f(S) > f^*$}
+                \State{$S^* \gets S$}
+                \State{$f^* \gets f(S)$}
+            \EndIf
+            \State{Update $T$}
+                \Comment{record moves and delete old entries}
+        \EndWhile
+        \State{\textbf{return}\xspace $S^*$}
     \end{algorithmic}
 \end{algorithm}
