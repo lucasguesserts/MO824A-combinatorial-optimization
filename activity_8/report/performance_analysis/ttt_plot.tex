@@ -64,6 +64,8 @@ Observando os \qq nas Figuras \ref{fig:grasp-best-kqbf060}, \ref{fig:grasp-best-
 
 Porém, o modelo da \fref{fig:grasp-best-kqbf040} não. Na verdade, observamos dois conjuntos bem claros de tempo de execução: os próximos de zero e os em torno de 3.5 segundos. Esses dois conjuntos correspondem aos casos em que o algoritmo atingiu e os casos em que ele não atingiu o valor alvo, respectivamente\footnote{Observando-se os logs isso fica bem claro.}. Para os últimos, o tempo de execução tende a ser constante, que é o tempo necessário para a execução de todas as iterações.
 
+Estranhamente, foi observado que ou o algoritmo encontra uma solução nas primeiras iterações (e converge rapidamente), ou ele não encontra uma solução satisfatória em nenhuma iteração. Isso é de certa forma conflitante com o reinicio da solução a cada iteração e mereceria mais investigações. Esse não é, entretanto, o objetivo da presente atividade.
+
 \subsubsection{\graspFirst}
 \label{subsubsection:ttt-validation-grasp-first}
 
@@ -120,7 +122,7 @@ Observou-se que a variação de tempo de execução deve-se ao número de itera�
         \tabuMod                & kqbf040            & 0.60                    \\\hline\hline
         \geneticVanilla         & kqbf060            & 3.00                    \\\hline
         \geneticSteady          & kqbf060            & 37.00                   \\\hline
-        \graspFirst             & kqbf060            & 0.04                    \\\hline
+        \graspFirst             & kqbf060            & 0.40                    \\\hline
         \graspBest              & kqbf060            & 0.08                    \\\hline
         \tabuVanilla            & kqbf060            & 5.00                    \\\hline
         \tabuMod                & kqbf060            & 3.50                    \\\hline\hline
@@ -131,6 +133,12 @@ Observou-se que a variação de tempo de execução deve-se ao número de itera�
         \tabuVanilla            & kqbf080            & 10.00                   \\\hline
         \tabuMod                & kqbf080            & 7.00                    \\\hline
     \end{tabular}
-    \caption{Tempo requerido por cada metaheurística para atingir, com 90\% de chance, o valor alvo.}
+    \caption{Tempo requerido por cada metaheurística para atingir, com 90\% de chance, o valor alvo. Dados extraídos por inspeção visual dos gráficos do \appendixref{appendix:ttt-plot}.}
     \label{tab:90-ttt}
 \end{table}
+
+Observa-se na tabela \ref{tab:90-ttt} que as metaheurísticas que apresentam os melhores resultados são \graspBest e \graspFirst. \graspBest possui um comportamento diferente na instância kqbf040 (reveja a \fref{fig:grasp-best-kqbf040}). Se não fosse isso, poderia-se dizer que essa é a variação com melhor desempenho.
+
+\geneticVanilla e \tabuMod possuem desempenhos praticamente equivalentes. Já \tabuVanilla está um pouco atrás dessas, o que mostra que as estratégias alternativas implementadas afetam positivamente.
+
+\geneticSteady apresentou desempenho pior do que todas as outras metaheurísticas em todos os casos observados, pior especialmente do que a variação \geneticVanilla. Isso mostra que, para esse problema, as modificações implementadas não são vantajosas.
