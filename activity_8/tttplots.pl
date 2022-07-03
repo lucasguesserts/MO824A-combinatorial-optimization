@@ -235,7 +235,7 @@ EOF
 	open (GPL_EXP_FILE,">$gpl_exp_filename") ||
                 die "Cannot open file: $gpl_exp_filename \n";
 	print GPL_EXP_FILE <<EOF;
-		set xlabel \'time to target solution\'
+		set xlabel \'time to target solution [s]\'
 		set size ratio 1
 		set ylabel \'cumulative probability\'
                 set yrange [0:1]
