@@ -82,3 +82,31 @@
         \State{\textbf{return}\xspace $S^*$}
     \end{algorithmic}
 \end{algorithm}
+
+\subsection{\genetic}
+\label{appendix:genetic}
+
+
+\begin{algorithm}[H]
+    \caption{\genetic}
+    \label{algorithm:genetic}
+    \begin{algorithmic}[1]
+        \State{escolher a população inicial de cromossomos}
+        \While{condição de parada não é satisfeita}
+            \While{Não há descendentes suficientes}
+                \If{condição de cruzamento é satisfeita}
+                    \State{Selecionar cromossomos mãe}
+                    \State{Selecionar parâmetros de cruzamento}
+                    \State{Executar cruzamento}
+                \EndIf
+                \If{condição de mutação é satisfeita}
+                    \State{Selecionar pontos de mutação}
+                    \State{Executar mutação}
+                \EndIf
+                \State{Calcular adaptação (fitness) dos descendentes}
+            \EndWhile
+            \State{Selecionar nova população}
+        \EndWhile
+        \State{\textbf{return} Melhor cromossomo da população}
+    \end{algorithmic}
+\end{algorithm}

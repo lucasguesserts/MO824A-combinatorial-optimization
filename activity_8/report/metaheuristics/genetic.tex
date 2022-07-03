@@ -1,2 +1,34 @@
 \subsection{\genetic}
 \label{subsection:genetic}
+
+A metaheurística \tabu é descrita no \aref{algorithm:genetic}.
+
+Ambas as variações descritas nessa subseção usam:
+
+\begin{enumerate}
+    \item população inicial aleatória;
+    \item tamanho da população igual a 100;
+    \item seleção para reprodução em torneio: dois cromossomos são escolhidos aleatoriamente e o
+    melhor dos dois (em relação à função de aptidão) é escolhido para continuar enquanto o outro é
+    descartado.
+    \item reprodução com \textit{two point crossover (2X)};
+    \item Critério de parada: 1000 gerações;
+\end{enumerate}
+
+\subsubsection{\geneticVanilla}
+
+A primeira variação, chamada \geneticVanilla, implementa \genetic conforme descrito na \ssref{subsection:genetic} com as seguintes adições/modificações:
+
+\begin{enumerate}
+    \item taxa de mutação igual a $0.5\%$;
+    \item seleção da nova população: descendentes, substituindo-se o pior deles pelo melhor gene conhecido
+\end{enumerate}
+
+\subsubsection{\geneticSteady}
+
+A segunda variação, chamada \geneticSteady, implementa \genetic conforme descrito na \ssref{subsection:genetic} com as seguintes adições/modificações:
+
+\begin{enumerate}
+    \item taxa de mutação igual a $1\%$;
+    \item seleção da nova população: os 100 melhores genes entre mães e filhos (conhecida como \textit{Steady-State $\lambda + \mu$});
+\end{enumerate}
