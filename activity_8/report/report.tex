@@ -24,6 +24,7 @@
 \usepackage[title]{appendix}
 \usepackage{float}
 \usepackage{xspace}
+\usepackage{subcaption}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definição}
@@ -72,6 +73,9 @@
 \newcommand{\geneticVanilla}{\textit{\genetic Vanilla}\xspace}
 \newcommand{\geneticSteady}{\textit{\genetic Steady}\xspace}
 
+\newcommand{\tttfull}{Time-To-Target Plot\xspace}
+\newcommand{\ttt}{TTT Plot\xspace}
+
 \newcommand{\appendixref}[1]{Apêndice \ref{#1}}
 \newcommand{\tref}[1]{Tabela \ref{#1}}
 \newcommand{\aref}[1]{Algoritmo \ref{#1}}
@@ -96,6 +100,8 @@
 \input{metaheuristics/tabu.tex}
 \input{metaheuristics/genetic.tex}
 
+\input{performance_analysis/ttt_plot.tex}
+
 \input{textual/bibliography.tex}
 
 \begin{appendices}
@@ -104,6 +110,7 @@
 \input{appendix/instances.tex}
 \input{appendix/algorithms.tex}
 \input{appendix/environment.tex}
+\input{appendix/ttt_plot.tex}
 
 \end{appendices}
 
