@@ -27,7 +27,7 @@ $$
 \end{fact}
 
 \begin{defn}[Maximum knapsack quadractic binary function (\maxkqbf)]
-Dada uma \qbf $f$, um vetor $\w \in \Zn$\footnote{O problema original foi definido com números reais. Decidimos aqui utilizar inteiros por dois motivos. Primeiro, todas as instâncias fornecidas possuem apenas valores inteiros para $\aij, \w, \W$. Garante-se que os valores são sempre inteiros pois $\Z$ é fechado nas operações envolvidas: adição e multiplicação. Segundo, simplifica a implementação e comparações (não é necessário fazer comparação de números em ponto flutuante).}, e um valor $\W \in \Z$, um \maxkqbf é um problema da forma:
+Dada uma \qbf $f$, um vetor $\w \in \Zn$, e um valor $\W \in \Z$, um \maxkqbf é um problema da forma:
 \begin{eqnarray*}
     \max & f(x) \\
     \mbox{subjected to} & \transpose{\w} x \leq \W \\
