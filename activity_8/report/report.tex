@@ -8,7 +8,9 @@
 \usepackage{rotating}
 \usepackage[normalem]{ulem}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{capt-of}
 \usepackage{hyperref}
 \usepackage{geometry}
@@ -23,6 +25,33 @@
 \usepackage{float}
 \usepackage{xspace}
 
+\theoremstyle{definition}
+\newtheorem{defn}{Definição}
+\newtheorem{fact}{Fato}
+
+\newcommand{\Set}[1]{\left\{#1\right\}}
+\newcommand{\Sum}[4]{\displaystyle\sum\limits_{#1 = #2}^{#3} #4}
+\newcommand{\function}[3]{#1: #2 \rightarrow #3}
+\newcommand{\transpose}[1]{#1^{T}}
+
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\Bn}{\mathbb{B}^n}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zn}{\mathbb{Z}^n}
+
+\newcommand{\qbf}{QBF\xspace}
+\newcommand{\maxqbf}{MAX-QBF\xspace}
+\newcommand{\maxkqbf}{MAX-KQBF\xspace}
+\newcommand{\maxkqbffull}{\textit{MAX-QBF com mochila}\xspace}
+
+\newcommand{\w}{w}
+\newcommand{\W}{W}
+
+\newcommand{\aij}{a_{i,j}}
+\newcommand{\A}{A}
+
 \newcommand{\grasp}{\textit{GRASP}\xspace}
 \newcommand{\graspfull}{\textit{Greedy Randomized Adaptive Search Procedure}\xspace}
 
@@ -31,6 +60,8 @@
 
 \newcommand{\genetic}{\textit{GA}\xspace}
 \newcommand{\geneticfull}{\textit{Genetic Algorithm}\xspace}
+
+\newcommand{\aref}[1]{Apêndice \ref{#1}}
 
 \geometry{a4paper, left=20mm, top=35mm, bottom=35mm, right=20mm}
 
@@ -42,11 +73,23 @@
 
 \maketitle
 
+Esse trabalho tem como objetivo comparar os resultados obtidos pelas implementações de três metaheurísticas:
+
+\begin{enumerate}
+    \item \graspfull (\grasp) \cite{bib:grasp}
+    \item \tabufull (\tabu) \cite{bib:tabu}
+    \item \geneticfull (genetic) \cite{bib:genetic}
+\end{enumerate}
+
+O problema resolvido foi o \maxkqbffull, descrito no \aref{appendix:max-kqbf}.
+
+
 \bibliographystyle{ieeetr}
 \bibliography{bibliography}
 
 \begin{appendices}
 
+\input{appendix/max-kqbf.tex}
 \input{appendix/environment.tex}
 
 \end{appendices}

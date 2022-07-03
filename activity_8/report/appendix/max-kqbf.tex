@@ -1,0 +1,36 @@
+\section{\maxkqbffull (\maxkqbf)}
+\label{appendix:max-kqbf}
+
+\begin{defn}[Conjunto Binário]
+    $\B = \Set{0, 1}$
+\end{defn}
+
+\begin{defn}[Função Binária Quadrática (\qbf)]
+    É uma função $\function{f}{\Bn}{\Z}$ da forma:
+    $$
+        f(x)
+        = \Sum{j}{1}{n}{x_i \cdot \aij \cdot x_j}
+        = \transpose{x} \cdot \A \cdot x
+    $$
+    em que $\aij \in \Z, \ \forall i,j \in \Set{1, \cdots, n}$ e $\A$ é a matriz $n$ por $n$ induzida pelos $\aij$.
+\end{defn}
+
+\begin{defn}[Problema de Maximização de uma Função Binária Quadrática (\maxqbf)]
+Dada uma \qbf $f$, um \maxqbf é um problema da forma:
+$$
+    \max\limits_{x} f(x)
+$$
+\end{defn}
+
+\begin{fact}
+\maxqbf é NP-difícil \cite{bib:qbf}
+\end{fact}
+
+\begin{defn}[Maximum knapsack quadractic binary function (\maxkqbf)]
+Dada uma \qbf $f$, um vetor $\w \in \Zn$\footnote{O problema original foi definido com números reais. Decidimos aqui utilizar inteiros por dois motivos. Primeiro, todas as instâncias fornecidas possuem apenas valores inteiros para $\aij, \w, \W$. Garante-se que os valores são sempre inteiros pois $\Z$ é fechado nas operações envolvidas: adição e multiplicação. Segundo, simplifica a implementação e comparações (não é necessário fazer comparação de números em ponto flutuante).}, e um valor $\W \in \Z$, um \maxkqbf é um problema da forma:
+\begin{eqnarray*}
+    \max & f(x) \\
+    \mbox{subjected to} & \transpose{\w} x \leq \W \\
+    & x \in \Bn
+\end{eqnarray*}
+\end{defn}
