@@ -8,13 +8,17 @@ import solutions.Solution;
 
 public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
+    private final Integer targetValue;
+
     public GRASP_KQBF(
             final Double alpha,
             final Integer iterations,
             final boolean firstImproving,
             final ConstructionMechanism constructionMechanism,
+            final Integer targetValue,
             final String fileName) throws IOException {
         super(new KQBF_Inverse(fileName), alpha, constructionMechanism, iterations, firstImproving);
+        this.targetValue = targetValue;
     }
 
     @Override
@@ -184,5 +188,16 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
         } while (firstCandIn != null && firstCandOut != null);
         return;
     }
+
+    @Override
+    public Boolean targetValueHasBeenReached() {
+        final Boolean itHasBeenReached = this.bestSolution.cost < (this.targetValue + 1.0e-4);
+        if (itHasBeenReached) {
+            System.out.println(String.format("target value %d reached", targetValue));
+            System.out.println(String.format("current best solution cost %d", this.bestSolution.cost));
+            System.out.println("Algorithm stops here");
+        }
+        return itHasBeenReached;
+    };
 
 }

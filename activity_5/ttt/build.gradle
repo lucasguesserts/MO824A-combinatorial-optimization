@@ -11,6 +11,6 @@ repositories {
 }
 
 dependencies {
-    implementation project(':GRASP')
+    implementation project(':tabu_search')
     implementation group: 'org.json', name: 'json', version: '20220320'
 }

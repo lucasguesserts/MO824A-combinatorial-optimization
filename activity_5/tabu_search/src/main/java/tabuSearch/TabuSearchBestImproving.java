@@ -11,6 +11,7 @@ import solutions.SolutionKnapsack;
 public class TabuSearchBestImproving extends TabuSearchConstructInitialSolution {
 
     protected Collection<Integer> elementsManipulated;
+    protected final Integer targetValue;
 
     public TabuSearchBestImproving(
         final Problem<Integer, Integer> initialSolution,
@@ -18,7 +19,30 @@ public class TabuSearchBestImproving extends TabuSearchConstructInitialSolution 
         final Integer iterations
     ) {
         super(initialSolution, tenureRatio, iterations);
+        this.targetValue = Integer.MIN_VALUE;
     }
+
+    public TabuSearchBestImproving(
+        final Problem<Integer, Integer> initialSolution,
+        final Double tenureRatio,
+        final Integer iterations,
+        final Integer targetValue
+    ) {
+        super(initialSolution, tenureRatio, iterations);
+        this.targetValue = targetValue;
+    }
+
+    @Override
+    protected Boolean targetValueHasBeenReached() {
+        final var currentBestCost = this.bestSolution.getCost();
+        final Boolean itHasBeenReached = currentBestCost < (this.targetValue + 1.0e-4);
+        if (itHasBeenReached) {
+            System.out.println(String.format("target value %d reached", targetValue));
+            System.out.println(String.format("current best solution cost %d", currentBestCost));
+            System.out.println("Algorithm stops here");
+        }
+        return itHasBeenReached;
+    };
 
     @Override
     protected void neighborhoodMove() {

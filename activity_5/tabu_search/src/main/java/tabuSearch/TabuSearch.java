@@ -36,11 +36,29 @@ public abstract class TabuSearch<E, V extends Number> {
     protected abstract Boolean diversificationCriteria();
     protected abstract Problem<E, V> makeDiversificationConstruction();
 
+    protected Boolean targetValueHasBeenReached() {
+        return Boolean.FALSE;
+    };
+
     protected TabuSearch(
         final Problem<E, V> emptySolution,
         final CostComparer<V> costComparer,
         final Double tenureRatio,
         final Integer iterations
+    ) {
+        this.incubentSolution = emptySolution;
+        this.costComparer = costComparer;
+        this.tenure = (int) Math.round(tenureRatio * emptySolution.getDomainSize());
+        this.maximumNumberOfIterations = iterations;
+        this.maximimRunningTime = 30*60*1000; // milliseconds
+    }
+
+    protected TabuSearch(
+        final Problem<E, V> emptySolution,
+        final CostComparer<V> costComparer,
+        final Double tenureRatio,
+        final Integer iterations,
+        final V targetValue
     ) {
         this.incubentSolution = emptySolution;
         this.costComparer = costComparer;
@@ -74,6 +92,10 @@ public abstract class TabuSearch<E, V extends Number> {
                 updateBestSolution();
             }
             this.elapsedTime = System.currentTimeMillis() - this.startTime;
+            if (this.targetValueHasBeenReached()) {
+                System.out.println("Target value reached, algorithm stops here");
+                break;
+            }
         }
     }
 

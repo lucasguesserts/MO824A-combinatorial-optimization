@@ -16,16 +16,21 @@ public class Main {
     private static final int populationSize = 100;
     private static final double mutationRate = 1.0 / 100.0;
     private static final List<String> problemInstanceList = Arrays.asList(
-        "../instances/kqbf/kqbf020"
+        "../instances/kqbf/kqbf040",
+        "../instances/kqbf/kqbf060",
+        "../instances/kqbf/kqbf080"
     );
     private static final List<Integer> targetValueList = Arrays.asList(
-        120
+        275,
+        446,
+        729
     );
 
     public static void main(final String[] args) throws IOException {
         for (int instanceIndex = 0; instanceIndex < problemInstanceList.size(); ++instanceIndex) {
             final var problemInstance = problemInstanceList.get(instanceIndex);
             final int targetValue = targetValueList.get(instanceIndex);
+            clearExperimentResults();
             for (int runCount = 0; runCount < numberOfRepetitions; ++runCount) {
                 final var solver = new Solver(
                     numberOfGenerations,
@@ -40,8 +45,13 @@ public class Main {
                 solver.logEnd();
                 collectExperimentResults(solver);
             }
+            saveExperimentResults();
         }
-        saveExperimentResults();
+    }
+
+    private static void clearExperimentResults() {
+        runningTimeResults.clear();
+        experimentResults.clear();
     }
 
     private static void collectExperimentResults(final Solver solver) {

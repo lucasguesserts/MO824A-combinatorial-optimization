@@ -61,6 +61,8 @@ public abstract class AbstractGRASP<E> {
 
     public abstract Solution<E> localSearch();
 
+    public abstract Boolean targetValueHasBeenReached();
+
 
     public AbstractGRASP(Evaluator<E> objFunction, Double alpha, ConstructionMechanism constructionMechanism,
             Integer iterations, boolean firstImproving) {
@@ -120,6 +122,7 @@ public abstract class AbstractGRASP<E> {
             addBestCandidateToSolution();
             updateCL();
             p -= 1;
+
         }
         return currentSolution;
     }
@@ -225,6 +228,10 @@ public abstract class AbstractGRASP<E> {
                     displayIterationStatus(iterationCount);
             }
             updateCurrentTime();
+            if (this.targetValueHasBeenReached()) {
+                System.out.println("Target value reached, algorithm stops here");
+                break;
+            }
         }
         return bestSolution;
     }

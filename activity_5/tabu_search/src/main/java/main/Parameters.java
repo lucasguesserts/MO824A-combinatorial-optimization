@@ -22,6 +22,7 @@ public class Parameters {
     public List<Double> tenureRatioList = new ArrayList<>();
     public List<Variation> methodVariationList = new ArrayList<>();
     public List<Integer> numberOfIterationsList = new ArrayList<>();
+    public List<Integer> targetValueList = new ArrayList<>();
 
     public LocalSearchMethod getLocaSearchMethod(final String arg) {
         if (arg.equals(LocalSearchMethod.BEST_IMPROVING.toString().toLowerCase())) {

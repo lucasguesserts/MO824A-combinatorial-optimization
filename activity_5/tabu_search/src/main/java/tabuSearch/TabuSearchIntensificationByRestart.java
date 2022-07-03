@@ -17,6 +17,15 @@ public class TabuSearchIntensificationByRestart extends TabuSearchBestImproving 
         super(initialSolution, tenureRatio, iterations);
     }
 
+    public TabuSearchIntensificationByRestart(
+        final Problem<Integer, Integer> initialSolution,
+        final Double tenureRatio,
+        final Integer iterations,
+        final Integer targetValue
+    ) {
+        super(initialSolution, tenureRatio, iterations, targetValue);
+    }
+
     @Override
     protected Boolean intensificationCriteria() {
         final var iterationDiff = this.currentIteration - this.iterationOfLastRestart;
