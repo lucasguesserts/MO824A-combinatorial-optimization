@@ -20,6 +20,7 @@ const nameMap = {
     'grasp-best': 'GRASP Best',
     'grasp-first': 'GRASP First',
     'tabu-best-vanilla-4': 'Tabu vanilla',
+    'tabu-diversification': 'Tabu com Intensificação e Diversificação',
 }
 
 function getName (c) {
@@ -39,16 +40,16 @@ const latexFigures = cases.map(c => {
     \\centering
     \\begin{subfigure}{0.49\\textwidth}
         \\includegraphics[width=\\textwidth]{figure/ttt_plot/${c}-exp.jpeg}
-        \\caption{Algorithm ${names.algorithm} - Problem ${names.problemInstanceName}}
+        \\caption{Cumulative Probability Distribution - Algorithm ${names.algorithm} - Problem ${names.problemInstanceName}}
         \\label{fig:${names.algorithm.toLowerCase().replace(' ','-')}-${names.problemInstanceName}-exp}
     \\end{subfigure}
     \\hfill
     \\begin{subfigure}{0.49\\textwidth}
         \\includegraphics[width=\\textwidth]{figure/ttt_plot/${c}-qq.jpeg}
-        \\caption{Second subfigure.}
+        \\caption{Q-Q plot - Algorithm ${names.algorithm} - Problem ${names.problemInstanceName}}
         \\label{fig:${names.algorithm.toLowerCase().replace(' ','-')}-${names.problemInstanceName}-qq}
     \\end{subfigure}
-    \\caption{Creating subfigures in \\LaTeX.}
+    \\caption{Algorithm ${names.algorithm} - Problem ${names.problemInstanceName}.}
     \\label{fig:${names.algorithm.toLowerCase().replace(' ','-')}-${names.problemInstanceName}}
 \\end{figure}
 `
