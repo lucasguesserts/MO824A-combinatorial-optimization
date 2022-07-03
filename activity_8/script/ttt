@@ -6,33 +6,42 @@ SCRIPT_DIR="$PROJECT_PATH/script"
 
 cd $PROJECT_PATH
 
-DATA_NAME="$1"
-DATA_FILE_NAME="$DATA_NAME.dat"
-DATA_FILE_PATH="$PROJECT_PATH/results/$DATA_FILE_NAME"
+TTT_RESULTS_DIR="$PROJECT_PATH/TTT_results"
+TTT_RESULTS_LIST=`ls $TTT_RESULTS_DIR/*.dat`
+GRAPHS_DIR="$PROJECT_PATH/graph"
 
-if ! [ -e $DATA_FILE_PATH ]
-then
-    echo "file '$DATA_FILE_PATH' does not exist"
-    exit 1
-fi
-
-
-OUTPUT_DIR="/tmp/ttt"
-TTT_SCRIPT="tttplots.pl"
-
-mkdir -p $OUTPUT_DIR
-cp "$PROJECT_PATH/$TTT_SCRIPT" $OUTPUT_DIR
-cp $DATA_FILE_PATH $OUTPUT_DIR
-cd $OUTPUT_DIR
-# rm *
-
-./$TTT_SCRIPT -f $DATA_NAME
-for PS_FILE in `ls *.ps`
+for RESULT_FILE_PATH in $TTT_RESULTS_LIST
 do
-    PDF_FILE="${PS_FILE%.*}.pdf"
-    ps2pdf $PS_FILE
-done
+    echo "Processing $RESULT_FILE_PATH"
+    RESULT_FILE_NAME=`basename $RESULT_FILE_PATH`
+    DATA_NAME="${RESULT_FILE_NAME%.*}"
+    DATA_FILE_NAME="$DATA_NAME.dat"
+    DATA_FILE_PATH="$TTT_RESULTS_DIR/$DATA_FILE_NAME"
 
-mkdir -p $PROJECT_PATH/graph
-mv *.pdf $PROJECT_PATH/graph/
-rm -rf * $OUTPUT_DIR
+    if ! [ -e $DATA_FILE_PATH ]
+    then
+        echo "file '$DATA_FILE_PATH' does not exist"
+        exit 1
+    fi
+
+    OUTPUT_DIR="/tmp/ttt"
+    TTT_SCRIPT="tttplots.pl"
+
+    mkdir -p $OUTPUT_DIR
+    cp "$PROJECT_PATH/$TTT_SCRIPT" $OUTPUT_DIR
+    cp $DATA_FILE_PATH $OUTPUT_DIR
+    cd $OUTPUT_DIR
+
+    ./$TTT_SCRIPT -f $DATA_NAME
+    for PS_FILE in `ls *.ps`
+    do
+        PDF_FILE="${PS_FILE%.*}.pdf"
+        ps2pdf $PS_FILE
+    done
+
+    mkdir -p $GRAPHS_DIR
+    mv *.pdf $GRAPHS_DIR
+    cd /tmp
+    rm -rf * $OUTPUT_DIR
+
+done
