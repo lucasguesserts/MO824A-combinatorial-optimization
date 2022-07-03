@@ -3,8 +3,6 @@
 
 A metaheurística \grasp é descrita no \aref{algorithm:grasp}, sua estratégia construtiva em \aref{algorithm:grasp-construction}, e sua estratégia de busca local em \aref{algorithm:grasp-local-search}, todos descritos no \appendixref{appendix:grasp}.
 
-No desenvolvimento do trabalho 4, explorou-se variações do \grasp, com diferentes parâmetros, estratégias construtivas, e buscas locais. Duas delas, as que apresentaram melhor desempenho, foram escolhidas para serem utilizadas neste trabalho.
-
 Ambas usam a estratégia construtiva padrão (\aref{algorithm:grasp-construction}) e o parâmetro $\alpha$ com valor $0.2$.
 
 Elas diferem na estratégia de busca local, entretanto. A primeira variação, chamada \graspBest, utiliza \bestImproving, em que toda a vizinhança é percorrida e a melhor opção selecionada. A segunda variação, chamada \graspFirst, utiliza \firstImproving, em que a busca na vizinhança retorna a primeira solução encontrada que seja melhor do que a atual.
