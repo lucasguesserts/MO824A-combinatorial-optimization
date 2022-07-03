@@ -41,6 +41,8 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Zn}{\mathbb{Z}^n}
 
+\newcommand{\argmax}[2]{\mathop{\mathrm{arg\,max}}\limits_{#1}\Set{#2}}
+
 \newcommand{\qbf}{QBF\xspace}
 \newcommand{\maxqbf}{MAX-QBF\xspace}
 \newcommand{\maxkqbf}{MAX-KQBF\xspace}
@@ -54,6 +56,10 @@
 
 \newcommand{\grasp}{\textit{GRASP}\xspace}
 \newcommand{\graspfull}{\textit{Greedy Randomized Adaptive Search Procedure}\xspace}
+\newcommand{\bestImproving}{\textit{Best Improving}}
+\newcommand{\firstImproving}{\textit{First Improving}}
+\newcommand{\graspBest}{\textit{GRASP Best}\xspace}
+\newcommand{\graspFirst}{\textit{GRASP First}\xspace}
 
 \newcommand{\tabu}{\textit{Tabu}\xspace}
 \newcommand{\tabufull}{\textit{Tabu Search}\xspace}
@@ -61,8 +67,9 @@
 \newcommand{\genetic}{\textit{GA}\xspace}
 \newcommand{\geneticfull}{\textit{Genetic Algorithm}\xspace}
 
-\newcommand{\aref}[1]{Apêndice \ref{#1}}
+\newcommand{\appendixref}[1]{Apêndice \ref{#1}}
 \newcommand{\tref}[1]{Tabela \ref{#1}}
+\newcommand{\aref}[1]{Algoritmo \ref{#1}}
 
 \geometry{a4paper, left=20mm, top=35mm, bottom=35mm, right=20mm}
 
@@ -87,6 +94,7 @@
 
 \input{appendix/max-kqbf.tex}
 \input{appendix/instances.tex}
+\input{appendix/algorithms.tex}
 \input{appendix/environment.tex}
 
 \end{appendices}
