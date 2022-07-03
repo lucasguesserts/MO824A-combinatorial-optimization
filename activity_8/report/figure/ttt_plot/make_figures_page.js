@@ -8,6 +8,7 @@ const cases = Array.from(new Set(files.map(
         .replace('-qq','')
         .replace('.jpeg','')
 )))
+cases.sort()
 
 // const names = Array.from(new Set(cases.map(
 //     c => c.replace(/kqbf([0-9])+-/,'')
