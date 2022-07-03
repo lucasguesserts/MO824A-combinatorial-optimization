@@ -1,3 +1,52 @@
 \section{\tttfull (\ttt)}
 
 \subsection{Entendedo o \ttt}
+
+Considere um problema $p$, um algoritmo de metaheurística $A$, e um valor alvo $v$. Seja $t$ a variável randomica que representa o tempo que $A$ leva para encontrar uma solução com valor pelo menos $v$\footnote{Aqui supõe-se um problema de maximização, mas funciona de forma similar para minimização.}:
+\begin{equation}
+    t = \mbox{TempoExecução}(A(p) \geqslant v)
+\end{equation}
+$t$ é chamada \tttvar\footnote{\tttvaren em inglês.}.
+
+Em \cite{bib:ttt}, os autores conjecturam que a distribuição de $t$ é uma função exponencial deslocada:
+
+\begin{equation}
+    P(t) = exp\left(\dfrac{-(t-\mu)}{\lambda}\right)
+    \quad \lambda \in \R^+, \mu \in \R
+\end{equation}
+
+Sem \ttt, como compararíamos o desempenho dos algoritmos de metaheurística? Possivelmente com tabelas com alguns resultados e alguma análise estatística menos desenvolvida.
+
+O \ttt fornece um modelo para o comportamento esperado dos algoritmos. Isso permite que comparemos os seus desempenhos de forma mais robusta já que ele requer que:
+
+\begin{enumerate}
+    \item juntemos informação suficiente para criar o modelo;
+    \item criemos o modelo;
+\end{enumerate}
+
+Além do modelo exponencial, o \ttt inclui um gráfico \qq, que permite analisarmos a validade do modelo exponencial para um certo conjunto de dados.
+
+\subsection{Escolha dos Problemas e Valores Alvo}
+
+Para a análise desse problema, escolheu-se as instâncias do \maxkqbf e valores alvo da \tref{tab:problem-target-value} abaixo (a nomeclatura dos problemas segue a \tref{table:tab-instances}).
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Problema} & \textbf{Valor Alvo} \\\hline
+        kqbf040           & 275                 \\\hline
+        kqbf060           & 446                 \\\hline
+        kqbf080           & 729                 \\\hline
+    \end{tabular}
+    \caption{Instâncias do \maxkqbf selecionadas e seus respectivos valores alvo.}
+    \label{tab:problem-target-value}
+\end{table}
+
+O valor alvo de cada instância foi selecionado como o limite inferior do intervalo de otimalidade da \tref{table:tab-instances}. Tais valores foram escolhidos por não serem baixos, o que comprometeria a análise \cite{bib:ttt}, mas também não são altos demais, o que comprometeria o tempo de execução.
+
+Selecionou-se as instâncias \textit{kqbf040}, \textit{kqbf060}, \textit{kqbf080} pois elas apresentam o grau de dificuldade requerido mas não requerem tanto tempo de execução (o que inviabilizaria a execução dos testes já que o tempo requerido seria muito grande).
+
+\subsection{Análise dos \ttt}
+
+Os \ttt para todos os algoritmos analisados nesse trabalho estão no \appendixref{appendix:ttt-plot}.
