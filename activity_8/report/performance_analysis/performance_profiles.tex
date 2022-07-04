@@ -1,2 +1,39 @@
 \section{Performance Profiles}
 
+\subsection{Motivação}
+\label{subsection:motivation-perfprof}
+
+Em geral, quando analisamos algoritmos, estamos interessados em determinar aquele que melhor resolve o problema em questão. Para isso, são feitos o que chamamos de \benchmarks: análises comparativas do desempenho vários algoritmos. Tais comparações envolvem:
+
+\begin{enumerate}
+    \item medições de desempenho: tempo de CPU, número de iterações, número de chamadas de função, etc;
+    \item comparação de resultados: definir um valor alvo e verificar se o algoritmo consegue atingi-lo/encontrá-lo;
+\end{enumerate}
+
+Compilar todos esses resultados de forma objetiva, útil, e fácil de visualizar, não é simples. Problemas comuns encontrados são apontados em \cite{bib:performance-profile}:
+
+\begin{enumerate}
+    \item não reportar falhas;
+    \item resultados dominados por instâncias difíceis;
+    \item difícil visualização e entendimento dos resultados;
+    \item subjetividade na análise;
+\end{enumerate}
+
+Para resolver tal problema, foi desenvolvido em \cite{bib:performance-profile} \perfprof.
+
+\subsection{Descrição do \perfprof}
+
+Dados:
+
+\begin{enumerate}
+    \item conjunto de problemas $\problemSet, \nproblem = |\problemSet|$;
+    \item conjunto de algoritmos de resolução (solvers) $\solverSet, \nsolver = |\solverSet|$;
+\end{enumerate}
+Definimos
+\begin{enumerate}
+    \item $\solvetime$: tempo requerido para resolver o problema $\problem$ pelo solver $\solver$;
+    \item $\performanceratio = \dfrac{\solvetime}{\min\Set{\solvetime : \solver \in \solverSet}}$: taxa de desempenho;
+    \item $\rho(\tau) = \dfrac{1}{\nproblem} \ size\Set{\problem \in \problemSet : \performanceratio \leqslant \tau}$: função de distribuição cumulativa para a taxa de desempenho\footnote{\textit{cummulative distribution function for the performance ratio}.};
+\end{enumerate}
+
+Observer que $\rho(\tau)$ é a probabilidade do solver $\solver$ ter uma taxa de desempenho $\performanceratio$ num fator $\tau$. Além disso, $\rho(1)$ é a probabilidade do solver $\solver \in \solverSet$ ter desempenho melhor do que os outros solvers $\solver' \in \solverSet\backslash\Set{\solver}$.
