@@ -4,7 +4,9 @@ import perfprof
 
 for thmax in [5.0, 15.0, None]:
 
-    fig = plt.figure()
+    fig = plt.figure(
+        figsize=(7, 6)
+    )
 
     header = np.loadtxt(
         "data.csv",
@@ -22,7 +24,7 @@ for thmax in [5.0, 15.0, None]:
 
     palette = [
         "o-g", "o--g", # GRASP
-        "o-b", "o--b", "o:b", # TABU
+        "o-b", "o--b", # TABU
         "o-r", "o--r", # GENETIC
     ]
 
@@ -40,17 +42,18 @@ for thmax in [5.0, 15.0, None]:
     ax.set_position([
         box.x0,
         box.y0 + box.height * 0.1,
-        box.width, box.height * 0.9
+        box.width,
+        box.height * 0.9
     ])
 
     # Put a legend below current axis
     ax.legend(
         header,
         loc="upper center",
-        bbox_to_anchor=(0.5, -0.15),
+        bbox_to_anchor=(0.5, -0.12),
         fancybox=True,
         shadow=True,
-        ncol=2,
+        ncol=3,
     )
 
     plt.xlim([1, thmax])
@@ -60,7 +63,7 @@ for thmax in [5.0, 15.0, None]:
 
     plt.grid(True)
 
-    plt.tight_layout()
+    # plt.tight_layout()
 
     plt.savefig(f"performance_profile_thmax_{thmax}.png")
     plt.close()
