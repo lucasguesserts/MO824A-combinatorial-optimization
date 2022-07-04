@@ -11,9 +11,10 @@ public class GaKqbf extends AbstractGa<Integer, Integer> {
         final Integer generations,
         final Integer popSize,
         final Double mutationRate,
-        final String filename
+        final String filename,
+        final Double targetValue
     ) throws IOException {
-        super(new Kqbf(filename), generations, popSize, mutationRate);
+        super(new Kqbf(filename), generations, popSize, mutationRate, targetValue);
     }
 
     @Override

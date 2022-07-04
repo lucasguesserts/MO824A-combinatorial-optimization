@@ -1,0 +1,37 @@
+\begin{table}
+    \centering
+    \begin{tabular}{lllllll}
+        \toprule
+        {} & Instances & Local Search & Tenure Ratio & Method Variation & Execution Time & Best cost \\
+        \midrule
+        0  & 020       & best         & 0.4          & default          & 0.997000       & 120*      \\
+        1  & 040       & best         & 0.4          & default          & 2.707000       & 308*      \\
+        2  & 060       & best         & 0.4          & default          & 5.427000       & 491*      \\
+        3  & 080       & best         & 0.4          & default          & 10.318000      & 783*      \\
+        4  & 100       & best         & 0.4          & default          & 17.549000      & 1227*     \\
+        5  & 200       & best         & 0.4          & default          & 160.816000     & 3710*     \\
+        6  & 400       & best         & 0.4          & default          & 1060.901000    & 10760     \\
+        \bottomrule
+    \end{tabular}
+    \caption{tabu-best-4-vanilla}
+    \label{table:tabu-best-4-vanilla}
+\end{table}
+
+\begin{table}
+    \centering
+    \begin{tabular}{lllllll}
+        \toprule
+        {} & Instances & Local Search & Tenure Ratio & Method Variation & Execution Time & Best cost \\
+        \midrule
+        0  & 020       & best         & 0.4          & diversification  & 0.255000       & 120*      \\
+        1  & 040       & best         & 0.4          & diversification  & 1.218000       & 303*      \\
+        2  & 060       & best         & 0.4          & diversification  & 5.662000       & 491*      \\
+        3  & 080       & best         & 0.4          & diversification  & 6.590000       & 702       \\
+        4  & 100       & best         & 0.4          & diversification  & 17.294000      & 1225*     \\
+        5  & 200       & best         & 0.4          & diversification  & 444.594000     & 3782*     \\
+        6  & 400       & best         & 0.4          & diversification  & 1116.701000    & 10758     \\
+        \bottomrule
+    \end{tabular}
+    \caption{tabu-best-4-intensification-and-diversification}
+    \label{table:tabu-best-4-intensification-and-diversification}
+\end{table}

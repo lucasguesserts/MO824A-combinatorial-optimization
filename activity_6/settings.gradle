@@ -1,3 +1,4 @@
 rootProject.name = 'activity_6'
 include 'genetic'
 include 'main'
+include 'ttt'

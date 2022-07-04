@@ -23,6 +23,7 @@ public abstract class AbstractGa<G extends Number, F> {
     protected int popSize;
     protected int chromosomeSize;
     protected double mutationRate;
+    protected Double targetValue;
 
     protected int currentGeneration;
 
@@ -44,13 +45,15 @@ public abstract class AbstractGa<G extends Number, F> {
         final Evaluator<F> objFunction,
         final Integer generations,
         final Integer popSize,
-        final Double mutationRate
+        final Double mutationRate,
+        final Double targetValue
     ) {
         this.objFunction = objFunction;
         this.numberOfGenerations = generations;
         this.popSize = popSize;
         this.chromosomeSize = this.objFunction.getDomainSize();
         this.mutationRate = mutationRate;
+        this.targetValue = targetValue;
     }
 
     public Solution<F> solve() {
@@ -66,13 +69,19 @@ public abstract class AbstractGa<G extends Number, F> {
             final Population parents = selectParents(population);
             final Population offsprings = crossover(parents);
             final Population mutants = mutate(offsprings);
-            final Population newPopulation = selectPopulation(mutants); // vanilla
-            // final Population newPopulation = selectPopulation(parents, mutants); // steady state
+            // final Population newPopulation = selectPopulation(mutants); // vanilla
+            final Population newPopulation = selectPopulation(parents, mutants); // steady state
             population = newPopulation;
             bestChromosome = getBestChromosome(population);
             if (fitness(bestChromosome) > bestSol.cost) {
                 bestSol = decode(bestChromosome);
                 this.logOfBestSolution();
+                if (bestSol.cost > (targetValue - 1.0e-4)) {
+                    System.out.println(String.format("target value %f reached", targetValue));
+                    System.out.println(String.format("current solution cost %f", bestSol.cost));
+                    System.out.println("Algorithm stops here");
+                    break;
+                }
             }
         }
         return bestSol;
@@ -186,33 +195,33 @@ public abstract class AbstractGa<G extends Number, F> {
         return offsprings;
     }
 
-    protected Population selectPopulation(final Population offsprings) {
-        // vanilla
-        final Chromosome worse = getWorseChromosome(offsprings);
-        if (fitness(worse) < fitness(bestChromosome)) {
-            offsprings.remove(worse);
-            offsprings.add(bestChromosome);
-        }
-        return offsprings;
-    }
-
-    // protected Population selectPopulation(final Population parents, final Population offsprings) {
-    //     // steady state
-    //     final var allChromosomes = new Population();
-    //     allChromosomes.addAll(parents);
-    //     allChromosomes.addAll(offsprings);
-    //     Collections.sort(
-    //         allChromosomes,
-    //         (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2))
-    //     );
-    //     final var selectedPopulation = new Population();
-    //     selectedPopulation.addAll(
-    //         allChromosomes.subList(
-    //             allChromosomes.size() - this.popSize,
-    //             allChromosomes.size()
-    //     )); // select the popSize best chromosomes
-    //     return selectedPopulation;
+    // protected Population selectPopulation(final Population offsprings) {
+    //     // vanilla
+    //     final Chromosome worse = getWorseChromosome(offsprings);
+    //     if (fitness(worse) < fitness(bestChromosome)) {
+    //         offsprings.remove(worse);
+    //         offsprings.add(bestChromosome);
+    //     }
+    //     return offsprings;
     // }
+
+    protected Population selectPopulation(final Population parents, final Population offsprings) {
+        // steady state
+        final var allChromosomes = new Population();
+        allChromosomes.addAll(parents);
+        allChromosomes.addAll(offsprings);
+        Collections.sort(
+            allChromosomes,
+            (final Chromosome c1, final Chromosome c2) -> Double.compare(fitness(c1), fitness(c2))
+        );
+        final var selectedPopulation = new Population();
+        selectedPopulation.addAll(
+            allChromosomes.subList(
+                allChromosomes.size() - this.popSize,
+                allChromosomes.size()
+        )); // select the popSize best chromosomes
+        return selectedPopulation;
+    }
 
     public Integer getKnapsackCapacity() {
         return this.objFunction.getknapsackCapacity();

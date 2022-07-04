@@ -1,3 +1,5 @@
+package main;
+
 import java.io.IOException;
 import org.json.JSONObject;
 import problems.kqbf.solvers.GaKqbf;
@@ -5,38 +7,42 @@ import solutions.Solution;
 
 public class ProblemInstanceSolver {
 
-    private final int numberOfGenerations;
-    private final int populationSize;
-    private final double mutationRate;
-    private final String problemInstance;
-    private final String instanceIdentifier;
+    protected final int numberOfGenerations;
+    protected final int populationSize;
+    protected final double mutationRate;
+    protected final String problemInstance;
+    protected final String instanceIdentifier;
+    protected final int targetValue;
 
-    private final GaKqbf ga;
+    protected final GaKqbf ga;
 
-    private Solution<Integer> bestSol;
-    private Integer knapsackCapacity;
-    private Integer domainSize;
+    protected Solution<Integer> bestSol;
+    protected Integer knapsackCapacity;
+    protected Integer domainSize;
 
-    private long startTime = System.currentTimeMillis();
-    private long endTime = System.currentTimeMillis();
-    private long totalTime = System.currentTimeMillis();
+    protected long startTime = System.currentTimeMillis();
+    protected long endTime = System.currentTimeMillis();
+    public long totalTime = System.currentTimeMillis();
 
     public ProblemInstanceSolver(
             final int numberOfGenerations,
             final int populationSize,
             final double mutationRate,
-            final String problemInstance
+            final String problemInstance,
+            final int targetValue
     ) throws IOException {
         this.numberOfGenerations = numberOfGenerations;
         this.populationSize = populationSize;
         this.mutationRate = mutationRate;
         this.problemInstance = problemInstance;
         this.instanceIdentifier = this.getInstanceIdentifier();
+        this.targetValue = targetValue;
         this.ga = new GaKqbf(
             this.numberOfGenerations,
             this.populationSize,
             this.mutationRate,
-            this.problemInstance
+            this.problemInstance,
+            (double) this.targetValue
         );
     }
 
@@ -65,26 +71,13 @@ public class ProblemInstanceSolver {
         ));
     }
 
-    public void log() {
-        System.out.println(this.getLogAsJson().toString(2));
-    }
-
-    private String getInstanceIdentifier() {
+    protected String getInstanceIdentifier() {
         final String[] parts = this.problemInstance.split("/");
         final String lastPart = parts[parts.length - 1];
         return lastPart;
     }
 
-    public JSONObject getLogAsJson() {
-        final var obj = new JSONObject();
-        obj.put("Setup", this.getSetup());
-        obj.put("Solution", this.getSolution());
-        obj.put("RunningTime", (double) this.totalTime / 1000.0);
-        obj.put("iterations", this.ga.logOfIterations);
-        return obj;
-    }
-
-    private JSONObject getSetup() {
+    public JSONObject getSetup() {
         final var obj = new JSONObject();
         obj.put("numberOfGenerations", this.numberOfGenerations);
         obj.put("populationSize", this.populationSize);
@@ -93,10 +86,11 @@ public class ProblemInstanceSolver {
         obj.put("instanceIdentifier", this.instanceIdentifier);
         obj.put("knapsackCapacity", this.knapsackCapacity);
         obj.put("domainSize", this.domainSize);
+        obj.put("targetValue", this.targetValue);
         return obj;
     }
 
-    private JSONObject getSolution() {
+    protected JSONObject getSolution() {
         final var obj = new JSONObject();
         obj.put("cost", this.bestSol.cost);
         obj.put("weight", this.bestSol.weight);

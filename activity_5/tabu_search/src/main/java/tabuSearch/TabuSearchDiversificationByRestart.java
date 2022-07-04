@@ -18,6 +18,15 @@ public class TabuSearchDiversificationByRestart extends TabuSearchIntensificatio
         super(initialSolution, tenureRatio, iterations);
     }
 
+    public TabuSearchDiversificationByRestart(
+        final Problem<Integer, Integer> initialSolution,
+        final Double tenureRatio,
+        final Integer iterations,
+        final Integer targetValue
+    ) {
+        super(initialSolution, tenureRatio, iterations, targetValue);
+    }
+
     @Override
     protected Boolean diversificationCriteria() {
         final var iterationDiff = this.currentIteration - this.iterationOfLastRestart;

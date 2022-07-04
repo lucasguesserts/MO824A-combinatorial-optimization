@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+\usepackage[title]{appendix}
+\usepackage{float}
+\usepackage{xspace}
+\usepackage{subcaption}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definição}
+\newtheorem{fact}{Fato}
+
+\newcommand{\Set}[1]{\left\{#1\right\}}
+\newcommand{\Sum}[4]{\displaystyle\sum\limits_{#1 = #2}^{#3} #4}
+\newcommand{\function}[3]{#1: #2 \rightarrow #3}
+\newcommand{\transpose}[1]{#1^{T}}
+
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\Bn}{\mathbb{B}^n}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rn}{\mathbb{R}^n}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zn}{\mathbb{Z}^n}
+
+\newcommand{\argmax}[2]{\mathop{\mathrm{arg\,max}}\limits_{#1}\Set{#2}}
+
+\newcommand{\qbf}{QBF\xspace}
+\newcommand{\maxqbf}{MAX-QBF\xspace}
+\newcommand{\maxkqbf}{MAX-KQBF\xspace}
+\newcommand{\maxkqbffull}{\textit{MAX-QBF com mochila}\xspace}
+
+\newcommand{\w}{w}
+\newcommand{\W}{W}
+
+\newcommand{\aij}{a_{i,j}}
+\newcommand{\A}{A}
+
+\newcommand{\grasp}{\textit{GRASP}\xspace}
+\newcommand{\graspfull}{\textit{Greedy Randomized Adaptive Search Procedure}\xspace}
+\newcommand{\bestImproving}{\textit{Best Improving}}
+\newcommand{\firstImproving}{\textit{First Improving}}
+\newcommand{\graspBest}{\textit{\grasp Best}\xspace}
+\newcommand{\graspFirst}{\textit{\grasp First}\xspace}
+
+\newcommand{\tabu}{\textit{Tabu}\xspace}
+\newcommand{\tabufull}{\textit{Tabu Search}\xspace}
+\newcommand{\tenureRatio}{\textit{Tenure Ration}\xspace}
+\newcommand{\tabuVanilla}{\textit{\tabu Vanilla}\xspace}
+\newcommand{\tabuMod}{\textit{\tabu com Intensificação e Diversificação}\xspace}
+
+\newcommand{\genetic}{\textit{GA}\xspace}
+\newcommand{\geneticfull}{\textit{\genetic Algorithm}\xspace}
+\newcommand{\geneticVanilla}{\textit{\genetic Vanilla}\xspace}
+\newcommand{\geneticSteady}{\textit{\genetic Steady}\xspace}
+
+\newcommand{\tttfull}{Time-To-Target Plot\xspace}
+\newcommand{\ttt}{TTT Plot\xspace}
+\newcommand{\tttvaren}{\textit{Time-To-Target Solution Value}\xspace}
+\newcommand{\tttvar}{\textit{Tempo para atingir valor alvo da solução}\xspace}
+\newcommand{\qq}{\textit{Q-Q plot}\xspace}
+
+\newcommand{\perfprof}{\textit{Performance Profile}}
+\newcommand{\benchmarking}{\textit{benchmarking}}
+\newcommand{\benchmark}{\textit{benchmark}}
+\newcommand{\benchmarks}{\textit{benchmarks}}
+
+\newcommand{\problemSet}{\mathcal{P}}
+\newcommand{\solverSet}{\mathcal{S}}
+\newcommand{\problem}{p}
+\newcommand{\solver}{s}
+\newcommand{\nproblem}{n_p}
+\newcommand{\nsolver}{n_s}
+\newcommand{\solvetime}{t_{p,s}}
+\newcommand{\performanceratio}{r_{p,s}}
+
+\newcommand{\appendixref}[1]{Apêndice \ref{#1}}
+\newcommand{\tref}[1]{Tabela \ref{#1}}
+\newcommand{\fref}[1]{Figura \ref{#1}}
+\newcommand{\aref}[1]{Algoritmo \ref{#1}}
+\newcommand{\sref}[1]{Seção \ref{#1}}
+\newcommand{\ssref}[1]{Subseção \ref{#1}}
+\newcommand{\sssref}[1]{Subsubseção \ref{#1}}
+
+\geometry{a4paper, left=20mm, top=35mm, bottom=35mm, right=20mm}
+
+\author{Lucas Guesser Targino da Silva (203534)}
+\date{\today}
+\title{MO824 - Análise Comparativa entre as metaheurísticas \grasp, \tabu, e \genetic para a resolução do problema MAX-QBF com mochila}
+
+\begin{document}
+
+\maketitle
+
+\input{textual/intro.tex}
+
+\input{metaheuristics/intro.tex}
+\input{metaheuristics/grasp.tex}
+\input{metaheuristics/tabu.tex}
+\input{metaheuristics/genetic.tex}
+
+\input{performance_analysis/ttt_plot.tex}
+\input{performance_analysis/performance_profiles.tex}
+\input{performance_analysis/best_solutions_table.tex}
+
+\input{textual/conclusion.tex}
+\input{textual/bibliography.tex}
+
+\begin{appendices}
+
+\input{appendix/max-kqbf.tex}
+\input{appendix/instances.tex}
+\input{appendix/algorithms.tex}
+\input{appendix/environment.tex}
+\input{appendix/ttt_plot.tex}
+\input{appendix/performance_profiles.tex}
+
+\end{appendices}
+
+\end{document}

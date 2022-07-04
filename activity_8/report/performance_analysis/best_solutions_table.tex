@@ -1,0 +1,49 @@
+\section{Melhores Soluções}
+\label{section:best-solutions}
+
+\textbf{Aviso}: Qualquer anlálise da tolerância aceita, em relação à melhor solução, dever levar a aplicação em consideração. Para esse trabalho, não há uma aplicação específica, de forma que é difícil apontar uma tolerância aceitável. mas considerando que estão sendo analisadas heurísticas, para fins de análise, qualquer tolerância dentro de 5\% será considerada aceitável.
+
+\subsection{Resultados}
+\label{subsection:best-solutions-results}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Metaheurística} & \textbf{Instância} & \textbf{Melhor Solução} & \textbf{\% do Melhor} \\\hline\hline
+        \geneticVanilla         & kqbf040            & 303                     &  1.62                   \\\hline
+        \geneticSteady          & kqbf040            & 305                     &  0.97                   \\\hline
+        \graspFirst             & kqbf040            & 306                     &  0.64                   \\\hline
+        \graspBest              & kqbf040            & 295                     &  4.22                   \\\hline
+        \tabuVanilla            & kqbf040            & 308                     &  0.00                   \\\hline
+        \tabuMod                & kqbf040            & 303                     &  1.62                   \\\hline\hline
+        \geneticVanilla         & kqbf060            & 481                     &  2.03                   \\\hline
+        \geneticSteady          & kqbf060            & 453                     &  7.73                   \\\hline
+        \graspFirst             & kqbf060            & 455                     &  7.33                   \\\hline
+        \graspBest              & kqbf060            & 491                     &  0.00                   \\\hline
+        \tabuVanilla            & kqbf060            & 491                     &  0.00                   \\\hline
+        \tabuMod                & kqbf060            & 491                     &  0.00                   \\\hline\hline
+        \geneticVanilla         & kqbf080            & 766                     &  3.64                   \\\hline
+        \geneticSteady          & kqbf080            & 781                     &  1.76                   \\\hline
+        \graspFirst             & kqbf080            & 783                     &  1.50                   \\\hline
+        \graspBest              & kqbf080            & 795                     &  0.00                   \\\hline
+        \tabuVanilla            & kqbf080            & 783                     &  1.50                   \\\hline
+        \tabuMod                & kqbf080            & 702                     & 11.69                   \\\hline
+    \end{tabular}
+    \caption{Melhor solução encontrada por cada metaheurística, para cada instância analisada. \% do Melhor é calculada como $100 \cdot \left(1 - \dfrac{s}{s^*}\right)$, sendo $s$ a solução da metaheurística em questão e $s^*$ a melhor solução encontrada para aquela instância.}
+    \label{tab:best-solutions}
+\end{table}
+
+\subsection{Análise}
+\label{subsection:best-solutions-analysis}
+
+A \tref{tab:best-solutions} contém resultados com as melhores soluções encontradas por cada metaheurística para as instâncias selecionadas.
+
+Para a instância kqbf040, todas as metaheurísticas encontraram soluções dentro de 5\% da melhor.
+
+Para a instância kqbf060, \graspBest, \tabuVanilla e \tabuMod encontraram a mesma solução, e \geneticVanilla está dentro dos 5\%. Já \geneticSteady e \graspBest não encontraram uma solução satisfatória.
+
+Para a instância kqbf080, a única que teve desempenho não satisfatório foi \tabuMod.
+
+Em geral, as melhores metaheurísticas foram \tabuVanilla, \graspBest, \geneticVanilla, nessa ordem. Elas forma as únicas a ficaram dentro da tolerância de 5\% nas três instâncias. \tabuVanilla e \graspBest obtiveram duas vezes a melhor solução, sendo que a segunda foi melhor na média.
+
+

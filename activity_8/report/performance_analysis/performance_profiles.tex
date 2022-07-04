@@ -1,0 +1,63 @@
+\section{Performance Profiles}
+\label{section:performance-profiles}
+
+\subsection{Motivação}
+\label{subsection:motivation-perfprof}
+
+Em geral, quando analisamos algoritmos, estamos interessados em determinar aquele que melhor resolve o problema em questão. Para isso, são feitos o que chamamos de \benchmarks: análises comparativas do desempenho vários algoritmos. Tais comparações envolvem:
+
+\begin{enumerate}
+    \item medições de desempenho: tempo de CPU, número de iterações, número de chamadas de função, etc;
+    \item comparação de resultados: definir um valor alvo e verificar se o algoritmo consegue atingi-lo/encontrá-lo;
+\end{enumerate}
+
+Compilar todos esses resultados de forma objetiva, útil, e fácil de visualizar, não é simples. Problemas comuns encontrados são apontados em \cite{bib:performance-profile}:
+
+\begin{enumerate}
+    \item não reportar falhas;
+    \item resultados dominados por instâncias difíceis;
+    \item difícil visualização e entendimento dos resultados;
+    \item subjetividade na análise;
+\end{enumerate}
+
+Para resolver tal problema, foi desenvolvido em \cite{bib:performance-profile} \perfprof.
+
+\subsection{Descrição do \perfprof}
+
+Dados:
+
+\begin{enumerate}
+    \item conjunto de problemas $\problemSet, \nproblem = |\problemSet|$;
+    \item conjunto de algoritmos de resolução (solvers) $\solverSet, \nsolver = |\solverSet|$;
+\end{enumerate}
+Definimos
+\begin{enumerate}
+    \item $\solvetime$: tempo requerido para resolver o problema $\problem$ pelo solver $\solver$;
+    \item $\performanceratio = \dfrac{\solvetime}{\min\Set{\solvetime : \solver \in \solverSet}}$: taxa de desempenho;
+    \item $\rho(\tau) = \dfrac{1}{\nproblem} \ size\Set{\problem \in \problemSet : \performanceratio \leqslant \tau}$: função de distribuição cumulativa para a taxa de desempenho\footnote{\textit{cummulative distribution function for the performance ratio}.};
+\end{enumerate}
+
+Observer que $\rho(\tau)$ é a probabilidade do solver $\solver$ ter uma taxa de desempenho $\performanceratio$ num fator $\tau$. Além disso, $\rho(1)$ é a probabilidade do solver $\solver \in \solverSet$ ter desempenho melhor do que os outros solvers $\solver' \in \solverSet\backslash\Set{\solver}$.
+
+\subsection{Confecção dos Gráficos \perfprof}
+\label{subsubsection:making-perfprof}
+
+Para a confecção dos graficos de \perfprof apresentados no \appendixref{appendix:performance-profiles}, foram usados os dados dos trabalhos anteriores. Definiu-se como valor de referência o limite inferior do intervalo de otimalidade da \tref{table:tab-instances}. Tratando-se de uma análise de metaheurísticasm, foi escolhido tal valor por dois motivos:
+
+\begin{enumerate}
+    \item não há garantias de encontrar o ótimo em nenhum dos método apresentados;
+    \item já que são resolvidos problemas difíceis, o objetivo é encontrar valores próximos do ótimo, de forma que estando dentro de um gap de otimalidade, a solução é considerada boa;
+\end{enumerate}
+
+Dessa forma, os dados foram compilados na \tref{tab:data-perfprof} e utilizados para a confecção dos gráficos \fref{fig:performance-profile-5}, \fref{fig:performance-profile-15}, e \fref{fig:performance-profile-max}.
+
+\subsection{Análise de Desempenho Usando \perfprof}
+\label{subsubsection:analysis-perfprof}
+
+Figuras de \perfprof são apresentadas no \appendixref{appendix:performance-profiles}.
+
+Nota-se na figura \fref{fig:performance-profile-5} que o \graspFirst tem a maior probabilidade de ser o melhor para um problema, com chance de aproximadamente 60\%. Logo atrás estão \graspBest e \geneticVanilla com quase 20\% e os outros com chance de 0\%.
+
+Considerando um fator de $\tau = 2$\footnote{Isto é, a taxa de desempenho ser até 2, o algoritmo executar até 1.7 vezes o tempo do melhor algoritmo.}, a chance de algum \graspFirst estar nesse fator é quase 90\% e do \graspBest é de aproximadamente 70\%.
+
+As metaheurísticas \tabuVanilla, \tabuMod, \geneticVanilla, e \geneticSteady apresentaram desempenho consideravelmente pior do que \graspBest.

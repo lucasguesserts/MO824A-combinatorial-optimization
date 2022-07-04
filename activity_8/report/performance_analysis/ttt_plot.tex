@@ -1,0 +1,146 @@
+\section{\tttfull (\ttt)}
+\label{section:ttt-plot}
+
+\subsection{Entendedo o \ttt}
+\label{subsection:understanding-ttt}
+
+Considere um problema $p$, um algoritmo de metaheurística $A$, e um valor alvo $v$. Seja $t$ a variável randomica que representa o tempo que $A$ leva para encontrar uma solução com valor pelo menos $v$\footnote{Aqui supõe-se um problema de maximização, mas funciona de forma similar para minimização.}:
+\begin{equation}
+    t = \mbox{TempoExecução}(A(p) \geqslant v)
+\end{equation}
+$t$ é chamada \tttvar\footnote{\tttvaren em inglês.}.
+
+Em \cite{bib:ttt}, os autores conjecturam que a distribuição de $t$ é uma função exponencial deslocada:
+
+\begin{equation}
+    P(t) = exp\left(\dfrac{-(t-\mu)}{\lambda}\right)
+    \quad \lambda \in \R^+, \mu \in \R
+\end{equation}
+
+Sem \ttt, como compararíamos o desempenho dos algoritmos de metaheurística? Possivelmente com tabelas com alguns resultados e alguma análise estatística menos desenvolvida.
+
+O \ttt fornece um modelo para o comportamento esperado dos algoritmos. Isso permite que comparemos os seus desempenhos de forma mais robusta já que ele requer que:
+
+\begin{enumerate}
+    \item juntemos informação suficiente para criar o modelo;
+    \item criemos o modelo;
+\end{enumerate}
+
+Além do modelo exponencial, o \ttt inclui um gráfico \qq, que permite analisarmos a validade do modelo exponencial para um certo conjunto de dados.
+
+\subsection{Escolha dos Problemas e Valores Alvo}
+\label{subsection:problems-target-values}
+
+Para a análise desse problema, escolheu-se as instâncias do \maxkqbf e valores alvo da \tref{tab:problem-target-value} abaixo (a nomeclatura dos problemas segue a \tref{table:tab-instances}).
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Problema} & \textbf{Valor Alvo} \\\hline
+        kqbf040           & 275                 \\\hline
+        kqbf060           & 446                 \\\hline
+        kqbf080           & 729                 \\\hline
+    \end{tabular}
+    \caption{Instâncias do \maxkqbf selecionadas e seus respectivos valores alvo.}
+    \label{tab:problem-target-value}
+\end{table}
+
+O valor alvo de cada instância foi selecionado como o limite inferior do intervalo de otimalidade da \tref{table:tab-instances}. Tais valores foram escolhidos por não serem baixos, o que comprometeria a análise \cite{bib:ttt}, mas também não são altos demais, o que comprometeria o tempo de execução.
+
+Selecionou-se as instâncias \textit{kqbf040}, \textit{kqbf060}, \textit{kqbf080} pois elas apresentam o grau de dificuldade requerido mas não requerem tanto tempo de execução (o que inviabilizaria a execução dos testes já que o tempo requerido seria muito grande).
+
+\subsection{Validação dos \ttt}
+\label{subsection:ttt-validation}
+
+Os \ttt para todos os algoritmos analisados nesse trabalho estão no \appendixref{appendix:ttt-plot}.
+
+\subsubsection{\graspBest}
+\label{subsubsection:ttt-validation-grasp-best}
+
+Figuras: \ref{fig:grasp-best-kqbf040}, \ref{fig:grasp-best-kqbf060},
+\ref{fig:grasp-best-kqbf080}.
+
+Observando os \qq nas Figuras \ref{fig:grasp-best-kqbf060}, \ref{fig:grasp-best-kqbf080}, vemos que o modelo proposto descreve bem o comportamento do algoritmo.
+
+Porém, o modelo da \fref{fig:grasp-best-kqbf040} não. Na verdade, observamos dois conjuntos bem claros de tempo de execução: os próximos de zero e os em torno de 3.5 segundos. Esses dois conjuntos correspondem aos casos em que o algoritmo atingiu e os casos em que ele não atingiu o valor alvo, respectivamente\footnote{Observando-se os logs isso fica bem claro.}. Para os últimos, o tempo de execução tende a ser constante, que é o tempo necessário para a execução de todas as iterações.
+
+Estranhamente, foi observado que ou o algoritmo encontra uma solução nas primeiras iterações (e converge rapidamente), ou ele não encontra uma solução satisfatória em nenhuma iteração. Isso é de certa forma conflitante com o reinicio da solução a cada iteração e mereceria mais investigações. Esse não é, entretanto, o objetivo da presente atividade.
+
+\subsubsection{\graspFirst}
+\label{subsubsection:ttt-validation-grasp-first}
+
+Figuras: \ref{fig:grasp-first-kqbf040}, \ref{fig:grasp-first-kqbf060},
+\ref{fig:grasp-first-kqbf080}. Observando-as, vemos que o modelo proposto descreve bem o comportamento do algoritmo.
+
+\subsubsection{\tabuVanilla}
+\label{subsubsection:ttt-validation-tabu-vanilla}
+
+Figuras: \ref{fig:tabu-vanilla-kqbf040}, \ref{fig:tabu-vanilla-kqbf060},
+\ref{fig:tabu-vanilla-kqbf080}. Observando-as, vemos que nenhum modelo proposto descreve bem o comportamento do algoritmo.
+
+Para os casos da \fref{fig:tabu-vanilla-kqbf040}, observando os logs de execução, vê-se dois comportamentos bem distintos:
+
+\begin{enumerate}
+    \item execuções em que o valor alvo é atingido em poucas iterações (menos de 10). Tempo de execução em torno de alguns poucos milisegundos ($\approx 10 ms$).
+    \item execuções em que são necessárias pelo menos 300 iterações para atingir o valor alvo. Tempo de execução em torno de décimos de segundo ($\approx 400 ms = 0.4 s$).
+\end{enumerate}
+
+Mas isso não é suficiente para explicar todos os comportamentos observados. Houveram casos em que, mesmo com poucas iterações, o tempo de execução foi muito grande, como é em alguns o caso das execuções da \fref{fig:tabu-vanilla-kqbf060}. Para esses, não encontrou-se nenhuma explicação.
+
+\subsubsection{\tabuMod}
+\label{subsubsection:ttt-validation-tabu-mod}
+
+Figuras: \ref{fig:tabu-com intensificação e diversificação-kqbf040}, \ref{fig:tabu-com intensificação e diversificação-kqbf060},
+\ref{fig:tabu-com intensificação e diversificação-kqbf080}. Observando-as, vemos que nenhum modelo proposto descreve bem o comportamento do algoritmo. O comportamento observado é similar ao descrito na \sssref{subsubsection:ttt-validation-tabu-vanilla}.
+
+\subsubsection{\geneticVanilla}
+\label{subsubsection:ttt-validation-ga-vanilla}
+
+Figuras: \ref{fig:ga-vanilla-kqbf040}, \ref{fig:ga-vanilla-kqbf060},
+\ref{fig:ga-vanilla-kqbf080}. Observando-as, vemos que, à exceção de alguns ponto fora da curva, o modelo proposto descreve bem o comportamento do algoritmo.
+
+\subsubsection{\geneticSteady}
+\label{subsubsection:ttt-validation-ga-steady}
+
+Figuras: \ref{fig:ga-steady-kqbf040}, \ref{fig:ga-steady-kqbf060},
+\ref{fig:ga-steady-kqbf080}. Observando-as, notamos que o modelo não parece ser tão adequado para essas instâncias. Nos gráficos de Distribuição de Probabilidade Cumulativa, parece haver uma região de plato, em que um aumento no tempo computacional não leva a uma maior probabilidade de encontrar uma solução boa.
+
+Observou-se que a variação de tempo de execução deve-se ao número de iterações necessárias para a convergência do algoritmo: enquanto que alguns casos precisam de algumas poucas dezenas de iterações, outros precisam de algumas centenas. Isso pode ser explicado por uma população inicial ruim, ou talvez perda de diversidade. A verificação de que é algum desses fatores, ou nenhum deles, que causa o comportamente esperado está, entretanto, fora do escopo do presente trabalho.
+
+\subsection{Comparação das metaheurísticas usando \ttt}
+\label{subsection:ttt-plot-analysis}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|r|}
+        \hline
+        \textbf{Metaheurística} & \textbf{Instância} & \textbf{Tempo 90\%} [s] \\\hline\hline
+        \geneticVanilla         & kqbf040            & 1.50                    \\\hline
+        \geneticSteady          & kqbf040            & 11.00                   \\\hline
+        \graspFirst             & kqbf040            & 0.09                    \\\hline
+        \graspBest              & kqbf040            & 4.00                    \\\hline
+        \tabuVanilla            & kqbf040            & 0.65                    \\\hline
+        \tabuMod                & kqbf040            & 0.60                    \\\hline\hline
+        \geneticVanilla         & kqbf060            & 3.00                    \\\hline
+        \geneticSteady          & kqbf060            & 37.00                   \\\hline
+        \graspFirst             & kqbf060            & 0.40                    \\\hline
+        \graspBest              & kqbf060            & 0.08                    \\\hline
+        \tabuVanilla            & kqbf060            & 5.00                    \\\hline
+        \tabuMod                & kqbf060            & 3.50                    \\\hline\hline
+        \geneticVanilla         & kqbf080            & 7.50                    \\\hline
+        \geneticSteady          & kqbf080            & 75.00                   \\\hline
+        \graspFirst             & kqbf080            & 0.90                    \\\hline
+        \graspBest              & kqbf080            & 0.25                    \\\hline
+        \tabuVanilla            & kqbf080            & 10.00                   \\\hline
+        \tabuMod                & kqbf080            & 7.00                    \\\hline
+    \end{tabular}
+    \caption{Tempo requerido por cada metaheurística para atingir, com 90\% de chance, o valor alvo. Dados extraídos por inspeção visual dos gráficos do \appendixref{appendix:ttt-plot}.}
+    \label{tab:90-ttt}
+\end{table}
+
+Observa-se na tabela \ref{tab:90-ttt} que as metaheurísticas que apresentam os melhores resultados são \graspBest e \graspFirst. \graspBest possui um comportamento diferente na instância kqbf040 (reveja a \fref{fig:grasp-best-kqbf040}). Se não fosse isso, poderia-se dizer que essa é a variação com melhor desempenho.
+
+\geneticVanilla e \tabuMod possuem desempenhos praticamente equivalentes. Já \tabuVanilla está um pouco atrás dessas, o que mostra que as estratégias alternativas implementadas afetam positivamente.
+
+\geneticSteady apresentou desempenho pior do que todas as outras metaheurísticas em todos os casos observados, pior especialmente do que a variação \geneticVanilla. Isso mostra que, para esse problema, as modificações implementadas não são vantajosas.
