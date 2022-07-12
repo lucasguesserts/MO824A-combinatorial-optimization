@@ -1,6 +1,7 @@
+import time
+import numpy as np
 import gurobipy as gp
 from gurobipy import GRB
-import numpy as np
 
 from .Problem import Problem
 from .Solution import Solution
@@ -16,10 +17,17 @@ class IlpSolver(Solver):
     def get_solution(self) -> Solution:
         return self.solution
 
+    def get_running_time_seconds(self) -> float:
+        return self.running_time
+
     def _solve_model(self) -> None:
+        start_time = time.thread_time()
         self.model.optimize()
+        end_time = time.thread_time()
         self._set_solution()
+        self.running_time = end_time - start_time
         self.optimalValue = np.int_(self.model.ObjVal)
+        self.optimality_gap = self.model.MIPGap
         return
 
     def _create_model(self, log: bool) -> None:

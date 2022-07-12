@@ -1,5 +1,6 @@
 from typing import Iterable
 import itertools
+import time
 
 from .Problem import Problem
 from .Solution import Solution
@@ -10,9 +11,15 @@ from .Solver import Solver
 class BruteForceSolver(Solver):
     def __init__(self, problem: Problem):
         self.problem = problem
+        self._solve()
+
+    def _solve(self) -> None:
+        start_time = time.thread_time()
         self._set_all_possible_solutions()
         self._filter_valid_solutions()
         self._find_best_solutions()
+        end_time = time.thread_time()
+        self.running_time = end_time - start_time
         return
 
     def get_solution(self) -> Solution:
@@ -20,6 +27,9 @@ class BruteForceSolver(Solver):
 
     def get_solution_ordered_list(self) -> list[Solution]:
         return self.solution_list
+
+    def get_running_time_seconds(self) -> float:
+        return self.running_time
 
     @staticmethod
     def _all_combinations(elements: Iterable) -> list[tuple[int]]:
