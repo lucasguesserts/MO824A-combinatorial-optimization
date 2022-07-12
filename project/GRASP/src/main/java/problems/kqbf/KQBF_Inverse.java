@@ -9,22 +9,22 @@ public class KQBF_Inverse extends KQBF {
     }
 
     @Override
-    public Double evaluateQBF() {
+    public Integer evaluateQBF() {
         return -super.evaluateQBF();
     }
 
     @Override
-    public Double evaluateInsertionQBF(int i) {
+    public Integer evaluateInsertionQBF(int i) {
         return -super.evaluateInsertionQBF(i);
     }
 
     @Override
-    public Double evaluateRemovalQBF(int i) {
+    public Integer evaluateRemovalQBF(int i) {
         return -super.evaluateRemovalQBF(i);
     }
 
     @Override
-    public Double evaluateExchangeQBF(int in, int out) {
+    public Integer evaluateExchangeQBF(int in, int out) {
         return -super.evaluateExchangeQBF(in, out);
     }
 

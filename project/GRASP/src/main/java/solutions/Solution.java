@@ -2,16 +2,15 @@ package solutions;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("serial")
-public class Solution<E> extends ArrayList<E> {
-	
-	public Double cost = Double.POSITIVE_INFINITY;
-	
+public class Solution extends ArrayList<Integer> {
+
+	public Integer cost = Integer.MAX_VALUE;
+
 	public Solution() {
 		super();
 	}
-	
-	public Solution(Solution<E> sol) {
+
+	public Solution(Solution sol) {
 		super(sol);
 		cost = sol.cost;
 	}
