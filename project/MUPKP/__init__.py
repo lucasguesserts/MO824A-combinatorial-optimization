@@ -5,3 +5,4 @@ from .RandomizedInstanceGenerator import RandomizedInstanceGenerator
 from .Solution import Solution
 from .SolutionVerifier import SolutionVerifier
 from .BruteForceSolver import BruteForceSolver
+from .IlpSolver import IlpSolver

@@ -6,6 +6,12 @@
 ## Install
 
 ```sh
-pipenv shell
-pipenv install -e .[test]
+python -m venv .venv
+. ./venv/bin/activate
+pip install -e .[test]
+pip install requirements.txt
+deactivate
+python -m pip freeze > requirements.txt
 ```
+
+[Install gurobi](https://support.gurobi.com/hc/en-us/articles/360044290292-How-do-I-install-Gurobi-for-Python-)

@@ -14,6 +14,7 @@ temp*
 __pycache__/
 .ipynb_checkpoints/
 *.egg-info/
+venv/
 
 # vscode
 .vscode/*

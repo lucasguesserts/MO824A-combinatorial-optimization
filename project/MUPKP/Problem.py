@@ -17,6 +17,7 @@ class Problem:
         self.capacity = capacity
         self.weights = weights
         self.parameters = parameters
+        self.name = f"N{self.graph.number_of_nodes()}_E{self.graph.number_of_edges()}_W{np.sum(self.capacity)}"
         return
 
     def plot(self, file_name: str = "foo.png") -> None:
