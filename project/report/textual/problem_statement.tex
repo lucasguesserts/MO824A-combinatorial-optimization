@@ -25,7 +25,7 @@ Besides that, one requires the input to satisfy the constraints below \cite{bib:
         \ =
         \SetOf
             {\tuple{\solutionE, \solutionE'}}
-            {\mbox{there is a path from the first to the second}}
+            {\mbox{there is a path from the second to the first}}
     \end{equation}
     and so $\partialLower$ is a partial order over the set $\vertices$.
 \end{defn}
@@ -59,7 +59,7 @@ A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
             {\forAll
                 {\solutionEp}
                 {\ifThen
-                    {\solutionEp \partialLower \solutionE}
+                    {\solutionE \partialLower \solutionEp}
                     {\solutionEp \in \solution}
                 }
             }
@@ -68,7 +68,7 @@ A subset $\solution \subseteq \vertices$ of the vertices which satisfy:
 
 \eqref{eq:capacity-constraint} is the maximum weight constraint, the total weight of all vertices in the solution set $\solution$ must not be greater than the weight limit $\maximumWeight$. It is called Capacity-Constraint.
 
-\eqref{eq:precedence-constraint}\footnote{It is a First-order logic expression \cite{bib:logic}.} says that, if a $\solutionE$ is included in the solution, then all the $\solutionEp$ lower than it (in the sense of the partial order $\partialLower$) must also be included. It is called Precedence-Constraint.
+\eqref{eq:precedence-constraint}\footnote{It is a First-order logic expression \cite{bib:logic}.} says that, if a $\solutionE$ is included in the solution, then all the $\solutionEp$ greater than it (in the sense of the partial order $\partialLower$) must also be included. It is called Precedence-Constraint.
 
 \subsection{Objective}
 
