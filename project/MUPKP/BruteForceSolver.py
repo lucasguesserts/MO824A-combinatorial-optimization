@@ -4,15 +4,22 @@ import itertools
 from .Problem import Problem
 from .Solution import Solution
 from .SolutionVerifier import SolutionVerifier
+from .Solver import Solver
 
 
-class BruteForceSolver:
+class BruteForceSolver(Solver):
     def __init__(self, problem: Problem):
         self.problem = problem
         self._set_all_possible_solutions()
         self._filter_valid_solutions()
         self._find_best_solutions()
         return
+
+    def get_solution(self) -> Solution:
+        return self.solution_list[0]
+
+    def get_solution_list(self) -> list[Solution]:
+        return self.solution_list
 
     @staticmethod
     def _all_combinations(elements: Iterable) -> list[tuple[int]]:
@@ -33,11 +40,11 @@ class BruteForceSolver:
         self._all_possible_solutions = list(map(make_solution, all_combinations))
         return
 
-    def _filter_valid_solutions(self):
+    def _filter_valid_solutions(self) -> None:
         verifier = SolutionVerifier(self.problem)
         self._valid_solutions = filter(verifier.verify, self._all_possible_solutions)
         return
 
-    def _find_best_solutions(self):
-        self.solutions = sorted(self._valid_solutions, key=len, reverse=True)
+    def _find_best_solutions(self) -> None:
+        self.solution_list = sorted(self._valid_solutions, key=len, reverse=True)
         return
