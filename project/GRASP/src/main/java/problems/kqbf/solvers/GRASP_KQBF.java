@@ -3,11 +3,11 @@ package problems.kqbf.solvers;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import metaheuristics.AbstractGRASP;
+import metaheuristics.GRASP;
 import problems.kqbf.KQBF_Inverse;
 import solutions.Solution;
 
-public class GRASP_KQBF extends AbstractGRASP<Integer> {
+public class GRASP_KQBF extends GRASP {
     public GRASP_KQBF(Double alpha, Integer iterations, String filename) throws IOException {
         super(new KQBF_Inverse(filename), alpha, iterations);
     }
@@ -42,7 +42,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
     @Override
     public void updateCL() {
 
-        Double knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
+        Integer knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
 
         ArrayList<Integer> _CL = new ArrayList<Integer>();
         for (int i = 0; i < ObjFunction.getDomainSize(); i++) {
@@ -58,25 +58,25 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
     }
 
     @Override
-    public Solution<Integer> createEmptySol() {
-        Solution<Integer> sol = new Solution<Integer>();
-        sol.cost = 0.0;
+    public Solution createEmptySol() {
+        Solution sol = new Solution();
+        sol.cost = 0;
         return sol;
     }
 
-    public Solution<Integer> bestImproving() {
+    public Solution bestImproving() {
 
-        Double minDeltaCost;
-        Double knapsackWeight;
+        Integer minDeltaCost;
+        Integer knapsackWeight;
         Integer bestCandIn = null, bestCandOut = null;
 
         do {
-            minDeltaCost = Double.POSITIVE_INFINITY;
+            minDeltaCost = Integer.MAX_VALUE;
             knapsackWeight = ((KQBF_Inverse) ObjFunction).evaluateKnapsackWeight(sol);
             updateCL();
 
             for (Integer candIn : CL) {
-                double deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
+                Integer deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
                 boolean fitsKnapsack = ((KQBF_Inverse) ObjFunction).fitsKnapsack(knapsackWeight, candIn);
                 if (deltaCost < minDeltaCost && fitsKnapsack) {
                     minDeltaCost = deltaCost;
@@ -85,7 +85,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                 }
             }
             for (Integer candOut : sol) {
-                double deltaCost = ObjFunction.evaluateRemovalCost(candOut, sol);
+                Integer deltaCost = ObjFunction.evaluateRemovalCost(candOut, sol);
                 if (deltaCost < minDeltaCost) {
                     minDeltaCost = deltaCost;
                     bestCandIn = null;
@@ -94,7 +94,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             }
             for (Integer candIn : CL) {
                 for (Integer candOut : sol) {
-                    double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, sol);
+                    Integer deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, sol);
                     boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight, candIn,
                             candOut);
                     if (deltaCost < minDeltaCost && exchangeFitsKnapsack) {
@@ -104,7 +104,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                     }
                 }
             }
-            if (minDeltaCost < -Double.MIN_VALUE) {
+            if (minDeltaCost < 0) {
                 if (bestCandOut != null) {
                     sol.remove(bestCandOut);
                     CL.add(bestCandOut);
@@ -115,14 +115,14 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
                 }
                 ObjFunction.evaluate(sol);
             }
-        } while (minDeltaCost < -Double.MIN_VALUE);
+        } while (minDeltaCost < 0);
 
         return null;
     }
 
-    public Solution<Integer> firstImproving() {
+    public Solution firstImproving() {
 
-        Double knapsackWeight;
+        Integer knapsackWeight;
         Integer firstCandIn = null, firstCandOut = null;
 
         do {
@@ -132,9 +132,9 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             updateCL();
 
             for (Integer candIn : CL) {
-                double deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
+                Integer deltaCost = ObjFunction.evaluateInsertionCost(candIn, sol);
                 boolean fitsKnapsack = ((KQBF_Inverse) ObjFunction).fitsKnapsack(knapsackWeight, candIn);
-                if (deltaCost < -Double.MIN_VALUE && fitsKnapsack) {
+                if (deltaCost < 0 && fitsKnapsack) {
                     firstCandIn = candIn;
                     break;
                 }
@@ -147,8 +147,8 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
             }
 
             for (Integer candOut : sol) {
-                double deltaCost = ObjFunction.evaluateRemovalCost(candOut, sol);
-                if (deltaCost < -Double.MIN_VALUE) {
+                Integer deltaCost = ObjFunction.evaluateRemovalCost(candOut, sol);
+                if (deltaCost < 0) {
                     firstCandOut = candOut;
                     break;
                 }
@@ -162,10 +162,10 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
             for (Integer candIn : CL) {
                 for (Integer candOut : sol) {
-                    double deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, sol);
+                    Integer deltaCost = ObjFunction.evaluateExchangeCost(candIn, candOut, sol);
                     boolean exchangeFitsKnapsack = ((KQBF_Inverse) ObjFunction).exchangeFitsKnapsack(knapsackWeight, candIn,
                             candOut);
-                    if (deltaCost < -Double.MIN_VALUE && exchangeFitsKnapsack) {
+                    if (deltaCost < 0 && exchangeFitsKnapsack) {
                         firstCandIn = candIn;
                         firstCandOut = candOut;
                         break;
@@ -188,7 +188,7 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
     }
 
     @Override
-    public Solution<Integer> localSearch() {
+    public Solution localSearch() {
 
         if (firstImproving) {
             firstImproving();
@@ -203,9 +203,9 @@ public class GRASP_KQBF extends AbstractGRASP<Integer> {
 
         long startTime = System.currentTimeMillis();
         GRASP_KQBF grasp = new GRASP_KQBF(0.5, 1000, false, "instances/kqbf/kqbf100");
-        Solution<Integer> bestSol = grasp.solve();
+        Solution bestSol = grasp.solve();
         KQBF_Inverse ObjFunction = (KQBF_Inverse) grasp.ObjFunction;
-        Double knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
+        Integer knapsackWeight = ObjFunction.evaluateKnapsackWeight(bestSol);
         System.out.println("maxVal = " + bestSol);
         System.out.println("knapsackWeight = " + knapsackWeight);
         long endTime = System.currentTimeMillis();

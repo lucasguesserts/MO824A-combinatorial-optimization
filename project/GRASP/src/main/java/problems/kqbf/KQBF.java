@@ -9,30 +9,30 @@ import java.util.Arrays;
 import problems.Evaluator;
 import solutions.Solution;
 
-public class KQBF implements Evaluator<Integer> {
+public class KQBF implements Evaluator {
 
     public final Integer size;
 
 
-    public Double W;
+    public Integer W;
 
-    public final Double[] variables;
+    public final Integer[] variables;
 
-    public Double[] weights;
+    public Integer[] weights;
 
-    public Double[][] A;
+    public Integer[][] A;
 
     public KQBF(String filename) throws IOException {
         size = readInput(filename);
         variables = allocateVariables();
     }
 
-    public void setVariables(Solution<Integer> sol) {
+    public void setVariables(Solution sol) {
 
         resetVariables();
         if (!sol.isEmpty()) {
             for (Integer elem : sol) {
-                variables[elem] = 1.0;
+                variables[elem] = 1;
             }
         }
 
@@ -44,17 +44,17 @@ public class KQBF implements Evaluator<Integer> {
     }
 
     @Override
-    public Double evaluate(Solution<Integer> sol) {
+    public Integer evaluate(Solution sol) {
 
         setVariables(sol);
         return sol.cost = evaluateQBF();
 
     }
 
-    public Double evaluateQBF() {
+    public Integer evaluateQBF() {
 
-        Double aux = (double) 0, sum = (double) 0;
-        Double vecAux[] = new Double[size];
+        Integer aux = 0, sum = 0;
+        Integer vecAux[] = new Integer[size];
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -62,7 +62,7 @@ public class KQBF implements Evaluator<Integer> {
             }
             vecAux[i] = aux;
             sum += aux * variables[i];
-            aux = (double) 0;
+            aux = 0;
         }
 
         return sum;
@@ -70,60 +70,60 @@ public class KQBF implements Evaluator<Integer> {
     }
 
     @Override
-    public Double evaluateInsertionCost(Integer elem, Solution<Integer> sol) {
+    public Integer evaluateInsertionCost(Integer elem, Solution sol) {
 
         setVariables(sol);
         return evaluateInsertionQBF(elem);
 
     }
 
-    public Double evaluateInsertionQBF(int i) {
+    public Integer evaluateInsertionQBF(int i) {
 
         if (variables[i] == 1)
-            return 0.0;
+            return 0;
 
         return evaluateContributionQBF(i);
     }
 
     @Override
-    public Double evaluateRemovalCost(Integer elem, Solution<Integer> sol) {
+    public Integer evaluateRemovalCost(Integer elem, Solution sol) {
 
         setVariables(sol);
         return evaluateRemovalQBF(elem);
 
     }
 
-    public Double evaluateRemovalQBF(int i) {
+    public Integer evaluateRemovalQBF(int i) {
 
         if (variables[i] == 0)
-            return 0.0;
+            return 0;
 
         return -evaluateContributionQBF(i);
 
     }
 
     @Override
-    public Double evaluateExchangeCost(Integer elemIn, Integer elemOut, Solution<Integer> sol) {
+    public Integer evaluateExchangeCost(Integer elemIn, Integer elemOut, Solution sol) {
 
         setVariables(sol);
         return evaluateExchangeQBF(elemIn, elemOut);
 
     }
 
-    public boolean exchangeFitsKnapsack(Double w, Integer elemIn, Integer elemOut) {
+    public boolean exchangeFitsKnapsack(Integer w, Integer elemIn, Integer elemOut) {
 
-        Double deltaWeight = weights[elemIn] - weights[elemOut];
+        Integer deltaWeight = weights[elemIn] - weights[elemOut];
 
         return w + deltaWeight > W ? false : true;
 
     }
 
-    public Double evaluateExchangeQBF(int in, int out) {
+    public Integer evaluateExchangeQBF(int in, int out) {
 
-        Double sum = 0.0;
+        Integer sum = 0;
 
         if (in == out)
-            return 0.0;
+            return 0;
         if (variables[in] == 1)
             return evaluateRemovalQBF(out);
         if (variables[out] == 0)
@@ -136,11 +136,11 @@ public class KQBF implements Evaluator<Integer> {
         return sum;
     }
 
-    public Double evaluateKnapsackWeight(Solution<Integer> sol) {
+    public Integer evaluateKnapsackWeight(Solution sol) {
 
         setVariables(sol);
 
-        Double sum = 0.0;
+        Integer sum = 0;
 
         for (int i = 0; i < size; i++) {
             sum += variables[i] * weights[i];
@@ -149,15 +149,15 @@ public class KQBF implements Evaluator<Integer> {
         return sum;
     }
 
-    public boolean fitsKnapsack(Double w, int i) {
+    public boolean fitsKnapsack(Integer w, int i) {
 
         return w + weights[i] > W ? false : true;
 
     }
 
-    private Double evaluateContributionQBF(int i) {
+    private Integer evaluateContributionQBF(int i) {
 
-        Double sum = 0.0;
+        Integer sum = 0;
 
         for (int j = 0; j < size; j++) {
             if (i != j)
@@ -177,21 +177,21 @@ public class KQBF implements Evaluator<Integer> {
         Integer _size = (int) stok.nval;
 
         stok.nextToken();
-        W = stok.nval;
+        W = (int) stok.nval;
 
-        weights = new Double[_size];
+        weights = new Integer[_size];
         for (int i = 0; i < _size; i++) {
             stok.nextToken();
-            weights[i] = stok.nval;
+            weights[i] = (int) stok.nval;
         }
 
-        A = new Double[_size][_size];
+        A = new Integer[_size][_size];
         for (int i = 0; i < _size; i++) {
             for (int j = i; j < _size; j++) {
                 stok.nextToken();
-                A[i][j] = stok.nval;
+                A[i][j] = (int) stok.nval;
                 if (j > i)
-                    A[j][i] = 0.0;
+                    A[j][i] = 0;
             }
         }
 
@@ -199,13 +199,13 @@ public class KQBF implements Evaluator<Integer> {
 
     }
 
-    protected Double[] allocateVariables() {
-        Double[] _variables = new Double[size];
+    protected Integer[] allocateVariables() {
+        Integer[] _variables = new Integer[size];
         return _variables;
     }
 
     public void resetVariables() {
-        Arrays.fill(variables, 0.0);
+        Arrays.fill(variables, 0);
     }
 
     public void printMatrix() {
@@ -223,29 +223,29 @@ public class KQBF implements Evaluator<Integer> {
 
         KQBF qbf = new KQBF("instances/qbf/qbf040");
         qbf.printMatrix();
-        Double maxVal = Double.NEGATIVE_INFINITY;
+        Integer maxVal = Integer.MIN_VALUE;
 
         for (int i = 0; i < 10000000; i++) {
             for (int j = 0; j < qbf.size; j++) {
                 if (Math.random() < 0.5)
-                    qbf.variables[j] = 0.0;
+                    qbf.variables[j] = 0;
                 else
-                    qbf.variables[j] = 1.0;
+                    qbf.variables[j] = 1;
             }
-            Double eval = qbf.evaluateQBF();
+            Integer eval = qbf.evaluateQBF();
             if (maxVal < eval)
                 maxVal = eval;
         }
         System.out.println("maxVal = " + maxVal);
 
         for (int j = 0; j < qbf.size; j++) {
-            qbf.variables[j] = 0.0;
+            qbf.variables[j] = 0;
         }
         System.out.println("x = " + Arrays.toString(qbf.variables));
         System.out.println("f(x) = " + qbf.evaluateQBF());
 
         for (int j = 0; j < qbf.size; j++) {
-            qbf.variables[j] = 1.0;
+            qbf.variables[j] = 1;
         }
         System.out.println("x = " + Arrays.toString(qbf.variables));
         System.out.println("f(x) = " + qbf.evaluateQBF());
