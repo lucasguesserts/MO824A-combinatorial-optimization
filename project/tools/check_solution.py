@@ -1,6 +1,5 @@
-import itertools
 import numpy as np
-from MUPKP import BruteForceSolver, Problem, Solution, SolutionVerifier, FileManipulation
+from MUPKP import IlpSolver, BruteForceSolver, Problem, Solution, SolutionVerifier, FileManipulation
 
 instance_file_name = "./instances/instance_1.json"
 
@@ -42,5 +41,10 @@ print(other)
 verifier = SolutionVerifier(instance)
 print(verifier.verify(s))
 
-solver = BruteForceSolver(instance)
-print(solver.solutions)
+ilpSolver = BruteForceSolver(instance)
+print(f"solution to the problem {instance.name}:")
+print(ilpSolver.solutions)
+
+ilpSolver = IlpSolver(instance)
+print(f"solution to the problem {instance.name}:")
+print(ilpSolver.solution)
