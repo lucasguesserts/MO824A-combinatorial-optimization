@@ -18,7 +18,7 @@ class BruteForceSolver(Solver):
     def get_solution(self) -> Solution:
         return self.solution_list[0]
 
-    def get_solution_list(self) -> list[Solution]:
+    def get_solution_ordered_list(self) -> list[Solution]:
         return self.solution_list
 
     @staticmethod

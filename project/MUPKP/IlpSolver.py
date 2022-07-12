@@ -16,9 +16,6 @@ class IlpSolver(Solver):
     def get_solution(self) -> Solution:
         return self.solution
 
-    def get_solution_list(self) -> list[Solution]:
-        return [self.solution]
-
     def _solve_model(self) -> None:
         self.model.optimize()
         self._set_solution()
