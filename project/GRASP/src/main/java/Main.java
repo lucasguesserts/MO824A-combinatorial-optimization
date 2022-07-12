@@ -6,20 +6,25 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.google.common.graph.GraphBuilder;
-import com.google.common.graph.MutableGraph;
+import com.google.common.graph.ImmutableGraph;
+import com.google.common.graph.ImmutableGraph.Builder;
 
 public class Main {
     public static void main(final String[] args) throws IOException {
         // System.out.println(System.getProperty("user.dir"));
         final var obj = Auxiliary.readJson("../instances/instance_1.json");
-        final MutableGraph<Integer> graph = GraphBuilder.directed().build();
-        Auxiliary.addNodes(graph, obj.getInt("number_of_nodes"));
-        Auxiliary.addEdges(graph, obj.getJSONArray("edges"));
+        final var builder = GraphBuilder
+            .directed()
+            .allowsSelfLoops(false)
+            .<Integer>immutable();
+        Auxiliary.addNodes(builder, obj.getInt("number_of_nodes"));
+        Auxiliary.addEdges(builder, obj.getJSONArray("edges"));
+        final ImmutableGraph<Integer> graph = builder.build();
         for (final var n : graph.nodes()) {
-            System.out.println(String.format("mutable node: %d", n));
+            System.out.println(String.format("node: %d", n));
         }
         for (final var e : graph.edges()) {
-            System.out.println(String.format("mutable edge: %d %d", e.nodeU(), e.nodeV()));
+            System.out.println(String.format("edge: %d %d", e.nodeU(), e.nodeV()));
         }
     }
 }
@@ -32,13 +37,13 @@ class Auxiliary {
         return obj;
     }
 
-    static void addNodes(final MutableGraph<Integer> graph, final Integer numberOfNodes) {
+    static void addNodes(final Builder<Integer> graph, final Integer numberOfNodes) {
         for(int i = 0; i < numberOfNodes; ++i) {
             graph.addNode(i);
         }
     }
 
-    static void addEdges(final MutableGraph<Integer> graph, final JSONArray edges) {
+    static void addEdges(final Builder<Integer> graph, final JSONArray edges) {
         for(int e = 0; e < edges.length(); ++e) {
             final JSONArray edgeArray = edges.getJSONArray(e);
             graph.putEdge(
