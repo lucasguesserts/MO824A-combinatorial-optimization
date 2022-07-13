@@ -23,6 +23,19 @@ public class Weight {
         return this.values.size();
     }
 
+    public Double getMax() {
+        return Collections.max(this.values).doubleValue();
+    }
+
+    public Double getNorm2() {
+        Double accumulator = 0.0;
+        for(final var v : this.values) {
+            accumulator += v * v;
+        }
+        accumulator = Math.sqrt(accumulator);
+        return accumulator;
+    }
+
     public Weight add(final Weight other) {
         this.assertSameSize(other);
         final List<Integer> sum = new ArrayList<>(this.values.size());
