@@ -1,5 +1,11 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
+    "java.test.config": [
+        {
+        "name": "test",
+        "workingDirectory": "${workspaceFolder}/GRASP/src/test/resources"
+        }
+    ],
     "java.configuration.runtimes": [
       {
         "name": "JavaSE-17",

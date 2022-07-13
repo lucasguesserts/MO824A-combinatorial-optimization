@@ -18,6 +18,7 @@ dependencies {
 }
 
 test {
+    setWorkingDir('./src/test/resources')
     useTestNG() {
         testLogging.showStandardStreams = true
     }
