@@ -55,8 +55,8 @@ public class WeightedSolution extends ElementsSolution implements Solution {
     @Override
     public JSONObject toJson() {
         final var obj = super.toJson();
-        obj.put("capacity", this.getCapacity());
-        obj.put("weight", this.getWeight());
+        obj.put("capacity", this.getCapacity().toJson());
+        obj.put("weight", this.getWeight().toJson());
         return obj;
     }
 

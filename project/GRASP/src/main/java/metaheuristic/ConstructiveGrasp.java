@@ -38,7 +38,6 @@ public class ConstructiveGrasp {
         this.initializeCandidateList();
         updateRestrictedCandidateList();
         while (!stopCriteriaMet()) {
-            System.out.println(this.currentSolution);
             chooseCandidate();
             addCandidateToSolution();
             updateCandidateList();
@@ -103,7 +102,6 @@ public class ConstructiveGrasp {
             .filter(pair -> pair.value <= maximumValueThreshold + TOLERANCE)
             .map(pair -> pair.element)
             .toList();
-        System.out.println("RCL: " + this.restrictedCandidateList);
         return;
     }
 
@@ -118,9 +116,10 @@ public class ConstructiveGrasp {
             .filter(element -> this.currentSolution.getElements().containsAll(this.problem.getGraph().predecessors(element))) // those which have all predecessors in the current solution
             .toList();
         this.candidateList.addAll(possibleNewCandidates);
+        final var restrictedCapacity = this.currentSolution.getCapacity().subtract(this.currentSolution.getWeight());
         this.candidateList = new HashSet<>(this.candidateList
             .stream()
-            .filter(element -> !this.problem.getWeightMap().get(element).exceeds(this.problem.getCapacity())) // do not exceed the capacity
+            .filter(element -> !this.problem.getWeightMap().get(element).exceeds(restrictedCapacity)) // do not exceed the capacity
             .toList()
         );
     }
@@ -130,7 +129,6 @@ public class ConstructiveGrasp {
     }
 
     private Boolean stopCriteriaMet() {
-        System.out.println("candidate list = " + this.candidateList);
         return this.candidateList.isEmpty();
     }
 
