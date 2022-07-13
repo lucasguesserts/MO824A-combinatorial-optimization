@@ -11,6 +11,8 @@ public class TestSolution {
     @Test
     public void testConstructor() {
         final var solution = new Solution();
+        Assert.assertNotNull(solution.getCost());
+        Assert.assertNotNull(solution.getElements());
         Assert.assertTrue(solution.getElements().isEmpty());
     }
 
