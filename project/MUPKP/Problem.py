@@ -31,7 +31,7 @@ class Problem:
         data = {}
         data["number_of_nodes"] = len(self.graph.nodes)
         data["capacity"] = self.capacity.tolist()
-        data["weights"] = self.weights.tolist()
+        data["weights"] = np.transpose(self.weights).tolist()
         data["edges"] = list(self.graph.edges)
         data["parameters"] = self.parameters.to_dict()
         return data
@@ -42,6 +42,6 @@ class Problem:
         graph.add_nodes_from(range(data["number_of_nodes"]))
         graph.add_edges_from(data["edges"])
         capacity = np.array(data["capacity"], dtype=np.int_)
-        weights = np.array(data["weights"], dtype=np.int_)
+        weights = np.transpose(np.array(data["weights"], dtype=np.int_))
         parameters = InstanceGeneratorParameters.from_dict(data["parameters"])
         return Problem(graph, capacity, weights, parameters)
