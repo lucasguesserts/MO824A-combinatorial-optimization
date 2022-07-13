@@ -100,7 +100,7 @@ public class Weight {
 
     @Override
     public String toString() {
-        return this.toJson().toString();
+        return this.toJson().toString(4);
     }
 
     private void assertSameSize(final Weight other) {

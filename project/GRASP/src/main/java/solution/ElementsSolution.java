@@ -52,7 +52,7 @@ public class ElementsSolution {
 
     @Override
     public String toString() {
-        return this.toJson().toString();
+        return this.toJson().toString(4);
     }
 
     private void assertNoNewElement(final Integer element) {
