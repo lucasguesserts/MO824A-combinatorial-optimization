@@ -2,7 +2,7 @@ package solution;
 
 import org.json.JSONObject;
 
-public class WeightedSolution extends Solution {
+public class WeightedSolution extends ElementsSolution implements Solution {
 
     private final Weight capacity;
     private Weight weight;

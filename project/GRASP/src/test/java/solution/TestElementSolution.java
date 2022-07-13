@@ -6,11 +6,11 @@ import java.util.Collection;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestSolution {
+public class TestElementSolution {
 
     @Test
     public void testConstructor() {
-        final var solution = new Solution();
+        final var solution = new ElementsSolution();
         Assert.assertNotNull(solution.getCost());
         Assert.assertNotNull(solution.getElements());
         Assert.assertTrue(solution.getElements().isEmpty());
@@ -18,7 +18,7 @@ public class TestSolution {
 
     @Test
     public void testAddElement() {
-        final var solution = new Solution();
+        final var solution = new ElementsSolution();
         solution.addElement(1);
         solution.addElement(2);
         final var expected = Arrays.asList(1, 2);
@@ -28,7 +28,7 @@ public class TestSolution {
 
     @Test
     public void testCost() {
-        final var solution = new Solution();
+        final var solution = new ElementsSolution();
         solution.addElement(1);
         solution.addElement(2);
         Assert.assertEquals(solution.getCost(), (Integer) 2);
@@ -36,7 +36,7 @@ public class TestSolution {
 
     @Test
     public void testNoRepetition() {
-        final var solution = new Solution();
+        final var solution = new ElementsSolution();
         solution.addElement(1);
         Assert.expectThrows(
             AssertionError.class,
@@ -48,7 +48,7 @@ public class TestSolution {
 
     @Test
     public void testNoNegativeValue() {
-        final var solution = new Solution();
+        final var solution = new ElementsSolution();
         Assert.expectThrows(
             AssertionError.class,
             () -> {
@@ -59,10 +59,10 @@ public class TestSolution {
 
     @Test
     public void testEquals() {
-        final var first = new Solution();
+        final var first = new ElementsSolution();
         first.addElement(1);
         first.addElement(2);
-        final var second = new Solution();
+        final var second = new ElementsSolution();
         second.addElement(1);
         second.addElement(2);
         Assert.assertEquals(first, second);
