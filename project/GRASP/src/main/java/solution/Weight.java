@@ -12,12 +12,15 @@ public class Weight {
 
     public Weight(final List<Integer> values) {
         assertNoNegativeValues(values);
-        assertAtLeastOnePositiveValue(values);
         this.values = Collections.unmodifiableList(values);
     }
 
     public static Weight zero(final Integer size) {
         return new Weight(zeroList(size));
+    }
+
+    public Integer size() {
+        return this.values.size();
     }
 
     public Weight add(final Weight other) {
@@ -70,13 +73,8 @@ public class Weight {
             return false;
         }
         final Weight other = (Weight) obj;
-        if (this.values.size() != other.values.size()) {
+        if (!this.values.equals(other.values)) {
             return false;
-        }
-        for (int i = 0; i < this.values.size(); ++i) {
-            if (!this.values.get(i).equals(other.values.get(i))) {
-                return false;
-            }
         }
         return true;
     }
@@ -104,7 +102,7 @@ public class Weight {
     private static List<Integer> zeroList(final Integer size) {
         final List<Integer> values = new ArrayList<>(size);
         for (int i = 0; i < size; ++i) {
-            values.set(i, 0);
+            values.add(0);
         }
         return values;
     }
@@ -119,19 +117,6 @@ public class Weight {
                     values
                 );
         }
-    }
-
-    private static void assertAtLeastOnePositiveValue(final List<Integer> values) {
-        for (int i = 0; i < values.size(); ++i) {
-            if (values.get(i) > 0) {
-                return;
-            }
-        }
-        assert Boolean.FALSE
-            : String.format(
-                "No positive value found: %s",
-                values
-            );
     }
 
 }

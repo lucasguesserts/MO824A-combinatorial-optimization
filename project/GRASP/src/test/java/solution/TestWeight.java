@@ -8,10 +8,19 @@ import org.testng.annotations.Test;
 public class TestWeight {
 
     @Test
+    public void testConstructor() {
+        final var weight = new Weight(Arrays.asList(10, 20, 30));
+        Assert.assertNotNull(weight);
+        Assert.assertEquals(weight.size(), (Integer) 3);
+    }
+
+    @Test
     public void testEquality() {
         final var first = new Weight(Arrays.asList(10, 20, 30));
         final var second = new Weight(Arrays.asList(10, 20, 30));
+        final var third = new Weight(Arrays.asList(10, 20, 999));
         Assert.assertEquals(first, second);
+        Assert.assertNotEquals(first, third);
     }
 
     @Test
