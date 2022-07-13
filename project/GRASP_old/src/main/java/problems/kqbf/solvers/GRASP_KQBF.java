@@ -189,13 +189,7 @@ public class GRASP_KQBF extends GRASP {
 
     @Override
     public Solution localSearch() {
-
-        if (firstImproving) {
-            firstImproving();
-        } else {
-            bestImproving();
-        }
-
+        bestImproving();
         return null;
     }
 

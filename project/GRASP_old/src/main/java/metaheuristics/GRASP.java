@@ -8,8 +8,6 @@ import solutions.Solution;
 
 public abstract class GRASP {
 
-    public static boolean verbose = true;
-
     static Random rng = new Random(0);
 
     protected Evaluator ObjFunction;
@@ -30,8 +28,6 @@ public abstract class GRASP {
 
     protected ArrayList<Integer> RCL;
 
-    protected boolean firstImproving;
-
     public abstract ArrayList<Integer> makeCL();
 
     public abstract ArrayList<Integer> makeRCL();
@@ -46,14 +42,6 @@ public abstract class GRASP {
         this.ObjFunction = objFunction;
         this.alpha = alpha;
         this.iterations = iterations;
-        this.firstImproving = false;
-    }
-
-    public GRASP(Evaluator objFunction, Double alpha, Integer iterations, boolean firstImproving) {
-        this.ObjFunction = objFunction;
-        this.alpha = alpha;
-        this.iterations = iterations;
-        this.firstImproving = firstImproving;
     }
 
     public Solution constructiveHeuristic() {
@@ -108,8 +96,7 @@ public abstract class GRASP {
             localSearch();
             if (bestSol.cost > sol.cost) {
                 bestSol = new Solution(sol);
-                if (verbose)
-                    System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
+                System.out.println("(Iter. " + i + ") BestSol = " + bestSol);
             }
         }
 
