@@ -7,6 +7,8 @@ import org.json.JSONException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import problem.InvalidInputException;
+import problem.ProblemData;
 import solution.Weight;
 
 public class TestProblemLoader {

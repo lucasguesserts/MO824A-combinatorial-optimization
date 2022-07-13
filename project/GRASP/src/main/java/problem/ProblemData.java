@@ -1,4 +1,4 @@
-package input;
+package problem;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,7 +16,6 @@ import com.google.common.graph.Graph;
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.ImmutableGraph.Builder;
 
-import problem.Problem;
 import solution.Weight;
 
 public class ProblemData implements Problem {
