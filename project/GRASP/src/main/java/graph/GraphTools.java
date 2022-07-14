@@ -11,9 +11,9 @@ public interface GraphTools {
         final Set<Integer> rootNodes = new HashSet<>(graph
             .nodes()
             .stream()
-            .map(node -> new NodeValuePair<Integer>(node, graph.inDegree(node)))
+            .map(node -> new ElementValuePair<Integer>(node, graph.inDegree(node)))
             .filter(pair -> pair.value.equals(0)) // no predecessor
-            .map(pair -> pair.node) // get node
+            .map(pair -> pair.element) // get node
             .toList()
         );
         return rootNodes;
