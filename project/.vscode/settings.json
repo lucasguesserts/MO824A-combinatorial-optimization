@@ -3,7 +3,7 @@
     "java.test.config": [
         {
         "name": "test",
-        "workingDirectory": "${workspaceFolder}"
+        "workingDirectory": "${workspaceFolder}/GRASP/src/test/resources/"
         }
     ],
     "java.configuration.runtimes": [
@@ -14,7 +14,5 @@
       }
     ],
     "java.import.gradle.home": "${HOME}/.sdkman/candidates/gradle/7.4.2/",
-    "java.checkstyle.configuration": "${workspaceFolder}/checkstyle.xml",
-    "java.checkstyle.version": "10.3",
     "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m"
 }

@@ -14,8 +14,7 @@ import problem.ProblemData;
 
 public class TestConstructiveGrasp {
 
-    static final String RESOURCES_DIR = "./GRASP/src/test/resources/";
-    static final String INSTANCES_DIR = RESOURCES_DIR + "metaheuristic/";
+    static final String INSTANCES_DIR = "metaheuristic/";
 
     Problem problem;
     GreedyCriteria greedyCriteria;

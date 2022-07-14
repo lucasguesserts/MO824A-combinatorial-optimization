@@ -21,8 +21,7 @@ import solution.WeightedSolution;
 
 public class TestLocalOptimalCase2 {
 
-    private static final String RESOURCES_DIR = "./GRASP/src/test/resources/";
-    private static final String CASES_DIR = RESOURCES_DIR + "localsearch/";
+    private static final String CASES_DIR = "localsearch/";
 
     private Problem problem;
     private List<GreedyCriteria> greedyCriteriaList = Arrays.asList(

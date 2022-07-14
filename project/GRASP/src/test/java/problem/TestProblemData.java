@@ -11,12 +11,12 @@ import solution.Weight;
 
 public class TestProblemData {
 
-    static final String RESOURCES_DIR = "./GRASP/src/test/resources/";
+    static final String INSTANCES_DIR = "problem_data/";
 
     @Test
     public void testConstructor() throws JSONException, IOException, InvalidInputException {
-        // System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        final var problemData = new ProblemData(RESOURCES_DIR + "problem_data/instance_3.json");
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        final var problemData = new ProblemData(INSTANCES_DIR + "instance_3.json");
         Assert.assertNotNull(problemData);
         Assert.assertEquals(problemData.getNumberOfNodes(), (Integer) 10);
         Assert.assertEquals(problemData.getWeightSize(), (Integer) 3);
