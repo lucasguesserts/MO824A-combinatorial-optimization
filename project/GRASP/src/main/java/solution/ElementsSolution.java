@@ -25,6 +25,20 @@ public class ElementsSolution {
         this.elements.add(element);
     }
 
+    public void removeElement(final Integer element) {
+        this.assertElementIsPresent(element);
+        this.assertNoNegativeValue(element);
+        this.elements.remove(element);
+        return;
+    }
+
+    public void substituteElement(final Integer toRemove, final Integer toAdd) {
+        this.assertNoEqualElements(toRemove, toAdd);
+        this.removeElement(toRemove);
+        this.addElement(toAdd);
+        return;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -68,6 +82,26 @@ public class ElementsSolution {
             : String.format("Element must not be negative:\n\telement: %d",
                 element
             );
+    }
+
+    private void assertElementIsPresent(final Integer element) {
+        assert this.elements.contains(element)
+            : String.format(
+                "Element %d must be present in element list %s",
+                element,
+                this.elements.toString()
+            );
+        return;
+    }
+
+    private void assertNoEqualElements(final Integer lhs, final Integer rhs) {
+        assert !lhs.equals(rhs)
+            : String.format(
+                "Elements %d and %d are equal",
+                lhs,
+                rhs
+            );
+        return;
     }
 
 }
