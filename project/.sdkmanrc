@@ -1,0 +1,5 @@
+# install dependencies with: sdk env install
+# activate with: sdk env
+# disable sdk env with: sdk env clear
+java=17.0.3-oracle
+gradle=7.4.2

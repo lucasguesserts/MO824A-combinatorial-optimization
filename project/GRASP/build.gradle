@@ -1,0 +1,32 @@
+plugins {
+    id 'application'
+    id 'com.adarshr.test-logger' version '1.7.1'
+}
+
+application {
+    mainClass = 'Main'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.google.guava:guava:31.1-jre")
+    implementation group: 'org.json', name: 'json', version: '20220320'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
+}
+
+test {
+    setWorkingDir('./src/test/resources')
+    useTestNG() {
+        testLogging.showStandardStreams = true
+    }
+}
+
+testlogger {
+    showExceptions true
+    showStackTraces true
+    showFullStackTraces true
+    showStandardStreams true
+}
