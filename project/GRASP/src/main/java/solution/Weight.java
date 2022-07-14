@@ -27,6 +27,10 @@ public class Weight {
         return Collections.max(this.values).doubleValue();
     }
 
+    public Double getMin() {
+        return Collections.min(this.values).doubleValue();
+    }
+
     public Double getNorm2() {
         Double accumulator = 0.0;
         for(final var v : this.values) {
