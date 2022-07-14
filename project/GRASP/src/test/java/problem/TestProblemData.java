@@ -1,4 +1,4 @@
-package input;
+package problem;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -7,11 +7,9 @@ import org.json.JSONException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import problem.InvalidInputException;
-import problem.ProblemData;
 import solution.Weight;
 
-public class TestProblemLoader {
+public class TestProblemData {
 
     static final String RESOURCES_DIR = "./GRASP/src/test/resources/";
 
