@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import graph.GraphTools;
 import metaheuristic.greedy_criteria.GreedyCriteria;
 import problem.Problem;
 import solution.Solution;
@@ -60,17 +61,14 @@ public class ConstructiveGrasp {
          * Filter and remove the elements which do
          * not fit in the solution.
          */
-        final var graph = this.problem.getGraph();
-        final Set<Integer> rootNodes = new HashSet<>(graph
-            .nodes()
+        final var rootNodes = GraphTools.findRootNodes(this.problem.getGraph());
+        final var weightMap = this.problem.getWeightMap();
+        final var capacity = this.problem.getCapacity();
+        this.candidateList = new HashSet<>(rootNodes
             .stream()
-            .map(node -> new ElementValuePair<Integer>(node, graph.inDegree(node)))
-            .filter(pair -> pair.value.equals(0)) // no predecessor
-            .filter(pair -> !this.problem.getWeightMap().get(pair.element).exceeds(this.problem.getCapacity())) // do not exceed the capacity
-            .map(pair -> pair.element) // get node
+            .filter(node -> !weightMap.get(node).exceeds(capacity))
             .toList()
         );
-        this.candidateList = rootNodes;
         return;
     }
 
