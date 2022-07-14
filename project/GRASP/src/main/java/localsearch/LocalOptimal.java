@@ -27,6 +27,7 @@ public class LocalOptimal implements LocalSearch {
     ) {
         this.problem = problem;
         this.greedyCriteria = greedyCriteria;
+        return;
     }
 
     public Solution search(final Solution initialSoution) {
@@ -44,11 +45,13 @@ public class LocalOptimal implements LocalSearch {
         this.currentSolution = initialSoution;
         this.elementHasBeenAdded = Boolean.TRUE;
         this.elementHasBeenSubstituted = Boolean.TRUE;
+        return;
     }
 
     private void setNothingDone() {
         this.elementHasBeenAdded = Boolean.FALSE;
         this.elementHasBeenSubstituted = Boolean.FALSE;
+        return;
     }
 
     private void addElement() {

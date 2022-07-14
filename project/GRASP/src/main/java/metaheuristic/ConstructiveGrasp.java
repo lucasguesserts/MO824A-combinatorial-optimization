@@ -34,6 +34,7 @@ public class ConstructiveGrasp {
         this.problem = problem;
         this.greedyCriteria = greedyCriteria;
         this.greedyParameter = greedyParameter;
+        return;
     }
 
     public Solution constructiveHeuristic() {
@@ -122,10 +123,12 @@ public class ConstructiveGrasp {
             .filter(element -> !this.problem.getWeightMap().get(element).exceeds(restrictedCapacity)) // do not exceed the capacity
             .toList()
         );
+        return;
     }
 
     private void createEmptySolution() {
         this.currentSolution = new WeightedSolution(this.problem.getCapacity());
+        return;
     }
 
     private Boolean stopCriteriaMet() {

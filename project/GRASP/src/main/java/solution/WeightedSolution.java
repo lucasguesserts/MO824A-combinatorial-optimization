@@ -13,6 +13,7 @@ public class WeightedSolution extends ElementsSolution implements Solution {
         this.weight = Weight.zero(capacity.size());
         this.assertWeightIsNonNegative(this.capacity);
         this.assertWeightIsNonNegative(this.weight);
+        return;
     }
 
     public Weight getCapacity() {
@@ -28,6 +29,7 @@ public class WeightedSolution extends ElementsSolution implements Solution {
         this.assertNewWeightDoesNotExceedCapacity(newWeight);
         super.addElement(element);
         this.weight = newWeight;
+        return;
     }
 
     public void removeElement(final Integer element, final Weight elementWeight) {
@@ -90,6 +92,7 @@ public class WeightedSolution extends ElementsSolution implements Solution {
                 this.capacity.toString(),
                 newWeight.toString()
             );
+        return;
     }
 
     private void assertWeightIsNonNegative(final Weight weight) {
