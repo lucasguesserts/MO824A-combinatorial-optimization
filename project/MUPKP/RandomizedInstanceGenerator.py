@@ -1,3 +1,4 @@
+from typing import Tuple
 import numpy as np
 import numpy.typing as npt
 import networkx as nx
@@ -9,7 +10,7 @@ from .Problem import Problem
 class WeightInstanceGenerator(InstanceGeneratorParameters):
     def _generate_randomized_weights_and_capacity(
         self,
-    ) -> tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]:
+    ) -> Tuple[npt.NDArray[np.int_], npt.NDArray[np.int_]]:
         """
         Generate weights for the nodes and capacities for the knapsack.
 
