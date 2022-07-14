@@ -29,7 +29,8 @@ public class ConstructiveGrasp {
     public ConstructiveGrasp(
         final Problem problem,
         final GreedyCriteria greedyCriteria,
-        final Double greedyParameter) {
+        final Double greedyParameter
+    ) {
         this.problem = problem;
         this.greedyCriteria = greedyCriteria;
         this.greedyParameter = greedyParameter;
@@ -37,7 +38,7 @@ public class ConstructiveGrasp {
 
     public Solution constructiveHeuristic() {
         createEmptySolution();
-        this.initializeCandidateList();
+        initializeCandidateList();
         updateRestrictedCandidateList();
         while (!stopCriteriaMet()) {
             chooseCandidate();
