@@ -23,7 +23,7 @@ public class WeightedSolution extends ElementsSolution implements Solution {
 
     public void addElement(final Integer element, final Weight elementWeight) {
         final var newWeight = this.weight.add(elementWeight);
-        this.assertNewWeight(newWeight);
+        this.assertNewWeightDoesNotExceedCapacity(newWeight);
         super.addElement(element);
         this.weight = newWeight;
     }
@@ -60,8 +60,8 @@ public class WeightedSolution extends ElementsSolution implements Solution {
         return obj;
     }
 
-    private void assertNewWeight(final Weight newWeight) {
-        assert this.capacity.exceeds(newWeight)
+    private void assertNewWeightDoesNotExceedCapacity(final Weight newWeight) {
+        assert !newWeight.exceeds(this.capacity)
             : String.format(
                 "capacity exceeded:\n\tcapacity: %s\n\tnew weight: %s",
                 this.capacity.toString(),
