@@ -95,6 +95,7 @@ public class LocalOptimal implements LocalSearch {
         final var allSuccessors = new HashSet<>(elementsOfCurrentSolution
             .stream()
             .flatMap(node -> this.problem.getGraph().successors(node).stream())
+            .filter(node -> elementsOfCurrentSolution.containsAll(this.problem.getGraph().predecessors(node)))
             .toList()
         );
         final var allPossibleCandidatesToAdd = new HashSet<>(allSuccessors
@@ -103,7 +104,7 @@ public class LocalOptimal implements LocalSearch {
             .toList()
         );
         final var subGraphInducedBySolution = Graphs.inducedSubgraph(this.problem.getGraph(), elementsOfCurrentSolution);
-        final var leafNodes = GraphTools.findLeafNodes(subGraphInducedBySolution);
+        final var leafNodes = GraphTools.findLeafNodes(subGraphInducedBySolution); // those are the only ones which can be replaced
         final var weightOfCurrentSolution = this.currentSolution.getWeight();
         final var elementWeightMap = this.problem.getWeightMap();
         final var bestSubstitution = leafNodes
