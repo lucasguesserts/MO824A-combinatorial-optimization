@@ -5,7 +5,8 @@ class InstanceGeneratorParameters:
         edge_probability: float = 0.5,
         weight_size: int = 2,
         percentage_of_nodes_to_fit: float = 0.5,
-        number_of_digits_to_round: int = 3,
+        weight_minimum_value: int = 500,
+        weight_maximum_value: int = 1000,
     ):
         """
         Parameters
@@ -23,9 +24,14 @@ class InstanceGeneratorParameters:
         percentage_of_nodes_to_fit : int
             average number of nodes that we want to
             fit into the knapsack
-        number_of_digits_to_round : int
-            the number of digits to use in the round function
-            of the random number generation
+        weight_minimum_value : int
+            the minimum value for the range of values
+            of the weight. The weight will be in the
+            interval:
+            [weight_minimum_value, weight_maximum_value]
+        weight_minimum_value : int
+            the maximum value for the range of values
+            of the weight.
 
         Raises
         ------
@@ -36,13 +42,15 @@ class InstanceGeneratorParameters:
             If `weight_size` is smaller or equal to 0 (zero)
             If `percentage_of_nodes_to_fit` is not in the interval ]0, 1[
                 (between 0 (zero) (exclusive) and 1 (one) (exclusive))
-            If `number_of_digits_to_round`  is smaller or equal to 0 (zero)
+            If `weight_minimum_value` is smaller than 0 (zero)
+            If `weight_maximum_value` is smaller than `weight_minimum_value`
         """
         self.number_of_nodes = number_of_nodes
         self.edge_probability = edge_probability
         self.weight_size = weight_size
         self.percentage_of_nodes_to_fit = percentage_of_nodes_to_fit
-        self.number_of_digits_to_round = number_of_digits_to_round
+        self.weight_minimum_value = weight_minimum_value
+        self.weight_maximum_value = weight_maximum_value
         self._validate_parameters()
         return
 
@@ -59,9 +67,13 @@ class InstanceGeneratorParameters:
             raise ValueError(
                 "percentage_of_nodes_to_fit must be a value between 0 (zero) (exclusive) and 1 (one) (exclusive)"
             )
-        if self.number_of_digits_to_round <= 0:
+        if self.weight_minimum_value < 0:
             raise ValueError(
-                "number_of_digits_to_round must must be greater than 0 (zero)"
+                "weight_minimum_value must be greater or equals to 0 (zero)"
+            )
+        if self.weight_maximum_value < self.weight_minimum_value:
+            raise ValueError(
+                "weight_maximum_value must be greater or equals to weight_minimum_value"
             )
         return
 
@@ -71,7 +83,8 @@ class InstanceGeneratorParameters:
         data["edge_probability"] = self.edge_probability
         data["weight_size"] = self.weight_size
         data["percentage_of_nodes_to_fit"] = self.percentage_of_nodes_to_fit
-        data["number_of_digits_to_round"] = self.number_of_digits_to_round
+        data["weight_minimum_value"] = self.weight_minimum_value
+        data["weight_maximum_value"] = self.weight_maximum_value
         return data
 
     @staticmethod
@@ -81,5 +94,6 @@ class InstanceGeneratorParameters:
             edge_probability=data["edge_probability"],
             weight_size=data["weight_size"],
             percentage_of_nodes_to_fit=data["percentage_of_nodes_to_fit"],
-            number_of_digits_to_round=data["number_of_digits_to_round"],
+            weight_minimum_value=data["weight_minimum_value"],
+            weight_maximum_value=data["weight_maximum_value"],
         )

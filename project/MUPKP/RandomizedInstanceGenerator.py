@@ -30,17 +30,23 @@ class WeightInstanceGenerator(InstanceGeneratorParameters):
             weight matrix. Each column represents the multidimensional
             weight of each node.
         """
-        randomized_float_weights = np.random.rand(
-            self.weight_size, self.number_of_nodes
-        )
-        randomized_weights = np.round(
-            10**self.weight_size * randomized_float_weights
-        ).astype(np.int_)
-        capacity = np.round(
-            self.percentage_of_nodes_to_fit * np.sum(randomized_weights, axis=1)
-        ).astype(np.int_)
-        return (capacity, randomized_weights)
+        weights = self._generate_randomized_weights()
+        capacity = self._generate_capacity(weights)
+        return (capacity, weights)
 
+    def _generate_randomized_weights(self) -> npt.NDArray[np.int_]:
+        weights_shape = [self.weight_size, self.number_of_nodes]
+        randomized_float_array = np.random.rand(*weights_shape)
+        weight_range = self.weight_maximum_value - self.weight_minimum_value
+        randomized_float_weights = self.weight_minimum_value + weight_range * randomized_float_array
+        randomized_weights = np.round(randomized_float_weights).astype(np.int_)
+        return randomized_weights
+
+    def _generate_capacity(self, weights: npt.NDArray[np.int_]):
+        capacity = np.round(
+            self.percentage_of_nodes_to_fit * np.sum(weights, axis=1)
+        ).astype(np.int_)
+        return capacity
 
 class RandomizedInstanceGenerator(WeightInstanceGenerator):
     def generate(self) -> Problem:
