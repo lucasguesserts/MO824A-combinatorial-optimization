@@ -1,0 +1,87 @@
+{
+  "number_of_nodes": 8,
+  "capacity": [
+    4278,
+    4388
+  ],
+  "weights": [
+    [
+      953,
+      984
+    ],
+    [
+      710,
+      522
+    ],
+    [
+      739,
+      993
+    ],
+    [
+      522,
+      801
+    ],
+    [
+      678,
+      904
+    ],
+    [
+      940,
+      960
+    ],
+    [
+      707,
+      543
+    ],
+    [
+      862,
+      562
+    ]
+  ],
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      1,
+      7
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "parameters": {
+    "number_of_nodes": 8,
+    "edge_probability": 0.4,
+    "weight_size": 2,
+    "percentage_of_nodes_to_fit": 0.7,
+    "weight_minimum_value": 500,
+    "weight_maximum_value": 1000
+  }
+}

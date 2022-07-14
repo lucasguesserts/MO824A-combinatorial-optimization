@@ -11,6 +11,9 @@ public class WeightedSolution extends ElementsSolution implements Solution {
         super();
         this.capacity = capacity;
         this.weight = Weight.zero(capacity.size());
+        this.assertWeightIsNonNegative(this.capacity);
+        this.assertWeightIsNonNegative(this.weight);
+        return;
     }
 
     public Weight getCapacity() {
@@ -23,9 +26,31 @@ public class WeightedSolution extends ElementsSolution implements Solution {
 
     public void addElement(final Integer element, final Weight elementWeight) {
         final var newWeight = this.weight.add(elementWeight);
-        this.assertNewWeight(newWeight);
+        this.assertNewWeightDoesNotExceedCapacity(newWeight);
         super.addElement(element);
         this.weight = newWeight;
+        return;
+    }
+
+    public void removeElement(final Integer element, final Weight elementWeight) {
+        final var newWeight = this.weight.subtract(elementWeight);
+        this.assertNewWeightDoesNotExceedCapacity(newWeight);
+        this.assertWeightIsNonNegative(newWeight);
+        super.removeElement(element);
+        this.weight = newWeight;
+        return;
+    }
+
+    public void substituteElement(
+        final Integer toRemove,
+        final Weight toRemoveWeight,
+        final Integer toAdd,
+        final Weight toAddWeight
+    ) {
+        this.assertNoEqualElements(toRemove, toAdd);
+        this.removeElement(toRemove, toRemoveWeight);
+        this.addElement(toAdd, toAddWeight);
+        return;
     }
 
     @Override
@@ -60,13 +85,33 @@ public class WeightedSolution extends ElementsSolution implements Solution {
         return obj;
     }
 
-    private void assertNewWeight(final Weight newWeight) {
-        assert this.capacity.exceeds(newWeight)
+    private void assertNewWeightDoesNotExceedCapacity(final Weight newWeight) {
+        assert !newWeight.exceeds(this.capacity)
             : String.format(
                 "capacity exceeded:\n\tcapacity: %s\n\tnew weight: %s",
                 this.capacity.toString(),
                 newWeight.toString()
             );
+        return;
+    }
+
+    private void assertWeightIsNonNegative(final Weight weight) {
+        assert weight.getMin() >= 0
+            : String.format(
+                "Weight is not non-negative, i.e. it has at least one negative value\n%s",
+                weight.toString()
+            );
+        return;
+    }
+
+    private void assertNoEqualElements(final Integer lhs, final Integer rhs) {
+        assert !lhs.equals(rhs)
+            : String.format(
+                "Elements %d and %d are equal",
+                lhs,
+                rhs
+            );
+        return;
     }
 
 }
