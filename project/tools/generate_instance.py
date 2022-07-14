@@ -11,7 +11,8 @@ generator = RandomizedInstanceGenerator(
     edge_probability=0.3,
     weight_size=3,
     percentage_of_nodes_to_fit=0.5,
-    number_of_digits_to_round=3,
+    weight_minimum_value=500,
+    weight_maximum_value=1000,
 )
 
 instance = generator.generate()

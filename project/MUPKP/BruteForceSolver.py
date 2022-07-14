@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterable, List, Tuple
 import itertools
 import time
 
@@ -25,21 +25,21 @@ class BruteForceSolver(Solver):
     def get_solution(self) -> Solution:
         return self.solution_list[0]
 
-    def get_solution_ordered_list(self) -> list[Solution]:
+    def get_solution_ordered_list(self) -> List[Solution]:
         return self.solution_list
 
     def get_running_time_seconds(self) -> float:
         return self.running_time
 
     @staticmethod
-    def _all_combinations(elements: Iterable) -> list[tuple[int]]:
+    def _all_combinations(elements: Iterable) -> List[tuple[int]]:
         size = len(elements)
         acc = []
         for combination_size in range(size):
             acc.extend(itertools.combinations(elements, combination_size))
         return acc
 
-    def _set_all_possible_solutions(self) -> list[Solution]:
+    def _set_all_possible_solutions(self) -> List[Solution]:
         self._all_possible_solutions = []
         number_of_nodes = self.problem.graph.number_of_nodes()
         def make_solution(combination: tuple[int]):
