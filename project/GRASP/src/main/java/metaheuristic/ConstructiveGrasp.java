@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Set;
 
 import graph.GraphTools;
+import graph.ElementValuePair;
 import metaheuristic.greedy_criteria.GreedyCriteria;
 import problem.Problem;
 import solution.Solution;
@@ -134,19 +135,6 @@ public class ConstructiveGrasp {
         final Integer randomIndex = randomNumberGenerator.nextInt(this.restrictedCandidateList.size());
         this.candidateToAdd = this.restrictedCandidateList.get(randomIndex);
         this.candidateList.remove(this.candidateToAdd);
-        return;
-    }
-
-}
-
-final class ElementValuePair<T> {
-
-    public final Integer element;
-    public final T value;
-
-    public ElementValuePair(final Integer element, final T value) {
-        this.element = element;
-        this.value = value;
         return;
     }
 
