@@ -37,6 +37,7 @@ public class ProblemData implements Problem {
         this.capacity = readCapacity(this.input.getJSONArray("capacity"));
         this.weightMap = readWeights(this.input.getJSONArray("weights"));
         this.checkAll();
+        return;
     }
 
     public Integer getNumberOfNodes() {
@@ -82,6 +83,7 @@ public class ProblemData implements Problem {
         for(int i = 0; i < numberOfNodes; ++i) {
             graph.addNode(i);
         }
+        return;
     }
 
     private static void addEdges(final Builder<Integer> graph, final JSONArray edges) {
@@ -92,6 +94,7 @@ public class ProblemData implements Problem {
                 edgeArray.getInt(1)
             );
         }
+        return;
     }
 
     private static Weight readCapacity(final JSONArray capacityArray) {
@@ -129,6 +132,7 @@ public class ProblemData implements Problem {
         if(!this.graph.isDirected()) {
             throw new InvalidInputException(this.fileName, "graph is not directed");
         }
+        return;
     }
 
     private void checkGraphNumberOfNodes() throws InvalidInputException {
@@ -140,6 +144,7 @@ public class ProblemData implements Problem {
                 this.numberOfNodes
             ));
         }
+        return;
     }
 
     private void checkCapacitySize() throws InvalidInputException {
@@ -150,6 +155,7 @@ public class ProblemData implements Problem {
                 this.numberOfNodes
             ));
         }
+        return;
     }
 
     private void checkWeightMapSize() throws InvalidInputException {
@@ -172,6 +178,7 @@ public class ProblemData implements Problem {
                 ));
             }
         }
+        return;
     }
 
 }

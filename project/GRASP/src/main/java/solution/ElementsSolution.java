@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class ElementsSolution {
 
-    private Set<Integer> elements = new HashSet<Integer>();
+    private final Set<Integer> elements = new HashSet<Integer>();
 
     public ElementsSolution() {}
 
@@ -23,6 +23,7 @@ public class ElementsSolution {
         this.assertNoNewElement(element);
         this.assertNoNegativeValue(element);
         this.elements.add(element);
+        return;
     }
 
     public void removeElement(final Integer element) {
@@ -75,6 +76,7 @@ public class ElementsSolution {
                 element,
                 this.getElements().toString()
             );
+        return;
     }
 
     private void assertNoNegativeValue(final Integer element) {
@@ -82,6 +84,7 @@ public class ElementsSolution {
             : String.format("Element must not be negative:\n\telement: %d",
                 element
             );
+        return;
     }
 
     private void assertElementIsPresent(final Integer element) {
