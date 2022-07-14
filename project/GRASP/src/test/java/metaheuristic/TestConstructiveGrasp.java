@@ -22,7 +22,6 @@ public class TestConstructiveGrasp {
     Double greedyParameter;
 
     public void init(final String instanceName) throws JSONException, IOException, InvalidInputException {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
         this.problem = new ProblemData(INSTANCES_DIR + instanceName);
         this.greedyCriteria = new MaximumCombinedWeight();
         this.greedyParameter = 0.2;
