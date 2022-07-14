@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class TestWeightedSolution {
@@ -19,7 +19,7 @@ public class TestWeightedSolution {
         new Weight(Arrays.asList(5, 14, 22))
     );
 
-    @BeforeTest
+    @BeforeMethod
     public void init() {
         this.capacity = new Weight(Arrays.asList(10, 20, 30));
         this.solutionEmpty = new WeightedSolution(capacity);
