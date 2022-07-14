@@ -83,7 +83,7 @@ public class ConstructiveGrasp {
         // evaluate the greedy cost of all candidates
         final List<ElementValuePair<Double>> elementValuePairList = this.candidateList
             .stream()
-            .map(node -> new ElementValuePair<Double>(node, greedyCriteria.evaluate(this.problem, this.currentSolution, node)))
+            .map(node -> new ElementValuePair<Double>(node, greedyCriteria.evaluateCombined(this.problem, this.currentSolution, node)))
             .sorted((lhs, rhs) -> (int) Math.signum(lhs.value - rhs.value))
             .toList();
         // find the minimum value threshold (we want values lower than it)

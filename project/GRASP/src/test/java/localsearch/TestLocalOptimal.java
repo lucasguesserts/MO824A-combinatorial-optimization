@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import metaheuristic.greedy_criteria.GreedyCriteria;
-import metaheuristic.greedy_criteria.MaximumCombinedWeight;
+import metaheuristic.greedy_criteria.GreedyCriteriaMax;
 import problem.InvalidInputException;
 import problem.Problem;
 import problem.ProblemData;
@@ -26,7 +26,7 @@ public class TestLocalOptimal {
 
     public void init(final String instanceName) throws JSONException, IOException, InvalidInputException {
         this.problem = new ProblemData(CASES_DIR + instanceName);
-        this.greedyCriteria = new MaximumCombinedWeight();
+        this.greedyCriteria = new GreedyCriteriaMax();
     }
 
     @Test

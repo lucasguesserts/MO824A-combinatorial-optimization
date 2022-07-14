@@ -75,7 +75,7 @@ public class LocalOptimal implements LocalSearch {
             ))
             .filter(node -> !elementWeightMap.get(node).exceeds(remainingCapacity));
         final var bestCandidate = candidates
-            .map(node -> new ElementValuePair<Double>(node, greedyCriteria.evaluate(this.problem, this.currentSolution, node)))
+            .map(node -> new ElementValuePair<Double>(node, greedyCriteria.evaluateCombined(this.problem, this.currentSolution, node)))
             .min((lhs, rhs) -> (int) Math.signum(lhs.value - rhs.value))
             .map(pair -> pair.element);
         if (bestCandidate.isPresent()) {
@@ -125,8 +125,8 @@ public class LocalOptimal implements LocalSearch {
                     .add(elementWeightMap.get(elementToAdd));
                 return new NodeSubstitutionTriple(elementToRemove, elementToAdd, weightOfSubstitution);
             })
-            .filter(triple -> triple.weightOfSubstitution.getNorm2() < weightOfCurrentSolution.getNorm2()) // TODO: replace it by a greedy criteria
-            .min((lhs, rhs) -> (int) Math.signum(lhs.weightOfSubstitution.getNorm2() - rhs.weightOfSubstitution.getNorm2()));
+            .filter(triple -> greedyCriteria.evaluate(triple.weightOfSubstitution) < greedyCriteria.evaluate(weightOfCurrentSolution))
+            .min((lhs, rhs) -> (int) Math.signum(greedyCriteria.evaluate(lhs.weightOfSubstitution) - greedyCriteria.evaluate(rhs.weightOfSubstitution)));
         if (bestSubstitution.isPresent()) {
             this.elementHasBeenSubstituted = Boolean.TRUE;
             final var elementToRemove = bestSubstitution.get().toRemove;
