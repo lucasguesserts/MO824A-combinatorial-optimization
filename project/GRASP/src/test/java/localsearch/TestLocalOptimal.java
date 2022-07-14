@@ -38,7 +38,6 @@ public class TestLocalOptimal {
         }
         final LocalSearch localOptimalRunner = new LocalOptimal(this.problem, this.greedyCriteria);
         final Solution localOptimalSolution = localOptimalRunner.search(initialSolution);
-        System.out.println(localOptimalSolution);
         Assert.assertTrue(problem.getGraph().nodes().containsAll(localOptimalSolution.getElements()));
         Assert.assertTrue(localOptimalSolution.getElements().size() > 0);
         Assert.assertEquals(localOptimalSolution.getCost(), (Integer) 3);

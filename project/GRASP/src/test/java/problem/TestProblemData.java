@@ -15,7 +15,7 @@ public class TestProblemData {
 
     @Test
     public void testConstructor() throws JSONException, IOException, InvalidInputException {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        // System.out.println("Working Directory = " + System.getProperty("user.dir"));
         final var problemData = new ProblemData(RESOURCES_DIR + "problem_data/instance_3.json");
         Assert.assertNotNull(problemData);
         Assert.assertEquals(problemData.getNumberOfNodes(), (Integer) 10);
