@@ -46,7 +46,8 @@ public class TestWeightedSolution {
 
     @Test
     public void testEquality() {
-        final var other = new WeightedSolution(capacity);        for (int i = 0; i < this.elementList.size(); ++i) {
+        final var other = new WeightedSolution(capacity);
+        for (int i = 0; i < this.elementList.size(); ++i) {
             other.addElement(
                 this.elementList.get(i),
                 this.weightList.get(i)
@@ -76,6 +77,30 @@ public class TestWeightedSolution {
         other.addElement(elementList.get(0), weightList.get(0));
         other.addElement(elementList.get(1) + 1, weightList.get(1));
         Assert.assertNotEquals(solutionWithElements, other);
+    }
+
+    @Test
+    public void testRemoveElement() {
+        solutionWithElements.removeElement(elementList.get(0), weightList.get(0));
+        final var other = new WeightedSolution(capacity);
+        other.addElement(elementList.get(1), weightList.get(1));
+        Assert.assertEquals(solutionWithElements, other);
+    }
+
+    @Test
+    public void testSubstituteElement() {
+        final Integer extraElement = 14;
+        final Weight extraElementWeight = new Weight(Arrays.asList(4, 2, 7));
+        solutionWithElements.substituteElement(
+            elementList.get(0),
+            weightList.get(0),
+            extraElement,
+            extraElementWeight
+        );
+        final var other = new WeightedSolution(capacity);
+        other.addElement(elementList.get(1), weightList.get(1));
+        other.addElement(extraElement, extraElementWeight);
+        Assert.assertEquals(solutionWithElements, other);
     }
 
 }
