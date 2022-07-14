@@ -14,5 +14,14 @@ public interface Solution {
 
     public void addElement(final Integer element, final Weight elementWeight);
 
+    public void removeElement(final Integer element, final Weight elementWeight);
+
+    public void substituteElement(
+        final Integer toRemove,
+        final Weight toRemoveWeight,
+        final Integer toAdd,
+        final Weight toAddWeight
+    );
+
 }
 
