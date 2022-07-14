@@ -1,0 +1,49 @@
+{
+  "number_of_nodes": 4,
+  "capacity": [
+    200,
+    200
+  ],
+  "weights": [
+    [
+      100,
+      100
+    ],
+    [
+      50,
+      50
+    ],
+    [
+      50,
+      50
+    ],
+    [
+      10,
+      10
+    ]
+  ],
+  "edges": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      2,
+      3
+    ]
+  ],
+  "parameters": {
+    "comment_origin": "this is a modification of a case generated using the parameters below",
+    "comment_relation_with_origin": "it has nothing to do with the original instance",
+    "comment_purpose": "this is a test case made by hand",
+    "number_of_nodes": 5,
+    "edge_probability": 0.5,
+    "weight_size": 3,
+    "percentage_of_nodes_to_fit": 0.5,
+    "number_of_digits_to_round": 3
+  }
+}
