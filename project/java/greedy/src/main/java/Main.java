@@ -14,7 +14,7 @@ import solution.Solution;
 
 public class Main {
 
-    static final String INSTANCES_DIR = "../../instances/small_examples/";
+    static final String INSTANCES_DIR = "../../instances/";
 
     public static void main(final String[] args) throws JSONException, IOException, InvalidInputException {
         final var listOfInstances = listFiles(INSTANCES_DIR);
@@ -23,8 +23,7 @@ public class Main {
             System.out.println("Instance " + instanceName);
             try{
                 final var solution = solve(instanceName);
-                System.out.println("Solution:");
-                System.out.println(solution);
+                System.out.println("Solution cost: " + solution.getCost());
             } catch (final Exception exception) {
                 System.out.println("\nerror processing instance");
                 System.out.println(exception);

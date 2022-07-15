@@ -6,11 +6,11 @@ from MUPKP import RandomizedInstanceGenerator
 
 output_dir = "instances"
 
-number_of_nodes_list            = [10, 50, 100, 300]
-edge_probability_list           = [0.20, 0.40, 0.60]
-weight_size_list                = [2, 3, 4]
+number_of_nodes_list            = [500]
+edge_probability_list           = [0.001, 0.005, 0.01]
+weight_size_list                = [6]
 percentage_of_nodes_to_fit_list = [0.30, 0.50, 0.70]
-weight_minimum_value            = 500
+weight_minimum_value            = 0
 weight_maximum_value            = 1000
 
 all_combinations = itertools.product(
