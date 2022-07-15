@@ -2,6 +2,7 @@
 
 ./script/generate_instances
 ./script/ilp_solve
+./script/tabu_solve
 ./script/grasp_solve
 ./script/greedy_solve
 rm instances/*.json
