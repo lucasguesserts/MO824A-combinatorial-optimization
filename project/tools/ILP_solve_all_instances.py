@@ -1,22 +1,33 @@
+import json
+import math
 import os
+import sys
 from MUPKP import IlpSolver, Problem, FileManipulation
 
-instances_dir = "./instances"
+instances_dir = sys.argv[1]
 
 instance_list = os.listdir(instances_dir)
 instance_list = list(filter(lambda f: ".json" in f, instance_list))
 instance_list = list(map(lambda f: f"{instances_dir}/{f}", instance_list))
 
+logs = []
+
 for instance in instance_list:
     try:
-        print("\n\n======================")
         problem = Problem.from_dict(FileManipulation.json_to_dict(instance))
-        print(f"Integer Linear Programming - solution of the problem {problem.name}:")
         solver = IlpSolver(problem)
-        print(f"running time: {solver.get_running_time_seconds()}")
-        print(f"cost: {len(solver.get_solution())}")
-        print(solver.get_solution())
+        logs.append({
+            "problem": problem.name,
+            "cost": len(solver.get_solution()),
+            "runningTime": solver.get_running_time_seconds(),
+        })
     except Exception as e:
-        print(f"\n\n!!!!!!!!!\nerror processing instance: {instance}\n\n")
-        print(e)
-        print("\n\n")
+        logs.append({
+            "problem": problem.name,
+            "cost": math.inf,
+            "runningTime": math.inf,
+            "error": e
+        })
+
+with open("ilp_solve.json", "w") as file:
+    json.dump(logs, file, indent=4)
