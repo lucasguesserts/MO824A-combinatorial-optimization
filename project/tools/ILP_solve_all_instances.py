@@ -12,8 +12,9 @@ for instance in instance_list:
         print("\n\n======================")
         problem = Problem.from_dict(FileManipulation.json_to_dict(instance))
         print(f"Integer Linear Programming - solution of the problem {problem.name}:")
-        solver = IlpSolver(problem, log=True)
+        solver = IlpSolver(problem)
         print(f"running time: {solver.get_running_time_seconds()}")
+        print(f"cost: {len(solver.get_solution())}")
         print(solver.get_solution())
     except Exception as e:
         print(f"\n\n!!!!!!!!!\nerror processing instance: {instance}\n\n")
