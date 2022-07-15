@@ -42,7 +42,7 @@ public class Grasp extends ConstructiveGrasp {
     }
 
     private Integer getNumberOfIterations() {
-        return this.problem.getGraph().nodes().size();
+        return ((Long) Math.round(Math.sqrt(this.problem.getGraph().nodes().size()))).intValue();
     }
 
 }

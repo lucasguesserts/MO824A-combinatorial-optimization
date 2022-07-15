@@ -58,7 +58,7 @@ public class Tabu extends ConstructiveGrasp {
     }
 
     private Integer getNumberOfRestarts() {
-        return this.problem.getGraph().nodes().size();
+        return ((Long) Math.round(Math.sqrt(this.problem.getGraph().nodes().size()))).intValue();
     }
 
 }
