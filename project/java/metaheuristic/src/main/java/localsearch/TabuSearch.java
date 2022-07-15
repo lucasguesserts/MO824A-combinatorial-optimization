@@ -104,6 +104,7 @@ public class TabuSearch implements LocalSearch {
     private void setNothingDone() {
         this.elementHasBeenAdded = Boolean.FALSE;
         this.elementHasBeenSubstituted = Boolean.FALSE;
+        this.betterSolutionHasBeenFound = Boolean.FALSE;
         return;
     }
 
