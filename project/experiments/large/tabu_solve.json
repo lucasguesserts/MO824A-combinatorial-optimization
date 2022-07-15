@@ -1,0 +1,137 @@
+[
+        {
+            "problem": "N1000_E2405_W373757",
+            "cost": 505,
+            "runningTime": 6.277
+        },
+        {
+            "problem": "N1000_E2413_W224743",
+            "cost": 305,
+            "runningTime": 3.857
+        },
+        {
+            "problem": "N1000_E2414_W527164",
+            "cost": 702,
+            "runningTime": 6.477
+        },
+        {
+            "problem": "N1000_E2417_W376515",
+            "cost": 508,
+            "runningTime": 6.699
+        },
+        {
+            "problem": "N1000_E2418_W524518",
+            "cost": 705,
+            "runningTime": 7.138
+        },
+        {
+            "problem": "N1000_E2422_W375622",
+            "cost": 508,
+            "runningTime": 6.232
+        },
+        {
+            "problem": "N1000_E2426_W523016",
+            "cost": 700,
+            "runningTime": 5.879
+        },
+        {
+            "problem": "N1000_E2438_W225461",
+            "cost": 305,
+            "runningTime": 3.705
+        },
+        {
+            "problem": "N1000_E2445_W223283",
+            "cost": 312,
+            "runningTime": 4.316
+        },
+        {
+            "problem": "N1000_E3542_W525104",
+            "cost": 702,
+            "runningTime": 5.63
+        },
+        {
+            "problem": "N1000_E3578_W224047",
+            "cost": 302,
+            "runningTime": 2.648
+        },
+        {
+            "problem": "N1000_E3624_W525657",
+            "cost": 702,
+            "runningTime": 5.737
+        },
+        {
+            "problem": "N1000_E3637_W225015",
+            "cost": 300,
+            "runningTime": 2.615
+        },
+        {
+            "problem": "N1000_E3666_W226147",
+            "cost": 303,
+            "runningTime": 2.859
+        },
+        {
+            "problem": "N1000_E3668_W376329",
+            "cost": 507,
+            "runningTime": 4.16
+        },
+        {
+            "problem": "N1000_E3681_W527379",
+            "cost": 703,
+            "runningTime": 5.674
+        },
+        {
+            "problem": "N1000_E3704_W375910",
+            "cost": 505,
+            "runningTime": 4.19
+        },
+        {
+            "problem": "N1000_E3737_W375969",
+            "cost": 498,
+            "runningTime": 4.246
+        },
+        {
+            "problem": "N1000_E477_W524540",
+            "cost": 704,
+            "runningTime": 5.385
+        },
+        {
+            "problem": "N1000_E483_W225301",
+            "cost": 306,
+            "runningTime": 2.705
+        },
+        {
+            "problem": "N1000_E486_W376292",
+            "cost": 509,
+            "runningTime": 4.675
+        },
+        {
+            "problem": "N1000_E493_W525172",
+            "cost": 711,
+            "runningTime": 5.13
+        },
+        {
+            "problem": "N1000_E494_W524333",
+            "cost": 716,
+            "runningTime": 4.757
+        },
+        {
+            "problem": "N1000_E495_W375913",
+            "cost": 506,
+            "runningTime": 4.496
+        },
+        {
+            "problem": "N1000_E498_W374946",
+            "cost": 516,
+            "runningTime": 4.666
+        },
+        {
+            "problem": "N1000_E522_W225006",
+            "cost": 311,
+            "runningTime": 2.903
+        },
+        {
+            "problem": "N1000_E526_W224769",
+            "cost": 308,
+            "runningTime": 2.975
+        }
+    ]
