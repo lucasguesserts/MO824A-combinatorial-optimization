@@ -23,7 +23,7 @@ final class GraspRunner extends MetaheuristicSolver {
         problem = new ProblemData(instanceName);
         greedyCriteria = new GreedyCriteriaMax();
         greedyParameter = 0.2;
-        grasp = new Grasp(
+        metaheuristic = new Grasp(
             problem,
             greedyCriteria,
             greedyParameter
@@ -31,7 +31,7 @@ final class GraspRunner extends MetaheuristicSolver {
     }
 
     protected void solve() {
-        solution = grasp.solve();
+        solution = metaheuristic.solve();
         return;
     }
 

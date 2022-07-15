@@ -22,11 +22,11 @@ final class GreedyRunner extends MetaheuristicSolver {
     protected void initializeSolver(final String instanceName) throws JSONException, IOException, InvalidInputException {
         problem = new ProblemData(instanceName);
         greedyCriteria = new GreedyCriteriaMax();
-        grasp = new Greedy(problem, greedyCriteria);
+        metaheuristic = new Greedy(problem, greedyCriteria);
     }
 
     protected void solve() {
-        solution = grasp.solve();
+        solution = metaheuristic.solve();
         return;
     }
 

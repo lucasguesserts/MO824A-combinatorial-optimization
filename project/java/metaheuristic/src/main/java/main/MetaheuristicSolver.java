@@ -24,7 +24,7 @@ public abstract class MetaheuristicSolver {
     protected GreedyCriteria greedyCriteria;
     protected Double greedyParameter;
 
-    protected Metaheuristic grasp;
+    protected Metaheuristic metaheuristic;
 
     protected Solution solution;
 
