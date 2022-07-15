@@ -22,16 +22,6 @@ all_combinations = itertools.product(
 
 for (nn, ep, ws, pn) in all_combinations:
 
-    print(f"==========")
-    print(f"instance:")
-    print(f"\tnumber_of_nodes = {nn}")
-    print(f"\tedge_probability = {ep}")
-    print(f"\tweight_size = {ws}")
-    print(f"\tpercentage_of_nodes_to_fit = {pn}")
-    print(f"\tweight_minimum_value = {weight_minimum_value}")
-    print(f"\tweight_maximum_value = {weight_maximum_value}")
-    print()
-
     generator = RandomizedInstanceGenerator(
         number_of_nodes=nn,
         edge_probability=ep,
@@ -42,5 +32,16 @@ for (nn, ep, ws, pn) in all_combinations:
     )
 
     instance = generator.generate()
-    file_path = f"{output_dir}/{instance.name}"
+    file_path = f"{output_dir}/{instance.name}.json"
     FileManipulation.dict_to_json(instance.to_dict(), file_path)
+
+    print(f"==========")
+    print(f"instance:")
+    print(f"\tfile = {file_path}")
+    print(f"\tnumber_of_nodes = {nn}")
+    print(f"\tedge_probability = {ep}")
+    print(f"\tweight_size = {ws}")
+    print(f"\tpercentage_of_nodes_to_fit = {pn}")
+    print(f"\tweight_minimum_value = {weight_minimum_value}")
+    print(f"\tweight_maximum_value = {weight_maximum_value}")
+    print()
