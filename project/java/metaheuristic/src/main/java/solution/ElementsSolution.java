@@ -11,6 +11,10 @@ public class ElementsSolution {
 
     public ElementsSolution() {}
 
+    protected ElementsSolution(final ElementsSolution other) {
+        this.elements.addAll(other.elements);
+    }
+
     public Set<Integer> getElements() {
         return this.elements;
     }

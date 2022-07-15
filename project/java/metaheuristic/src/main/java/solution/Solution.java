@@ -4,6 +4,10 @@ import java.util.Set;
 
 public interface Solution {
 
+    public Solution clone();
+
+    public Solution cloneWithExpandedCapacity(final Weight newCapacity);
+
     public Set<Integer> getElements();
 
     public Integer getCost();

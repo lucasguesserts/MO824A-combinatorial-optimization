@@ -1,32 +1,48 @@
 package metaheuristic;
 
-import localsearch.LocalOptimal;
 import localsearch.LocalSearch;
+import localsearch.TabuSearch;
 import metaheuristic.greedy_criteria.GreedyCriteria;
 import problem.Problem;
 import solution.Solution;
 import solution.WeightedSolution;
 
-public class Grasp extends ConstructiveGrasp {
+public class Tabu extends ConstructiveGrasp {
 
-    private final Integer numberOfIterations;
     private final LocalSearch localSearch;
+    private final Integer maximumNumberOfIterationsWithoutImprovement;
+    private final Double tenureRatio;
+    private final Double capacityExpansionRatio;
+    private final Integer numberOfRestarts;
+
     private Solution bestSolution;
 
-    public Grasp(
+    public Tabu(
         final Problem problem,
         final GreedyCriteria greedyCriteria,
-        final Double greedyParameter
+        final Double greedyParameter,
+        final Double tenureRatio,
+        final Double capacityExpansionRatio,
+        final Integer maximumNumberOfIterationsWithoutImprovement
     ) {
         super(problem, greedyCriteria, greedyParameter);
-        this.numberOfIterations = this.getNumberOfIterations();
-        this.localSearch = new LocalOptimal(this.problem, this.greedyCriteria);
+        this.numberOfRestarts = this.getNumberOfRestarts();
+        this.tenureRatio = tenureRatio;
+        this.capacityExpansionRatio = capacityExpansionRatio;
+        this.maximumNumberOfIterationsWithoutImprovement = maximumNumberOfIterationsWithoutImprovement;
+        this.localSearch = new TabuSearch(
+            this.problem,
+            this.greedyCriteria,
+            this.tenureRatio,
+            this.capacityExpansionRatio,
+            this.maximumNumberOfIterationsWithoutImprovement
+        );
         this.bestSolution = new WeightedSolution(this.problem.getCapacity());
         return;
     }
 
     public Solution solve() {
-        for (long count = 0; count < this.numberOfIterations; ++count) {
+        for (long count = 0; count < this.numberOfRestarts; ++count) {
             final var initialSolution = this.constructiveHeuristic();
             final var localOptimalSolution = this.localSearch.search(initialSolution);
             this.updateBestSolution(localOptimalSolution);
@@ -41,7 +57,7 @@ public class Grasp extends ConstructiveGrasp {
         return;
     }
 
-    private Integer getNumberOfIterations() {
+    private Integer getNumberOfRestarts() {
         return ((Long) Math.round(Math.sqrt(this.problem.getGraph().nodes().size()))).intValue();
     }
 

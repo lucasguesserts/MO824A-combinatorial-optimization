@@ -16,16 +16,22 @@ import solution.Solution;
 import solution.Weight;
 import solution.WeightedSolution;
 
-public class TestLocalOptimal {
+public class TestTabuSearch {
 
     static final String CASES_DIR = "localsearch/";
 
-    Problem problem;
-    GreedyCriteria greedyCriteria;
+    private Problem problem;
+    private GreedyCriteria greedyCriteria;
+    private Integer maximumNumberOfIterationsWithoutImprovement;
+    private Double tenureRatio;
+    private Double capacityExpansionRatio;
 
     public void init(final String instanceName) throws JSONException, IOException, InvalidInputException {
         this.problem = new ProblemData(CASES_DIR + instanceName);
         this.greedyCriteria = new GreedyCriteriaMax();
+        this.maximumNumberOfIterationsWithoutImprovement = 4;
+        this.tenureRatio = 0.4;
+        this.capacityExpansionRatio = 0.2;
     }
 
     @Test
@@ -35,7 +41,13 @@ public class TestLocalOptimal {
         for (final var element : new Integer[]{0, 1}) {
             initialSolution.addElement(element, this.problem.getWeightMap().get(element));
         }
-        final LocalSearch localOptimalRunner = new LocalOptimal(this.problem, this.greedyCriteria);
+        final LocalSearch localOptimalRunner = new TabuSearch(
+            this.problem,
+            this.greedyCriteria,
+            this.tenureRatio,
+            this.capacityExpansionRatio,
+            this.maximumNumberOfIterationsWithoutImprovement
+        );
         final Solution localOptimalSolution = localOptimalRunner.search(initialSolution);
         Assert.assertTrue(problem.getGraph().nodes().containsAll(localOptimalSolution.getElements()));
         Assert.assertTrue(localOptimalSolution.getElements().size() > 0);
