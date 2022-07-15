@@ -1,2 +1,3 @@
 rootProject.name = 'project'
 include 'metaheuristic'
+include 'greedy'
