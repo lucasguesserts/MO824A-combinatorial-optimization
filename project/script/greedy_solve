@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd java
+gradle greedy:run | tee ../greedy.log
