@@ -1,0 +1,10 @@
+#!/bin/sh
+
+LOG_FILE="solve_all.log"
+
+echo "" > $LOG_FILE
+
+./script/ilp_solve | tee -a $LOG_FILE
+./script/tabu_solve | tee -a $LOG_FILE
+./script/grasp_solve | tee -a $LOG_FILE
+./script/greedy_solve | tee -a $LOG_FILE
