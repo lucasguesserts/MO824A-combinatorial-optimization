@@ -103,4 +103,20 @@ public class TestWeightedSolution {
         Assert.assertEquals(solutionWithElements, other);
     }
 
+    @Test
+    public void testClone() {
+        final var other = solutionWithElements.clone();
+        Assert.assertEquals(other, solutionWithElements);
+        Assert.assertNotSame(other, solutionWithElements);
+    }
+
+    @Test
+    public void testCloneWithExpandedCapacity() {
+        final var otherCapacity = new Weight(Arrays.asList(50, 60, 70));
+        final var other = solutionWithElements.cloneWithExpandedCapacity(otherCapacity);
+        Assert.assertEquals(other.getElements(), solutionWithElements.getElements());
+        Assert.assertNotEquals(other.getCapacity(), solutionWithElements.getCapacity());
+        Assert.assertEquals(other.getCapacity(), otherCapacity);
+    }
+
 }
