@@ -197,7 +197,7 @@ public class TabuSearch implements LocalSearch {
             this.currentSolution.substituteElement(elementToRemove, weightOfElementToRemove, elementToAdd, weightOfElementToAdd);
         }
         else {
-            this.elementHasBeenAdded = Boolean.FALSE;
+            this.elementHasBeenSubstituted = Boolean.FALSE;
         }
         return;
     }
