@@ -7,7 +7,7 @@ import problem.Problem;
 import solution.Solution;
 import solution.WeightedSolution;
 
-public class Grasp extends ConstructiveGrasp {
+public class Grasp extends ConstructiveGrasp implements Metaheuristic {
 
     private final Integer numberOfIterations;
     private final LocalSearch localSearch;

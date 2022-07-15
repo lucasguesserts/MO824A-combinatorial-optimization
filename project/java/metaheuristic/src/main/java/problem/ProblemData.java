@@ -60,6 +60,15 @@ public class ProblemData implements Problem {
         return this.weightMap;
     }
 
+    public String getName() {
+        return String.format(
+            "N%d_E%d_W%d",
+            this.graph.nodes().size(),
+            this.graph.edges().size(),
+            this.capacity.getAverage()
+        );
+    }
+
     private static JSONObject readJson(final String fileName) throws IOException {
         final var filePath = Path.of(fileName);
         final var fileContent = Files.readString(filePath);

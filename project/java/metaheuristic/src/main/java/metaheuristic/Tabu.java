@@ -7,7 +7,7 @@ import problem.Problem;
 import solution.Solution;
 import solution.WeightedSolution;
 
-public class Tabu extends ConstructiveGrasp {
+public class Tabu extends ConstructiveGrasp implements Metaheuristic {
 
     private final LocalSearch localSearch;
     private final Integer maximumNumberOfIterationsWithoutImprovement;

@@ -31,6 +31,16 @@ public class Weight {
         return Collections.min(this.values).doubleValue();
     }
 
+    public Integer getAverage() {
+        Integer accumulator = 0;
+        for (final var v : this.values) {
+            accumulator += v;
+        }
+        final Double average = accumulator.doubleValue() / this.values.size();
+        final Integer roundedAverage = ((Long) Math.round(average)).intValue();
+        return roundedAverage;
+    }
+
     public Double getNorm2() {
         Double accumulator = 0.0;
         for(final var v : this.values) {

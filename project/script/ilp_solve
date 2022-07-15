@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python tools/ILP_solve_all_instances.py 2>&1 | tee ilp.log
+python tools/ILP_solve_all_instances.py instances/medium/
