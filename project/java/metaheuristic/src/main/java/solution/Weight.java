@@ -58,6 +58,17 @@ public class Weight {
         return new Weight(sum);
     }
 
+    public Weight multiply(final Double factor) {
+        this.assertMultiplicationFactor(factor);
+        final List<Integer> result = new ArrayList<>(this.values.size());
+        for (int i = 0; i < this.values.size(); ++i) {
+            final var currentValue = this.values.get(i);
+            final Integer newValue = ((Long) Math.round(factor * currentValue)).intValue();
+            result.add(newValue);
+        }
+        return new Weight(result);
+    }
+
     public Boolean exceeds(final Weight other) {
         /**
          * `this` exceeds `other` if there is any value in
@@ -134,6 +145,15 @@ public class Weight {
                     values
                 );
         }
+    }
+
+    private void assertMultiplicationFactor(final Double factor) {
+        assert factor > 0
+            : String.format(
+                "Weight expansion factor %f must be greater than 0 (zero)",
+                factor
+            );
+        return;
     }
 
 }

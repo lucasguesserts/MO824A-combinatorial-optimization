@@ -52,6 +52,15 @@ public class TestWeight {
     }
 
     @Test
+    public void testMultiply() {
+        final Double multiplicationFactor = 1.2;
+        final var weight = new Weight(Arrays.asList(10, 20, 30));
+        final var result = weight.multiply(multiplicationFactor);
+        final var expected = new Weight(Arrays.asList(12, 24, 36));
+        Assert.assertEquals(result, expected);
+    }
+
+    @Test
     public void testMax() {
         Weight weight;
         weight = new Weight(Arrays.asList(10, 20, 30));
