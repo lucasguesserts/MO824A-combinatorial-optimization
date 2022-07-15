@@ -66,7 +66,7 @@ public class LocalOptimal implements LocalSearch {
             .filter(node -> !elementsOfCurrentSolution.contains(node))
             .toList()
         );
-        final var remainingCapacity = this.problem.getCapacity().subtract(this.currentSolution.getWeight());
+        final var remainingCapacity = this.currentSolution.getCapacity().subtract(this.currentSolution.getWeight());
         final var elementWeightMap = this.problem.getWeightMap();
         final var candidates = allPossibleCandidates
             .stream()
