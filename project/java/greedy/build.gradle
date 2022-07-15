@@ -1,0 +1,16 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'Main'
+}
+
+dependencies {
+    implementation project(':metaheuristic')
+    implementation group: 'org.json', name: 'json', version: '20220320'
+}

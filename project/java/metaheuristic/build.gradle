@@ -1,10 +1,6 @@
 plugins {
-    id 'application'
+    id 'java'
     id 'com.adarshr.test-logger' version '1.7.1'
-}
-
-application {
-    mainClass = 'Main'
 }
 
 repositories {
@@ -12,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.google.guava:guava:31.1-jre")
+    implementation group: "com.google.guava", name: "guava", version: "31.1-jre"
     implementation group: 'org.json', name: 'json', version: '20220320'
     testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
 }
