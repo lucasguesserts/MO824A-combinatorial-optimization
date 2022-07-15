@@ -7,12 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import metaheuristic.Metaheuristic;
 import metaheuristic.greedy_criteria.GreedyCriteria;
-import problem.InvalidInputException;
 import problem.Problem;
 import solution.Solution;
 
@@ -42,7 +40,7 @@ public abstract class MetaheuristicSolver {
 
     protected abstract String getLogFileName();
 
-    public void run() throws JSONException, IOException, InvalidInputException {
+    public void run() throws Exception {
         final var listOfInstances = listFiles(getInstancesDir());
         for (final var instanceName : listOfInstances) {
             try{

@@ -38,5 +38,4 @@ final class GreedyRunner extends MetaheuristicSolver {
         return "../../greedy_solve.json";
     }
 
-
 }
