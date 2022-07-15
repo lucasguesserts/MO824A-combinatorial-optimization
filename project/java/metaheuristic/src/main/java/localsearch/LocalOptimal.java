@@ -126,6 +126,7 @@ public class LocalOptimal implements LocalSearch {
                     .add(elementWeightMap.get(elementToAdd));
                 return new NodeSubstitutionTriple(elementToRemove, elementToAdd, weightOfSubstitution);
             })
+            .filter(triple -> !triple.weightOfSubstitution.exceeds(weightOfCurrentSolution))
             .filter(triple -> greedyCriteria.evaluate(triple.weightOfSubstitution) < greedyCriteria.evaluate(weightOfCurrentSolution))
             .min((lhs, rhs) -> (int) Math.signum(greedyCriteria.evaluate(lhs.weightOfSubstitution) - greedyCriteria.evaluate(rhs.weightOfSubstitution)));
         if (bestSubstitution.isPresent()) {

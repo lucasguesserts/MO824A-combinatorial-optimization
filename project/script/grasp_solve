@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd java
+gradle grasp:run | tee ../grasp.log

@@ -21,10 +21,10 @@ public class ConstructiveGrasp {
     protected final GreedyCriteria greedyCriteria;
     protected final Double greedyParameter;
 
-    protected Solution currentSolution;
-    protected Integer candidateToAdd;
-    protected Set<Integer> candidateList;
-    protected List<Integer> restrictedCandidateList;
+    private Solution currentSolution;
+    private Integer candidateToAdd;
+    private Set<Integer> candidateList;
+    private List<Integer> restrictedCandidateList;
 
     public ConstructiveGrasp(
         final Problem problem,
