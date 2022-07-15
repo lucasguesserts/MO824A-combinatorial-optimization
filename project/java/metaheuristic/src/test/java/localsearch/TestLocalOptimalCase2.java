@@ -22,12 +22,17 @@ import solution.WeightedSolution;
 public class TestLocalOptimalCase2 {
 
     private static final String CASES_DIR = "localsearch/";
+    static final String INSTANCE_NAME = "case_2.json";
 
     private Problem problem;
     private List<GreedyCriteria> greedyCriteriaList = Arrays.asList(
         new GreedyCriteriaMax(),
         new GreedyCriteriaNorm2()
     );
+
+    private Integer maximumNumberOfIterationsWithoutImprovement;
+    private Double tenureRatio;
+    private Double capacityExpansionRatio;
 
     private static final List<List<Integer>> VALID_SOLUTIONS = Arrays.asList(
         Arrays.asList(0, 1, 2, 3, 4),
@@ -75,16 +80,38 @@ public class TestLocalOptimalCase2 {
 
     @BeforeMethod
     private void init() throws JSONException, IOException, InvalidInputException {
-        final var instanceName = "case_2.json";
-        this.problem = new ProblemData(CASES_DIR + instanceName);
+        this.problem = new ProblemData(CASES_DIR + INSTANCE_NAME);
+        this.maximumNumberOfIterationsWithoutImprovement = 4;
+        this.tenureRatio = 0.4;
+        this.capacityExpansionRatio = 0.2;
     }
 
     @Test
-    public void testCase2() throws JSONException, IOException, InvalidInputException {
+    public void testLocalOptimal() throws JSONException, IOException, InvalidInputException {
         for (final var greedyCriteria : greedyCriteriaList)
         for (final var initialElements : INITIAL_SOLUTIONS_LIST){
             final var initialSolution = initializeSolution(initialElements);
-            final var localOptimalSolution = findLocalOptimal(initialSolution, greedyCriteria);
+            final LocalSearch localOptimalRunner = new LocalOptimal(this.problem, greedyCriteria);
+            final Solution localOptimalSolution = localOptimalRunner.search(initialSolution);
+            assertBasicStuff(localOptimalSolution);
+            assertSolutionIsValid(localOptimalSolution);
+            assertIsOptimal(localOptimalSolution);
+        }
+    }
+
+    @Test
+    public void testTabuSearch() throws JSONException, IOException, InvalidInputException {
+        for (final var greedyCriteria : greedyCriteriaList)
+        for (final var initialElements : INITIAL_SOLUTIONS_LIST){
+            final var initialSolution = initializeSolution(initialElements);
+            final LocalSearch localOptimalRunner = new TabuSearch(
+                this.problem,
+                greedyCriteria,
+                this.tenureRatio,
+                this.capacityExpansionRatio,
+                this.maximumNumberOfIterationsWithoutImprovement
+            );
+            final Solution localOptimalSolution = localOptimalRunner.search(initialSolution);
             assertBasicStuff(localOptimalSolution);
             assertSolutionIsValid(localOptimalSolution);
             assertIsOptimal(localOptimalSolution);
@@ -97,12 +124,6 @@ public class TestLocalOptimalCase2 {
             solution.addElement(element, this.problem.getWeightMap().get(element));
         }
         return solution;
-    }
-
-    private Solution findLocalOptimal(final Solution initialSolution, final GreedyCriteria greedyCriteria) {
-        final LocalSearch localOptimalRunner = new LocalOptimal(this.problem, greedyCriteria);
-        final Solution localOptimalSolution = localOptimalRunner.search(initialSolution);
-        return localOptimalSolution;
     }
 
     private void assertBasicStuff(final Solution solution) {
