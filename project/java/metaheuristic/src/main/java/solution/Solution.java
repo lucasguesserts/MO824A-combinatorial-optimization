@@ -4,6 +4,8 @@ import java.util.Set;
 
 public interface Solution {
 
+    public Solution clone();
+
     public Set<Integer> getElements();
 
     public Integer getCost();

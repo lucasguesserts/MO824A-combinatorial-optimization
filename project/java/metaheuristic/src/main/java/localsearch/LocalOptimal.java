@@ -42,7 +42,7 @@ public class LocalOptimal implements LocalSearch {
     }
 
     private void setInitialState(final Solution initialSoution) {
-        this.currentSolution = initialSoution;
+        this.currentSolution = initialSoution.clone();
         this.elementHasBeenAdded = Boolean.TRUE;
         this.elementHasBeenSubstituted = Boolean.TRUE;
         return;

@@ -16,6 +16,17 @@ public class WeightedSolution extends ElementsSolution implements Solution {
         return;
     }
 
+    protected WeightedSolution(final WeightedSolution other) {
+        super(other);
+        this.capacity = other.getCapacity();
+        this.weight = other.weight;
+        return;
+    }
+
+    public WeightedSolution clone() {
+        return new WeightedSolution(this);
+    }
+
     public Weight getCapacity() {
         return this.capacity;
     }
