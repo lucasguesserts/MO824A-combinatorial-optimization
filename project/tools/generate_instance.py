@@ -1,28 +1,46 @@
+import itertools
 import numpy as np
 from MUPKP import FileManipulation
 from MUPKP import RandomizedInstanceGenerator
 
 
-default_json_file_name = "foo.json"
-default_figure_file_name = "foo.png"
+output_dir = "instances"
 
-generator = RandomizedInstanceGenerator(
-    number_of_nodes=7,
-    edge_probability=0.3,
-    weight_size=3,
-    percentage_of_nodes_to_fit=0.5,
-    weight_minimum_value=500,
-    weight_maximum_value=1000,
+number_of_nodes_list            = [10, 50, 100, 300]
+edge_probability_list           = [0.20, 0.40, 0.60]
+weight_size_list                = [2, 3, 4]
+percentage_of_nodes_to_fit_list = [0.30, 0.50, 0.70]
+weight_minimum_value            = 500
+weight_maximum_value            = 1000
+
+all_combinations = itertools.product(
+    number_of_nodes_list,
+    edge_probability_list,
+    weight_size_list,
+    percentage_of_nodes_to_fit_list,
 )
 
-instance = generator.generate()
-FileManipulation.dict_to_json(instance.to_dict(), default_json_file_name)
+for (nn, ep, ws, pn) in all_combinations:
 
-instance.plot(default_figure_file_name)
+    print(f"==========")
+    print(f"instance:")
+    print(f"\tnumber_of_nodes = {nn}")
+    print(f"\tedge_probability = {ep}")
+    print(f"\tweight_size = {ws}")
+    print(f"\tpercentage_of_nodes_to_fit = {pn}")
+    print(f"\tweight_minimum_value = {weight_minimum_value}")
+    print(f"\tweight_maximum_value = {weight_maximum_value}")
+    print()
 
-print(f"weights:\n{instance.weights}")
-print()
-print(f"weights shape:\n{instance.weights.shape}")
-print()
-print(f"sum of all weights: {np.sum(instance.weights, axis=1)}")
-print(f"weight capacity: {instance.capacity}")
+    generator = RandomizedInstanceGenerator(
+        number_of_nodes=nn,
+        edge_probability=ep,
+        weight_size=ws,
+        percentage_of_nodes_to_fit=pn,
+        weight_minimum_value=weight_minimum_value,
+        weight_maximum_value=weight_maximum_value,
+    )
+
+    instance = generator.generate()
+    file_path = f"{output_dir}/{instance.name}"
+    FileManipulation.dict_to_json(instance.to_dict(), file_path)
