@@ -14,5 +14,5 @@ class FileManipulation:
         file_name: str,
     ) -> None:
         with open(file_name, "w") as file:
-            file.write(json.dumps(data, indent=2, ensure_ascii=True))
+            file.write(json.dumps(data, indent=4, ensure_ascii=True))
         return

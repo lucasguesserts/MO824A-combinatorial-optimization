@@ -3,7 +3,7 @@ from MUPKP import IlpSolver, BruteForceSolver, Problem, Solution, SolutionVerifi
 
 print(sys.argv)
 
-default_problem_file_name = "./instances/instance_1.json"
+default_problem_file_name = "./instances/small_examples/instance_1.json"
 problem_file_name = sys.argv[1] if len(sys.argv) == 2 else default_problem_file_name
 
 problem = Problem.from_dict(FileManipulation.json_to_dict(problem_file_name))
