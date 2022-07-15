@@ -3,7 +3,7 @@
     "java.test.config": [
         {
         "name": "test",
-        "workingDirectory": "${workspaceFolder}/java/GRASP/src/test/resources/"
+        "workingDirectory": "${workspaceFolder}/java/metaheuristic/src/test/resources/"
         }
     ],
     "java.configuration.runtimes": [
