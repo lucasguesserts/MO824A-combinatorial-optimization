@@ -18,4 +18,6 @@ public interface Problem {
 
     public Map<Integer, Weight> getWeightMap();
 
+    public String getName();
+
 }
