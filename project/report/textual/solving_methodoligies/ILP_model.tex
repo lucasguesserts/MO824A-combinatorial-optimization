@@ -2,6 +2,8 @@
 
 \subsubsection{Decision Variables}
 
+For each vertex $\solutionE \in \vertices$ of the input graph $\graph = \tuple{\vertices, \edges}$, we define the binary variable $\varE \in \binary$ which indicates whether $\solutionE$ is in the solution $\solution$:
+
 \begin{equation}
     \label{eq:decision-variables}
     \varE =  \begin{cases}
@@ -11,6 +13,10 @@
 \end{equation}
 
 \subsubsection{Mathematical Model}
+
+Below, \eqref{eq:ILP-objective} is the objective function: maximize the number of vertices in the solution.
+\eqref{eq:ILP-capacity-constraint} is the Capacity-Constraint of \eqref{eq:capacity-constraint}.
+\eqref{eq:ILP-order-constraint} is the Precedence-Constraint of \eqref{eq:precedence-constraint}: if a vertex $\solutionE$ is in the solution, then all vertices $\solutionEp$ ``above'' it must also be in the solution.
 
 \begin{align}
     \label{eq:ILP-objective}
@@ -24,7 +30,3 @@
     \label{eq:ILP-binary-constraint}
     & \var \in \varDomain
 \end{align}
-
-\eqref{eq:ILP-objective} is the objective function: maximize the number of vertices in the solution.
-\eqref{eq:ILP-capacity-constraint} is the Capacity-Constraint of \eqref{eq:capacity-constraint}.
-\eqref{eq:ILP-order-constraint} is the Precedence-Constraint of \eqref{eq:precedence-constraint}: if a vertex $\solutionE$ is in the solution, then all vertices $\solutionEp$ ``above'' it must also be in the solution.
