@@ -1,407 +1,407 @@
 [
-    {
-        "problem": "N100_E10_W37507",
-        "cost": 53,
-        "runningTime": 0.002410660000000009
-    },
-    {
-        "problem": "N100_E10_W52564",
-        "cost": 72,
-        "runningTime": 0.0020956789999999614
-    },
-    {
-        "problem": "N100_E13_W22388",
-        "cost": 33,
-        "runningTime": 0.0015236750000000576
-    },
-    {
-        "problem": "N100_E17_W37381",
-        "cost": 53,
-        "runningTime": 0.001444289000000043
-    },
-    {
-        "problem": "N100_E17_W52142",
-        "cost": 71,
-        "runningTime": 0.01528506900000004
-    },
-    {
-        "problem": "N100_E19_W22217",
-        "cost": 32,
-        "runningTime": 0.0019744589999999285
-    },
-    {
-        "problem": "N100_E24_W52076",
-        "cost": 72,
-        "runningTime": 0.0017216149999998986
-    },
-    {
-        "problem": "N100_E25_W37882",
-        "cost": 52,
-        "runningTime": 0.0017800770000000465
-    },
-    {
-        "problem": "N100_E25_W53106",
-        "cost": 73,
-        "runningTime": 0.001405049000000047
-    },
-    {
-        "problem": "N100_E29_W22601",
-        "cost": 32,
-        "runningTime": 0.0017685079999999465
-    },
-    {
-        "problem": "N100_E33_W37858",
-        "cost": 52,
-        "runningTime": 0.0030971990000000504
-    },
-    {
-        "problem": "N100_E34_W22399",
-        "cost": 34,
-        "runningTime": 0.0020699310000000803
-    },
-    {
-        "problem": "N100_E40_W22210",
-        "cost": 32,
-        "runningTime": 0.0026677610000001017
-    },
-    {
-        "problem": "N100_E43_W37647",
-        "cost": 52,
-        "runningTime": 0.0021179780000000203
-    },
-    {
-        "problem": "N100_E45_W22215",
-        "cost": 32,
-        "runningTime": 0.0018473780000000106
-    },
-    {
-        "problem": "N100_E46_W52707",
-        "cost": 72,
-        "runningTime": 0.002069150999999936
-    },
-    {
-        "problem": "N100_E47_W22524",
-        "cost": 33,
-        "runningTime": 0.00153458399999995
-    },
-    {
-        "problem": "N100_E49_W53079",
-        "cost": 73,
-        "runningTime": 0.0016852969999999745
-    },
-    {
-        "problem": "N100_E50_W52513",
-        "cost": 71,
-        "runningTime": 0.002019730999999969
-    },
-    {
-        "problem": "N100_E51_W38089",
-        "cost": 52,
-        "runningTime": 0.0020685910000000085
-    },
-    {
-        "problem": "N100_E57_W37379",
-        "cost": 53,
-        "runningTime": 0.001758500999999968
-    },
-    {
-        "problem": "N100_E5_W22866",
-        "cost": 32,
-        "runningTime": 0.001528115000000052
-    },
-    {
-        "problem": "N100_E5_W37781",
-        "cost": 52,
-        "runningTime": 0.0017864050000000464
-    },
-    {
-        "problem": "N100_E5_W52908",
-        "cost": 71,
-        "runningTime": 0.001729721999999989
-    },
-    {
-        "problem": "N100_E6_W37053",
-        "cost": 54,
-        "runningTime": 0.001201432999999974
-    },
-    {
-        "problem": "N100_E7_W22507",
-        "cost": 32,
-        "runningTime": 0.0018553959999999536
-    },
-    {
-        "problem": "N100_E7_W52552",
-        "cost": 73,
-        "runningTime": 0.005665413000000008
-    },
-    {
-        "problem": "N300_E209_W158073",
-        "cost": 218,
-        "runningTime": 0.004059583000000089
-    },
-    {
-        "problem": "N300_E218_W67693",
-        "cost": 96,
-        "runningTime": 0.006152228000000037
-    },
-    {
-        "problem": "N300_E221_W156819",
-        "cost": 215,
-        "runningTime": 0.011873431999999906
-    },
-    {
-        "problem": "N300_E227_W111874",
-        "cost": 156,
-        "runningTime": 0.009752970999999944
-    },
-    {
-        "problem": "N300_E231_W158231",
-        "cost": 216,
-        "runningTime": 0.00510565900000004
-    },
-    {
-        "problem": "N300_E232_W67504",
-        "cost": 95,
-        "runningTime": 0.007596403000000085
-    },
-    {
-        "problem": "N300_E233_W67995",
-        "cost": 99,
-        "runningTime": 0.007225508999999963
-    },
-    {
-        "problem": "N300_E237_W113226",
-        "cost": 158,
-        "runningTime": 0.006041123000000037
-    },
-    {
-        "problem": "N300_E253_W112148",
-        "cost": 160,
-        "runningTime": 0.00747434300000005
-    },
-    {
-        "problem": "N300_E35_W66932",
-        "cost": 102,
-        "runningTime": 0.003011856999999951
-    },
-    {
-        "problem": "N300_E37_W111737",
-        "cost": 157,
-        "runningTime": 0.004850696999999959
-    },
-    {
-        "problem": "N300_E393_W112377",
-        "cost": 156,
-        "runningTime": 0.009241363999999974
-    },
-    {
-        "problem": "N300_E41_W158233",
-        "cost": 217,
-        "runningTime": 0.0039057369999999647
-    },
-    {
-        "problem": "N300_E426_W67713",
-        "cost": 94,
-        "runningTime": 0.010937923999999932
-    },
-    {
-        "problem": "N300_E42_W112553",
-        "cost": 162,
-        "runningTime": 0.0033924200000000626
-    },
-    {
-        "problem": "N300_E439_W114108",
-        "cost": 156,
-        "runningTime": 0.008639113999999948
-    },
-    {
-        "problem": "N300_E439_W155941",
-        "cost": 215,
-        "runningTime": 0.010438601000000158
-    },
-    {
-        "problem": "N300_E43_W157321",
-        "cost": 221,
-        "runningTime": 0.0034239099999999745
-    },
-    {
-        "problem": "N300_E443_W67549",
-        "cost": 96,
-        "runningTime": 0.011603739999999974
-    },
-    {
-        "problem": "N300_E445_W157262",
-        "cost": 214,
-        "runningTime": 0.01203392400000003
-    },
-    {
-        "problem": "N300_E447_W157644",
-        "cost": 217,
-        "runningTime": 0.006737808000000012
-    },
-    {
-        "problem": "N300_E44_W113112",
-        "cost": 159,
-        "runningTime": 0.004554968999999964
-    },
-    {
-        "problem": "N300_E451_W112128",
-        "cost": 155,
-        "runningTime": 0.06951671100000012
-    },
-    {
-        "problem": "N300_E466_W67544",
-        "cost": 97,
-        "runningTime": 0.008809914999999835
-    },
-    {
-        "problem": "N300_E46_W67993",
-        "cost": 98,
-        "runningTime": 0.0038789349999999168
-    },
-    {
-        "problem": "N300_E48_W67303",
-        "cost": 97,
-        "runningTime": 0.005244223000000048
-    },
-    {
-        "problem": "N300_E63_W156665",
-        "cost": 216,
-        "runningTime": 0.004996471999999974
-    },
-    {
-        "problem": "N500_E107_W187626",
-        "cost": 265,
-        "runningTime": 0.007057678999999872
-    },
-    {
-        "problem": "N500_E1154_W188267",
-        "cost": 257,
-        "runningTime": 0.06870382099999994
-    },
-    {
-        "problem": "N500_E1155_W112554",
-        "cost": 158,
-        "runningTime": 0.035928087999999914
-    },
-    {
-        "problem": "N500_E1160_W262039",
-        "cost": 359,
-        "runningTime": 0.024285751000000078
-    },
-    {
-        "problem": "N500_E1169_W263485",
-        "cost": 357,
-        "runningTime": 0.02834496800000008
-    },
-    {
-        "problem": "N500_E1172_W112045",
-        "cost": 156,
-        "runningTime": 0.039502095999999876
-    },
-    {
-        "problem": "N500_E1175_W111948",
-        "cost": 159,
-        "runningTime": 0.024667935000000085
-    },
-    {
-        "problem": "N500_E1176_W187733",
-        "cost": 257,
-        "runningTime": 0.02857527400000004
-    },
-    {
-        "problem": "N500_E118_W187152",
-        "cost": 263,
-        "runningTime": 0.010825389000000074
-    },
-    {
-        "problem": "N500_E1192_W187394",
-        "cost": 259,
-        "runningTime": 0.07494305400000001
-    },
-    {
-        "problem": "N500_E1203_W263300",
-        "cost": 356,
-        "runningTime": 0.07470835900000017
-    },
-    {
-        "problem": "N500_E120_W187056",
-        "cost": 271,
-        "runningTime": 0.006221054000000059
-    },
-    {
-        "problem": "N500_E121_W262283",
-        "cost": 363,
-        "runningTime": 0.007442337000000077
-    },
-    {
-        "problem": "N500_E122_W261374",
-        "cost": 360,
-        "runningTime": 0.009278626999999817
-    },
-    {
-        "problem": "N500_E123_W112510",
-        "cost": 162,
-        "runningTime": 0.009841731000000076
-    },
-    {
-        "problem": "N500_E127_W113110",
-        "cost": 168,
-        "runningTime": 0.008348391000000177
-    },
-    {
-        "problem": "N500_E130_W264094",
-        "cost": 367,
-        "runningTime": 0.0055481439999998106
-    },
-    {
-        "problem": "N500_E133_W113189",
-        "cost": 164,
-        "runningTime": 0.007988660000000092
-    },
-    {
-        "problem": "N500_E594_W112090",
-        "cost": 158,
-        "runningTime": 1.634213276
-    },
-    {
-        "problem": "N500_E594_W112478",
-        "cost": 161,
-        "runningTime": 0.01406667199999978
-    },
-    {
-        "problem": "N500_E614_W258557",
-        "cost": 360,
-        "runningTime": 0.011334174000000363
-    },
-    {
-        "problem": "N500_E621_W186642",
-        "cost": 260,
-        "runningTime": 0.014488889999999977
-    },
-    {
-        "problem": "N500_E621_W261167",
-        "cost": 360,
-        "runningTime": 0.010789868999999896
-    },
-    {
-        "problem": "N500_E623_W111165",
-        "cost": 164,
-        "runningTime": 0.01112800699999994
-    },
-    {
-        "problem": "N500_E626_W261199",
-        "cost": 357,
-        "runningTime": 0.05648734200000005
-    },
-    {
-        "problem": "N500_E629_W189219",
-        "cost": 266,
-        "runningTime": 0.010907764000000153
-    },
-    {
-        "problem": "N500_E650_W187605",
-        "cost": 261,
-        "runningTime": 0.013607098999999678
-    }
+  {
+    "problem": "N100_E10_W37507",
+    "cost": 53,
+    "runningTime": 0.002410660000000009
+  },
+  {
+    "problem": "N100_E10_W52564",
+    "cost": 72,
+    "runningTime": 0.0020956789999999614
+  },
+  {
+    "problem": "N100_E13_W22388",
+    "cost": 33,
+    "runningTime": 0.0015236750000000576
+  },
+  {
+    "problem": "N100_E17_W37381",
+    "cost": 53,
+    "runningTime": 0.001444289000000043
+  },
+  {
+    "problem": "N100_E17_W52142",
+    "cost": 71,
+    "runningTime": 0.01528506900000004
+  },
+  {
+    "problem": "N100_E19_W22217",
+    "cost": 32,
+    "runningTime": 0.0019744589999999285
+  },
+  {
+    "problem": "N100_E24_W52076",
+    "cost": 72,
+    "runningTime": 0.0017216149999998986
+  },
+  {
+    "problem": "N100_E25_W37882",
+    "cost": 52,
+    "runningTime": 0.0017800770000000465
+  },
+  {
+    "problem": "N100_E25_W53106",
+    "cost": 73,
+    "runningTime": 0.001405049000000047
+  },
+  {
+    "problem": "N100_E29_W22601",
+    "cost": 32,
+    "runningTime": 0.0017685079999999465
+  },
+  {
+    "problem": "N100_E33_W37858",
+    "cost": 52,
+    "runningTime": 0.0030971990000000504
+  },
+  {
+    "problem": "N100_E34_W22399",
+    "cost": 34,
+    "runningTime": 0.0020699310000000803
+  },
+  {
+    "problem": "N100_E40_W22210",
+    "cost": 32,
+    "runningTime": 0.0026677610000001017
+  },
+  {
+    "problem": "N100_E43_W37647",
+    "cost": 52,
+    "runningTime": 0.0021179780000000203
+  },
+  {
+    "problem": "N100_E45_W22215",
+    "cost": 32,
+    "runningTime": 0.0018473780000000106
+  },
+  {
+    "problem": "N100_E46_W52707",
+    "cost": 72,
+    "runningTime": 0.002069150999999936
+  },
+  {
+    "problem": "N100_E47_W22524",
+    "cost": 33,
+    "runningTime": 0.00153458399999995
+  },
+  {
+    "problem": "N100_E49_W53079",
+    "cost": 73,
+    "runningTime": 0.0016852969999999745
+  },
+  {
+    "problem": "N100_E50_W52513",
+    "cost": 71,
+    "runningTime": 0.002019730999999969
+  },
+  {
+    "problem": "N100_E51_W38089",
+    "cost": 52,
+    "runningTime": 0.0020685910000000085
+  },
+  {
+    "problem": "N100_E57_W37379",
+    "cost": 53,
+    "runningTime": 0.001758500999999968
+  },
+  {
+    "problem": "N100_E5_W22866",
+    "cost": 32,
+    "runningTime": 0.001528115000000052
+  },
+  {
+    "problem": "N100_E5_W37781",
+    "cost": 52,
+    "runningTime": 0.0017864050000000464
+  },
+  {
+    "problem": "N100_E5_W52908",
+    "cost": 71,
+    "runningTime": 0.001729721999999989
+  },
+  {
+    "problem": "N100_E6_W37053",
+    "cost": 54,
+    "runningTime": 0.001201432999999974
+  },
+  {
+    "problem": "N100_E7_W22507",
+    "cost": 32,
+    "runningTime": 0.0018553959999999536
+  },
+  {
+    "problem": "N100_E7_W52552",
+    "cost": 73,
+    "runningTime": 0.005665413000000008
+  },
+  {
+    "problem": "N300_E209_W158073",
+    "cost": 218,
+    "runningTime": 0.004059583000000089
+  },
+  {
+    "problem": "N300_E218_W67693",
+    "cost": 96,
+    "runningTime": 0.006152228000000037
+  },
+  {
+    "problem": "N300_E221_W156819",
+    "cost": 215,
+    "runningTime": 0.011873431999999906
+  },
+  {
+    "problem": "N300_E227_W111874",
+    "cost": 156,
+    "runningTime": 0.009752970999999944
+  },
+  {
+    "problem": "N300_E231_W158231",
+    "cost": 216,
+    "runningTime": 0.00510565900000004
+  },
+  {
+    "problem": "N300_E232_W67504",
+    "cost": 95,
+    "runningTime": 0.007596403000000085
+  },
+  {
+    "problem": "N300_E233_W67995",
+    "cost": 99,
+    "runningTime": 0.007225508999999963
+  },
+  {
+    "problem": "N300_E237_W113226",
+    "cost": 158,
+    "runningTime": 0.006041123000000037
+  },
+  {
+    "problem": "N300_E253_W112148",
+    "cost": 160,
+    "runningTime": 0.00747434300000005
+  },
+  {
+    "problem": "N300_E35_W66932",
+    "cost": 102,
+    "runningTime": 0.003011856999999951
+  },
+  {
+    "problem": "N300_E37_W111737",
+    "cost": 157,
+    "runningTime": 0.004850696999999959
+  },
+  {
+    "problem": "N300_E393_W112377",
+    "cost": 156,
+    "runningTime": 0.009241363999999974
+  },
+  {
+    "problem": "N300_E41_W158233",
+    "cost": 217,
+    "runningTime": 0.0039057369999999647
+  },
+  {
+    "problem": "N300_E426_W67713",
+    "cost": 94,
+    "runningTime": 0.010937923999999932
+  },
+  {
+    "problem": "N300_E42_W112553",
+    "cost": 162,
+    "runningTime": 0.0033924200000000626
+  },
+  {
+    "problem": "N300_E439_W114108",
+    "cost": 156,
+    "runningTime": 0.008639113999999948
+  },
+  {
+    "problem": "N300_E439_W155941",
+    "cost": 215,
+    "runningTime": 0.010438601000000158
+  },
+  {
+    "problem": "N300_E43_W157321",
+    "cost": 221,
+    "runningTime": 0.0034239099999999745
+  },
+  {
+    "problem": "N300_E443_W67549",
+    "cost": 96,
+    "runningTime": 0.011603739999999974
+  },
+  {
+    "problem": "N300_E445_W157262",
+    "cost": 214,
+    "runningTime": 0.01203392400000003
+  },
+  {
+    "problem": "N300_E447_W157644",
+    "cost": 217,
+    "runningTime": 0.006737808000000012
+  },
+  {
+    "problem": "N300_E44_W113112",
+    "cost": 159,
+    "runningTime": 0.004554968999999964
+  },
+  {
+    "problem": "N300_E451_W112128",
+    "cost": 155,
+    "runningTime": 0.06951671100000012
+  },
+  {
+    "problem": "N300_E466_W67544",
+    "cost": 97,
+    "runningTime": 0.008809914999999835
+  },
+  {
+    "problem": "N300_E46_W67993",
+    "cost": 98,
+    "runningTime": 0.0038789349999999168
+  },
+  {
+    "problem": "N300_E48_W67303",
+    "cost": 97,
+    "runningTime": 0.005244223000000048
+  },
+  {
+    "problem": "N300_E63_W156665",
+    "cost": 216,
+    "runningTime": 0.004996471999999974
+  },
+  {
+    "problem": "N500_E107_W187626",
+    "cost": 265,
+    "runningTime": 0.007057678999999872
+  },
+  {
+    "problem": "N500_E1154_W188267",
+    "cost": 257,
+    "runningTime": 0.06870382099999994
+  },
+  {
+    "problem": "N500_E1155_W112554",
+    "cost": 158,
+    "runningTime": 0.035928087999999914
+  },
+  {
+    "problem": "N500_E1160_W262039",
+    "cost": 359,
+    "runningTime": 0.024285751000000078
+  },
+  {
+    "problem": "N500_E1169_W263485",
+    "cost": 357,
+    "runningTime": 0.02834496800000008
+  },
+  {
+    "problem": "N500_E1172_W112045",
+    "cost": 156,
+    "runningTime": 0.039502095999999876
+  },
+  {
+    "problem": "N500_E1175_W111948",
+    "cost": 159,
+    "runningTime": 0.024667935000000085
+  },
+  {
+    "problem": "N500_E1176_W187733",
+    "cost": 257,
+    "runningTime": 0.02857527400000004
+  },
+  {
+    "problem": "N500_E118_W187152",
+    "cost": 263,
+    "runningTime": 0.010825389000000074
+  },
+  {
+    "problem": "N500_E1192_W187394",
+    "cost": 259,
+    "runningTime": 0.07494305400000001
+  },
+  {
+    "problem": "N500_E1203_W263300",
+    "cost": 356,
+    "runningTime": 0.07470835900000017
+  },
+  {
+    "problem": "N500_E120_W187056",
+    "cost": 271,
+    "runningTime": 0.006221054000000059
+  },
+  {
+    "problem": "N500_E121_W262283",
+    "cost": 363,
+    "runningTime": 0.007442337000000077
+  },
+  {
+    "problem": "N500_E122_W261374",
+    "cost": 360,
+    "runningTime": 0.009278626999999817
+  },
+  {
+    "problem": "N500_E123_W112510",
+    "cost": 162,
+    "runningTime": 0.009841731000000076
+  },
+  {
+    "problem": "N500_E127_W113110",
+    "cost": 168,
+    "runningTime": 0.008348391000000177
+  },
+  {
+    "problem": "N500_E130_W264094",
+    "cost": 367,
+    "runningTime": 0.0055481439999998106
+  },
+  {
+    "problem": "N500_E133_W113189",
+    "cost": 164,
+    "runningTime": 0.007988660000000092
+  },
+  {
+    "problem": "N500_E594_W112090",
+    "cost": 158,
+    "runningTime": 1.634213276
+  },
+  {
+    "problem": "N500_E594_W112478",
+    "cost": 161,
+    "runningTime": 0.01406667199999978
+  },
+  {
+    "problem": "N500_E614_W258557",
+    "cost": 360,
+    "runningTime": 0.011334174000000363
+  },
+  {
+    "problem": "N500_E621_W186642",
+    "cost": 260,
+    "runningTime": 0.014488889999999977
+  },
+  {
+    "problem": "N500_E621_W261167",
+    "cost": 360,
+    "runningTime": 0.010789868999999896
+  },
+  {
+    "problem": "N500_E623_W111165",
+    "cost": 164,
+    "runningTime": 0.01112800699999994
+  },
+  {
+    "problem": "N500_E626_W261199",
+    "cost": 357,
+    "runningTime": 0.05648734200000005
+  },
+  {
+    "problem": "N500_E629_W189219",
+    "cost": 266,
+    "runningTime": 0.010907764000000153
+  },
+  {
+    "problem": "N500_E650_W187605",
+    "cost": 261,
+    "runningTime": 0.013607098999999678
+  }
 ]
