@@ -1,15 +1,16 @@
 \subsection{Greedy Algorithm}
 
-It is a simple algorithm: add the vertices which minimize the added weight and does not violate the precedence-constraint iteratively until no more vertex can be added without exceeding the knapsack capacity. Such algorithm is presented below:
+It is a simple algorithm: add the vertices which minimize the \greedyCriteriaText $\greedy$ and does not violate the \precedenceConstraint (\eqref{eq:precedence-constraint}) iteratively until no more vertex can be added without violating the \capacityConstraint (\eqref{eq:capacity-constraint}). Such algorithm is presented in \algref{algorithm:greedy}.
 
-\begin{algorithm}[ht!]
+\begin{algorithm}[H]
     \caption{Greedy}
     \begin{algorithmic}[1]
         \Require{$\vertices, \edges, \weight, \maximumWeight$}
+        \Comment{This is wrong. Talk about this later, after explaining GRASP}
         \State{$S \gets \emptyset$}
-        \State{$X \gets $ all leaf vertices}
-        \State{$Y \gets 0$}
-        \State{$\solutionE \gets \mathop{\mathrm{arg\,min}}\limits_{\solutionE \in X} \weightE$}
+        \State{$X \gets $ all root vertices}
+        \State{$Y \gets 0 \in \integer^{\wn}$}
+        \State{$\solutionE \gets \mathop{\mathrm{arg\,min}}\limits_{\solutionE \in X} \apply{\greedy}{\solutionE}$}
         \While{$Y + \weightE \leqslant \maximumWeight$}
             \State{$S \gets S \cup \Set{\solutionE}$}
             \State{$Y \gets Y + \weightE$}
@@ -20,3 +21,5 @@ It is a simple algorithm: add the vertices which minimize the added weight and d
     \end{algorithmic}
     \label{algorithm:greedy}
 \end{algorithm}
+
+We expect \algref{algorithm:greedy} to give reasonable results very quickly, i.e. to be good for obtaining reasonable results but not near-optimal ones.
