@@ -1,5 +1,13 @@
 \section{Results}
 
+\subsection{Computational Environment}
+
+The GRASP, Tabu, and Greedy algorithms were implemented in the Java programming language (Java version 17 and gradle version 7). The Integer Linear Programming was solved using Gurobi 9.5 and Python.
+
+All the experiments were executed in a ideapad S145 81S90005BR: Lenovo IdeaPad S145 Notebook Intel Core i5-8265U (6MB Cache, 1.6GHz), 8GB DDR4-SDRAM, 460 GB SSD, Intel UHD Graphics 620.
+
+The operating system was a Fedora 35 executando o Java 17 e Gradle 7. O código desenvolvido pode ser encontrado em \cite{bib:github}.
+
 \subsection{Tables}
 
 \input{results/100.tex}
@@ -10,14 +18,14 @@
 
 For those, a tolerance of 1\% is admitted in the solution. In other words, if an algorithms found a solution as good as the best one found (within a 1\% tolerance), then it is considered that it solved the problem in that run.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/performance_profile/100_thmax_5.0.png}
     \caption{Performance Profiles for the three algorithms for the instances of 100 vertices.}
     \label{fig:perf-100}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/performance_profile/500_thmax_None.png}
     \caption{Performance Profiles for the three algorithms for the instances of 500 vertices.}
@@ -25,7 +33,7 @@ For those, a tolerance of 1\% is admitted in the solution. In other words, if an
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{images/performance_profile/1000_thmax_None.png}
     \caption{Performance Profiles for the three algorithms for the instances of 1000 vertices.}
