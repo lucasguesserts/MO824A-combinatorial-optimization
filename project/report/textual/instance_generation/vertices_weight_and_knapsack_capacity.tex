@@ -1,0 +1,21 @@
+\subsection{Vertices Weight and Knapsack Capacity}
+
+Both the weight of a vertex and the Knapsack Capacity are a multidimensiona vectors of positive integer entries. To generate them, it is as simple as generating some random numbers in a specific range of values and organizing it so that one gets a vector. For this, \cite{bib:numpy} was used.
+
+We want some sort of relation between the knapsack capacity and the weight generated for all vertices. What we do is:
+
+\begin{enumerate}
+    \item generate the weight of all vertices;
+    \item compute the sum of the weight of all vertices and set the knapsack capacity as a fraction of such value;
+\end{enumerate}
+
+In that way, there is some sort of (statictical) guarantee that some but not all vertices are going to fit into the knapsack.
+
+\subsubsection{Vertices Weight Generation Parameters}
+
+\begin{enumerate}
+    \item weight size: the size or dimension of the weight vector;
+    \item weight minimum value and weight maximum value: they define the interval in which the values must be;
+    \item percentage of nodes to fit: a number between 0 (zero) and 1 (one) exclusive, it is the fraction used to multiply sum of the weight of all vertices in order to set the knapsack capacity;
+\end{enumerate}
+
