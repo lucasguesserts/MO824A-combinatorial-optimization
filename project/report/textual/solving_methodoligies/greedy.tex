@@ -1,25 +1,12 @@
 \subsection{Greedy Algorithm}
 
-It is a simple algorithm: add the vertices which minimize the \greedyCriteriaText $\greedy$ and does not violate the \precedenceConstraint (\eqref{eq:precedence-constraint}) iteratively until no more vertex can be added without violating the \capacityConstraint (\eqref{eq:capacity-constraint}). Such algorithm is presented in \algref{algorithm:greedy}.
+It is a simple algorithm: at each iteration, add the vertex which minimizes the \greedyCriteriaText $\greedy$ and does not violate the \precedenceConstraint (\eqref{eq:precedence-constraint}). When no more vertex can be added without violating the \capacityConstraint (\eqref{eq:capacity-constraint}), stop.
 
-\begin{algorithm}[H]
-    \caption{Greedy}
-    \begin{algorithmic}[1]
-        \Require{$\vertices, \edges, \weight, \maximumWeight$}
-        \Comment{This is wrong. Talk about this later, after explaining GRASP}
-        \State{$S \gets \emptyset$}
-        \State{$X \gets $ all root vertices}
-        \State{$Y \gets 0 \in \integer^{\wn}$}
-        \State{$\solutionE \gets \mathop{\mathrm{arg\,min}}\limits_{\solutionE \in X} \apply{\greedy}{\solutionE}$}
-        \While{$Y + \weightE \leqslant \maximumWeight$}
-            \State{$S \gets S \cup \Set{\solutionE}$}
-            \State{$Y \gets Y + \weightE$}
-            \State{$X \gets $ all the vertices not yet in $S$ that can be added to $S$ without violating the constraints}
-            \State{$\solutionE \gets \mathop{\mathrm{arg\,min}}\limits_{\solutionE \in X} \norm{\weightE}$}
-        \EndWhile
-        \\\Return{$S$}
-    \end{algorithmic}
-    \label{algorithm:greedy}
-\end{algorithm}
+Although being quite easy to define and implement this algorithm, we decided to implement it using GRASP with:
 
-We expect \algref{algorithm:greedy} to give reasonable results very quickly, i.e. to be good for obtaining reasonable results but not near-optimal ones.
+\begin{enumerate}
+    \item \greedyParameterText $\greedyParameter = 0$. As discussed in \sssref{subsubsection:grasp-construction}, it makes the algorithm purely greedy;
+    \item Maximum number of iterations $\nit = 1$. Being purely greedy, there is no randomness, so there is also no need to run it more than once;
+\end{enumerate}
+
+% We expect \algref{algorithm:greedy} to give reasonable results very quickly, i.e. to be good for obtaining reasonable results but not near-optimal ones.

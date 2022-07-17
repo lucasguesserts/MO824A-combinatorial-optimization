@@ -26,6 +26,9 @@
 \nmc{\apply}{2}{#1\left( #2 \right)}
 \nmc{\interval}{2}{\left[ #1, #2 \right]}
 \nmc{\norm}{1}{\left\lVert #1 \right\rVert}
+\nmc{\argmin}{1}{\mathop{\mathrm{arg\,min}}\limits_{#1}}
+\nmc{\argmax}{1}{\mathop{\mathrm{arg\,max}}\limits_{#1}}
+\nsmc{\setDiff}{\backslash}
 
 % problem
 \nsmc{\graph}{G}
@@ -64,6 +67,9 @@
 \renewcommand{\eqref}[1]{Equation (\ref{#1})\xspace}
 \renewcommand{\algref}[1]{Algorithm \ref{#1}\xspace}
 \newcommand{\figref}[1]{Figure \ref{#1}\xspace}
+\newcommand{\sref}[1]{Section \ref{#1}\xspace}
+\newcommand{\ssref}[1]{Subsection \ref{#1}\xspace}
+\newcommand{\sssref}[1]{Subsubsection \ref{#1}\xspace}
 
 % ILP
 \nsmc{\var}{x}
@@ -73,3 +79,9 @@
 % greedy criteria
 \nc{\greedyCriteriaText}{Greedy Criteria}
 \nsmc{\greedy}{g}
+
+% grasp
+\nsmc{\nit}{N_{i}}
+\nsmc{\greedyParameter}{\alpha}
+\nc{\greedyParameterText}{Greedy Parameter}
+\nc{\localSearchText}{Local Search}
