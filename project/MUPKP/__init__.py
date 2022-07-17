@@ -6,3 +6,4 @@ from .Solution import Solution
 from .SolutionVerifier import SolutionVerifier
 from .BruteForceSolver import BruteForceSolver
 from .IlpSolver import IlpSolver
+from .ExperimentResult import ExperimentResult
