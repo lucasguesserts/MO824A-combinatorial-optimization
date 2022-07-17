@@ -1,5 +1,33 @@
 \section{Results}
 
+\subsection{Tables}
+
 \input{results/100.tex}
 \input{results/500.tex}
 \input{results/1000.tex}
+
+\subsection{Performance Profiles}
+
+For those, a tolerance of 1\% is admitted in the solution. In other words, if an algorithms found a solution as good as the best one found (within a 1\% tolerance), then it is considered that it solved the problem in that run.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/performance_profile/100_thmax_5.0.png}
+    \caption{Performance Profiles for the three algorithms for the instances of 100 vertices.}
+    \label{fig:perf-100}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/performance_profile/500_thmax_None.png}
+    \caption{Performance Profiles for the three algorithms for the instances of 500 vertices.}
+    \label{fig:perf-500}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/performance_profile/1000_thmax_None.png}
+    \caption{Performance Profiles for the three algorithms for the instances of 1000 vertices.}
+    \label{fig:perf-1000}
+\end{figure}
