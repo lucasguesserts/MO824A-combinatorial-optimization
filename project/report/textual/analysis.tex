@@ -1,5 +1,27 @@
 \section{Analysis of the Results}
 
-Looking at Tables \ref{table:100-results}, \ref{table:500-results}, it is clear that the  was the dominant algorithm. It is guarantee to find the optimal solution, what would make one wonders that it would be slower. Interestingly, quite the opposite happened: it outperformed all the other algorithms.
+\subsection{Analysis of the Tables \ref{table:100-results}, \ref{table:500-results}, \ref{table:1000-results}}
+
+Looking them, it is clear that the ILP was the dominant algorithm. It is guarantee to find the optimal solution, what would make one wonders that it would be slower. Interestingly, quite the opposite happened: it outperformed all the other algorithms.
 
 Notice that ILP did not solve the instances with 1000 vertices. That is not because it can't, but because the Gurobi license available doesn't allow one to run models that large.
+
+From the tables, it is possible to notice GRASP always gave a better result, in terms of cost, than Greedy. That is expected: GRASP explores more the solution domain and so it is able to find better ones. That comes with a price: higher running time. In all cases, GRASP ran more than 4 times slower than Greedy. One can notice that the difference get bigger as one increases the domain size. That is because the way GRASP was implemented: to search more in bigger problems.
+
+It is interesting to notice that Tabu started slower than GRASP in the instances with 100 vertices, then they were more or less equivalent in the instances with 500 vertices, and for 1000, Tabu is considerably faster. That is actuall quite conta-intuitive. As stated in \sref{section:tabu}, the only difference between Tabu and GRASP is the local search method. One would expect Tabu to search more,a and so to take longer. That is not what we observe though.
+
+We expected the algorithms to perform worse for instances without edges, as it is the case of the first two cases in the \tabref{table:100-results}. That is because, without the precedence constraints, there are just too many ways of combining the items, and so it should be difficult to find the best combinations. That is not what we observe though. Except ILP, all the other algorithms had a slightly worse performance (it is really small the difference).
+
+We notice that Tabu got results worse than GRASP in all cases. We expected the oscilation plus diversification strategies to have performed better than GRASP, to take the sortcuts and find better solutions. For the cases with 100 and 500 vertices, it is clear that it had the possibility since GRASP didn't find the optimal solution.
+
+Finally, notice that, balacing performance and quality, Greedy performed better than GRASP and Tabu: its results are as good as GRASP and its running time is much faster.
+
+\subsection{Analysis of the Performance Profiles \ref{fig:perf-100}, \ref{fig:perf-500}, \ref{fig:perf-1000}}
+
+The first thing we notice is that in both Figures \ref{fig:perf-500} and \ref{fig:perf-1000}, Greedy finds the near-optimal solution at least 5 times faste than GRASP and Tabu. For the instances of the figure \ref{fig:perf-100}, it is the fastest approximately 65\% of the times.
+
+Notice that the choice of the 1\% tolerance is quite arbitrary. In practice, considering that it is related to an allocation problem, that would be a fairly good value.
+
+In all those figures, ILP was not included because it would dominate: it finds the optimal solution most of the times faster than the metaheuristics implemented in this project.
+
+Comparing GRASP and Tabu, one can see the same behavior pointed out in the last section: GRASP performs better in small instances (100 vertices), they are almost equivalent for 500 vertices, and Tabu performs better in the instances with 1000 vertices.
