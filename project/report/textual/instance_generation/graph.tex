@@ -1,0 +1,72 @@
+\subsection{Graph Generation}
+
+As stated earlier, the precedence contraint is defined by a Directed Acyclic Graph (DAG). We are actually going to prove a very interesting results:
+
+\begin{theorem}
+    Given an problem instance $I$ defined by a Directed Graph, it can be reduced to an instance $I'$ defined by a Directed Acyclic Graph Transitively Reduced \cite{bib:transitive-reduction}.
+\end{theorem}
+
+\begin{proof}
+    It follows directly from \lemmaref{lemma:reduction-1} and \lemmaref{lemma:reduction-2}.
+\end{proof}
+
+\subsubsection{Removing cycles: Directed Graph to Directed Acyclic Graph}
+
+\begin{lemma}
+    \label{lemma:reduction-1}
+    Given an problem instance $I$ defined by a Directed Graph, it can be reduced to an instance $I'$ defined by a Directed Acyclic Graph.
+\end{lemma}
+
+\begin{proof}
+    Suppose that $I$ contains at most one cycle. Let:
+    \begin{enumerate}
+        \item a cycle $C = \Set{u_1, \dots, u_m} \subseteq \vertices$ defined by its vertices;
+        \item $E_{in} = \SetOf{\tuple{u, v}}{v \in C}$ the edges that point to the vertices of the cycle $C$;
+        \item $E_{out} = \SetOf{\tuple{u, v}}{u \in C}$ the edges that point from the vertices of the cycle $C$;
+    \end{enumerate}
+    Create a new graph replacing:
+    \begin{enumerate}
+        \item the cycle $C$ by a vertex $U$ with weight $\Sum{u \in C}{}{\weight_u}$;
+        \item the edges $E_{in}$ by edges that point from the same vertices as originally to the vertex $U$;
+        \item the edges $E_{out}$ by edges that point from $U$ to the same vertices as originally;
+    \end{enumerate}
+    Notice that if both \precedenceConstraint and \capacityConstraint are satisfied in $I$, then they are also satisfied in $I'$. Therefore, both instances are equivalent.
+    For the general case in which $I$ has more than one cycle, one has to simply run the procedure described above for each cycle.
+\end{proof}
+
+\subsubsection{Transitive Reduction: Directed Acyclic Graph to Directed Acyclic Transitively Reduced Graph}
+
+\begin{defn}
+    The transitive reduction of a graph $G$ is the graph $G'$ which has as few edges as possible but the same transitive closure (reachability) of $G$ \cite{bib:transitive-reduction}.
+\end{defn}
+
+Obs: given a graph $G$ and its transitive reduction $G'$, I am refering to $G'$ as $G$ ``Transitively Reduced''.
+
+\begin{lemma}
+    \label{lemma:reduction-2}
+    Given an problem instance $I$ defined by a Directed Acyclic Graph, it can be reduced to an instance $I'$ defined by a Directed Acyclic Graph Transitively Reduced.
+\end{lemma}
+
+\begin{proof}
+    It follows directly from the fact that the transitive reduction preserves thetransitive closure (reachability).
+\end{proof}
+
+\subsubsection{How to generate a Directed Acyclic Transitively Reduced Graph}
+
+Put simply:
+
+\begin{enumerate}
+    \item Generate a Directed Acyclic Graph Transitively Reduced by generating a Directed Acyclic Graph and computing one of its transitive reduction;
+    \item Generate a Directed Acyclic Graph by generating a random upper triangular connectivity matrix (with only ones and zeros) with the main diagonal null (zero);
+\end{enumerate}
+
+There are several computational tools that implement the functionalities above. For this project, we used \cite{bib:numpy} for generating the random matrix and \cite{bib:networkx} for the graph manipulation.
+
+\subsubsection{Graph Generation Parameters}
+
+The following parameters are used to control the creation of the graph:
+
+\begin{enumerate}
+    \item number of nodes: integer positive number
+    \item edge probability: a number between 0 and 1 (inclusive). It is the probability of each edge to exist. In some way, it controls the number of edges of the instance;
+\end{enumerate}

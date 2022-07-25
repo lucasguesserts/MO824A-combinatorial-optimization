@@ -1,0 +1,12 @@
+\subsection{Greedy}
+
+It is a simple algorithm: at each iteration, add the vertex which minimizes the \greedyCriteriaText $\greedy$ and does not violate the \precedenceConstraint (\eqref{eq:precedence-constraint}). When no more vertex can be added without violating the \capacityConstraint (\eqref{eq:capacity-constraint}), stop.
+
+Although being quite easy to define and implement this algorithm, we decided to implement it using GRASP with:
+
+\begin{enumerate}
+    \item \greedyParameterText $\greedyParameter = 0$. As discussed in \sssref{subsubsection:grasp-construction}, it makes the algorithm purely greedy;
+    \item Maximum number of iterations $\nit = 1$. Being purely greedy, there is no randomness, so there is also no need to run it more than once;
+\end{enumerate}
+
+% We expect \algref{algorithm:greedy} to give reasonable results very quickly, i.e. to be good for obtaining reasonable results but not near-optimal ones.

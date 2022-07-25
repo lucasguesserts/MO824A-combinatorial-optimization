@@ -1,0 +1,32 @@
+[
+        {
+            "problem": "N500_E598_W263031",
+            "cost": 353,
+            "runningTime": 1.712
+        },
+        {
+            "problem": "N500_E1157_W262412",
+            "cost": 352,
+            "runningTime": 1.046
+        },
+        {
+            "problem": "N500_E594_W262931",
+            "cost": 353,
+            "runningTime": 1.04
+        },
+        {
+            "problem": "N500_E1189_W260774",
+            "cost": 351,
+            "runningTime": 0.99
+        },
+        {
+            "problem": "N500_E570_W262641",
+            "cost": 353,
+            "runningTime": 1.086
+        },
+        {
+            "problem": "N500_E1169_W262155",
+            "cost": 351,
+            "runningTime": 1.016
+        }
+    ]

@@ -1,0 +1,73 @@
+\subsection{Tabu}
+\label{section:tabu}
+
+The Tabu Search implemented is presented in \cite{bib:tabu}. It is characterized by diversification by restart and presenting strategic oscillation.
+
+\begin{algorithm}[H]
+    \caption{Tabu}
+    \begin{algorithmic}[1]
+        \Require{$\nit, \greedyParameter$}
+        \State{$S^* \gets \varnothing$}
+        \For{$i = 1, \ldots, \nit$}
+            \State{$S_0 \leftarrow \mbox{GRASP-Construction}(\greedyParameter)$}
+            \State{$S_+ \leftarrow \mbox{Tabu-Local-Search}(S)$}
+            \If{$\norm{S_+} > \norm{S^*}$}
+                \State{$S^* \gets S_+$}
+            \EndIf
+        \EndFor
+        \\\Return{$S^*$}
+    \end{algorithmic}
+    \label{algorithm:tabu}
+\end{algorithm}
+
+You may notice that the algorithm is very similar to \algref{algorithm:grasp}, GRASP. Usually, the Tabu Search algorithm does not include the iterations (loop in line 2). However, that is the modification we propose for this project: to use a diversification by restart approach. The reason for adopting that is because the problem seems to require different areas to be explored. Given an intial solution, it may not be easy to explore areas out of its vinicity. A diversification by restart approach aims to solve that exactly problem.
+
+In fact, the difference between the \algref{algorithm:grasp} and \algref{algorithm:tabu} is the local search method: Tabu-Search.
+
+\subsubsection{Tabu-Search}
+
+The \algref{algorithm:tabu-local-search} is the Tabu-Search procedure. It is a variation of what is know as ``strategic oscillation''. Its mechanism is described below.
+
+First, vertices are added to the solution allowing it to  temporarily exceed, by a factor $\capacityExpansionRatio$ (called Capacity Expansion Ratio), the knapsack capacity $\maximumWeight$. Second, it performs substitutions of vertices. So far, it seems very similar to the \algref{algorithm:grasp-local-search}. But Tabu-Search has one more step, required to make the solution feasible again: remove vertices till the knapsack capacity is satisfied once again and the solution becomes feasible. For the removal, at each step, it selects the vertex which maximizes the \greedyCriteriaText, in other words, the heaviest one.
+
+There is yet another very important difference between Tabu-Search and GRASP-Local-Search: the former does not allow vertices in the tabu list to be changed (each time it changes the solution, it records what has been done in the tabu list). whereas the latter doesn't really requires that since it tends to always increase the weight of the solution. For the Tabu-Search, not recording teh moves might mean it would go back to a prevoius visited solution.
+
+Finally, the process runs till a certain number of iterations has passed without improvements in the current best solution known $S^*$.
+
+\begin{algorithm}[H]
+    \caption{Tabu-Search}
+    \begin{algorithmic}[1]
+        \Require{$S, \tenureRatio, \capacityExpansionRatio, \nwi$}
+        \State{$S^* \gets S$}
+        \State{$T \gets $ a vector of $\tenureRatio \cdot \abs{\vertices}$ entries filled with $-1$\footnote{Any invalid value is enough}}
+        \While{number of iterations without improvement  $ < \nwi$}
+            \State{add elements to $S$ while  while $\Sum{\solutionE \in S}{}{\weightE} \leqslant^* (1 + \capacityExpansionRatio) \cdot \maximumWeight$}
+            \State{substitute elements of $S$ while possible}
+            \State{remove elements of $S$ while $\Sum{\solutionE \in S}{}{\weightE} >^* \maximumWeight$}
+            \If{$\norm{S} > \norm{S^*}$}
+                \State{$S^* \gets S$}
+                \Comment{Improvement found}
+            \EndIf
+        \EndWhile
+        \\\Return{$S$}
+    \end{algorithmic}
+    \label{algorithm:tabu-local-search}
+\end{algorithm}
+
+Obs: $x \leqslant^* y$ is true when ALL components of the vector $x$ are smaller than the ones of $y$. Obs 2: $x >^* y$ is true when that ANY component of the vector $x$ is bigger than the ones of $y$.
+
+For combinatorial optimization problems, near-optimal solutions are mostly at the border of the feasibility space, and so there are many infeasible solutions around it.
+
+The Tabu-Search procedure aims to optimize the search by taking shortcuts throught the space of the infeasible solutions. It hopefully jumps from one local optimal to the other, without going back to previously visited solutions (thanks to the tabu list).
+
+\subsubsection{Parameters Selection}
+
+For the implementation of Tabu of this project, we decided to use:
+
+\begin{enumerate}
+    \item the \greedyCriteriaText $\greedy$ presented in the \sssref{subsection:greedy-criteria};
+    \item \greedyParameterText $\greedyParameter = 2$ (construction phase);
+    \item Tenure Ratio $\tenureRatio = 0.4$;
+    \item Capacity Expansion Ratio $\capacityExpansionRatio = 20\%$
+    \item Number of iterations without improvement $\nwi = 10$
+\end{enumerate}

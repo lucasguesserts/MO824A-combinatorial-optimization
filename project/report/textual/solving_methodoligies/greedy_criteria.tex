@@ -1,0 +1,19 @@
+\subsection{\greedyCriteriaText}
+\label{subsection:greedy-criteria}
+
+Since the problem is a unitary-profit, the objective function provides no information about which vertex is better to add to the solution. Being more practical, for designing an algorithm, making decisions based solely on the objective function is useless and meaningless. For that reason, we propose the following auxiliary function $\greedy$, called \greedyCriteriaText:
+
+\begin{defn}[\greedyCriteriaText]
+    \label{def:greedy-criteria}
+    Let  be a vertex and $\weightE$ its weight. The \greedyCriteriaText is the function $\function{\greedy}{\vertices}{\positiveInteger}$ which associates a vertex $\solutionE \in \vertices$ to the entry of its weight vector $\weightE \in \weightCodomain$ with the highest value:
+    \begin{equation}
+        \label{eq:greedy-criteria}
+        \apply{\greedy}{\solutionE} = \apply{\max}{\weightE}
+    \end{equation}
+\end{defn}
+
+In metaheuristics, we are usually interested in greedy strategies. For the approaches analyzed in this project, the greedy criteria is going to be: select the vertex which minimizes the value of $\greedy$. The intuition behind such choice is clear: we want to add vertices which weight as little as possible.
+
+Notice that the above definition is not the only one available. One could choose to use the norm 2 or average value of the weight vector $\weightE$. The election of the maximum is relies on the intuition that ``averages'' might fill too much one of the dimensions of the weight while leaving others free. That would cause early stop of the algorithms. The maximum function, on the other hand, ensures that dominating values of the dimension of the weight are properly handled.
+
+Of course, using the maximum function has drawbacks as well. Since it looks only to the most loaded entry, between two vertices with the same value of the greedy function $\greedy$, it won't see which one has lower values in the other entries.

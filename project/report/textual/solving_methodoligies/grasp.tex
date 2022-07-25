@@ -1,0 +1,97 @@
+\subsection{GRASP}
+
+The GRASP (Greedy Randomized Adaptative Search Procedure) is presented in \cite{bib:grasp}. A general pseudocode of it is presented \algref{algorithm:grasp}.
+
+\begin{algorithm}[H]
+    \caption{GRASP}
+    \begin{algorithmic}[1]
+        \Require{$\nit, \greedyParameter$}
+        \State{$S^* \gets \varnothing$}
+        \For{$i = 1, \ldots, \nit$}
+            \State{$S_0 \leftarrow \mbox{GRASP-Construction}(\greedyParameter)$}
+            \State{$S_+ \leftarrow \mbox{GRASP-Local-Search}(S)$}
+            \If{$\norm{S_+} > \norm{S^*}$}
+                \State{$S^* \gets S_+$}
+            \EndIf
+        \EndFor
+        \\\Return{$S^*$}
+    \end{algorithmic}
+    \label{algorithm:grasp}
+\end{algorithm}
+
+\subsubsection{Number of iterations}
+
+We propose to use as the number of iterations \nit the square root of the number of nodes:
+
+\begin{equation}
+    \label{eq:number-of-iterations-grasp}
+    \nit = \sqrt{\abs{\vertices}}
+\end{equation}
+
+Such criteria is interesting for two main reasons:
+
+\begin{enumerate}
+    \item it grows with the size of the input \label{item:nit-grasp-grow}
+    \item it does not grow at the same rate as the size of the input grows
+\end{enumerate}
+
+As pointed out in \ref{item:nit-grasp-grow} above, it is natural to think that, as the size of the problem grows, so should the number of iterations, in order to better cover the space of feasible solutions.
+
+However, the number of iterations must not grow too much with the size of the input. That's exactly why we proposed to use the square root. As it generates new solutions, because of the greedy criteria, it tends to explore similar locations, so more iterations will not provide much more coverage of the space of feasible solutions.
+
+\subsubsection{Greedy Randomized Construction}
+\label{subsubsection:grasp-construction}
+
+We used \algref{algorithm:grasp-construction}, the same one proposed in \cite{bib:grasp}.
+
+In the algorithm, $\greedyParameter$ is known as \greedyParameterText, it controls the balance between greediness and randomness ($\greedyParameter = 0$ is purely greedy, $\greedyParameter = 1$ is purely random).
+
+\begin{algorithm}[H]
+    \caption{GRASP-Construction}
+    \begin{algorithmic}[1]
+        \Require{$\greedyParameter$}
+        \State{$S \gets \varnothing$}
+        \State{$C \gets \SetOf{\solutionE \in \vertices \setDiff S}{S \cup \Set{\solutionE} \mbox{ does not violate the constraints}}$}
+        \While{$C \neq \varnothing$}
+            \State{$\greedy_{min} = \argmin{\solutionE \in C} \apply{\greedy}{\solutionE}$}
+            \State{$\greedy_{max} = \argmax{\solutionE \in C} \apply{\greedy}{\solutionE}$}
+            \State{$RC \gets \SetOf{\solutionE \in C}{\apply{\greedy}{\solutionE} \leqslant \greedy_{min} + \greedyParameter \cdot \left( \greedy_{max} - \greedy_{min} \right)}$}
+            \State{$\solutionE \gets $ pick an element of $RC$ at random}
+            \State{$C \gets \SetOf{\solutionE \in \vertices \setDiff S}{S \cup \Set{\solutionE} \mbox{ does not violate the constraints}}$}
+        \EndWhile
+        \\\Return{$S$}
+    \end{algorithmic}
+    \label{algorithm:grasp-construction}
+\end{algorithm}
+
+Notice that $\SetOf{\solutionE \in \vertices \setDiff S}{S \cup \Set{\solutionE} \mbox{ does not violate the constraints}}$ is all the vertices $\solutionE$ which:
+
+\begin{enumerate}
+    \item are successors of the vertices in the solution $S$
+    \item have all the predecessors in the solution $S$
+    \item its weight $\weightE$ plus the weight $\weight_{S} = \Sum{\solutionEp \in S}{}{\weight_{\solutionEp}}$ of the solution $S$ does not exceed the capacity $\maximumWeight$ of the knapsack
+\end{enumerate}
+
+\subsubsection{\localSearchText}
+
+The idea is to find a local optimal. For that, the \algref{algorithm:grasp-local-search} fits as many vertices as possible in the solution. A substitution (step 5 above) might free up enough space for a new vertex to be added, that's why the search is in a \textbf{while} loop.
+
+\begin{algorithm}[H]
+    \caption{GRASP-Local-Search}
+    \begin{algorithmic}[1]
+        \Require{$S$}
+        \While{$S$ changed in the last iteration}
+            \State{attempt to add the vertex to $S$ that minimizes the \greedyCriteriaText of the sum of the weights (solution + vertex) and satisfy all contraints}
+            \If{a vertex has been added}
+                \State{\textbf{continue}}
+            \EndIf
+            \State{attempt to substitute one vertex of $S$ by one vertex outside $S$ which does not violate the constraints and minimize the \greedyCriteriaText of the combined weights (solution + vertex to add + vertex to remove)}
+        \EndWhile
+        \\\Return{$S$}
+    \end{algorithmic}
+    \label{algorithm:grasp-local-search}
+\end{algorithm}
+
+\subsubsection{Parameters Selection}
+
+For the implementation of GRASP of this project, we decided to use the \greedyCriteriaText $\greedy$ presented in the \ssref{subsection:greedy-criteria}. As for the \greedyParameterText \greedyParameter, we decided to use $\greedyParameter = 0.2$.

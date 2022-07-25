@@ -5,7 +5,8 @@
 
 % number sets
 \nsmc{\binary}{\Set{0, 1}}
-\nsmc{\positiveInteger}{\mathbb{Z}_{>}}
+\nsmc{\integer}{\mathbb{Z}}
+\nsmc{\positiveInteger}{\integer_{>}}
 \renewcommand{\natural}{\ensuremath{\mathbb{N}}\xspace}
 \nsmc{\real}{\mathbb{R}}
 \nsmc{\realpositive}{\mathbb{R}_{\geqslant}}
@@ -25,6 +26,9 @@
 \nmc{\apply}{2}{#1\left( #2 \right)}
 \nmc{\interval}{2}{\left[ #1, #2 \right]}
 \nmc{\norm}{1}{\left\lVert #1 \right\rVert}
+\nmc{\argmin}{1}{\mathop{\mathrm{arg\,min}}\limits_{#1}}
+\nmc{\argmax}{1}{\mathop{\mathrm{arg\,max}}\limits_{#1}}
+\nsmc{\setDiff}{\backslash}
 
 % problem
 \nsmc{\graph}{G}
@@ -39,6 +43,8 @@
 \nsmc{\solutionE}{v} % solution element
 \nsmc{\solutionEp}{v'} % solution element
 \nsmc{\weightE}{\weight_{\solutionE}}
+\nc{\capacityConstraint}{Capacity-constraint}
+\nc{\precedenceConstraint}{Precedence-constraint}
 
 % other
 \nmc{\subjectedTo}{0}{\mbox{subjected to}}
@@ -50,6 +56,8 @@
 \nc{\zoKP}{0-1KP}
 \nc{\MKPV}{Multidimensional Knapsack Problem}
 \nc{\MKP}{MKP}
+\nc{\MUPKPfull}{Multidimensional Unitary-profit Precedence-constrained Knapsack Problem}
+\nc{\MUPKP}{MUPKP}
 
 % logical
 \nmc{\forAll}{2}{\forall #1 \left( #2 \right)}
@@ -59,8 +67,28 @@
 \renewcommand{\eqref}[1]{Equation (\ref{#1})\xspace}
 \renewcommand{\algref}[1]{Algorithm \ref{#1}\xspace}
 \newcommand{\figref}[1]{Figure \ref{#1}\xspace}
+\newcommand{\sref}[1]{Section \ref{#1}\xspace}
+\newcommand{\ssref}[1]{Subsection \ref{#1}\xspace}
+\newcommand{\sssref}[1]{Subsubsection \ref{#1}\xspace}
+\newcommand{\lemmaref}[1]{Lemma \ref{#1}\xspace}
+\newcommand{\tabref}[1]{Table \ref{#1}\xspace}
 
 % ILP
 \nsmc{\var}{x}
 \nsmc{\varE}{\var_{\solutionE}}
 \nsmc{\varDomain}{\binary^{\wn}}
+
+% greedy criteria
+\nc{\greedyCriteriaText}{Greedy Criteria}
+\nsmc{\greedy}{g}
+
+% grasp
+\nsmc{\nit}{N_{i}}
+\nsmc{\greedyParameter}{\alpha}
+\nc{\greedyParameterText}{Greedy Parameter}
+\nc{\localSearchText}{Local Search}
+
+% tabu
+\nsmc{\tenureRatio}{t_{r}}
+\nsmc{\capacityExpansionRatio}{W^{+}_{r}}
+\nsmc{\nwi}{N_{wi}}

@@ -19,16 +19,15 @@
 \usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{lscape}
+\usepackage{appendix}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}
+\newtheorem{lemma}{Lemma}
 \newtheorem{theorem}{Theorem}
 
 \title{Project -  Multidimensional Unitary-profit Precedence-constrained Knapsack Problem}
-\author{
-	Luiz Fernando Bueno Rosa - RA: 221197 \\
-	Lucas Guesser Targino da Silva - RA: 203534
-}
+\author{Lucas Guesser Targino da Silva - RA: 203534}
 
 \input{pre-textual/math-definitions.tex}
 
@@ -39,16 +38,30 @@
 \input{textual/abstract.tex}
 \input{textual/problem_statement.tex}
 \input{textual/state_of_the_art.tex}
-\section{Solving Methodologies}
-\input{textual/ILP_model.tex}
-\input{textual/solving_methodology.tex}
-\input{textual/greedy.tex}
 
-\input{textual/instances.tex}
-\input{textual/results_evaluation.tex}
+\input{textual/solving_methodoligies/intro.tex}
+\input{textual/solving_methodoligies/ILP_model.tex}
+\input{textual/solving_methodoligies/greedy_criteria.tex}
+\input{textual/solving_methodoligies/grasp.tex}
+\input{textual/solving_methodoligies/greedy.tex}
+\input{textual/solving_methodoligies/tabu.tex}
+
+\input{textual/instance_generation/intro.tex}
+\input{textual/instance_generation/graph.tex}
+\input{textual/instance_generation/vertices_weight_and_knapsack_capacity.tex}
 
 \input{textual/results.tex}
 
+\input{textual/analysis.tex}
+
+\input{textual/conclusion.tex}
+
 \input{post-textual/references.tex}
+
+\begin{appendices}
+
+    \input{appendix/examples_of_instances.tex}
+
+\end{appendices}
 
 \end{document}

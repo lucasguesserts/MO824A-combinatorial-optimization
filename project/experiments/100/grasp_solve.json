@@ -1,0 +1,32 @@
+[
+        {
+            "problem": "N100_E0_W52398",
+            "cost": 69,
+            "runningTime": 0.126
+        },
+        {
+            "problem": "N100_E118_W52247",
+            "cost": 71,
+            "runningTime": 0.043
+        },
+        {
+            "problem": "N100_E213_W52199",
+            "cost": 70,
+            "runningTime": 0.014
+        },
+        {
+            "problem": "N100_E0_W51666",
+            "cost": 70,
+            "runningTime": 0.031
+        },
+        {
+            "problem": "N100_E111_W52365",
+            "cost": 70,
+            "runningTime": 0.025
+        },
+        {
+            "problem": "N100_E222_W53297",
+            "cost": 69,
+            "runningTime": 0.014
+        }
+    ]

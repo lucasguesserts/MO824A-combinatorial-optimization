@@ -1,0 +1,32 @@
+[
+        {
+            "problem": "N1000_E1956_W527027",
+            "cost": 708,
+            "runningTime": 10.03
+        },
+        {
+            "problem": "N1000_E954_W523944",
+            "cost": 710,
+            "runningTime": 27.659
+        },
+        {
+            "problem": "N1000_E1925_W523221",
+            "cost": 707,
+            "runningTime": 10.759
+        },
+        {
+            "problem": "N1000_E1017_W523215",
+            "cost": 711,
+            "runningTime": 22.985
+        },
+        {
+            "problem": "N1000_E2032_W526397",
+            "cost": 708,
+            "runningTime": 7.158
+        },
+        {
+            "problem": "N1000_E975_W523980",
+            "cost": 712,
+            "runningTime": 22.837
+        }
+    ]
